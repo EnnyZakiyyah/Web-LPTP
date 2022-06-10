@@ -75,8 +75,8 @@ Route::get('/home/layanan/bibliography/detil', function () {
 });
 
 //Home-Koleksi-Digital
-Route::get('/home/koleksi-digital/koleksi-digital', function () {
-    return view('home.koleksi-digital', [
+Route::get('/home/koleksi-digital', function () {
+    return view('home.koleksi-digital.koleksi-digital', [
         "title" => "Koleksi Digital",
     ]);
 });
