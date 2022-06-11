@@ -17,14 +17,14 @@
     <form action="/home/sirkulasi/penelusuran-katalog">
     <div class="row">
       <div class="col-md-auto mt-2">
-          <div class="search rounded-pill"><input type="text" class="form-control rounded-pill" placeholder="Search books, articles, keywords" name="search"> <i class="fa fa-search"></i></div>
+          <div class="search rounded-pill"><input type="text" class="form-control rounded-pill" placeholder="Search books, articles, keywords" name="search" value="{{ request('search') }}"> <i class="fa fa-search"></i></div>
       </div>
-      {{-- @if (request('category'))
+      @if (request('category'))
       <input type="hidden" class="form-control rounded-pill" placeholder="Search books, articles, keywords" name="category" value="{{ request('category') }}">
       @endif
       @if (request('author'))
       <input type="hidden" class="form-control rounded-pill" placeholder="Search books, articles, keywords" name="author" value="{{ request('author') }}">
-      @endif --}}
+      @endif
       <div class="col-md-auto mt-2">
         <select class="form-select rounded-pill" aria-label="Default select example" name="">
           <option selected>Jenis</option>
@@ -44,7 +44,7 @@
   </section>
  
   <!--Penelusuran Katalog-->
-{{-- @if ($katalogs->count())  --}}
+@if ($katalogs->count()) 
 <section class="pt-2">
       <article>
         <div class="container">
@@ -58,28 +58,28 @@
               </div>
                 <div class="card-body">
                   <h6 class="pt-5"><a href="/home/sirkulasi/penelusuran-katalog/{{ $katalog->slug }}">{{ $katalog->title }}</a></h6>
-                  <p>by <a href="/home/sirkulasi/penelusuran-katalog/authors/{{ $katalog->author->username }}" class="text-primary" style="font-size: 13px;">{{ $katalog->author->name }}</a></p>
+                  <p>by <a href="/home/sirkulasi/penelusuran-katalog?author={{ $katalog->author->username }}" class="text-primary" style="font-size: 13px;">{{ $katalog->author->name }}</a></p>
                   <p style="font-size: 13px;">2016</p>
                   <p>{!! $katalog->excerpt !!}
                   <a href="/home/sirkulasi/penelusuran-katalog/{{ $katalog->slug }}" class="text-primary">Read More...</a></p> 
-                  <a type="button" class="btn btn-outline-secondary btn-sm" style="font-weight: bold;" href="/home/sirkulasi/penelusuran-katalog/categories/{{ $katalog->category->slug }}">{{ $katalog->category->name }}</a>
+                  <a type="button" class="btn btn-outline-secondary btn-sm" style="font-weight: bold;" href="/home/sirkulasi/penelusuran-katalog?category={{ $katalog->category->slug }}">{{ $katalog->category->name }}</a>
                 </div>
             </div>
             @endforeach
           </div>
         </div>
       </article>
-      {{-- @else
+      @else
       <p class="text-center fs-4">No Post Found.</p>
-      @endif --}}
+      @endif
           <!--PAGINATION-->
-          {{-- <nav aria-label="Page navigation example">
+          <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center">
               <li class="page-item">
                 {{ $katalogs->links() }}
               </li>
             </ul>
-          </nav> --}}
+          </nav>
         </div>
 </section>
 </div> 

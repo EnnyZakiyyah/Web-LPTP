@@ -2,15 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Author;
 use App\Models\Katalog;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class KatalogController extends Controller
 {
     public function index(){
+        $title = '';
+        if (request('category')) {
+            $catergory = Category::firstWhere('slug', request('category'));
+            $title = ' in '. $catergory->name;
+        }
+
+        if (request('author')) {
+            $author = Author::firstWhere('username', request('author'));
+            $title = ' by '. $author->name;
+        }
+        
         return view('home.sirkulasi.penelusuran-katalog', [
-            "title" => "Sirkulasi",
-            "katalogs" => Katalog::with(['author', 'category'])->latest()->get()
+            "title" => "Sirkulasi" . $title,
+            "katalogs" => Katalog::latest()->filter(request(['search', 'category', 'author']))->paginate(6)->withQueryString()
         ]);
     }
 
