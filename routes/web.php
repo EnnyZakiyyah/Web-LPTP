@@ -1,10 +1,11 @@
 <?php
 
 use App\Models\Author;
-use App\Models\Katalog;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\KatalogController;
+use App\Http\Controllers\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -84,3 +85,10 @@ Route::get('/home/koleksi-digital/koleksi-digital/detil', function () {
         "title" => "Koleksi Digital",
     ]);
 });
+
+//SIGN IN
+Route::get('/sign-in', [LoginController::class, 'index']);
+
+//SIGN UP
+Route::get('/sign-up', [RegisterController::class, 'index']);
+Route::post('/sign-up', [RegisterController::class, 'store']);

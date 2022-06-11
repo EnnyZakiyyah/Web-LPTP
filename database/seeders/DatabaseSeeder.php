@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use App\Models\Author;
 use App\Models\Katalog;
 use App\Models\Category;
@@ -17,6 +18,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         Katalog::factory(20)->create();
+        User::factory(5)->create();
         
         Category::create([
             'name' => 'Majalah',
