@@ -62,7 +62,7 @@
                   <p style="font-size: 13px;">2016</p>
                   <p>{!! $katalog->excerpt !!}
                   <a href="/home/sirkulasi/penelusuran-katalog/{{ $katalog->slug }}" class="text-primary">Read More...</a></p> 
-                  <a type="button" class="btn btn-outline-secondary btn-sm" style="font-weight: bold;" href="/home/sirkulasi/penelusuran-katalog?category={{ $katalog->category->slug }}">{{ $katalog->category->name }}</a>
+                  <a type="button" class="btn btn-outline-secondary btn-sm" style="font-weight: bold;" href="/home/sirkulasi/penelusuran-katalog/categories/{{ $katalog->category->slug }}">{{ $katalog->category->name }}</a>
                 </div>
             </div>
             @endforeach

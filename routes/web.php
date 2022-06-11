@@ -38,16 +38,15 @@ Route::get('/home/sirkulasi/pengembalian-buku', function () {
 Route::get('/home/sirkulasi/penelusuran-katalog', [KatalogController::class, 'index']);
 Route::get('/home/sirkulasi/penelusuran-katalog/{katalog:slug}', [KatalogController::class, 'show']);
 Route::get('/home/sirkulasi/penelusuran-katalog/categories/{category:slug}', function(Category $category) {
-    return view('home.category', [
-        'title' => $category->name,
-        'katalogs' => $category->katalogs,
-        'category' => $category->name
+    return view('home.sirkulasi.penelusuran-katalog', [
+        'title' =>"Katalog by Category $category->name",
+        'katalogs' => $category->katalogs->load('category', 'author')
     ]);
 });
 Route::get('/home/sirkulasi/penelusuran-katalog/authors/{author:username}', function(Author $author){
     return view('home.sirkulasi.penelusuran-katalog', [
-        'title' => 'Author' ,
-        'katalogs' => $author->katalogs
+        'title' => "Katalog by Author $author->name" ,
+        'katalogs' => $author->katalogs->load('category', 'author')
     ]);
 });
 
