@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardKatalogController;
 use App\Models\Author;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
@@ -87,8 +88,13 @@ Route::get('/home/koleksi-digital/koleksi-digital/detil', function () {
 });
 
 //SIGN IN
-Route::get('/sign-in', [LoginController::class, 'index']);
+Route::get('/sign-in', [LoginController::class, 'index'])->name('login')->middleware('guest');
+Route::post('/sign-in', [LoginController::class, 'authenticate']);
+Route::post('/logout', [LoginController::class, 'logout']);
 
 //SIGN UP
-Route::get('/sign-up', [RegisterController::class, 'index']);
+Route::get('/sign-up', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('/sign-up', [RegisterController::class, 'store']);
+
+//DASHBOARD
+Route::get('/dashboard', [DashboardKatalogController::class, 'index'])->middleware('auth');

@@ -7,8 +7,8 @@
                 class="navbar-toggler-icon"> </span></button>
         <div class="collapse navbar-collapse border-top border-lg-0 mt-4 mt-lg-0" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link {{ Request::is('/') ? 'active' : '' }}"
-                        aria-current="page" href="/">Home</a></li>
+                <li class="nav-item"><a class="nav-link {{ Request::is('/') ? 'active' : '' }}" aria-current="page"
+                        href="/">Home</a></li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle {{ ($title === "Sirkulasi") ? 'active' : '' }}"
                         href="/sirkulasi id=" navbarDropdown" role="button" data-toggle="dropdown"
@@ -33,35 +33,35 @@
                         <a class="dropdown-item" href="/home/layanan/bibliography">Bibliography</a>
                     </div>
                 </li>
-                <li class="nav-item"><a class="nav-link {{ Request::is('home/koleksi-digital/koleksi-digital') ? 'active' : '' }}" aria-current="page"
-                        href="/home/koleksi-digital">Koleksi Digital</a></li>
-                        @auth
-                        
-                        <li class="nav-item dropdown">
-                          <a class="nav-link dropdown-toggle {{ ($title === "Layanan") ? 'active' : '' }}" href="/layanan"
-                              href="/sirkulasi id=" navbarDropdown" role="button" data-toggle="dropdown"
-                              aria-expanded="false">
-                              Welcome back, {{ auth()->user()->name }}
-                          </a>
-                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                              <a class="dropdown-item" href="/dashboard">My Dashboard</a>
-                              <hr class="dropdown-divider">
-                              <form action="/logout" method="POST">
-                                @csrf
-                                <button type="submit" class="dropdown-item">Logout</button>
-                              </form>
-                          </div>
-                      </li>
-                      @else
-                      <div class="d-flex ms-lg-4">
-                        <a class="btn btn-warning ms-3 {{ ($title === "Sign In") ? 'active' : '' }}" href="/sign-in">Sign
-                            In</a>
-                        {{-- <a class="btn btn-warning ms-3" href="/sign-up">Sign Up</a> --}}
+                <li class="nav-item"><a
+                        class="nav-link {{ Request::is('home/koleksi-digital/koleksi-digital') ? 'active' : '' }}"
+                        aria-current="page" href="/home/koleksi-digital">Koleksi Digital</a></li>
+                @auth
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle {{ ($title === "Sign-in") ? 'active' : '' }}" href="#"
+                        href="/sirkulasi id=" navbarDropdown" role="button" data-toggle="dropdown"
+                        aria-expanded="false">
+                        Welcome back, {{ auth()->user()->name }}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/dashboard">My Dashboard</a>
+                        <hr class="dropdown-divider">
+                        <form action="/logout" method="POST">
+                            @csrf
+                            <button type="submit" class="dropdown-item">Logout</button>
+                        </form>
                     </div>
-                      @endauth
-                      </ul>
-            
-           
+                </li>
+                @else
+                <div class="d-flex ms-lg-4">
+                    <a class="btn btn-warning ms-3 {{ ($title === "Sign In") ? 'active' : '' }}" href="/sign-in">Sign
+                        In</a>
+                    {{-- <a class="btn btn-warning ms-3" href="/sign-up">Sign Up</a> --}}
+                </div>
+                @endauth
+            </ul>
+
+
         </div>
     </div>
 </nav>
