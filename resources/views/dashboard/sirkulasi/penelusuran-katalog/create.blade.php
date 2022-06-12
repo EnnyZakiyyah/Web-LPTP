@@ -24,7 +24,7 @@
             <h5 class="card-header">Tambah Data Penelusuran Katalog</h5>
             <div class="card-body table-border-style">
                 <div class="col-lg-10">
-                    <form method="POST" action="/dashboard/sirkulasi/katalogs">
+                    <form method="POST" action="/dashboard/sirkulasi/katalogs" enctype="multipart/form-data">
                         @csrf
                         <form>
                         <div class="mb-3 row">
@@ -66,12 +66,21 @@
                           <div class="mb-3 row">
                             <label for="penulis" class="col-md-2 col-form-label">Penulis</label>
                             <div class="col-md-10">
-                              <input class="form-control @error('penulis') is-invalid @enderror" type="text" name="penulis" id="penulis" value="{{ old('penulis') }}" required/>
+                              {{-- <input class="form-control @error('penulis') is-invalid @enderror" type="text" name="penulis" id="penulis" value="{{ old('penulis') }}"/>
                             @error('penulis')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
-                            @enderror
+                            @enderror --}}
+                            <select class="form-control" id="author" name="author_id">
+                                @foreach ($authors as $author)
+                                @if (old('author_id') == $author->id)
+                                <option value="{{ $author->id }}" selected>{{ $author->name }}</option>
+                                @else
+                                <option value="{{ $author->id }}">{{ $author->name }}</option>
+                                @endif
+                                @endforeach
+                            </select>
                             </div>
                         </div>
                           <div class="mb-3 row">
@@ -120,6 +129,17 @@
                             <label for="lokasi" class="col-md-2 col-form-label">Lokasi</label>
                             <div class="col-md-10">
                               <input class="form-control" type="text" name="lokasi" id="lokasi" value="{{ old('lokasi') }}"/>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="image" class="col-md-2 col-form-label">Upload Gambar</label>
+                            <div class="col-md-10">
+                                <input class="form-control @error('image') is-invalid @enderror" type="file" id="image" name="image"/>
+                            @error('image')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                              @enderror
                             </div>
                         </div>
                           <div class="mb-3 row">

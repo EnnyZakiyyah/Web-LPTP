@@ -23,7 +23,9 @@
         <div class="card">
             <div class="row g-0">
                 <div class="col-md-4">
-                    <img class="card-img card-img-left" src="{{ asset('assets/img/design.png') }}" alt="Card image" />
+                    <div style="max-height: 350px; overflow:hidden;">
+                    <img class="card-img card-img-left" src="{{ asset('storage/' . $katalog->image) }}" alt="Card image" />
+                    </div>
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">

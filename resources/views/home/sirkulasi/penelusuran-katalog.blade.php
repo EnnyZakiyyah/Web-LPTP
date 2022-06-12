@@ -51,10 +51,10 @@
           <div class="row">
             @foreach ($katalogs as $katalog)
             <div class="col-md-4 mb-4">
-              <div class="card" style="background-color: #F9F7F7; border : 1px solid #E5E5E5; "><center><img class="img-thumbnail" src="{{ asset('assets/img/sirkulasi/lord-rings-2.png') }}" alt="..." /></center>
-                <div class="card-custom-avatar">
+              <div class="card" style="background-color: #F9F7F7; border : 1px solid #E5E5E5; "><center><img class="img-thumbnail" src="{{ asset('storage/' . $katalog->image) }}" alt="..." /></center>
+                {{-- <div class="card-custom-avatar">
                     <img class="img-fluid" src="{{ asset('assets/img/sirkulasi/lord-of-the-ring.png') }}" alt="Avatar" />
-                </div>
+                </div> --}}
               </div>
                 <div class="card-body">
                   <h6 class="pt-5"><a href="/home/sirkulasi/penelusuran-katalog/{{ $katalog->slug }}">{{ $katalog->title }}</a></h6>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Author;
 use App\Models\Katalog;
 use App\Models\Category;
 use Illuminate\Support\Str;
@@ -32,7 +33,8 @@ class DashboardKatalogController extends Controller
     {
         return view('dashboard.sirkulasi.penelusuran-katalog.create', [
             'title' => "Tambah Data Katalog",
-            'categories' => Category::all()
+            'categories' => Category::all(),
+            'authors' => Author::all()
         ]);
     }
 
@@ -44,12 +46,14 @@ class DashboardKatalogController extends Controller
      */
     public function store(Request $request)
     {
+        
         $validateData = $request->validate([
             'title' => 'required|max:255',
             'slug' => 'required|unique:katalogs',
             'category_id' => 'required',
+            'author_id' => '',
             'body' => 'required',
-            'penulis' => 'required|max:255',
+            // 'penulis' => 'required|max:255',
             'edisi' => '',
             'isbn' => '',
             'penerbit' => '',
@@ -58,10 +62,14 @@ class DashboardKatalogController extends Controller
             'jumlah' => 'required',
             'bahasa' => '',
             'lokasi' => '',
-            'author_id' => ''
+            'image' => 'image|file|max:1024'
         ]);
 
-        // $validateData['_id'] = auth()->author()->id;    //INI JUGA SAMA. SEMENTARA PAKAI AUTHOR DULU. KALAU MAU GANTI USER ID, NANTI BISA.
+        if ($request->file('image')) {
+            $validateData['image'] = $request->file('image')->store('katalog-images');
+        }
+
+        // $validateData['author_id'] = auth()->user->id;    //INI JUGA SAMA. SEMENTARA PAKAI AUTHOR DULU. KALAU MAU GANTI USER ID, NANTI BISA.
         $validateData['excerpt'] = Str::limit(strip_tags($request->body), 200);
 
         Katalog::create($validateData);
@@ -125,6 +133,7 @@ class DashboardKatalogController extends Controller
             $rules['slug'] = 'required|unique:katalogs';
         }
 
+        // $validateData['author_id'] = auth()->user()->id;
         $validateData = $request->validate($rules);
 
         $validateData['excerpt'] = Str::limit(strip_tags($request->body), 200);

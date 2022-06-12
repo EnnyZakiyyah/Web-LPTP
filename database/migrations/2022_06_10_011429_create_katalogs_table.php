@@ -28,6 +28,7 @@ class CreateKatalogsTable extends Migration
             $table->string('lokasi');
             $table->string('slug')->unique();
             $table->text('excerpt');
+            $table->string('image')->nullable();
             $table->text('body');
             $table->timestamp('publish_at')->nullable();
             $table->timestamps();
