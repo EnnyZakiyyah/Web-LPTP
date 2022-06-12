@@ -8,6 +8,7 @@ use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Cviebrock\EloquentSluggable\Services\SlugService;
+use Illuminate\Support\Facades\Storage;
 
 class DashboardKatalogController extends Controller
 {
@@ -46,6 +47,10 @@ class DashboardKatalogController extends Controller
      */
     public function store(Request $request)
     {
+        // $author = Author::create([
+        //     'name' => $request->penulis,
+        //     'username' => $request->penulis
+        // ]);
         
         $validateData = $request->validate([
             'title' => 'required|max:255',
@@ -53,7 +58,7 @@ class DashboardKatalogController extends Controller
             'category_id' => 'required',
             'author_id' => '',
             'body' => 'required',
-            // 'penulis' => 'required|max:255',
+            // 'author_id' => (int)$author->id,
             'edisi' => '',
             'isbn' => '',
             'penerbit' => '',
@@ -101,7 +106,8 @@ class DashboardKatalogController extends Controller
         return view('dashboard.sirkulasi.penelusuran-katalog.edit', [
             'title' => "Edit Data Katalog",
             'katalog' =>$katalog,
-            'categories' => Category::all()
+            'categories' => Category::all(),
+            'authors' => Author::all()
         ]);
     }
 
@@ -126,7 +132,8 @@ class DashboardKatalogController extends Controller
             'jumlah' => 'required',
             'bahasa' => '',
             'lokasi' => '',
-            'author_id' => ''
+            'author_id' => '',
+            'image' =>'image|file|max:1024'
         ]);
 
         if($request->slug != $katalog->slug) {
@@ -136,6 +143,13 @@ class DashboardKatalogController extends Controller
         // $validateData['author_id'] = auth()->user()->id;
         $validateData = $request->validate($rules);
 
+        if ($request->file('image')) {
+            if ($request->oldImage) {
+                Storage::delete($request->oldImage);
+            }
+            $validateData['image'] = $request->file('image')->store('katalog-images');
+        }
+        
         $validateData['excerpt'] = Str::limit(strip_tags($request->body), 200);
 
         Katalog::where('id', $katalog->id)->update($validateData);
@@ -150,6 +164,10 @@ class DashboardKatalogController extends Controller
      */
     public function destroy(Katalog $katalog)
     {
+       
+            if ($katalog->image) {
+                Storage::delete($katalog->image);
+            }
         Katalog::destroy($katalog->id);
         return redirect('/dashboard/sirkulasi/katalogs')->with('success', 'Katalog has been deleted!');
     }

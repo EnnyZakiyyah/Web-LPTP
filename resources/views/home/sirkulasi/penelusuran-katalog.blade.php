@@ -51,13 +51,15 @@
           <div class="row">
             @foreach ($katalogs as $katalog)
             <div class="col-md-4 mb-4">
+                <div style="max-height: 200px; overflow:hidden;">
               <div class="card" style="background-color: #F9F7F7; border : 1px solid #E5E5E5; "><center><img class="img-thumbnail" src="{{ asset('storage/' . $katalog->image) }}" alt="..." /></center>
                 {{-- <div class="card-custom-avatar">
                     <img class="img-fluid" src="{{ asset('assets/img/sirkulasi/lord-of-the-ring.png') }}" alt="Avatar" />
                 </div> --}}
               </div>
+              </div>
                 <div class="card-body">
-                  <h6 class="pt-5"><a href="/home/sirkulasi/penelusuran-katalog/{{ $katalog->slug }}">{{ $katalog->title }}</a></h6>
+                  <h6 class="pt-1"><a href="/home/sirkulasi/penelusuran-katalog/{{ $katalog->slug }}">{{ $katalog->title }}</a></h6>
                   <p>by <a href="/home/sirkulasi/penelusuran-katalog?author={{ $katalog->author->username }}" class="text-primary" style="font-size: 13px;">{{ $katalog->author->name }}</a></p>
                   <p style="font-size: 13px;">2016</p>
                   <p>{!! $katalog->excerpt !!}

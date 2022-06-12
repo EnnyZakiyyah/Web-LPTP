@@ -134,7 +134,8 @@
                         <div class="mb-3 row">
                             <label for="image" class="col-md-2 col-form-label">Upload Gambar</label>
                             <div class="col-md-10">
-                                <input class="form-control @error('image') is-invalid @enderror" type="file" id="image" name="image"/>
+                                <img class="img-preview img-fluid mb-3 col-sm-5">
+                                <input class="form-control @error('image') is-invalid @enderror" type="file" id="image" name="image" onchange="previewImage()"/>
                             @error('image')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -162,6 +163,7 @@
 </div>
 
 <script>
+    //SLUG
     const title = document.querySelector('#title');
     const slug = document.querySelector('#slug');
 
@@ -171,6 +173,7 @@
             .then(data => slug.value = data.slug)
     });
 
+    //TRIX-EDITOR
     document.addEventListener('trix-file-accept', function(e) {
         e.preventDefault();
     })
@@ -178,5 +181,22 @@
     document.addEventListener('trix-file-accept', function(e) {
         e.preventDefault();
     })
+
+    // IMAGE
+    function previewImage(){
+        const image = document.querySelector('#image');
+        const imgPreview = document.querySelector('.img-preview');
+
+        imgPreview.style.display = 'block';
+
+        const oFReader = new FileReader();
+        oFReader.readAsDataURL(image.files[0]);
+
+        oFReader.onload = function(oFREvent) {
+            imgPreview.src = oFREvent.target.result;
+        }
+
+    }
+
 </script>
 @endsection

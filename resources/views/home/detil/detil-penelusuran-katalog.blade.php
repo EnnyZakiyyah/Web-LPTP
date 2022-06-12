@@ -21,7 +21,7 @@
                   <div class="row">
                     <div class="col-md-4">
                       <div class="card-image">
-                        <a href="#"> <img class="img" src="{{ asset('assets/img/sirkulasi/Harry-Potter.jpg') }}">
+                        <a href="#"> <img class="img" src="{{ asset('storage/' . $katalog->image) }}">
                           <div class="card-caption px-2 py-1"><a href="/home/sirkulasi/penelusuran-katalog/categories/{{ $katalog->category->slug }}" class="text-white text-decoration-none"> {{ $katalog->category->name }} </a></div>
                         </a>
                     </div>
