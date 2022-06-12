@@ -97,11 +97,11 @@
                         </table>
                         <div class="py-3">
                             <a href="/dashboard/sirkulasi/katalogs" class="btn btn-info"><i class="feather icon-arrow-left" style="color: white"></i>Back</a>
-                            <a href="" class="btn btn-warning"><i class="feather icon-edit" style="color: white"></i></i>Edit</a>
-                            <form action="/dashboard/sirkulasi/katalog/{{ $katalog->slug }}" method="POST" class="d-inline">
+                            <a href="/dashboard/sirkulasi/katalogs/{{ $katalog->slug }}/edit" class="btn btn-warning"><i class="feather icon-edit" style="color: white"></i></i>Edit</a>
+                            <form action="/dashboard/sirkulasi/katalogs/{{ $katalog->slug }}" method="POST" class="d-inline">
                                 @method('delete')
                                 @csrf
-                                <button class="btn btn-danger" onclick="return confirm('Are you sure?')"><i class="feather icon-x-circle" style="color: white"></i></button>
+                                <button class="btn btn-danger" onclick="return confirm('Are you sure?')"><i class="feather icon-trash" style="color: white"></i>Delete</button>
                             </form>
                         </div>
                     </div>

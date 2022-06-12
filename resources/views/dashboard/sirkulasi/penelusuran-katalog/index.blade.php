@@ -58,11 +58,11 @@
                                 <td>
                                     <a href="/dashboard/sirkulasi/katalogs/{{ $katalog->slug }}"
                                         class="badge bg-info"><i class="feather icon-eye" style="color: white"></i></a>
-                                    <a href="/dashboard/sirkulasi/penelusuran-katalog/{{ $katalog->slug }}/edit" class="badge bg-warning"><i class="feather icon-edit" style="color: white"></i></a>
-                                    <form action="/dashboard/sirkulasi/penelusuran-katalog/{{ $katalog->slug }}" method="POST" class="d-inline">
+                                    <a href="/dashboard/sirkulasi/katalogs/{{ $katalog->slug }}/edit" class="badge bg-warning"><i class="feather icon-edit" style="color: white"></i></a>
+                                    <form action="/dashboard/sirkulasi/katalogs/{{ $katalog->slug }}" method="POST" class="d-inline">
                                         @method('delete')
                                         @csrf
-                                        <button class="badge bg-danger border-0" onclick="return confirm('Are you sure?')"><i class="feather icon-x-circle" style="color: white"></i></button>
+                                        <button class="badge bg-danger border-0" onclick="return confirm('Are you sure?')"><i class="feather icon-trash" style="color: white"></i></button>
                                     </form>
                                 </td>
                             </tr>

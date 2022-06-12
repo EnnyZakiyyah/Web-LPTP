@@ -46,7 +46,7 @@ class DashboardKatalogController extends Controller
     {
         $validateData = $request->validate([
             'title' => 'required|max:255',
-            'slug' => 'unique:katalogs',
+            'slug' => 'required|unique:katalogs',
             'category_id' => 'required',
             'body' => 'required',
             'penulis' => 'required|max:255',
@@ -90,7 +90,11 @@ class DashboardKatalogController extends Controller
      */
     public function edit(Katalog $katalog)
     {
-        //
+        return view('dashboard.sirkulasi.penelusuran-katalog.edit', [
+            'title' => "Edit Data Katalog",
+            'katalog' =>$katalog,
+            'categories' => Category::all()
+        ]);
     }
 
     /**
@@ -102,7 +106,31 @@ class DashboardKatalogController extends Controller
      */
     public function update(Request $request, Katalog $katalog)
     {
-        //
+        $rules = ([
+            'title' => 'required|max:255',    
+            'category_id' => 'required',
+            'body' => 'required',
+            'edisi' => '',
+            'isbn' => '',
+            'penerbit' => '',
+            'tahun_terbit' => '',
+            'tempat_terbit' => '',
+            'jumlah' => 'required',
+            'bahasa' => '',
+            'lokasi' => '',
+            'author_id' => ''
+        ]);
+
+        if($request->slug != $katalog->slug) {
+            $rules['slug'] = 'required|unique:katalogs';
+        }
+
+        $validateData = $request->validate($rules);
+
+        $validateData['excerpt'] = Str::limit(strip_tags($request->body), 200);
+
+        Katalog::where('id', $katalog->id)->update($validateData);
+        return redirect('/dashboard/sirkulasi/katalogs')->with('success', 'Katalog has been updatedd!');
     }
 
     /**
@@ -113,7 +141,8 @@ class DashboardKatalogController extends Controller
      */
     public function destroy(Katalog $katalog)
     {
-        //
+        Katalog::destroy($katalog->id);
+        return redirect('/dashboard/sirkulasi/katalogs')->with('success', 'Katalog has been deleted!');
     }
 
     public function checkSlug(Request $request){
