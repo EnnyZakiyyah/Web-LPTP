@@ -23,7 +23,7 @@
         <ul class="pcoded-submenu">
             <li><a href="/dashboard/sirkulasi/peminjaman-buku" target="_blank">Peminjaman Buku</a></li>
             <li><a href="/dashboard/sirkulasi/pengembalian-buku" target="_blank">Pengembalian Buku</a></li>
-            <li><a href="/dashboard/sirkulasi/katalog" target="_blank">Penelusuran Katalog</a></li>
+            <li><a href="/dashboard/sirkulasi/katalogs" target="_blank">Penelusuran Katalog</a></li>
             <li><a href="/dashboard/sirkulasi/bebas-pustaka" target="_blank">Bebas Pustaka</a></li>
         </ul>
     </li>

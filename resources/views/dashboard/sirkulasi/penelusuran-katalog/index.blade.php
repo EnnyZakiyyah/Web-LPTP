@@ -32,7 +32,7 @@
             @endif
     
             <div class="col-md-4 px-3 py-3">
-                <a href="/dashboard/sirkulasi/penelusuran-katalog/create" class="btn btn-primary me-2 px-3">Tambah Data</a>
+                <a href="/dashboard/sirkulasi/katalogs/create" class="btn btn-primary me-2 px-3">Tambah Data</a>
             </div>
             <div class="card-body table-border-style">
                 <div class="table-responsive text-nowrap">
@@ -52,11 +52,11 @@
                             <tr>
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{ $katalog->title }}</td>
-                                <td>{{ $katalog->penulis }}</td>
+                                <td>{{ $katalog->author->name }}</td>
                                 <td>{{ $katalog->isbn }}</td>
                                 <td>{{ $katalog->tahun_terbit }}</td>
                                 <td>
-                                    <a href="/dashboard/sirkulasi/katalog/{{ $katalog->slug }}"
+                                    <a href="/dashboard/sirkulasi/katalogs/{{ $katalog->slug }}"
                                         class="badge bg-info"><i class="feather icon-eye" style="color: white"></i></a>
                                     <a href="/dashboard/sirkulasi/penelusuran-katalog/{{ $katalog->slug }}/edit" class="badge bg-warning"><i class="feather icon-edit" style="color: white"></i></a>
                                     <form action="/dashboard/sirkulasi/penelusuran-katalog/{{ $katalog->slug }}" method="POST" class="d-inline">
@@ -71,6 +71,14 @@
                     </table>
                 </div>
             </div>
+            <!--PAGINATION-->
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                  <li class="page-item">
+                    {{ $katalogs->links() }}
+                  </li>
+                </ul>
+            </nav>
         </div>  
         <!-- [ Main Content ] end -->
     </div>

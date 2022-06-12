@@ -22,8 +22,16 @@
     <!-- vendor css -->
     <link rel="stylesheet" href="{{ asset('assets-dashboard/assets/css/style.css') }}">
     
-    
+    <!--TRIX EDITOR-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets-dashboard/assets/css/trix.css') }}">
+    <script type="text/javascript" src="{{ asset('assets-dashboard/assets/js/trix.js') }}"></script>
 
+    <style>
+        trix-toolbar [data-trix-button-group="file-tools"] {
+            display: none;
+        }    
+    </style>  
+    
 </head>
 <body class="">
 	<!-- [ Pre-loader ] start -->

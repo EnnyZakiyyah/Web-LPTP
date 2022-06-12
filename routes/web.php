@@ -101,8 +101,5 @@ Route::get('/dashboard', function() {
     ]);
 })->middleware('auth');
 
-Route::resource('/dashboard/sirkulasi/katalog', DashboardKatalogController::class)->middleware('auth');
-// Route::get('/dashboard/sirkulasi/penelusuran-katalog', PostController::class, 'index');
-// Route::get('/dashboard/sirkulasi/penelusuran-katalog/{katalog:slug}', PostController::class, 'show');
-// Route::get('/dashboard/sirkulasi/penelusuran-katalog/{katalog:slug}', DashboardKatalogController::class, 'show');
-// Route::get('/home/sirkulasi/penelusuran-katalog/{katalog:slug}', [KatalogController::class, 'show']);
+Route::get('/dashboard/sirkulasi/katalogs/checkSlug', [DashboardKatalogController::class, 'checkSlug'])->middleware('auth');
+Route::resource('/dashboard/sirkulasi/katalogs', DashboardKatalogController::class)->middleware('auth');

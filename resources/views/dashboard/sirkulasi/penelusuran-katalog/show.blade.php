@@ -96,7 +96,7 @@
                             </tbody>
                         </table>
                         <div class="py-3">
-                            <a href="/dashboard/sirkulasi/katalog" class="btn btn-info"><i class="feather icon-arrow-left" style="color: white"></i>Back</a>
+                            <a href="/dashboard/sirkulasi/katalogs" class="btn btn-info"><i class="feather icon-arrow-left" style="color: white"></i>Back</a>
                             <a href="" class="btn btn-warning"><i class="feather icon-edit" style="color: white"></i></i>Edit</a>
                             <form action="/dashboard/sirkulasi/katalog/{{ $katalog->slug }}" method="POST" class="d-inline">
                                 @method('delete')
