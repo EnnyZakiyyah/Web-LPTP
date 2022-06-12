@@ -38,7 +38,7 @@
                         aria-current="page" href="/home/koleksi-digital">Koleksi Digital</a></li>
                 @auth
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle {{ ($title === "Sign-in") ? 'active' : '' }}" href="#"
+                    <a class="nav-link dropdown-toggle {{ ($title === "Sign-in") ? 'active' : '' }}" href="/"
                         href="/sirkulasi id=" navbarDropdown" role="button" data-toggle="dropdown"
                         aria-expanded="false">
                         Welcome back, {{ auth()->user()->name }}

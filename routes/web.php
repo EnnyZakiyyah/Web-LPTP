@@ -1,12 +1,10 @@
 <?php
 
-use App\Http\Controllers\DashboardKatalogController;
-use App\Models\Author;
-use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\KatalogController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\DashboardKatalogController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,18 +37,18 @@ Route::get('/home/sirkulasi/pengembalian-buku', function () {
 
 Route::get('/home/sirkulasi/penelusuran-katalog', [KatalogController::class, 'index']);
 Route::get('/home/sirkulasi/penelusuran-katalog/{katalog:slug}', [KatalogController::class, 'show']);
-Route::get('/home/sirkulasi/penelusuran-katalog/categories/{category:slug}', function(Category $category) {
-    return view('home.sirkulasi.penelusuran-katalog', [
-        'title' =>"Katalog by Category $category->name",
-        'katalogs' => $category->katalogs->load('category', 'author')
-    ]);
-});
-Route::get('/home/sirkulasi/penelusuran-katalog/authors/{author:username}', function(Author $author){
-    return view('home.sirkulasi.penelusuran-katalog', [
-        'title' => "Katalog by Author $author->name" ,
-        'katalogs' => $author->katalogs->load('category', 'author')
-    ]);
-});
+// Route::get('/home/sirkulasi/penelusuran-katalog/categories/{category:slug}', function(Category $category) {
+//     return view('home.sirkulasi.penelusuran-katalog', [
+//         'title' =>"Katalog by Category $category->name",
+//         'katalogs' => $category->katalogs->load('category', 'author')
+//     ]);
+// });
+// Route::get('/home/sirkulasi/penelusuran-katalog/authors/{author:username}', function(Author $author){
+//     return view('home.sirkulasi.penelusuran-katalog', [
+//         'title' => "Katalog by Author $author->name" ,
+//         'katalogs' => $author->katalogs->load('category', 'author')
+//     ]);
+// });
 
 Route::get('/home/sirkulasi/bebas-pustaka', function () {
     return view('home.sirkulasi.bebas-pustaka', [
@@ -97,4 +95,14 @@ Route::get('/sign-up', [RegisterController::class, 'index'])->middleware('guest'
 Route::post('/sign-up', [RegisterController::class, 'store']);
 
 //DASHBOARD
-Route::get('/dashboard', [DashboardKatalogController::class, 'index'])->middleware('auth');
+Route::get('/dashboard', function() {
+    return view('dashboard.index', [
+        'title' => 'Dashboard'
+    ]);
+})->middleware('auth');
+
+Route::resource('/dashboard/sirkulasi/katalog', DashboardKatalogController::class)->middleware('auth');
+// Route::get('/dashboard/sirkulasi/penelusuran-katalog', PostController::class, 'index');
+// Route::get('/dashboard/sirkulasi/penelusuran-katalog/{katalog:slug}', PostController::class, 'show');
+// Route::get('/dashboard/sirkulasi/penelusuran-katalog/{katalog:slug}', DashboardKatalogController::class, 'show');
+// Route::get('/home/sirkulasi/penelusuran-katalog/{katalog:slug}', [KatalogController::class, 'show']);
