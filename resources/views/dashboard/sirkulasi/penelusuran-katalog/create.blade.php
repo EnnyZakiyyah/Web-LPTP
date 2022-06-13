@@ -26,7 +26,6 @@
                 <div class="col-lg-10">
                     <form method="POST" action="/dashboard/sirkulasi/katalogs" enctype="multipart/form-data">
                         @csrf
-                        <form>
                         <div class="mb-3 row">
                             <label for="title" class="col-md-2 col-form-label">Title</label>
                             <div class="col-md-10">

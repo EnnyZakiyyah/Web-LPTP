@@ -49,6 +49,11 @@
             class="nav-link {{ Request::is('/dashboard/authors') ? 'active' : '' }}"><span
                 class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Penulis</span></a>
     </li>
+    <li class="nav-item">
+        <a href="/dashboard/heroes"
+            class="nav-link {{ Request::is('/dashboard/heroes') ? 'active' : '' }}"><span
+                class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Header</span></a>
+    </li>
     <li class="nav-item pcoded-menu-caption">
         <label>Pages</label>
     </li>

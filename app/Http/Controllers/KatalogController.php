@@ -17,8 +17,8 @@ class KatalogController extends Controller
         }
 
         if (request('author')) {
-            $author = Author::firstWhere('username', request('author'));
-            $title = ' by '. $author->name;
+            $author = Author::firstWhere('slug', request('author'));
+            $title = ' by '. $author->nama;
         }
         
         return view('home.sirkulasi.penelusuran-katalog', [

@@ -22,7 +22,7 @@
                     <div class="col-md-4">
                       <div class="card-image">
                         <a href="#"> <img class="img" src="{{ asset('storage/' . $katalog->image) }}">
-                          <div class="card-caption px-2 py-1"><a href="/home/sirkulasi/penelusuran-katalog/categories/{{ $katalog->category->slug }}" class="text-white text-decoration-none"> {{ $katalog->category->name }} </a></div>
+                          <div class="card-caption px-2 py-1"><a href="/home/sirkulasi/penelusuran-katalog?category={{ $katalog->category->slug }}" class="text-white text-decoration-none"> {{ $katalog->category->name }} </a></div>
                         </a>
                     </div>
                     </div>
@@ -38,7 +38,7 @@
                             <tr>
                               <th scope="row" style="text-align: left">Penulis</th>
                               <td>:</td>
-                              <td style="text-align: justify !important"><a href="/home/sirkulasi/penelusuran-katalog/authors/{{ $katalog->author->username }}" class="text-decoration-none">{{ $katalog->author->name }}</a></td>
+                              <td style="text-align: justify !important"><a href="/home/sirkulasi/penelusuran-katalog?author={{ $katalog->author->slug }}" class="text-decoration-none">{{ $katalog->author->nama }}</a></td>
                             </tr>
                             <tr>
                               <th scope="row" style="text-align: left">Edisi</th>

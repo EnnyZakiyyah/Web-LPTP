@@ -26,7 +26,6 @@
                 <div class="col-lg-10">
                     <form method="POST" action="/dashboard/authors" enctype="multipart/form-data">
                         @csrf
-                        <form>
                         <div class="mb-3 row">
                             <label for="nama" class="col-md-2 col-form-label">Nama</label>
                             <div class="col-md-10">

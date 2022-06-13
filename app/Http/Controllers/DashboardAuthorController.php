@@ -90,6 +90,10 @@ class DashboardAuthorController extends Controller
             'slug' => 'required|unique:authors'
         ]);
 
+        if($request->slug != $author->slug) {
+            $rules['slug'] = 'required|unique:authors';
+        }
+
         Author::where('id', $author->id)->update($validateData);
         return redirect('/dashboard/authors')->with('success', 'Author has been editedd!');
     }

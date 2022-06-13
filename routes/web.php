@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HeroController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\KatalogController;
 use App\Http\Controllers\RegisterController;
@@ -105,6 +106,10 @@ Route::get('/dashboard', function() {
 //Penulis
 Route::get('/dashboard/authors/checkSlug', [DashboardAuthorController::class, 'checkSlug'])->middleware('auth');
 Route::resource('/dashboard/authors', DashboardAuthorController::class)->middleware('auth');
+
+//HERO
+Route::get('/dashboard/heroes/checkSlug', [HeroController::class, 'checkSlug'])->middleware('auth');
+Route::resource('/dashboard/heroes', HeroController::class)->middleware('auth');
 
 //Penelusuran Katalog
 Route::get('/dashboard/sirkulasi/katalogs/checkSlug', [DashboardKatalogController::class, 'checkSlug'])->middleware('auth');
