@@ -12,7 +12,7 @@
                         </div>
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="/dashboard"><i class="feather icon-home"></i></a></li>
-                            <li class="breadcrumb-item"><a href="#!">Dashboard Analytics</a></li>
+                            <li class="breadcrumb-item"><a href="#!">{{ $title }}</a></li>
                         </ul>
                     </div>
                 </div>
@@ -22,7 +22,7 @@
         <!-- [ Main Content ] start -->
         <div class="card">
             <div class="card-header">
-                <h5>Penelusuran Katalog</h5>
+                <h5>{{ $title }}</h5>
             </div>
     
             @if (session()->has('success'))
@@ -32,7 +32,7 @@
             @endif
     
             <div class="col-md-4 px-3 py-3">
-                <a href="/dashboard/sirkulasi/katalogs/create" class="btn btn-primary me-2 px-3">Tambah Data</a>
+                <a href="/dashboard/authors/create" class="btn btn-primary me-2 px-3">Tambah Data</a>
             </div>
             <div class="card-body table-border-style">
                 <div class="table-responsive text-nowrap">
@@ -40,26 +40,20 @@
                         <thead>
                             <tr class="text-nowrap">
                                 <th>No</th>
-                                <th>Judul</th>
-                                <th>Penulis</th>
-                                <th>ISBN</th>
-                                <th>Tahun Terbit</th>
+                                <th>Nama</th>
+                                <th>Username</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($katalogs as $katalog)
+                            @foreach ($author as $authors)
                             <tr>
                                 <th scope="row">{{ $loop->iteration }}</th>
-                                <td>{{ $katalog->title }}</td>
-                                <td>{{ $katalog->author->nama }}</td>
-                                <td>{{ $katalog->isbn }}</td>
-                                <td>{{ $katalog->tahun_terbit }}</td>
+                                <td>{{ $authors->nama }}</td>
+                                <td>{{ $authors->slug }}</td>
                                 <td>
-                                    <a href="/dashboard/sirkulasi/katalogs/{{ $katalog->slug }}"
-                                        class="badge bg-info"><i class="feather icon-eye" style="color: white"></i></a>
-                                    <a href="/dashboard/sirkulasi/katalogs/{{ $katalog->slug }}/edit" class="badge bg-warning"><i class="feather icon-edit" style="color: white"></i></a>
-                                    <form action="/dashboard/sirkulasi/katalogs/{{ $katalog->slug }}" method="POST" class="d-inline">
+                                    <a href="/dashboard/authors/{{ $authors->slug }}/edit" class="badge bg-warning"><i class="feather icon-edit" style="color: white"></i></a>
+                                    <form action="/dashboard/authors/{{ $authors->slug }}" method="POST" class="d-inline">
                                         @method('delete')
                                         @csrf
                                         <button class="badge bg-danger border-0" onclick="return confirm('Are you sure?')"><i class="feather icon-trash" style="color: white"></i></button>
@@ -75,7 +69,7 @@
             <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-center">
                   <li class="page-item">
-                    {{ $katalogs->links() }}
+                    {{-- {{ $authors->links() }} --}}
                   </li>
                 </ul>
             </nav>

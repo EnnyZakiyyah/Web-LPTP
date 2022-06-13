@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\KatalogController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\DashboardAuthorController;
 use App\Http\Controllers\DashboardKatalogController;
 
 /*
@@ -101,5 +102,10 @@ Route::get('/dashboard', function() {
     ]);
 })->middleware('auth');
 
+//Penulis
+Route::get('/dashboard/authors/checkSlug', [DashboardAuthorController::class, 'checkSlug'])->middleware('auth');
+Route::resource('/dashboard/authors', DashboardAuthorController::class)->middleware('auth');
+
+//Penelusuran Katalog
 Route::get('/dashboard/sirkulasi/katalogs/checkSlug', [DashboardKatalogController::class, 'checkSlug'])->middleware('auth');
 Route::resource('/dashboard/sirkulasi/katalogs', DashboardKatalogController::class)->middleware('auth');

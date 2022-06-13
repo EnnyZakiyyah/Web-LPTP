@@ -76,9 +76,9 @@
                             <select class="form-control" id="author" name="author_id">
                                 @foreach ($authors as $author)
                                 @if (old('author_id') == $author->id)
-                                <option value="{{ $author->id, $katalog->id }}" selected>{{ $author->name }}</option>
+                                <option value="{{ $author->id, $katalog->id }}" selected>{{ $author->nama }}</option>
                                 @else
-                                <option value="{{ $author->id }}">{{ $author->name }}</option>
+                                <option value="{{ $author->id }}">{{ $author->nama }}</option>
                                 @endif
                                 @endforeach
                             </select>

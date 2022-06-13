@@ -31,12 +31,12 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Author::create([
-            'name' => 'Enny Zakiyyah',
-            'username' => 'ennyzakiyyah'
+            'nama' => 'Enny Zakiyyah',
+            'slug' => 'ennyzakiyyah'
         ]);
         Author::create([
-            'name' => 'Ana Wildatun',
-            'username' => 'anawildatun'
+            'nama' => 'Ana Wildatun',
+            'slug' => 'anawildatun'
         ]);
     }
 }
