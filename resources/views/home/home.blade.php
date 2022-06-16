@@ -19,12 +19,14 @@
                   <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner" style="box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
                     border-radius: 20px; -moz-border-radius: 5px;">
-                      <div class="carousel-item active">
-                        <img src="{{asset('assets/img/header/Slide01.jpg')}}" class="d-block w-100" alt="...">
+                     @foreach($hero as $key => $heroes)
+                      <div class="carousel-item {{$key == 0 ? 'active' : '' }}">
+                        <img src="{{asset('storage/' . $heroes->image)}}" class="d-block w-100" alt="...">
                       </div>
-                      <div class="carousel-item">
+                      @endforeach
+                      {{-- <div class="carousel-item">
                         <img src="{{asset('assets/img/header/Slide02.jpg')}}" class="d-block w-100" alt="...">
-                      </div>
+                      </div> --}}
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
                       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -59,18 +61,26 @@
                         <div class="col-lg-12 col-xl-6 order-1 text-center text-white">
                           <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-inner">
-                              <div class="carousel-item active">
-                                <h5 class="display-5 text-light text-center text-xl-center">11 : 02 : 45 : 21</h5>
-                                <p>Natal</p>
+                              @foreach($informasis as $key => $informasi)
+                              <div class="carousel-item {{$key == 0 ? 'active' : '' }}">
+                                <h5 class="display-5 text-light text-center text-xl-center">{{ $informasi->tanggal }}</h5>
+                                <p>{{ $informasi->informasi }}</p>
                               </div>
-                              <div class="carousel-item">
+                              @endforeach
+                              {{-- @foreach($katalogs as $katalog)
+                              <div class="carousel-item {{$key == 0 ? 'active' : '' }}">
+                                <h5 class="display-5 text-light text-center text-xl-center">{{ $informasi->date }}</h5>
+                                <p>{{ $katalog->name }}</p>
+                              </div>
+                              @endforeach --}}
+                              {{-- <div class="carousel-item">
                                 <h5 class="display-5 text-light text-center text-xl-center">Libur01</h5>
                                 <p>Natal</p>
                               </div>
                               <div class="carousel-item">
                                 <h5 class="display-5 text-light text-center text-xl-center">Libur</h5>
                                 <p>Natal</p>
-                              </div>
+                              </div> --}}
                             </div>
                             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
                               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -208,7 +218,6 @@
       <!-- ============================================-->
 
 
-
       <!-- ============================================-->
       <!-- <BUKU TERBARU> begin ============================-->
         <section class="pt-5 pb-0 mt-5" id="buku-terbaru">
@@ -217,88 +226,36 @@
             <h1 class="fs-9 fw-bold mb-4 pb-4 text-center"><span style="color: #002147"> Buku </span><span style="color : #FF9900">Terbaru</span></h1>
           <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
-              <div class="carousel-item active">
+              @foreach($buku as $key => $bukus)
+              <div class="carousel-item {{$key == 0 ? 'active' : '' }}">
                 <div class="row h-100 align-items-center">
                   <div class="col-md-4 mb-4">
-                    <div class="card-book card-span text-white h-100" style="background-color:#E5E5E5"><center><img class="img-thumbnail" src="{{ asset('assets/img/sirkulasi/lord-rings-2.png') }}" alt="..." /></center>
+                    <div class="card-book card-span text-white h-100" style="background-color:#E5E5E5"><center><img class="img-thumbnail" src="{{ asset('storage/' . $bukus->image) }}" alt="..." /></center>
                       <div class="card-book-body ps-0" style="background-color:#ffffff">
-                        <p class="text-secondary">By <a class="fw-bold text-decoration-none me-1" href="#">Abdullah</a>|<span class="ms-1">03 March 2019</span></p>
-                        <h3 class="fw-bold">Increasing Prosperity With Positive Thinking</h3>
+                        <p class="text-secondary">By <a class="fw-bold text-decoration-none me-1" href="#">{{ $bukus->author->nama }}</a>|<span class="ms-1">{{ $bukus->created_at }}</span></p>
+                        <h3 class="fw-bold">{{ $bukus->title }}</h3>
                       </div>
                     </div>
                   </div>
                   <div class="col-md-4 mb-4">
-                    <div class="card-book card-span text-white h-100" style="background-color:#E5E5E5"><center><img class="img-thumbnail" src="{{ asset('assets/img/sirkulasi/lord-rings-2.png') }}" alt="..." /></center>
+                    <div class="card-book card-span text-white h-100" style="background-color:#E5E5E5"><center><img class="img-thumbnail" src="{{ asset('storage/' . $bukus->image) }}" alt="..." /></center>
                       <div class="card-book-body ps-0" style="background-color:#ffffff">
-                        <p class="text-secondary">By <a class="fw-bold text-decoration-none me-1" href="#">Abdullah</a>|<span class="ms-1">03 March 2019</span></p>
-                        <h3 class="fw-bold">Increasing Prosperity With Positive Thinking</h3>
+                        <p class="text-secondary">By <a class="fw-bold text-decoration-none me-1" href="#">{{ $bukus->author->nama }}</a>|<span class="ms-1">{{ $bukus->created_at }}</span></p>
+                        <h3 class="fw-bold">{{ $bukus->title }}</h3>
                       </div>
                     </div>
                   </div>
                   <div class="col-md-4 mb-4">
-                    <div class="card-book card-span text-white h-100" style="background-color:#E5E5E5"><center><img class="img-thumbnail" src="{{ asset('assets/img/sirkulasi/lord-rings-2.png') }}" alt="..." /></center>
+                    <div class="card-book card-span text-white h-100" style="background-color:#E5E5E5"><center><img class="img-thumbnail" src="{{ asset('storage/' . $bukus->image) }}" alt="..." /></center>
                       <div class="card-book-body ps-0" style="background-color:#ffffff">
-                        <p class="text-secondary">By <a class="fw-bold text-decoration-none me-1" href="#">Abdullah</a>|<span class="ms-1">03 March 2019</span></p>
-                        <h3 class="fw-bold">Increasing Prosperity With Positive Thinking</h3>
+                        <p class="text-secondary">By <a class="fw-bold text-decoration-none me-1" href="#">{{ $bukus->author->nama }}</a>|<span class="ms-1">{{ $bukus->created_at }}</span></p>
+                        <h3 class="fw-bold">{{ $bukus->title }}</h3>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="carousel-item">
-                <div class="row h-100 align-items-center">
-                  <div class="col-md-4 mb-4">
-                    <div class="card-book card-span text-white h-100" style="background-color:#E5E5E5"><center><img class="img-thumbnail" src="{{ asset('assets/img/sirkulasi/lord-rings-2.png') }}" alt="..." /></center>
-                      <div class="card-book-body ps-0" style="background-color:#ffffff">
-                        <p class="text-secondary">By <a class="fw-bold text-decoration-none me-1" href="#">Abdullah</a>|<span class="ms-1">03 March 2019</span></p>
-                        <h3 class="fw-bold">Increasing Prosperity With Positive Thinking</h3>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4 mb-4">
-                    <div class="card-book card-span text-white h-100" style="background-color:#E5E5E5"><center><img class="img-thumbnail" src="{{ asset('assets/img/sirkulasi/lord-rings-2.png') }}" alt="..." /></center>
-                      <div class="card-book-body ps-0" style="background-color:#ffffff">
-                        <p class="text-secondary">By <a class="fw-bold text-decoration-none me-1" href="#">Abdullah</a>|<span class="ms-1">03 March 2019</span></p>
-                        <h3 class="fw-bold">Increasing Prosperity With Positive Thinking</h3>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4 mb-4">
-                    <div class="card-book card-span text-white h-100" style="background-color:#E5E5E5"><center><img class="img-thumbnail" src="{{ asset('assets/img/sirkulasi/lord-rings-2.png') }}" alt="..." /></center>
-                      <div class="card-book-body ps-0" style="background-color:#ffffff">
-                        <p class="text-secondary">By <a class="fw-bold text-decoration-none me-1" href="#">Abdullah</a>|<span class="ms-1">03 March 2019</span></p>
-                        <h3 class="fw-bold">Increasing Prosperity With Positive Thinking</h3>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <div class="row h-100 align-items-center">
-                  <div class="col-md-4 mb-4">
-                    <div class="card-book card-span text-white h-100" style="background-color:#E5E5E5"><center><img class="img-thumbnail" src="{{ asset('assets/img/sirkulasi/lord-rings-2.png') }}" alt="..." /></center>
-                      <div class="card-book-body ps-0" style="background-color:#ffffff">
-                        <p class="text-secondary">By <a class="fw-bold text-decoration-none me-1" href="#">Abdullah</a>|<span class="ms-1">03 March 2019</span></p>
-                        <h3 class="fw-bold">Increasing Prosperity With Positive Thinking</h3>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4 mb-4">
-                    <div class="card-book card-span text-white h-100" style="background-color:#E5E5E5"><center><img class="img-thumbnail" src="{{ asset('assets/img/sirkulasi/lord-rings-2.png') }}" alt="..." /></center>
-                      <div class="card-book-body ps-0" style="background-color:#ffffff">
-                        <p class="text-secondary">By <a class="fw-bold text-decoration-none me-1" href="#">Abdullah</a>|<span class="ms-1">03 March 2019</span></p>
-                        <h3 class="fw-bold">Increasing Prosperity With Positive Thinking</h3>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4 mb-4">
-                    <div class="card-book card-span text-white h-100" style="background-color:#E5E5E5"><center><img class="img-thumbnail" src="{{ asset('assets/img/sirkulasi/lord-rings-2.png') }}" alt="..." /></center>
-                      <div class="card-book-body ps-0" style="background-color:#ffffff">
-                        <p class="text-secondary">By <a class="fw-bold text-decoration-none me-1" href="#">Abdullah</a>|<span class="ms-1">03 March 2019</span></p>
-                        <h3 class="fw-bold">Increasing Prosperity With Positive Thinking</h3>
-                      </div>
-                    </div>
-                  </div>
+              @endforeach
                 </div>
               </div>
             </div>
@@ -307,6 +264,7 @@
         </section>
         <!-- <BUKU TERBARU> close ============================-->
         <!-- ============================================-->
+      
 
       <!-- ============================================-->
       <!-- <QUESTION> begin ============================-->
@@ -321,7 +279,7 @@
               <div class="col-lg-6 text-center">
                 <h1 class="fw-bold mb-4 fs-7">Ada Pertanyaan?</h1>
                 <p class="mb-5 text-info fw-medium">Apakah ada pertanyaan mengenai<br />peminjaman, pengembalian, perpanjangan, atau yang lain?</p>
-                <button class="btn btn-warning btn-md">Contact Us</button>
+                <a href="/contact-us" class="btn btn-warning btn-md">Contact Us</a>
               </div>
             </div>
           </div><!-- end of .container-->

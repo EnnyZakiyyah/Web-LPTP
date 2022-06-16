@@ -18,8 +18,9 @@ class InformasiController extends Controller
     {
         return view('dashboard.informasi.index', [
             'title' => "Informasi",
-            'informasi' => Informasi::all()
+            'informasis' => Informasi::latest()->get()
         ]);
+        // return Informasi::latest()->get();
     }
 
     /**

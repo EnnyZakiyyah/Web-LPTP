@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HeroController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\KatalogController;
 use App\Http\Controllers\RegisterController;
@@ -21,11 +22,12 @@ use App\Http\Controllers\DashboardKatalogController;
 |
 */
 
-Route::get('/', function () {
-    return view('home.home', [
-        "title" => "LPTP Surakarta",
-    ]);
-});
+// Route::get('/', function () {
+//     return view('home.home', [
+//         "title" => "LPTP Surakarta",
+//     ]);
+// });
+Route::get('/', [HomeController::class, 'index']);
 
 //Home-Sirkulasi 
 Route::get('/home/sirkulasi/peminjaman-buku', function () {
@@ -120,6 +122,7 @@ Route::resource('/dashboard/heroes', HeroController::class)->middleware('auth');
 //Informasi
 Route::get('/dashboard/informasi/checkSlug', [InformasiController::class, 'checkSlug'])->middleware('auth');
 Route::resource('/dashboard/informasi', InformasiController::class)->middleware('auth');
+// Route::resource('/', InformasiController::class);
 
 //Penelusuran Katalog
 Route::get('/dashboard/sirkulasi/katalogs/checkSlug', [DashboardKatalogController::class, 'checkSlug'])->middleware('auth');

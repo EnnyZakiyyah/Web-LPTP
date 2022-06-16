@@ -47,15 +47,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($informasi as $infromasis)
+                            @foreach ($informasis as $informasi)
                             <tr>
                                 <th scope="row">{{ $loop->iteration }}</th>
-                                <td>{{ $infromasis->nama }}</td>
-                                <td>{{ $infromasis->slug }}</td>
-                                <td>{{ $infromasis->informasi }}</td>
+                                <td>{{ $informasi->nama }}</td>
+                                <td>{{ $informasi->slug }}</td>
+                                <td>{{ $informasi->informasi }}</td>
                                 <td>
-                                    <a href="/dashboard/informasi/{{ $infromasis->slug }}/edit" class="badge bg-warning"><i class="feather icon-edit" style="color: white"></i></a>
-                                    <form action="/dashboard/informasi/{{ $infromasis->slug }}" method="POST" class="d-inline">
+                                    <a href="/dashboard/informasi/{{ $informasi->slug }}/edit" class="badge bg-warning"><i class="feather icon-edit" style="color: white"></i></a>
+                                    <form action="/dashboard/informasi/{{ $informasi->slug }}" method="POST" class="d-inline">
                                         @method('delete')
                                         @csrf
                                         <button class="badge bg-danger border-0" onclick="return confirm('Are you sure?')"><i class="feather icon-trash" style="color: white"></i></button>
