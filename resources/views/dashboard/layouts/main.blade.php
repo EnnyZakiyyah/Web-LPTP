@@ -21,6 +21,10 @@
 
     <!-- vendor css -->
     <link rel="stylesheet" href="{{ asset('assets-dashboard/assets/css/style.css') }}">
+
+    {{-- <!--bootstrap-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css"> --}}
     
     <!--TRIX EDITOR-->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets-dashboard/assets/css/trix.css') }}">
@@ -109,6 +113,15 @@
         </div>
     <![endif]-->
     <!-- Warning Section Ends -->
+
+    <!--JS Bootstrap 4-->
+    {{-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" ></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js"></script>
+
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script> --}}
 
     <!-- Required Js -->
     <script src="{{ asset('assets-dashboard/assets/js/vendor-all.min.js') }}"></script>

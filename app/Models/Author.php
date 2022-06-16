@@ -9,7 +9,9 @@ use Illuminate\Database\Eloquent\Model;
 class Author extends Model
 {
     use HasFactory, Sluggable;
+    
     protected $guarded = ['id'];
+
     public function katalogs(){
         return $this->hasMany(Katalog::class);
     }

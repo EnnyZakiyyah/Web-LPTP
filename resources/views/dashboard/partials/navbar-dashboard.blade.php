@@ -54,6 +54,11 @@
             class="nav-link {{ Request::is('/dashboard/heroes') ? 'active' : '' }}"><span
                 class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Header</span></a>
     </li>
+    <li class="nav-item">
+        <a href="/dashboard/informasi"
+            class="nav-link {{ Request::is('/dashboard/informasi') ? 'active' : '' }}"><span
+                class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Informasi</span></a>
+    </li>
     <li class="nav-item pcoded-menu-caption">
         <label>Pages</label>
     </li>
@@ -61,8 +66,13 @@
         <a class="nav-link "><span class="pcoded-micon"><i class="feather icon-lock"></i></span><span
                 class="pcoded-mtext">Authentication</span></a>
         <ul class="pcoded-submenu">
-            <li><a href="/sign-in" target="_blank">Sign up</a></li>
-            <li><a href="/sign-up" target="_blank">Sign in</a></li>
+            <li><a href="/sign-up" target="_blank">Sign up</a></li>
+            <li><a href="/sign-in" target="_blank">Sign in</a></li>
         </ul>
     </li>
+    {{-- <li class="nav-item">
+        <a href="/dashboard/anggota"
+            class="nav-link {{ Request::is('/dashboard/anggota') ? 'active' : '' }}"><span
+                class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Angota</span></a>
+    </li> --}}
 </ul>

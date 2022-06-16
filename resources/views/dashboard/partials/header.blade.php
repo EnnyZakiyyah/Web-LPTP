@@ -93,7 +93,7 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right profile-notification">
                         <div class="pro-head">
-                            <img src="{{ asset('assets-dashboard/assets/images/user/user.png') }}" class="img-radius" alt="User-Profile-Image">
+                            <img src="{{asset('storage/'. auth()->user()->image )}}" class="img-radius" width="50px" height="40px" alt="User-Profile-Image">
                             <span>{{ auth()->user()->name }}</span>
                             <form action="/logout" method="POST">
                                 @csrf

@@ -25,8 +25,12 @@ class RegisterController extends Controller
             'password' =>'required|min:5|max:255',
             'no_tlpn' => 'required',
             'alamat' => 'required',
-            'upload_foto' => '',
+            'image' => 'image|file|max:1024',
         ]);
+
+        if ($request->file('image')) {
+            $validateData['image'] = $request->file('image')->store('register-images');
+        }
 
         $validateData['password'] = Hash::make($validateData['password']);
         

@@ -5,7 +5,7 @@
 </h4>
 <p class="mb-4">Make your app management easy and fun!</p>
 
-<form class="row g-3" action="/sign-up" method="POST">
+<form class="row g-3" action="/sign-up" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="col-md-6">
         <label class="form-label">Nama Lengkap</label>
@@ -113,8 +113,13 @@
 
 
     <div class="col-md-6">
-        <label for="formFile" class="form-label">Upload Foto</label>
-        <input class="form-control" type="file" id="formFile" name="upload_foto" value="{{ old('upload_foto') }}"/>
+        <label for="Upload Foto" class="form-label">Upload Foto</label>
+        <input class="form-control @error('image') is-invalid @enderror"" type="file" id="image" name="image" value="{{ old('image') }}" onchange="previewImage()"/>
+      @error('image')
+        <div class="invalid-feedback">
+            {{ $message }}
+        </div>
+      @enderror
     </div>
 
 
