@@ -24,14 +24,12 @@
             <h5 class="card-header">{{ $title }}</h5>
             <div class="card-body table-border-style">
                 <div class="col-lg-10">
-                    <form method="POST" action="/dashboard/authors/{{ $author->slug }}" enctype="multipart/form-data">
-                        @method('put')
+                    <form method="POST" action="/dashboard/informasi" enctype="multipart/form-data">
                         @csrf
-                        <form>
                         <div class="mb-3 row">
                             <label for="nama" class="col-md-2 col-form-label">Nama</label>
                             <div class="col-md-10">
-                              <input class="form-control @error('nama') is-invalid @enderror" type="text" name="nama" id="nama" value="{{ old('nama', $author->nama) }}" required autofocus/>
+                              <input class="form-control @error('nama') is-invalid @enderror" type="text" name="nama" id="nama" value="{{ old('nama') }}" required autofocus/>
                             @error('nama')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -40,9 +38,9 @@
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label for="slug" class="col-md-2 col-form-label">Username</label>
+                            <label for="slug" class="col-md-2 col-form-label">Id</label>
                             <div class="col-md-10">
-                              <input class="form-control @error('slug') is-invalid @enderror" type="text" name="slug" id="slug" value="{{ old('slug', $author->slug) }}" readonly/>
+                              <input class="form-control @error('slug') is-invalid @enderror" type="text" name="slug" id="slug" value="{{ old('slug') }}" readonly/>
                             @error('slug')
                               <div class="invalid-feedback">
                                   {{ $message }}
@@ -50,7 +48,29 @@
                             @enderror
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary" style="float:right">Edit Data</button>
+                        <div class="mb-3 row">
+                            <label for="tanggal" class="col-md-2 col-form-label">Tanggal</label>
+                            <div class="col-md-10">
+                              <input class="form-control @error('tanggal') is-invalid @enderror" type="date" name="tanggal" id="tanggal" value="{{ old('tanggal') }}" required autofocus/>
+                            @error('tanggal')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="informasi" class="col-md-2 col-form-label">Informasi</label>
+                            <div class="col-md-10">
+                              <input class="form-control @error('informasi') is-invalid @enderror" type="text" name="informasi" id="informasi" value="{{ old('informasi') }}" required autofocus/>
+                            @error('informasi')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="float:right">Tambah Data</button>
                       </form>
                 </div>
             </div>
@@ -65,7 +85,7 @@
     const slug = document.querySelector('#slug');
 
     title.addEventListener('change', function() {
-        fetch('/dashboard/authors/checkSlug?nama=' +nama.value)
+        fetch('/dashboard/informasi/checkSlug?nama=' +nama.value)
             .then(response => response.json())
             .then(data => slug.value = data.slug)
     });

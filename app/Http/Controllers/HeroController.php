@@ -93,7 +93,7 @@ class HeroController extends Controller
     {
         $rules = ([
             'nama' => 'required|max:255',
-            'slug' => 'required|unique:authors'
+            'slug' => 'required|unique:heroes'
         ]);
 
         if($request->slug != $hero->slug) {

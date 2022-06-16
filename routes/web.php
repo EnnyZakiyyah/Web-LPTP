@@ -5,6 +5,7 @@ use App\Http\Controllers\HeroController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\KatalogController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\InformasiController;
 use App\Http\Controllers\DashboardAuthorController;
 use App\Http\Controllers\DashboardAnggotaController;
 use App\Http\Controllers\DashboardKatalogController;
@@ -106,7 +107,7 @@ Route::get('/dashboard', function() {
 
 //Anggota
 // Route::get('/dashboard/authors/checkSlug', [DashboardAuthorController::class, 'checkSlug'])->middleware('auth');
-Route::resource('/dashboard/anggota', DashboardAnggotaController::class)->middleware('auth');
+// Route::resource('/dashboard/anggota', DashboardAnggotaController::class)->middleware('auth');
 
 //Penulis
 Route::get('/dashboard/authors/checkSlug', [DashboardAuthorController::class, 'checkSlug'])->middleware('auth');
@@ -115,6 +116,10 @@ Route::resource('/dashboard/authors', DashboardAuthorController::class)->middlew
 //HERO
 Route::get('/dashboard/heroes/checkSlug', [HeroController::class, 'checkSlug'])->middleware('auth');
 Route::resource('/dashboard/heroes', HeroController::class)->middleware('auth');
+
+//Informasi
+Route::get('/dashboard/informasi/checkSlug', [InformasiController::class, 'checkSlug'])->middleware('auth');
+Route::resource('/dashboard/informasi', InformasiController::class)->middleware('auth');
 
 //Penelusuran Katalog
 Route::get('/dashboard/sirkulasi/katalogs/checkSlug', [DashboardKatalogController::class, 'checkSlug'])->middleware('auth');

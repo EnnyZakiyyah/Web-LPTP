@@ -82,7 +82,7 @@
     const slug = document.querySelector('#slug');
 
     title.addEventListener('change', function() {
-        fetch('/dashboard/authors/checkSlug?nama=' +nama.value)
+        fetch('/dashboard/heroes/checkSlug?nama=' +nama.value)
             .then(response => response.json())
             .then(data => slug.value = data.slug)
     });

@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Author;
 use App\Models\Katalog;
 use App\Models\Category;
+use App\Models\Informasi;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -37,6 +38,13 @@ class DatabaseSeeder extends Seeder
         Author::create([
             'nama' => 'Ana Wildatun',
             'slug' => 'anawildatun'
+        ]);
+
+        Informasi::create([
+            'nama' => 'Libur Nata',
+            'slug' => 'libur-natal',
+            'tanggal' => '2022-06-16',
+            'informasi' => 'Libur Natal'
         ]);
     }
 }
