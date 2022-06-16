@@ -9,6 +9,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\InformasiController;
 use App\Http\Controllers\DashboardAuthorController;
 use App\Http\Controllers\DashboardAnggotaController;
+use App\Http\Controllers\DashboardContactController;
 use App\Http\Controllers\DashboardKatalogController;
 
 /*
@@ -22,11 +23,6 @@ use App\Http\Controllers\DashboardKatalogController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('home.home', [
-//         "title" => "LPTP Surakarta",
-//     ]);
-// });
 Route::get('/', [HomeController::class, 'index']);
 
 //Home-Sirkulasi 
@@ -91,6 +87,14 @@ Route::get('/home/koleksi-digital/koleksi-digital/detil', function () {
     ]);
 });
 
+//Contact
+Route::get('/contact-us', function () {
+    return view('home.contact.contact', [
+        "title" => "Contact",
+    ]);
+});
+
+
 //SIGN IN
 Route::get('/sign-in', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/sign-in', [LoginController::class, 'authenticate']);
@@ -127,3 +131,7 @@ Route::resource('/dashboard/informasi', InformasiController::class)->middleware(
 //Penelusuran Katalog
 Route::get('/dashboard/sirkulasi/katalogs/checkSlug', [DashboardKatalogController::class, 'checkSlug'])->middleware('auth');
 Route::resource('/dashboard/sirkulasi/katalogs', DashboardKatalogController::class)->middleware('auth');
+
+//Contact-us
+// Route::get('/dashboard/sirkulasi/katalogs/checkSlug', [DashboardKatalogController::class, 'checkSlug'])->middleware('auth');
+// Route::resource('/contact-us', DashboardContactController::class);
