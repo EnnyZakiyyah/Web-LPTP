@@ -89,12 +89,13 @@ Route::get('/home/koleksi-digital/koleksi-digital/detil', function () {
 });
 
 //Contact
-Route::get('/contact-us', function () {
-    return view('home.contact.contact', [
-        "title" => "Contact",
-    ]);
-});
-Route::post('/send', [ContactController::class, 'send'])->name('send.email');
+// Route::get('/contact-us', function () {
+//     return view('home.contact.contact', [
+//         "title" => "Contact",
+//     ]);
+// });
+Route::get('/contact-us', [ContactController::class, 'showForm']);
+Route::post('/contact-us', [ContactController::class, 'send'])->name('send.email');
 
 
 //SIGN IN

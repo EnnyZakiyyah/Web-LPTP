@@ -2,11 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ContactUs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
+
+    public function showForm(Request $request)
+    {
+        return view('home.contact.contact', [
+            'title' => 'Contact'
+        ]);
+    }
+
     public function send(Request $request)
     {
         //validate
@@ -28,6 +37,7 @@ class ContactController extends Controller
                 'body' => $request->pesan
             ];
 
+            ContactUs::create($request->all());
             Mail::send('home.contact.email-template', $mail_data, function ($message) use ($mail_data) {
                 $message->to($mail_data['recipient'])
                     ->from($mail_data['fromEmail'], $mail_data['fromName'])
