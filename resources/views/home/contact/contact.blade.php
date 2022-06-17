@@ -29,14 +29,14 @@
                     <div class="email">
                         <i class="bi bi-envelope"></i>
                         <h4>Email:</h4>
-                        <p>dkpi@unit.uns.ac.id</p>
+                        <p>lptp.surakarta.solo@gmail.com</p>
                     </div>         
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d506127.5836185457!2d110.33582538256263!3d-7.670058324404422!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a17081cb85c5b%3A0xff3ce8bcfd37aba3!2sLPTP%20-%20Lembaga%20Pengembangan%20Teknologi%20Pedesaan%20Surakarta!5e0!3m2!1sid!2sid!4v1655388967060!5m2!1sid!2sid" frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen"></iframe>
                 </div>
             </div>
 
             <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
-              <form action="" method="post" role="form" class="php-email-form2">
+              <form action="{{ route('send.email') }}" method="POST" role="form" class="php-email-form2">
                 @csrf
                <div class="row">
                  <div class="form-group col-md-6">
@@ -47,31 +47,23 @@
                    @enderror
                  </div>
                  <div class="form-group col-md-6">
-                   <label for="name">Your Email</label>
+                   <label for="email">Your Email</label>
                    <input type="email" class="form-control" name="email" id="email" required>
                    @error('email')
                    <span class="text-danger"> {{ $message }} </span>
                    @enderror
                  </div>
                </div>
-               {{-- <div class="form-group col-md-6">
-                 <label for="name">Your Phone</label>
-                 <input type="email" class="form-control" name="phone" id="phone" required>
-                 @error('phone')
-                 <span class="text-danger"> {{ $message }} </span>
-                 @enderror
-               </div>
-             </div> --}}
              <div class="row">
              <div class="form-group col-md-6">
-               <label for="name">Your Phone</label>
+               <label for="phone">Your Phone</label>
                <input type="number" class="form-control" name="phone" id="phone" min="8" required>
                @error('phone')
                <span class="text-danger"> {{ $message }} </span>
                @enderror
              </div>
                <div class="form-group col-md-6">
-                 <label for="name">Subject</label>
+                 <label for="subject">Subject</label>
                  <input type="text" class="form-control" name="subject" id="subject" required>
                  @error('subject')
                  <span class="text-danger"> {{ $message }} </span>
@@ -80,7 +72,7 @@
              </div>
    
                <div class="form-group">
-                 <label for="name">Message</label>
+                 <label for="message">Message</label>
                  <textarea class="form-control" name="pesan" rows="10" required></textarea>
                  @error('pesan')
                  <span class="text-danger"> {{ $message }} </span>
@@ -90,7 +82,13 @@
                <div class="alert alert-success">
                    {{ session()->get('success') }}
                </div>
-           @endif
+               @endif
+               @if (session()->has('error'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ session('error') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+               @endif
                <div class="my-3">
                  <div class="loading">Loading</div>
                  <div class="error-message"></div>

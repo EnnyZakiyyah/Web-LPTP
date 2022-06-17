@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HeroController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\KatalogController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\InformasiController;
@@ -93,6 +94,7 @@ Route::get('/contact-us', function () {
         "title" => "Contact",
     ]);
 });
+Route::post('/send', [ContactController::class, 'send'])->name('send.email');
 
 
 //SIGN IN
