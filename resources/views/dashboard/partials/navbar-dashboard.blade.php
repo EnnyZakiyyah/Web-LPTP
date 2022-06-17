@@ -70,6 +70,11 @@
             <li><a href="/sign-in" target="_blank">Sign in</a></li>
         </ul>
     </li>
+    <li class="nav-item">
+        <a href="/dashboard/contact-us"
+            class="nav-link {{ Request::is('/dashboard/koleksi-digital') ? 'active' : '' }}"><span
+                class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Contact Us</span></a>
+    </li>
     {{-- <li class="nav-item">
         <a href="/dashboard/anggota"
             class="nav-link {{ Request::is('/dashboard/anggota') ? 'active' : '' }}"><span

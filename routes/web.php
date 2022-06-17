@@ -136,5 +136,4 @@ Route::get('/dashboard/sirkulasi/katalogs/checkSlug', [DashboardKatalogControlle
 Route::resource('/dashboard/sirkulasi/katalogs', DashboardKatalogController::class)->middleware('auth');
 
 //Contact-us
-// Route::get('/dashboard/sirkulasi/katalogs/checkSlug', [DashboardKatalogController::class, 'checkSlug'])->middleware('auth');
-// Route::resource('/contact-us', DashboardContactController::class);
+Route::get('/dashboard/contact-us', [DashboardContactController::class, 'index'])->middleware('auth');
