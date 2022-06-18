@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Author;
 use App\Models\Katalog;
 use App\Models\Category;
+use App\Models\Lokasi;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Cviebrock\EloquentSluggable\Services\SlugService;
@@ -35,7 +36,8 @@ class DashboardKatalogController extends Controller
         return view('dashboard.sirkulasi.penelusuran-katalog.create', [
             'title' => "Tambah Data Katalog",
             'categories' => Category::all(),
-            'authors' => Author::all()
+            'authors' => Author::all(),
+            'lokasis' => Lokasi::all()
         ]);
     }
 
@@ -66,7 +68,7 @@ class DashboardKatalogController extends Controller
             'tempat_terbit' => '',
             'jumlah' => 'required',
             'bahasa' => '',
-            'lokasi' => '',
+            'lokasi_id' => '',
             'image' => 'image|file|max:1024'
         ]);
 
@@ -107,7 +109,8 @@ class DashboardKatalogController extends Controller
             'title' => "Edit Data Katalog",
             'katalog' =>$katalog,
             'categories' => Category::all(),
-            'authors' => Author::all()
+            'authors' => Author::all(),
+            'lokasis' => Lokasi::all()
         ]);
     }
 
@@ -131,7 +134,7 @@ class DashboardKatalogController extends Controller
             'tempat_terbit' => '',
             'jumlah' => 'required',
             'bahasa' => '',
-            'lokasi' => '',
+            'lokasi_id' => '',
             'author_id' => '',
             'image' =>'image|file|max:1024'
         ]);

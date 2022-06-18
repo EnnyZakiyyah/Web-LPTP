@@ -7,6 +7,8 @@ use App\Models\Author;
 use App\Models\Katalog;
 use App\Models\Category;
 use App\Models\Informasi;
+use App\Models\Lokasi;
+use App\Models\Status;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -46,5 +48,34 @@ class DatabaseSeeder extends Seeder
             'tanggal' => '2022-06-16',
             'informasi' => 'Libur Natal'
         ]);
+
+        Lokasi::create([
+            'nama' => 'Perpustakaan Akademi Komunitas Adiyasa'
+        ]);
+
+        Lokasi::create([
+            'nama' => 'Perpustakaan LSP/Training'
+        ]);
+
+        Lokasi::create([
+            'nama' => 'Perpustakaan Program'
+        ]);
+
+        Status::create([
+            'nama' => 'Kembali'
+        ]);
+
+        Status::create([
+            'nama' => 'Sedang Dipinjam'
+        ]);
+
+        Status::create([
+            'nama' => 'Pending'
+        ]);
+
+        Status::create([
+            'nama' => 'Konfirmasi'
+        ]);
+
     }
 }

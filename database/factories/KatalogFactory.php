@@ -23,7 +23,7 @@ class KatalogFactory extends Factory
             'tempat_terbit' => $this->faker->city(),
             'jumlah' => $this->faker->randomNumber(3, true),
             'bahasa' => $this->faker->sentence(mt_rand(2,8)),
-            'lokasi' => $this->faker->streetName(),
+            'lokasi_id' => mt_rand(1,2),
             'excerpt' =>$this->faker->sentence(mt_rand(10,25)),
             // 'body' => $this->faker->paragraphs(mt_rand(1,2)),
             'body' => collect($this->faker->paragraphs(mt_rand(1,2)))

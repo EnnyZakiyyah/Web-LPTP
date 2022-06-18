@@ -42,6 +42,14 @@ class Katalog extends Model
         return $this->belongsTo(Author::class);
     }
 
+    public function pinjams(){
+        return $this->hasMany(Peminjaman::class);
+    }
+
+    public function lokasi(){
+        return $this->belongsTo(Lokasi::class);
+    }
+
     public function getRouteKeyName()
     {
         return 'slug';

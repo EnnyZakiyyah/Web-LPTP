@@ -42,6 +42,14 @@
                 Digital</span></a>
     </li>
     <li class="nav-item pcoded-menu-caption">
+        <label>Transaction</label>
+    </li>
+    <li class="nav-item">
+        <a href="/dashboard/peminjamans"
+            class="nav-link {{ Request::is('/dashboard/authors') ? 'active' : '' }}"><span
+                class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Peminjaman</span></a>
+    </li>
+    <li class="nav-item pcoded-menu-caption">
         <label>Forms</label>
     </li>
     <li class="nav-item">

@@ -25,7 +25,7 @@ class CreateKatalogsTable extends Migration
             $table->string('tempat_terbit');
             $table->string('jumlah');
             $table->string('bahasa');
-            $table->string('lokasi');
+            $table->foreignId('lokasi_id');
             $table->string('slug')->unique();
             $table->text('excerpt');
             $table->string('image')->nullable();

@@ -121,7 +121,16 @@
                         <div class="mb-3 row">
                             <label for="lokasi" class="col-md-2 col-form-label">Lokasi</label>
                             <div class="col-md-10">
-                              <input class="form-control" type="text" name="lokasi" id="lokasi" value="{{ old('lokasi') }}"/>
+                                <select class="form-control" id="lokasi" name="lokasi">
+                                    @foreach ($lokasis as $lokasi)
+                                    @if (old('lokasi') == $lokasi->id)
+                                    <option value="{{ $lokasi->id }}" selected>{{ $lokasi->nama }}</option>
+                                    @else
+                                    <option value="{{ $lokasi->id }}">{{ $lokasi->nama }}</option>
+                                    @endif
+                                    @endforeach
+                                </select>
+                              {{-- <input class="form-control" type="text" name="lokasi" id="lokasi" value="{{ old('lokasi') }}"/> --}}
                             </div>
                         </div>
                         <div class="mb-3 row">
@@ -191,7 +200,7 @@
 
     }
 
-
+    //Dropdown Search
     function setDrop() {
             if (!document.getElementById('third').classList.contains("fstdropdown-select"))
                 document.getElementById('third').className = 'fstdropdown-select';

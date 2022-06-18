@@ -12,6 +12,7 @@ use App\Http\Controllers\DashboardAuthorController;
 use App\Http\Controllers\DashboardAnggotaController;
 use App\Http\Controllers\DashboardContactController;
 use App\Http\Controllers\DashboardKatalogController;
+use App\Http\Controllers\DashboardPeminjamanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -113,3 +114,7 @@ Route::resource('/dashboard/sirkulasi/katalogs', DashboardKatalogController::cla
 
 //Contact-us
 Route::get('/dashboard/contact-us', [DashboardContactController::class, 'index'])->middleware('auth');
+
+//Peminjaman
+Route::get('/dashboard/peminjamans/checkSlug', [DashboardPeminjamanController::class, 'checkSlug'])->middleware('auth');
+Route::resource('/dashboard/peminjamans', DashboardPeminjamanController::class)->middleware('auth');

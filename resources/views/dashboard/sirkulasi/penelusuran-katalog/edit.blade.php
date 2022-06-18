@@ -67,16 +67,10 @@
                           <div class="mb-3 row">
                             <label for="penulis" class="col-md-2 col-form-label">Penulis</label>
                             <div class="col-md-10">
-                              {{-- <input class="form-control @error('penulis') is-invalid @enderror" type="text" name="penulis" id="penulis" value="{{ old('penulis', $katalog->author->name) }}" required/>
-                            @error('penulis')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror --}}
-                            <select class="form-control" id="author" name="author_id">
+                            <select class='fstdropdown-select' id="first" name="author_id">
                                 @foreach ($authors as $author)
                                 @if (old('author_id') == $author->id)
-                                <option value="{{ $author->id, $katalog->id }}" selected>{{ $author->nama }}</option>
+                                <option value="{{ $author->id, $katalog->author_id }}" selected>{{ $author->nama }}</option>
                                 @else
                                 <option value="{{ $author->id }}">{{ $author->nama }}</option>
                                 @endif
@@ -129,7 +123,16 @@
                         <div class="mb-3 row">
                             <label for="lokasi" class="col-md-2 col-form-label">Lokasi</label>
                             <div class="col-md-10">
-                              <input class="form-control" type="text" name="lokasi" id="lokasi" value="{{ old('lokasi', $katalog->lokasi) }}"/>
+                                <select class="form-control" name="lokasi" id="lokasi" value="{{ old('lokasi', $katalog->lokasi) }}">
+                                    @foreach ($lokasis as $lokasi)
+                                    @if (old('lokasi') == $lokasi->id)
+                                    <option value="{{ $lokasi->id, $lokasi->nama}}" selected>{{ $lokasi->nama }}</option>
+                                    @else
+                                    <option value="{{ $lokasi->id }}">{{ $lokasi->nama }}</option>
+                                    @endif
+                                    @endforeach
+                                </select>
+                              {{-- <input class="form-control" type="text" name="lokasi" id="lokasi" value="{{ old('lokasi', $katalog->lokasi) }}"/> --}}
                             </div>
                         </div>
                         <div class="mb-3 row">
@@ -202,5 +205,42 @@
             imgPreview.src = oFREvent.target.result;
         }
     }
+
+    //Dropdown Search
+    function setDrop() {
+            if (!document.getElementById('third').classList.contains("fstdropdown-select"))
+                document.getElementById('third').className = 'fstdropdown-select';
+            setFstDropdown();
+        }
+        setFstDropdown();
+        function removeDrop() {
+            if (document.getElementById('third').classList.contains("fstdropdown-select")) {
+                document.getElementById('third').classList.remove('fstdropdown-select');
+                document.getElementById("third").fstdropdown.dd.remove();
+                document.querySelector("#third~.fstdiv").remove();
+            }
+        }
+        function addOptions(add) {
+            var select = document.getElementById("fourth");
+            for (var i = 0; i < add; i++) {
+                var opt = document.createElement("option");
+                var o = Array.from(document.getElementById("fourth").querySelectorAll("option")).slice(-1)[0];
+                var last = o == undefined ? 1 : Number(o.value) + 1;
+                opt.text = opt.value = last;
+                select.add(opt);
+            }
+        }
+        function removeOptions(remove) {
+            for (var i = 0; i < remove; i++) {
+                var last = Array.from(document.getElementById("fourth").querySelectorAll("option")).slice(-1)[0];
+                if (last == undefined)
+                    break;
+                Array.from(document.getElementById("fourth").querySelectorAll("option")).slice(-1)[0].remove();
+            }
+        }
+        function updateDrop() {
+            document.getElementById("fourth").fstdropdown.rebind();
+        }
+
 </script>
 @endsection

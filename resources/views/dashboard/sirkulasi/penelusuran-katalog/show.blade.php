@@ -88,7 +88,7 @@
                                 <tr>
                                     <th scope="row" style="text-align: left">Lokasi Buku</th>
                                     <td>:</td>
-                                    <td style="text-align: justify !important">{{ $katalog->lokasi }}</td>
+                                    <td style="text-align: justify !important">{{ $katalog->lokasi->nama }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row" style="text-align: left">Sinopsis</th>
