@@ -22,9 +22,8 @@
     <!-- vendor css -->
     <link rel="stylesheet" href="{{ asset('assets-dashboard/assets/css/style.css') }}">
 
-    {{-- <!--bootstrap-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css"> --}}
+    <!--search dropdown-->
+    <link rel="stylesheet" href="{{ asset('assets-dashboard/assets/css/fstdropdown.css') }}">
     
     <!--TRIX EDITOR-->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets-dashboard/assets/css/trix.css') }}">
@@ -34,6 +33,13 @@
         trix-toolbar [data-trix-button-group="file-tools"] {
             display: none;
         }    
+
+        /* search_select_box {
+            max-width:100%;
+        }
+        search_select_box select{
+            max-width:100%;
+        } */
     </style>  
     
 </head>
@@ -115,13 +121,15 @@
     <!-- Warning Section Ends -->
 
     <!--JS Bootstrap 4-->
-    {{-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" ></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" ></script>
 
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script> --}}
+
+
 
     <!-- Required Js -->
     <script src="{{ asset('assets-dashboard/assets/js/vendor-all.min.js') }}"></script>
@@ -135,6 +143,8 @@
 
 <!-- custom-chart js -->
 <script src="{{ asset('assets-dashboard/assets/js/pages/dashboard-main.js') }}"></script>
+<script src="{{ asset('assets-dashboard/assets/js/fstdropdown.js') }}"></script>
+
 </body>
 
 </html>

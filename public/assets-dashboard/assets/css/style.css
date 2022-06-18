@@ -24203,6 +24203,18 @@ div.dtk-focus-alt table.dataTable tbody th.focus {
 /* image varient End */
 /**====== Authentication css end ======**/
 
+.search_select_box {
+    max-width:100%;
+}
+.search_select_box select{
+    max-width:100%;
+}
+.search_select_box button{
+    background-color:#080342
+}
+
+///////////
+
 .dropbtn {
     background-color: #04AA6D;
     color: white;

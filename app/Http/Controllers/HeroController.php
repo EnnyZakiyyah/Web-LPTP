@@ -46,7 +46,7 @@ class HeroController extends Controller
         $validateData = $request->validate([
             'nama' => 'required|max:255',
             'slug' => 'unique:heroes',
-            'image' => 'image|file|max:1024'
+            'image' => 'image|file|max:5120'
         ]);
 
         if ($request->file('image')) {

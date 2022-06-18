@@ -65,7 +65,7 @@
                           <div class="mb-3 row">
                             <label for="author" class="col-md-2 col-form-label">Penulis</label>
                             <div class="col-md-10">
-                                {{-- <select class="form-control" id="author" name="author_id">
+                                  <select class='fstdropdown-select' id="first" name="author_id">
                                     @foreach ($authors as $author)
                                     @if (old('author_id') == $author->id)
                                     <option value="{{ $author->id }}" selected>{{ $author->nama }}</option>
@@ -73,34 +73,7 @@
                                     <option value="{{ $author->id }}">{{ $author->nama }}</option>
                                     @endif
                                     @endforeach
-                                </select> --}}
-                                <div class="search_select_box">
-                                <select data-live-search="true" class="form-control" id="author" name="author_id">
-                                    @foreach ($authors as $author)
-                                    @if (old('author_id') == $author->id)
-                                    <option value="{{ $author->id }}" selected>{{ $author->nama }}</option>
-                                    @else
-                                    <option value="{{ $author->id }}">{{ $author->nama }}</option>
-                                    @endif
-                                    @endforeach
-                                </select>
-                                </div>
-                            </div>
-                            <div class="mb-3 row">
-                                <div class="dropdown">
-                                    <button onclick="myFunction()" class="dropbtn">Dropdown</button>
-                                    <div id="myDropdown" class="dropdown-content">
-                                      <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
-                                      @foreach ($authors as $author)
-                                      @if (old('author_id') == $author->id)
-                                      <a href="{{ $author->id }}" value="{{ $author->id }}">{{ $author->nama }}</a>
-                                      @else
-                                      <a href="{{ $author->id }}" value="{{ $author->id }}">{{ $author->nama }}</a>
-                                      @endif
-                                      @endforeach
-                                    </div>
-                                  </div>
-                                  
+                                  </select>
                             </div>
                         </div>
                           <div class="mb-3 row">
@@ -217,32 +190,42 @@
         }
 
     }
-    //DROPDOWN ATAS
-    $(document).ready(function(){
-        $('select').selectpicker();
-        $('.search_select_box select').selectpicker();
-    })
 
-    //Dropdown
-    function myFunction() {
-  document.getElementById("myDropdown").classList.toggle("show");
-}
 
-function filterFunction() {
-  var input, filter, ul, li, a, i;
-  input = document.getElementById("myInput");
-  filter = input.value.toUpperCase();
-  div = document.getElementById("myDropdown");
-  a = div.getElementsByTagName("a");
-  for (i = 0; i < a.length; i++) {
-    txtValue = a[i].textContent || a[i].innerText;
-    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-      a[i].style.display = "";
-    } else {
-      a[i].style.display = "none";
-    }
-  }
-}
+    function setDrop() {
+            if (!document.getElementById('third').classList.contains("fstdropdown-select"))
+                document.getElementById('third').className = 'fstdropdown-select';
+            setFstDropdown();
+        }
+        setFstDropdown();
+        function removeDrop() {
+            if (document.getElementById('third').classList.contains("fstdropdown-select")) {
+                document.getElementById('third').classList.remove('fstdropdown-select');
+                document.getElementById("third").fstdropdown.dd.remove();
+                document.querySelector("#third~.fstdiv").remove();
+            }
+        }
+        function addOptions(add) {
+            var select = document.getElementById("fourth");
+            for (var i = 0; i < add; i++) {
+                var opt = document.createElement("option");
+                var o = Array.from(document.getElementById("fourth").querySelectorAll("option")).slice(-1)[0];
+                var last = o == undefined ? 1 : Number(o.value) + 1;
+                opt.text = opt.value = last;
+                select.add(opt);
+            }
+        }
+        function removeOptions(remove) {
+            for (var i = 0; i < remove; i++) {
+                var last = Array.from(document.getElementById("fourth").querySelectorAll("option")).slice(-1)[0];
+                if (last == undefined)
+                    break;
+                Array.from(document.getElementById("fourth").querySelectorAll("option")).slice(-1)[0].remove();
+            }
+        }
+        function updateDrop() {
+            document.getElementById("fourth").fstdropdown.rebind();
+        }
 
 </script>
 @endsection
