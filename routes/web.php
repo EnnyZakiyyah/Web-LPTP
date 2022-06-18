@@ -25,7 +25,6 @@ use App\Http\Controllers\DashboardKatalogController;
 */
 
 Route::get('/', [HomeController::class, 'index']);
-
 //Home-Sirkulasi 
 Route::get('/home/sirkulasi/peminjaman-buku', function () {
     return view('home.sirkulasi.peminjaman-buku', [
@@ -37,28 +36,13 @@ Route::get('/home/sirkulasi/pengembalian-buku', function () {
         "title" => "Sirkulasi",
     ]);
 });
-
 Route::get('/home/sirkulasi/penelusuran-katalog', [KatalogController::class, 'index']);
 Route::get('/home/sirkulasi/penelusuran-katalog/{katalog:slug}', [KatalogController::class, 'show']);
-// Route::get('/home/sirkulasi/penelusuran-katalog/categories/{category:slug}', function(Category $category) {
-//     return view('home.sirkulasi.penelusuran-katalog', [
-//         'title' =>"Katalog by Category $category->name",
-//         'katalogs' => $category->katalogs->load('category', 'author')
-//     ]);
-// });
-// Route::get('/home/sirkulasi/penelusuran-katalog/authors/{author:username}', function(Author $author){
-//     return view('home.sirkulasi.penelusuran-katalog', [
-//         'title' => "Katalog by Author $author->name" ,
-//         'katalogs' => $author->katalogs->load('category', 'author')
-//     ]);
-// });
-
 Route::get('/home/sirkulasi/bebas-pustaka', function () {
     return view('home.sirkulasi.bebas-pustaka', [
         "title" => "Sirkulasi"
     ]);
 });
-
 //Home-Layanan
 Route::get('/home/layanan/keanggotaan', function () {
     return view('home.layanan.keanggotaan', [
@@ -75,7 +59,6 @@ Route::get('/home/layanan/bibliography/detil', function () {
         "title" => "Layanan",
     ]);
 });
-
 //Home-Koleksi-Digital
 Route::get('/home/koleksi-digital', function () {
     return view('home.koleksi-digital.koleksi-digital', [
@@ -87,13 +70,7 @@ Route::get('/home/koleksi-digital/koleksi-digital/detil', function () {
         "title" => "Koleksi Digital",
     ]);
 });
-
 //Contact
-// Route::get('/contact-us', function () {
-//     return view('home.contact.contact', [
-//         "title" => "Contact",
-//     ]);
-// });
 Route::get('/contact-us', [ContactController::class, 'showForm']);
 Route::post('/contact-us', [ContactController::class, 'send'])->name('send.email');
 
@@ -108,7 +85,7 @@ Route::get('/sign-up', [RegisterController::class, 'index'])->middleware('guest'
 Route::post('/sign-up', [RegisterController::class, 'store']);
 
 //DASHBOARD
-Route::get('/dashboard', function() {
+Route::get('/dashboard', function () {
     return view('dashboard.index', [
         'title' => 'Dashboard'
     ]);
@@ -129,7 +106,6 @@ Route::resource('/dashboard/heroes', HeroController::class)->middleware('auth');
 //Informasi
 Route::get('/dashboard/informasi/checkSlug', [InformasiController::class, 'checkSlug'])->middleware('auth');
 Route::resource('/dashboard/informasi', InformasiController::class)->middleware('auth');
-// Route::resource('/', InformasiController::class);
 
 //Penelusuran Katalog
 Route::get('/dashboard/sirkulasi/katalogs/checkSlug', [DashboardKatalogController::class, 'checkSlug'])->middleware('auth');

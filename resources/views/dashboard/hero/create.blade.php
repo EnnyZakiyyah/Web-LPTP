@@ -71,11 +71,11 @@
 
 <script>
     //SLUG
-    const nama = document.querySelector('#nama');
+    const title = document.querySelector('#nama');
     const slug = document.querySelector('#slug');
 
     nama.addEventListener('change', function() {
-        fetch('/dashboard/sirkulasi/katalogs/checkSlug?nama=' +nama.value)
+        fetch('/dashboard/heroes/checkSlug?nama=' +nama.value)
             .then(response => response.json())
             .then(data => slug.value = data.slug)
     });
