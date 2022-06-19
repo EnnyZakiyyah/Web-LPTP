@@ -33,7 +33,9 @@
                         Layanan
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        @can('admin')
                         <a class="dropdown-item" href="/home/layanan/keanggotaan">Keanggotaan</a>
+                        @endcan
                         <a class="dropdown-item" href="/home/layanan/bibliography">Bibliography</a>
                     </div>
                 </li>

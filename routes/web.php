@@ -9,6 +9,7 @@ use App\Http\Controllers\KatalogController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\InformasiController;
 use App\Http\Controllers\PeminjamanController;
+use App\Http\Controllers\KeanggotaanController;
 use App\Http\Controllers\BebasPustakaController;
 use App\Http\Controllers\DashboardAuthorController;
 use App\Http\Controllers\DashboardAnggotaController;
@@ -40,11 +41,7 @@ Route::get('/home/sirkulasi/penelusuran-katalog/{katalog:slug}', [KatalogControl
 Route::get('/home/sirkulasi/penelusuran-katalog/{katalog:slug}', [KatalogController::class, 'pinjam']);
 Route::resource('/home/sirkulasi/bebas-pustaka', BebasPustakaController::class)->except('show')->middleware('admin');
 //Home-Layanan
-Route::get('/home/layanan/keanggotaan', function () {
-    return view('home.layanan.keanggotaan', [
-        "title" => "Layanan",
-    ]);
-});
+Route::resource('/home/layanan/keanggotaan', KeanggotaanController::class)->except('show')->middleware('admin');
 Route::get('/home/layanan/bibliography', function () {
     return view('home.layanan.bibliography', [
         "title" => "Layanan",
