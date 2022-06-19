@@ -78,10 +78,10 @@
 
 <script>
     //SLUG
-    const title = document.querySelector('#nama');
+    const nama = document.querySelector('#nama');
     const slug = document.querySelector('#slug');
 
-    title.addEventListener('change', function() {
+    nama.addEventListener('change', function() {
         fetch('/dashboard/heroes/checkSlug?nama=' +nama.value)
             .then(response => response.json())
             .then(data => slug.value = data.slug)

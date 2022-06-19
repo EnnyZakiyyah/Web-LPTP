@@ -69,7 +69,7 @@
                             <div class="col-md-10">
                             <select class='fstdropdown-select' id="first" name="author_id">
                                 @foreach ($authors as $author)
-                                @if (old('author_id') == $author->id)
+                                @if (old('author_id', $katalog->author_id) == $author->id)
                                 <option value="{{ $author->id, $katalog->author_id }}" selected>{{ $author->nama }}</option>
                                 @else
                                 <option value="{{ $author->id }}">{{ $author->nama }}</option>
@@ -123,9 +123,9 @@
                         <div class="mb-3 row">
                             <label for="lokasi" class="col-md-2 col-form-label">Lokasi</label>
                             <div class="col-md-10">
-                                <select class="form-control" name="lokasi" id="lokasi" value="{{ old('lokasi', $katalog->lokasi) }}">
+                                <select class="form-control" name="lokasi_id" id="lokasi">
                                     @foreach ($lokasis as $lokasi)
-                                    @if (old('lokasi') == $lokasi->id)
+                                    @if (old('lokasi_id', $katalog->lokasi_id) == $lokasi->id)
                                     <option value="{{ $lokasi->id, $lokasi->nama}}" selected>{{ $lokasi->nama }}</option>
                                     @else
                                     <option value="{{ $lokasi->id }}">{{ $lokasi->nama }}</option>

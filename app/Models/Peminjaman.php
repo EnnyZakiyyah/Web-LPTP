@@ -25,7 +25,11 @@ class Peminjaman extends Model
     }
 
     public function status(){
-        return $this->belongsTo(Status::class);
+        return $this->belongsTo(Status::class, 'id_status');
+    }
+
+    public function lokasi(){
+        return $this->belongsTo(Lokasi::class, 'id_lokasi');
     }
 
     public function getRouteKeyName()
@@ -37,7 +41,7 @@ class Peminjaman extends Model
     {
         return [
             'slug' => [
-                'source' => 'peminjaman'
+                'source' => 'no_peminjaman'
             ]
         ];
     }

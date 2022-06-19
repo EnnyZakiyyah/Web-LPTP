@@ -41,11 +41,8 @@
                             <tr class="text-nowrap">
                                 <th>No</th>
                                 <th>No Peminjaman</th>
-                                <th>ID Petugas</th>
-                                <th>ID Peminjam</th>
-                                <th>Slug</th>
+                                <th>Nama Peminjam</th>
                                 <th>Nama Buku</th>
-                                <th>ID Buku</th>
                                 <th>Tgl Pinjam</th>
                                 <th>Tgl Kembali</th>
                                 <th>Status</th>
@@ -58,20 +55,17 @@
                             <tr>
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{ $peminjaman->no_peminjaman }}</td>
-                                <td>{{ $peminjaman->petugas->name }}</td>
                                 <td>{{ $peminjaman->users->name }}</td>
-                                <td>{{ $peminjaman->slug }}</td>
                                 <td>{{ $peminjaman->katalogs->title }}</td>
-                                <td>{{ $peminjaman->id_buku }}</td>
                                 <td>{{ $peminjaman->tgl_pinjam }}</td>
                                 <td>{{ $peminjaman->tgl_kembali }}</td>
-                                <td>{{ $peminjaman->status }}</td>
+                                <td>{{ $peminjaman->status->nama }}</td>
                                 <td>{{ $peminjaman->denda }}</td>
                                 <td>
-                                    <a href="/dashboard/peminjamans/{{ $peminjaman->id }}"
+                                    <a href="/dashboard/peminjamans/{{ $peminjaman->slug }}"
                                         class="badge bg-info"><i class="feather icon-eye" style="color: white"></i></a>
-                                    <a href="/dashboard/peminjamans/{{ $peminjaman->id }}/edit" class="badge bg-warning"><i class="feather icon-edit" style="color: white"></i></a>
-                                    <form action="/dashboard/peminjamans/{{ $peminjaman->id }}" method="POST" class="d-inline">
+                                    <a href="/dashboard/peminjamans/{{ $peminjaman->slug }}/edit" class="badge bg-warning"><i class="feather icon-edit" style="color: white"></i></a>
+                                    <form action="/dashboard/peminjamans/{{ $peminjaman->slug }}" method="POST" class="d-inline">
                                         @method('delete')
                                         @csrf
                                         <button class="badge bg-danger border-0" onclick="return confirm('Are you sure?')"><i class="feather icon-trash" style="color: white"></i></button>

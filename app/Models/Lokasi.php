@@ -14,4 +14,8 @@ class Lokasi extends Model
     public function katalogs(){
         return $this->hasMany(Katalog::class);
     }
+
+    public function peminjamans(){
+        return $this->hasMany(Peminjaman::class);
+    }
 }

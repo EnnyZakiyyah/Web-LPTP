@@ -42,6 +42,7 @@
                                 <th>No</th>
                                 <th>Nama</th>
                                 <th>ID</th>
+                                <th>Tanggal</th>
                                 <th>Informasi</th>
                                 <th>Aksi</th>
                             </tr>
@@ -52,6 +53,7 @@
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{ $informasi->nama }}</td>
                                 <td>{{ $informasi->slug }}</td>
+                                <td>{{ $informasi->tanggal }}</td>
                                 <td>{{ $informasi->informasi }}</td>
                                 <td>
                                     <a href="/dashboard/informasi/{{ $informasi->slug }}/edit" class="badge bg-warning"><i class="feather icon-edit" style="color: white"></i></a>

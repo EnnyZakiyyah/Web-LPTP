@@ -20,9 +20,10 @@ class CreatePeminjamansTable extends Migration
             $table->foreignId('id_peminjam');
             $table->foreignId('id_petugas');
             $table->foreignId('id_buku');
+            $table->foreignId('id_lokasi');
             $table->date('tgl_pinjam');
             $table->date('tgl_kembali');
-            $table->foreignId('status');
+            $table->foreignId('id_status');
             $table->string('denda')->nullable();
             $table->timestamps();
         });

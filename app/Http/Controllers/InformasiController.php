@@ -90,7 +90,6 @@ class InformasiController extends Controller
     {
         $rules = ([
             'nama' => 'required|max:255',
-            'slug' => 'unique:informasi',
             'tanggal' => 'required',
             'informasi' => 'required'
         ]);

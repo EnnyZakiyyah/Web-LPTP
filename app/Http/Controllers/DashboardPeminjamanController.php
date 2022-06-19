@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Lokasi;
+use App\Models\Status;
 use App\Models\Katalog;
 use App\Models\Peminjaman;
-use App\Models\Status;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 
@@ -35,7 +36,8 @@ class DashboardPeminjamanController extends Controller
             'title' => "Tambah Data Peminjaman",
             'users' => User::all(),
             'katalogs' => Katalog::all(),
-            'statuses' => Status::all()
+            'statuses' => Status::all(),
+            'lokasis' => Lokasi::all()
         ]);
     }
 
@@ -57,7 +59,8 @@ class DashboardPeminjamanController extends Controller
             'tgl_pinjam' => 'required',
             'tgl_kembali' => 'required',
             'id_buku' => 'required',
-            'status' => 'required',
+            'id_lokasi' => 'required',
+            'id_status' => 'required',
             'denda' => '',
         ]);
 
@@ -73,7 +76,10 @@ class DashboardPeminjamanController extends Controller
      */
     public function show(Peminjaman $peminjaman)
     {
-        //
+        return view('dashboard.peminjaman.show', [
+            'title' => "Detail Peminjaman",
+            'peminjaman' => $peminjaman
+        ]);
     }
 
     /**
@@ -84,7 +90,14 @@ class DashboardPeminjamanController extends Controller
      */
     public function edit(Peminjaman $peminjaman)
     {
-        //
+        return view('dashboard.peminjaman.edit', [
+            'title' => "Edit Data Peminjaman",
+            'peminjaman' => $peminjaman,
+            'users' => User::all(),
+            'katalogs' => Katalog::all(),
+            'statuses' => Status::all(),
+            'lokasis' => Lokasi::all()
+        ]);
     }
 
     /**
@@ -96,7 +109,27 @@ class DashboardPeminjamanController extends Controller
      */
     public function update(Request $request, Peminjaman $peminjaman)
     {
-        //
+        $rules = ([
+            'no_peminjaman' => 'required|max:255',
+            'id_peminjam' => 'required',
+            'id_petugas' => 'required',
+            'id_buku' => 'required',
+            'tgl_pinjam' => 'required',
+            'tgl_kembali' => 'required',
+            'id_buku' => 'required',
+            'id_lokasi' => 'required',
+            'id_status' => 'required',
+            'denda' => '',
+        ]);
+
+        if($request->slug != $peminjaman->slug) {
+            $rules['slug'] = 'required|unique:peminjamans';
+        }
+
+        $validateData = $request->validate($rules);
+
+        Peminjaman::where('id', $peminjaman->id)->update($validateData);
+        return redirect('/dashboard/peminjamans')->with('success', 'Data Peminjaman has been editedd!');
     }
 
     /**
@@ -107,11 +140,12 @@ class DashboardPeminjamanController extends Controller
      */
     public function destroy(Peminjaman $peminjaman)
     {
-        //
+        Peminjaman::destroy($peminjaman->id);
+        return redirect('/dashboard/peminjamans')->with('success', 'Data Peminjaman has been deleted!');
     }
 
     public function checkSlug(Request $request){
-        $slug = SlugService::createSlug(Peminjaman::class, 'slug', $request->peminjaman);
+        $slug = SlugService::createSlug(Peminjaman::class, 'slug', $request->no_peminjaman);
         return response()->json(['slug' => $slug]);
     }
 }

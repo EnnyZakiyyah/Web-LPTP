@@ -29,7 +29,7 @@
                         <div class="mb-3 row">
                             <label for="no_peminjaman" class="col-md-2 col-form-label">No Peminjaman</label>
                             <div class="col-md-10">
-                              <input class="form-control @error('no_peminjaman') is-invalid @enderror" type="text" name="no_peminjaman" id="peminjaman" value="{{ old('no_peminjaman') }}" required autofocus/>
+                              <input class="form-control @error('no_peminjaman') is-invalid @enderror" type="text" name="no_peminjaman" id="no_peminjaman" value="{{ old('no_peminjaman') }}" required autofocus/>
                             @error('no_peminjaman')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -113,11 +113,26 @@
                             </div>
                         </div>
                         <div class="mb-3 row">
+                            <label for="lokasi" class="col-md-2 col-form-label">Lokasi</label>
+                            <div class="col-md-10">
+                                <select class="form-control" id="lokasi" name="id_lokasi">
+                                    @foreach ($lokasis as $lokasi)
+                                    @if (old('id_lokasi') == $lokasi->id)
+                                    <option value="{{ $lokasi->id }}" selected>{{ $lokasi->nama }}</option>
+                                    @else
+                                    <option value="{{ $lokasi->id }}">{{ $lokasi->nama }}</option>
+                                    @endif
+                                    @endforeach
+                                </select>
+                              {{-- <input class="form-control" type="text" name="lokasi" id="lokasi" value="{{ old('lokasi') }}"/> --}}
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
                             <label for="status" class="col-md-2 col-form-label">Status</label>
                             <div class="col-md-10">
-                                <select class="form-control" id="status" name="status">
+                                <select class="form-control" id="status" name="id_status">
                                     @foreach ($statuses as $status)
-                                    @if (old('status') == $status->id)
+                                    @if (old('id_status') == $status->id)
                                     <option value="{{ $status->id }}" selected>{{ $status->nama }}</option>
                                     @else
                                     <option value="{{ $status->id }}">{{ $status->nama }}</option>
@@ -148,11 +163,11 @@
 
 <script>
     //SLUG
-    const peminjaman = document.querySelector('#peminjaman');
+    const no_peminjaman = document.querySelector('#no_peminjaman');
     const slug = document.querySelector('#slug');
 
-    peminjaman.addEventListener('change', function() {
-        fetch('/dashboard/peminjamans/checkSlug?peminjaman=' +peminjaman.value)
+    no_peminjaman.addEventListener('change', function() {
+        fetch('/dashboard/peminjamans/checkSlug?no_peminjaman=' +no_peminjaman.value)
             .then(response => response.json())
             .then(data => slug.value = data.slug)
     });
