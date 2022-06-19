@@ -62,6 +62,7 @@
                   <p>{!! $katalog->excerpt !!}
                   <a href="/home/sirkulasi/penelusuran-katalog/{{ $katalog->slug }}" class="text-primary">Read More...</a></p> 
                   <a type="button" class="btn btn-outline-secondary btn-sm" style="font-weight: bold;" href="/home/sirkulasi/penelusuran-katalog?category={{ $katalog->category->slug }}">{{ $katalog->category->name }}</a>
+                  <a type="button" class="btn btn-outline-warning btn-sm" style="font-weight: bold;" href="/home/sirkulasi/penelusuran-katalog/{{ $katalog->slug }}">Pinjam Buku</a>
                 </div>
             </div>
             @endforeach

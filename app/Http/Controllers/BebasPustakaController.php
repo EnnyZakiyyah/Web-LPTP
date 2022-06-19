@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Peminjaman;
 use Illuminate\Http\Request;
 
-class PeminjamanController extends Controller
+class BebasPustakaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +13,9 @@ class PeminjamanController extends Controller
      */
     public function index()
     {
-        return view('home.sirkulasi.peminjaman-buku', [
-            'title' => 'Sirkulasi',
-            "peminjamans" => Peminjaman::latest()->filter(request(['search']))->paginate(5)->withQueryString()
-        ]);
+        return view('home.sirkulasi.bebas-pustaka', [
+                    "title" => "Sirkulasi"
+                ]);
     }
 
     /**
@@ -44,10 +42,10 @@ class PeminjamanController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Peminjaman  $peminjaman
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Peminjaman $peminjaman)
+    public function show($id)
     {
         //
     }
@@ -55,10 +53,10 @@ class PeminjamanController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Peminjaman  $peminjaman
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Peminjaman $peminjaman)
+    public function edit($id)
     {
         //
     }
@@ -67,10 +65,10 @@ class PeminjamanController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Peminjaman  $peminjaman
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Peminjaman $peminjaman)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -78,10 +76,10 @@ class PeminjamanController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Peminjaman  $peminjaman
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Peminjaman $peminjaman)
+    public function destroy($id)
     {
         //
     }

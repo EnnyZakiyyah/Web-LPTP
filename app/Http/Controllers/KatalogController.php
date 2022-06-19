@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Author;
 use App\Models\Katalog;
 use App\Models\Category;
+use App\Models\Peminjaman;
 use Illuminate\Http\Request;
 
 class KatalogController extends Controller
@@ -32,5 +33,15 @@ class KatalogController extends Controller
             "title" => "Sirkulasi",
             "katalog" => $katalog
         ]);
+    }
+
+    public function create(){
+        return view('home.sirkulasi.peminjaman', [
+            'title' => "Pinjam Buku",
+        ]);
+    }
+
+    public function pinjam(Katalog $katalog){
+        dd($katalog);
     }
 }

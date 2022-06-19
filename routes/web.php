@@ -9,6 +9,7 @@ use App\Http\Controllers\KatalogController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\InformasiController;
 use App\Http\Controllers\PeminjamanController;
+use App\Http\Controllers\BebasPustakaController;
 use App\Http\Controllers\DashboardAuthorController;
 use App\Http\Controllers\DashboardAnggotaController;
 use App\Http\Controllers\DashboardContactController;
@@ -28,12 +29,7 @@ use App\Http\Controllers\DashboardPeminjamanController;
 
 Route::get('/', [HomeController::class, 'index']);
 //Home-Sirkulasi 
-// Route::get('/home/sirkulasi/peminjaman-buku', function () {
-//     return view('home.sirkulasi.peminjaman-buku', [
-//         "title" => "Sirkulasi",
-//     ]);
-// });
-Route::get('/home/sirkulasi/peminjaman-buku', [PeminjamanController::class, 'index']);
+Route::resource('/home/sirkulasi/peminjaman-buku', PeminjamanController::class)->except('show')->middleware('admin');
 Route::get('/home/sirkulasi/pengembalian-buku', function () {
     return view('home.sirkulasi.pengembalian-buku', [
         "title" => "Sirkulasi",
@@ -41,11 +37,8 @@ Route::get('/home/sirkulasi/pengembalian-buku', function () {
 });
 Route::get('/home/sirkulasi/penelusuran-katalog', [KatalogController::class, 'index']);
 Route::get('/home/sirkulasi/penelusuran-katalog/{katalog:slug}', [KatalogController::class, 'show']);
-Route::get('/home/sirkulasi/bebas-pustaka', function () {
-    return view('home.sirkulasi.bebas-pustaka', [
-        "title" => "Sirkulasi"
-    ]);
-});
+Route::get('/home/sirkulasi/penelusuran-katalog/{katalog:slug}', [KatalogController::class, 'pinjam']);
+Route::resource('/home/sirkulasi/bebas-pustaka', BebasPustakaController::class)->except('show')->middleware('admin');
 //Home-Layanan
 Route::get('/home/layanan/keanggotaan', function () {
     return view('home.layanan.keanggotaan', [
@@ -120,3 +113,6 @@ Route::get('/dashboard/contact-us', [DashboardContactController::class, 'index']
 //Peminjaman
 Route::get('/dashboard/peminjamans/checkSlug', [DashboardPeminjamanController::class, 'checkSlug'])->middleware('auth');
 Route::resource('/dashboard/peminjamans', DashboardPeminjamanController::class)->middleware('auth');
+
+//ROLE ADMIN
+// Route::resource('/home/sirkulasi/peminjaman-buku', AnggotaController::class)->except('show')->middleware('auth');
