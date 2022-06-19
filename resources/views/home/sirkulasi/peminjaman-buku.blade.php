@@ -16,27 +16,7 @@
     <section class="pt-5">
       <div class="row">
         <div class="col-md-auto mt-2">
-          <form>
-            <div class="search rounded-pill"><input type="text" class="form-control rounded-pill" placeholder="Search books, articles, keywords"> <i class="fa fa-search"></i></div>
-          </form>
-        </div>
-        <div class="col col-lg-3 mt-2">
-          <form>
-            <div class="search rounded-pill"><input type="text" class="form-control rounded-pill" placeholder="Judul"> <i class="fa fa-search"></i></div>
-          </form>
-        </div>
-        <div class="col-md-auto mt-2">
-          <form>
-            <select class="form-select rounded-pill" aria-label="Default select example">
-              <option selected>Jenis</option>
-              <option value="1">Booklet</option>
-              <option value="2">Buku</option>
-              <option value="3">Laporan Program</option>
-              <option value="4">Laporan TA</option>
-              <option value="5">Majalah</option>
-              <option value="6">Softfile</option>
-            </select>
-          </form>
+          <div class="search rounded-pill"><input type="text" class="form-control rounded-pill" placeholder="Search books, articles, keywords" name="search" value="{{ request('search') }}"> <i class="fa fa-search"></i></div>
         </div>
         <div class="col-md-auto mt-2">
           <form>
@@ -61,72 +41,42 @@
               <thead>
                 <tr>
                   <th scope="col">No</th>
-                  <th scope="col">RFID</th>
+                  <th scope="col">No Identitas</th>
                   <th scope="col">Nomor ISBN</th>
+                  <th scope="col">Nama Buku</th>
                   <th scope="col">Tanggal Peminjaman</th>
                   <th scope="col">Tanggal Pengembalian</th>
                   <th scope="col">Status</th>
                 </tr>
               </thead>
               <tbody>
+                @foreach ($peminjamans as $peminjaman)
                 <tr> 
-                  <th scope="row">1</th>
-                  <td>000851829794</td>
-                  <td>9792029710</td>
-                  <td>20 Maret 2022</td>
-                  <td>27 Maret 2022</td>
-                  <td><span class="badge rounded-pill bg-warning text-white">Sedang Dipinjam</span></td>
+                  <th scope="row">{{ $loop->iteration }}</th>
+                  <td>{{ $peminjaman->no_peminjaman }}</td>
+                  <td>{{ $peminjaman->katalogs->isbn }}</td>
+                  <td>{{ $peminjaman->katalogs->title }}</td>
+                  <td>{{ $peminjaman->tgl_pinjam }}</td>
+                  <td>{{ $peminjaman->tgl_kembali }}</td>
+                  @if ($peminjaman->status->nama == 'Konfirmasi')
+                  <td><span class="badge rounded-pill bg-success text-white">{{ $peminjaman->status->nama }}</span></td> 
+                  @elseif ($peminjaman->status->nama == 'Kembali')
+                  <td><span class="badge rounded-pill bg-primary text-white">{{ $peminjaman->status->nama }}</span></td>
+                  @elseif ($peminjaman->status->nama == 'Pending')
+                  <td><span class="badge rounded-pill bg-danger text-white">{{ $peminjaman->status->nama }}</span></td>
+                  @else
+                  <td><span class="badge rounded-pill bg-warning text-white">{{ $peminjaman->status->nama }}</span></td>
+                  @endif
                 </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>000851829794</td>
-                  <td>9792029710</td>
-                  <td>01 April 2022</td>
-                  <td>08 April 2022</td>
-                  <td><span class="badge rounded-pill bg-success text-white">Konfirmasi</span></td>
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td>000851829794</td>
-                  <td>9792029710</td>
-                  <td>30 Maret 2022</td>
-                  <td>06 April 2022</td>
-                  <td><span class="badge rounded-pill bg-danger text-white">Pending</span></td>
-                </tr>
-                <tr>
-                  <th scope="row">4</th>
-                  <td>000851829794</td>
-                  <td>9792029710</td>
-                  <td>30 Maret 2022</td>
-                  <td>06 April 2022</td>
-                  <td><span class="badge rounded-pill bg-danger text-white">Pending</span></td>
-                </tr>
-                <tr>
-                  <th scope="row">5</th>
-                  <td>000851829794</td>
-                  <td>9792029710</td>
-                  <td>30 Maret 2022</td>
-                  <td>06 April 2022</td>
-                  <td><span class="badge rounded-pill bg-danger text-white">Pending</span></td>
-                </tr>
+                @endforeach
               </tbody>
             </table>
           </div>
             <!--PAGINATION-->
-            <nav aria-label="Page navigation example">
-              <ul class="pagination justify-content-center mt-5">
+            <nav aria-label="Page navigation example" class="mt-3">
+              <ul class="pagination justify-content-center">
                 <li class="page-item">
-                  <a class="page-link" href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                  </a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                  <a class="page-link" href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                  </a>
+                  {{ $peminjamans->links() }}
                 </li>
               </ul>
             </nav>

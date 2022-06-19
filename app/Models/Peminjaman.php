@@ -12,6 +12,15 @@ class Peminjaman extends Model
     protected $table = 'peminjamans';   //karena resource ngedetect peminjamens
     protected $guarded = ['id'];
 
+    public function scopeFilter($query, array $filters)
+    {
+
+        $query->when($filters['search'] ?? false, function($query, $search) {
+            return $query->where('title', 'like', '%' . $search . '%')
+                     ->orWhere('body', 'like', '%' . $search . '%') ;
+        });
+    }
+
     public function users(){
         return $this->belongsTo(User::class, 'id_peminjam');
     }

@@ -8,6 +8,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\KatalogController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\InformasiController;
+use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\DashboardAuthorController;
 use App\Http\Controllers\DashboardAnggotaController;
 use App\Http\Controllers\DashboardContactController;
@@ -27,11 +28,12 @@ use App\Http\Controllers\DashboardPeminjamanController;
 
 Route::get('/', [HomeController::class, 'index']);
 //Home-Sirkulasi 
-Route::get('/home/sirkulasi/peminjaman-buku', function () {
-    return view('home.sirkulasi.peminjaman-buku', [
-        "title" => "Sirkulasi",
-    ]);
-});
+// Route::get('/home/sirkulasi/peminjaman-buku', function () {
+//     return view('home.sirkulasi.peminjaman-buku', [
+//         "title" => "Sirkulasi",
+//     ]);
+// });
+Route::get('/home/sirkulasi/peminjaman-buku', [PeminjamanController::class, 'index']);
 Route::get('/home/sirkulasi/pengembalian-buku', function () {
     return view('home.sirkulasi.pengembalian-buku', [
         "title" => "Sirkulasi",
