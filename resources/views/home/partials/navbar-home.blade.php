@@ -18,8 +18,8 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         @can('admin')
                         <a class="dropdown-item" href="/home/sirkulasi/peminjaman-buku">Peminjaman Buku</a>
-                        @endcan
                         <a class="dropdown-item" href="/home/sirkulasi/pengembalian-buku">Pengembalian Buku</a>
+                        @endcan
                         <a class="dropdown-item" href="/home/sirkulasi/penelusuran-katalog">Penelusuran Katalog</a>
                         @can('admin')
                         <a class="dropdown-item" href="/home/sirkulasi/bebas-pustaka">Bebas Pustaka</a>

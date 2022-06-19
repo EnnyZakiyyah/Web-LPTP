@@ -31,11 +31,12 @@ use App\Http\Controllers\DashboardPeminjamanController;
 Route::get('/', [HomeController::class, 'index']);
 //Home-Sirkulasi 
 Route::resource('/home/sirkulasi/peminjaman-buku', PeminjamanController::class)->except('show')->middleware('admin');
-Route::get('/home/sirkulasi/pengembalian-buku', function () {
-    return view('home.sirkulasi.pengembalian-buku', [
-        "title" => "Sirkulasi",
-    ]);
-});
+Route::resource('/home/sirkulasi/pengembalian-buku', PengembalianController::class)->except('show')->middleware('admin');
+// Route::get('/home/sirkulasi/pengembalian-buku', function () {
+//     return view('home.sirkulasi.pengembalian-buku', [
+//         "title" => "Sirkulasi",
+//     ]);
+// });
 Route::get('/home/sirkulasi/penelusuran-katalog', [KatalogController::class, 'index']);
 Route::get('/home/sirkulasi/penelusuran-katalog/{katalog:slug}', [KatalogController::class, 'show']);
 Route::get('/home/sirkulasi/penelusuran-katalog/{katalog:slug}', [KatalogController::class, 'pinjam']);
