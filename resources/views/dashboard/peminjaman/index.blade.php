@@ -59,11 +59,22 @@
                                 <td>{{ $peminjaman->katalogs->title }}</td>
                                 <td>{{ $peminjaman->tgl_pinjam }}</td>
                                 <td>{{ $peminjaman->tgl_kembali }}</td>
-                                <td>{{ $peminjaman->status->nama }}</td>
+                                @if ($peminjaman->status->nama == 'Konfirmasi')
+                                <td><span class="badge rounded-pill bg-success text-white">{{ $peminjaman->status->nama }}</span></td> 
+                                @elseif ($peminjaman->status->nama == 'Kembali')
+                                <td><span class="badge rounded-pill bg-primary text-white">{{ $peminjaman->status->nama }}</span></td>
+                                @elseif ($peminjaman->status->nama == 'Pending')
+                                <td><span class="badge rounded-pill bg-danger text-white">{{ $peminjaman->status->nama }}</span></td>
+                                @else
+                                <td><span class="badge rounded-pill bg-warning text-white">{{ $peminjaman->status->nama }}</span></td>
+                                @endif
                                 <td>{{ $peminjaman->denda }}</td>
                                 <td>
+                                    @if ($peminjaman->status->nama == 'Pending')
+                                    @else
                                     <a href="/dashboard/peminjamans/{{ $peminjaman->slug }}"
                                         class="badge bg-info"><i class="feather icon-eye" style="color: white"></i></a>
+                                    @endif
                                     <a href="/dashboard/peminjamans/{{ $peminjaman->slug }}/edit" class="badge bg-warning"><i class="feather icon-edit" style="color: white"></i></a>
                                     <form action="/dashboard/peminjamans/{{ $peminjaman->slug }}" method="POST" class="d-inline">
                                         @method('delete')
@@ -81,7 +92,7 @@
             <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-center">
                   <li class="page-item">
-                    {{-- {{ $authors->links() }} --}}
+                    {{-- {{ $peminjaman->links() }} --}}
                   </li>
                 </ul>
             </nav>

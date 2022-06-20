@@ -50,6 +50,11 @@
                 </tr>
               </thead>
               <tbody>
+                @if (session()->has('success'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('success') }}
+                </div>
+                @endif
                 @foreach ($peminjamans as $peminjaman)
                 <tr> 
                   <th scope="row">{{ $loop->iteration }}</th>

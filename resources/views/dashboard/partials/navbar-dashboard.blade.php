@@ -21,7 +21,7 @@
                 class="pcoded-micon"><i class="feather icon-layout"></i></span><span
                 class="pcoded-mtext">Sirkulasi</span></a>
         <ul class="pcoded-submenu">
-            <li><a href="/dashboard/sirkulasi/peminjaman-buku" target="_blank">Peminjaman Buku</a></li>
+            <li><a href="/dashboard/peminjamans" target="_blank">Peminjaman Buku</a></li>
             <li><a href="/dashboard/sirkulasi/pengembalian-buku" target="_blank">Pengembalian Buku</a></li>
             <li><a href="/dashboard/sirkulasi/katalogs" target="_blank">Penelusuran Katalog</a></li>
             <li><a href="/dashboard/sirkulasi/bebas-pustaka" target="_blank">Bebas Pustaka</a></li>
@@ -40,14 +40,6 @@
             class="nav-link {{ Request::is('/dashboard/koleksi-digital') ? 'active' : '' }}"><span
                 class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Koleksi
                 Digital</span></a>
-    </li>
-    <li class="nav-item pcoded-menu-caption">
-        <label>Transaction</label>
-    </li>
-    <li class="nav-item">
-        <a href="/dashboard/peminjamans"
-            class="nav-link {{ Request::is('/dashboard/authors') ? 'active' : '' }}"><span
-                class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Peminjaman</span></a>
     </li>
     <li class="nav-item pcoded-menu-caption">
         <label>Forms</label>

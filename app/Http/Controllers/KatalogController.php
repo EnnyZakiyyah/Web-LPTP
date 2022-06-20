@@ -42,6 +42,19 @@ class KatalogController extends Controller
     }
 
     public function pinjam(Katalog $katalog){
-        dd($katalog);
+        if (auth()->user()) {
+            Peminjaman::create([
+                'no_peminjaman' => random_int(100000000, 999999999),
+                'id_peminjam' => auth()->user()->id,
+                'id_buku'=>$katalog->id,
+                'id_lokasi' => $katalog->lokasi_id,
+                'id_status' => 3,
+                'denda' => ''
+            ]);
+        return redirect('/home/sirkulasi/peminjaman-buku')->with('success', 'Berhasil!');
+
+        } else {
+            return redirect('/sign-in')->with('loginError', 'Login Terlebih dahulu!');
+        }
     }
 }

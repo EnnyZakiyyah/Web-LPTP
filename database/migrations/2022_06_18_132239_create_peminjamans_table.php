@@ -18,11 +18,11 @@ class CreatePeminjamansTable extends Migration
             $table->string('no_peminjaman')->unique();
             $table->string('slug')->unique();
             $table->foreignId('id_peminjam');
-            $table->foreignId('id_petugas');
+            $table->foreignId('id_petugas')->nullable();
             $table->foreignId('id_buku');
             $table->foreignId('id_lokasi');
-            $table->date('tgl_pinjam');
-            $table->date('tgl_kembali');
+            $table->date('tgl_pinjam')->nullable();
+            $table->date('tgl_kembali')->nullable();
             $table->foreignId('id_status');
             $table->string('denda')->nullable();
             $table->timestamps();
