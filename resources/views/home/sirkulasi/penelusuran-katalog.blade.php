@@ -60,9 +60,13 @@
                   <p>by <a href="/home/sirkulasi/penelusuran-katalog?author={{ $katalog->author->slug }}" class="text-primary" style="font-size: 13px;">{{ $katalog->author->nama }}</a></p>
                   <p style="font-size: 13px;">2016</p>
                   <p>{!! $katalog->excerpt !!}
-                  <a href="/home/sirkulasi/penelusuran-katalog/{{ $katalog->slug }}" class="text-primary">Read More...</a></p> 
+                  <a href="/home/sirkulasi/penelusuran-katalog/detail/{{ $katalog->slug }}" class="text-primary">Read More...</a></p> 
                   <a type="button" class="btn btn-outline-secondary btn-sm" style="font-weight: bold;" href="/home/sirkulasi/penelusuran-katalog?category={{ $katalog->category->slug }}">{{ $katalog->category->name }}</a>
+                  @if ($katalog->jumlah == 0)
+                  <a type="button" class="btn btn-outline-danger btn-sm" style="font-weight: bold;">Full</a>
+                  @else
                   <a type="button" class="btn btn-outline-warning btn-sm" style="font-weight: bold;" href="/home/sirkulasi/penelusuran-katalog/{{ $katalog->slug }}">Pinjam Buku</a>
+                  @endif
                 </div>
             </div>
             @endforeach

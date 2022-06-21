@@ -17,6 +17,7 @@ use App\Http\Controllers\DashboardAnggotaController;
 use App\Http\Controllers\DashboardContactController;
 use App\Http\Controllers\DashboardKatalogController;
 use App\Http\Controllers\DashboardPeminjamanController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,7 +35,7 @@ Route::get('/', [HomeController::class, 'index']);
 Route::resource('/home/sirkulasi/peminjaman-buku', PeminjamanController::class)->except('show')->middleware('admin');
 Route::resource('/home/sirkulasi/pengembalian-buku', PengembalianController::class)->except('show')->middleware('admin');
 Route::get('/home/sirkulasi/penelusuran-katalog', [KatalogController::class, 'index']);
-Route::get('/home/sirkulasi/penelusuran-katalog/{katalog:slug}', [KatalogController::class, 'show']);
+Route::get('/home/sirkulasi/penelusuran-katalog/detail/{katalog:slug}', [KatalogController::class, 'show']);
 Route::get('/home/sirkulasi/penelusuran-katalog/{katalog:slug}', [KatalogController::class, 'pinjam']);
 Route::resource('/home/sirkulasi/bebas-pustaka', BebasPustakaController::class)->except('show')->middleware('admin');
 //Home-Layanan
@@ -75,38 +76,44 @@ Route::get('/sign-up', [RegisterController::class, 'index'])->middleware('guest'
 Route::post('/sign-up', [RegisterController::class, 'store']);
 
 //DASHBOARD
-Route::get('/dashboard', function () {
-    return view('dashboard.index', [
-        'title' => 'Dashboard'
-    ]);
-})->middleware('auth');
+
+// Auth::routes();
+Route::middleware(['auth'])->group(function () {
+    
+    Route::get('/dashboard', function () {
+        return view('dashboard.index', [
+            'title' => 'Dashboard'
+        ]);
+    });
+
+    //Penulis
+    Route::get('/dashboard/authors/checkSlug', [DashboardAuthorController::class, 'checkSlug']);
+    Route::resource('/dashboard/authors', DashboardAuthorController::class);
+    
+    //HERO
+    Route::get('/dashboard/heroes/checkSlug', [HeroController::class, 'checkSlug']);
+    Route::resource('/dashboard/heroes', HeroController::class);
+    
+    //Informasi
+    Route::get('/dashboard/informasi/checkSlug', [InformasiController::class, 'checkSlug']);
+    Route::resource('/dashboard/informasi', InformasiController::class);
+    
+    //Penelusuran Katalog
+    Route::get('/dashboard/sirkulasi/katalogs/checkSlug', [DashboardKatalogController::class, 'checkSlug']);
+    Route::resource('/dashboard/sirkulasi/katalogs', DashboardKatalogController::class);
+    
+    //Contact-us
+    Route::get('/dashboard/contact-us', [DashboardContactController::class, 'index']);
+    
+    //Peminjaman
+    Route::get('/dashboard/peminjamans/checkSlug', [DashboardPeminjamanController::class, 'checkSlug']);
+    Route::resource('/dashboard/peminjamans', DashboardPeminjamanController::class);
+});
 
 //Anggota
 // Route::get('/dashboard/authors/checkSlug', [DashboardAuthorController::class, 'checkSlug'])->middleware('auth');
 // Route::resource('/dashboard/anggota', DashboardAnggotaController::class)->middleware('auth');
 
-//Penulis
-Route::get('/dashboard/authors/checkSlug', [DashboardAuthorController::class, 'checkSlug'])->middleware('auth');
-Route::resource('/dashboard/authors', DashboardAuthorController::class)->middleware('auth');
-
-//HERO
-Route::get('/dashboard/heroes/checkSlug', [HeroController::class, 'checkSlug'])->middleware('auth');
-Route::resource('/dashboard/heroes', HeroController::class)->middleware('auth');
-
-//Informasi
-Route::get('/dashboard/informasi/checkSlug', [InformasiController::class, 'checkSlug'])->middleware('auth');
-Route::resource('/dashboard/informasi', InformasiController::class)->middleware('auth');
-
-//Penelusuran Katalog
-Route::get('/dashboard/sirkulasi/katalogs/checkSlug', [DashboardKatalogController::class, 'checkSlug'])->middleware('auth');
-Route::resource('/dashboard/sirkulasi/katalogs', DashboardKatalogController::class)->middleware('auth');
-
-//Contact-us
-Route::get('/dashboard/contact-us', [DashboardContactController::class, 'index'])->middleware('auth');
-
-//Peminjaman
-Route::get('/dashboard/peminjamans/checkSlug', [DashboardPeminjamanController::class, 'checkSlug'])->middleware('auth');
-Route::resource('/dashboard/peminjamans', DashboardPeminjamanController::class)->middleware('auth');
 
 //ROLE ADMIN
 // Route::resource('/home/sirkulasi/peminjaman-buku', AnggotaController::class)->except('show')->middleware('auth');

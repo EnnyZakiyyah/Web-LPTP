@@ -51,7 +51,9 @@ class KatalogController extends Controller
                 'id_status' => 3,
                 'denda' => ''
             ]);
-        return redirect('/home/sirkulasi/peminjaman-buku')->with('success', 'Berhasil!');
+            $katalog->jumlah = $katalog->jumlah-1;
+            $katalog->save();
+        return redirect('/home/sirkulasi/peminjaman-buku')->with('success', 'Tunggu status berubah konfirmasi!');
 
         } else {
             return redirect('/sign-in')->with('loginError', 'Login Terlebih dahulu!');
