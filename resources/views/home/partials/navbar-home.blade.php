@@ -11,33 +11,31 @@
                         href="/">Home</a></li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle {{ ($title === "Sirkulasi") ? 'active' : '' }}"
-                        href="/sirkulasi id=" navbarDropdown" role="button" data-toggle="dropdown"
-                        aria-expanded="false">
+                        href="/sirkulasi" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Sirkulasi
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         @can('user')
-                        <a class="dropdown-item" href="/home/sirkulasi/peminjaman-buku">Peminjaman Buku</a>
-                        <a class="dropdown-item" href="/home/sirkulasi/pengembalian-buku">Pengembalian Buku</a>
+                        <li><a class="dropdown-item" href="/home/sirkulasi/peminjaman-buku">Peminjaman Buku</a></li>
+                        <li><a class="dropdown-item" href="/home/sirkulasi/pengembalian-buku">Pengembalian Buku</a></li>
                         @endcan
-                        <a class="dropdown-item" href="/home/sirkulasi/penelusuran-katalog">Penelusuran Katalog</a>
+                        <li><a class="dropdown-item" href="/home/sirkulasi/penelusuran-katalog">Penelusuran Katalog</a></li>
                         @can('user')
-                        <a class="dropdown-item" href="/home/sirkulasi/bebas-pustaka">Bebas Pustaka</a>
+                        <li><a class="dropdown-item" href="/home/sirkulasi/bebas-pustaka">Bebas Pustaka</a></li>
                         @endcan
-                    </div>
+                    </ul>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle {{ ($title === "Layanan") ? 'active' : '' }}" href="/layanan"
-                        href="/sirkulasi" id=" navbarDropdown" role="button" data-toggle="dropdown"
-                        aria-expanded="false">
+                        href="/sirkulasi" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Layanan
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         @can('user')
-                        <a class="dropdown-item" href="/home/layanan/keanggotaan">Keanggotaan</a>
+                        <li><a class="dropdown-item" href="/home/layanan/keanggotaan">Keanggotaan</a></li>
                         @endcan
-                        <a class="dropdown-item" href="/home/layanan/bibliography">Bibliography</a>
-                    </div>
+                        <li><a class="dropdown-item" href="/home/layanan/bibliography">Bibliography</a></li>
+                    </ul>
                 </li>
                 <li class="nav-item"><a
                         class="nav-link {{ Request::is('home/koleksi-digital/koleksi-digital') ? 'active' : '' }}"
@@ -45,20 +43,19 @@
                 @auth
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle {{ ($title === "Sign-in") ? 'active' : '' }}" href="/"
-                        href="/sirkulasi id=" navbarDropdown" role="button" data-toggle="dropdown"
-                        aria-expanded="false">
+                        href="/sirkulasi" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
                         Welcome back, {{ auth()->user()->name }}
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         @role('admin')
-                        <a class="dropdown-item" href="/dashboard">My Dashboard</a>
+                        <li><a class="dropdown-item" href="/dashboard">My Dashboard</a></li>
                         @endrole
                         <hr class="dropdown-divider">
                         <form action="/logout" method="POST">
                             @csrf
                             <button type="submit" class="dropdown-item">Logout</button>
                         </form>
-                    </div>
+                    </ul>
                 </li>
                 @else
                 <div class="d-flex ms-lg-4">
