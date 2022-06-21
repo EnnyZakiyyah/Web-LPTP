@@ -59,6 +59,11 @@
             class="nav-link {{ Request::is('/dashboard/informasi') ? 'active' : '' }}"><span
                 class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Informasi</span></a>
     </li>
+    <li class="nav-item">
+        <a href="/dashboard/categories"
+            class="nav-link {{ Request::is('/dashboard/categories') ? 'active' : '' }}"><span
+                class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Category</span></a>
+    </li>
     <li class="nav-item pcoded-menu-caption">
         <label>Pages</label>
     </li>

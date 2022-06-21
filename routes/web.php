@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HeroController;
 use App\Http\Controllers\HomeController;
@@ -16,8 +17,8 @@ use App\Http\Controllers\DashboardAuthorController;
 use App\Http\Controllers\DashboardAnggotaController;
 use App\Http\Controllers\DashboardContactController;
 use App\Http\Controllers\DashboardKatalogController;
+use App\Http\Controllers\DashboardCategoryController;
 use App\Http\Controllers\DashboardPeminjamanController;
-use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -108,6 +109,10 @@ Route::middleware(['auth'])->group(function () {
     //Peminjaman
     Route::get('/dashboard/peminjamans/checkSlug', [DashboardPeminjamanController::class, 'checkSlug']);
     Route::resource('/dashboard/peminjamans', DashboardPeminjamanController::class);
+
+    //Category
+    Route::get('/dashboard/categories/checkSlug', [DashboardCategoryController::class, 'checkSlug']);
+    Route::resource('/dashboard/categories', DashboardCategoryController::class);
 });
 
 //Anggota

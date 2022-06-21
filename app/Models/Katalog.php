@@ -43,7 +43,7 @@ class Katalog extends Model
     }
 
     public function pinjams(){
-        return $this->hasMany(Peminjaman::class);
+        return $this->hasMany(Peminjaman::class, 'id_buku');
     }
 
     public function lokasi(){
