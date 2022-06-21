@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class KeanggotaanController extends Controller
@@ -15,6 +16,7 @@ class KeanggotaanController extends Controller
     {
         return view('home.layanan.keanggotaan', [
                     "title" => "Layanan",
+                    // "keanggotaan" => User::all()
                 ]);
     }
 

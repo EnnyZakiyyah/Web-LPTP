@@ -15,7 +15,6 @@
                   </form>
                 </div>
                 <div class="col-md-6 text-end">
-                  {{-- <img class="pt-7 pt-md-0 img-fluid" src="assets/img/hero/hero-img.png" alt="" /> --}}
                   <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner" style="box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
                     border-radius: 20px; -moz-border-radius: 5px;">
@@ -24,9 +23,6 @@
                         <img src="{{asset('storage/' . $heroes->image)}}" class="d-block w-100" alt="...">
                       </div>
                       @endforeach
-                      {{-- <div class="carousel-item">
-                        <img src="{{asset('assets/img/header/Slide02.jpg')}}" class="d-block w-100" alt="...">
-                      </div> --}}
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
                       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -67,20 +63,6 @@
                                 <p>{{ $informasi->informasi }}</p>
                               </div>
                               @endforeach
-                              {{-- @foreach($katalogs as $katalog)
-                              <div class="carousel-item {{$key == 0 ? 'active' : '' }}">
-                                <h5 class="display-5 text-light text-center text-xl-center">{{ $informasi->date }}</h5>
-                                <p>{{ $katalog->name }}</p>
-                              </div>
-                              @endforeach --}}
-                              {{-- <div class="carousel-item">
-                                <h5 class="display-5 text-light text-center text-xl-center">Libur01</h5>
-                                <p>Natal</p>
-                              </div>
-                              <div class="carousel-item">
-                                <h5 class="display-5 text-light text-center text-xl-center">Libur</h5>
-                                <p>Natal</p>
-                              </div> --}}
                             </div>
                             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
                               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -221,7 +203,7 @@
       <!-- ============================================-->
       <!-- <BUKU TERBARU> begin ============================-->
         <section class="pt-5 pb-0 mt-5" id="buku-terbaru">
-
+          
           <div class="container">
             <h1 class="fs-9 fw-bold mb-4 pb-4 text-center"><span style="color: #002147"> Buku </span><span style="color : #FF9900">Terbaru</span></h1>
           <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
@@ -256,8 +238,6 @@
                 </div>
               </div>
               @endforeach
-                </div>
-              </div>
             </div>
           </div><!-- end of .container-->
   

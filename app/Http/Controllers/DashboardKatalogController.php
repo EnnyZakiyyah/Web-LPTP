@@ -69,7 +69,7 @@ class DashboardKatalogController extends Controller
             'jumlah' => 'required',
             'bahasa' => '',
             'lokasi_id' => '',
-            'image' => 'image|file|max:1024'
+            'image' => 'image|file|max:5000'
         ]);
 
         if ($request->file('image')) {
@@ -136,7 +136,7 @@ class DashboardKatalogController extends Controller
             'bahasa' => '',
             'lokasi_id' => '',
             'author_id' => '',
-            'image' =>'image|file|max:1024'
+            'image' =>'image|file|max:5000'
         ]);
 
         if($request->slug != $katalog->slug) {
