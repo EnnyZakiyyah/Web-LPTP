@@ -4,12 +4,14 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use App\Models\Author;
+use App\Models\Lokasi;
+use App\Models\Status;
 use App\Models\Katalog;
 use App\Models\Category;
 use App\Models\Informasi;
-use App\Models\Lokasi;
-use App\Models\Status;
 use Illuminate\Database\Seeder;
+use Database\Seeders\RoleSeeder;
+use Database\Seeders\UserSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -21,7 +23,27 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         Katalog::factory(20)->create();
-        User::factory(5)->create();
+
+        $this->call(RoleSeeder::class);
+        $this->call(UserSeeder::class);
+        // User::factory(5)->create();
+
+        // $user = User::create([
+        //     'name' => 'Enny Zakiyyah',
+        //     'no_ktp' => '438487325238',
+        //     'tempat_lahir' => 'Pamekasan',
+        //     'tgl_lahir' => '11 Oktober 1999',
+        //     'username' => 'ennyzakiyyah',
+        //     'email' => 'enny.9h08@gmail.com',
+        //     'email_verified_at' => now(),
+        //     'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+        //     'no_tlpn' => '98493493',
+        //     'alamat' => 'Pamekasan' ,
+        //     'image' => '0',
+        //     'remember_token' => '',
+        // ]);
+
+        // $user->assignRole('admin');
         
         Category::create([
             'name' => 'Majalah',

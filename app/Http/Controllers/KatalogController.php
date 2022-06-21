@@ -7,6 +7,7 @@ use App\Models\Katalog;
 use App\Models\Category;
 use App\Models\Peminjaman;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class KatalogController extends Controller
 {
@@ -42,18 +43,48 @@ class KatalogController extends Controller
     }
 
     public function pinjam(Katalog $katalog){
-        if (auth()->user()) {
-            Peminjaman::create([
-                'no_peminjaman' => random_int(100000000, 999999999),
-                'id_peminjam' => auth()->user()->id,
-                'id_buku'=>$katalog->id,
-                'id_lokasi' => $katalog->lokasi_id,
-                'id_status' => 3,
-                'denda' => ''
-            ]);
-            $katalog->jumlah = $katalog->jumlah-1;
-            $katalog->save();
-        return redirect('/home/sirkulasi/peminjaman-buku')->with('success', 'Tunggu status berubah konfirmasi!');
+        if (auth()->user()->id) {
+            $peminjaman_lama=DB::table('peminjamans');
+            //lebih dari 2
+            if ($peminjaman_lama->count() == 2) {
+                return redirect('/home/sirkulasi/penelusuran-katalog')->with('loginError', 'Maksimal 2 buku!');
+            } else {
+                // if ($peminjaman_lama->count() == 0) {
+                    # code...
+                    
+                    Peminjaman::create([
+                        'no_peminjaman' => random_int(100000000, 999999999),
+                        'id_peminjam' => auth()->user()->id,
+                        'id_buku'=>$katalog->id,
+                        'id_lokasi' => $katalog->lokasi_id,
+                        'id_status' => 3,
+                        'denda' => ''
+                    ]);
+                    $katalog->jumlah = $katalog->jumlah-1;
+                    $katalog->save();
+                    return redirect('/home/sirkulasi/peminjaman-buku')->with('success', 'Tunggu status berubah konfirmasi!');
+                // } else {
+                //     if ($peminjaman_lama[0]->id_buku == $katalog->id) {
+                //         return redirect('/home/sirkulasi/penelusuran-katalog')->with('loginError', 'Buku tidak boleh sama!');
+                //     } else {
+                //         Peminjaman::create([
+                //             'no_peminjaman' => random_int(100000000, 999999999),
+                //             'id_peminjam' => auth()->user()->id,
+                //             'id_buku'=>$katalog->id,
+                //             'id_lokasi' => $katalog->lokasi_id,
+                //             'id_status' => 3,
+                //             'denda' => ''
+                //         ]);
+                //         $katalog->jumlah = $katalog->jumlah-1;
+                //         $katalog->save();
+                //         return redirect('/home/sirkulasi/peminjaman-buku')->with('success', 'Tunggu status berubah konfirmasi!');
+                //     }
+                    
+                // }
+                }
+            
+                return redirect('/home/sirkulasi/peminjaman-buku')->with('success', 'Tunggu status berubah konfirmasi!');
+            
 
         } else {
             return redirect('/sign-in')->with('loginError', 'Login Terlebih dahulu!');

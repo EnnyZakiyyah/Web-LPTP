@@ -15,6 +15,9 @@ class LoginController extends Controller
 
     public function authenticate(Request $request)
     {
+        // if ($user->hasRole('admin')) {
+        //     return redirect()->route('dashboard');
+        // } return redirect()->route('home');
        
        $credentials = $request->validate([
             'email' => 'required|email:dns',
@@ -23,9 +26,9 @@ class LoginController extends Controller
 
        if(Auth::attempt($credentials)) {
            $request->session()->regenerate();
-           return redirect()->intended('/dashboard');
-       }
-
+           return redirect()->intended('/');
+       } else {redirect()->intended('/dashboard');}
+       
        return back()->with('loginError', 'Login failed');
 
     }

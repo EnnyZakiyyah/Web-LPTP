@@ -26,6 +26,8 @@ class RegisterController extends Controller
             'no_tlpn' => 'required',
             'alamat' => 'required',
             'image' => 'image|file|max:1024',
+            'is_admin' => ''
+            
         ]);
 
         if ($request->file('image')) {

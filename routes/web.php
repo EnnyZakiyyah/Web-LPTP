@@ -79,7 +79,8 @@ Route::post('/sign-up', [RegisterController::class, 'store']);
 //DASHBOARD
 
 // Auth::routes();
-Route::middleware(['auth'])->group(function () {
+
+Route::middleware(['auth', 'role:admin|admin'])->group(function () {
     
     Route::get('/dashboard', function () {
         return view('dashboard.index', [

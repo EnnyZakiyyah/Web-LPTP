@@ -81,7 +81,7 @@
             <nav aria-label="Page navigation example" class="mt-3">
               <ul class="pagination justify-content-center">
                 <li class="page-item">
-                  {{ $peminjamans->links() }}
+                  {{-- {{ $peminjamans->links() }} --}}
                 </li>
               </ul>
             </nav>

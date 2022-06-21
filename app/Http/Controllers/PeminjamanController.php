@@ -16,7 +16,7 @@ class PeminjamanController extends Controller
     {
         return view('home.sirkulasi.peminjaman-buku', [
             'title' => 'Sirkulasi',
-            "peminjamans" => Peminjaman::latest()->filter(request(['search']))->paginate(5)->withQueryString()
+            "peminjamans" => Peminjaman::where('id_peminjam', auth()->user()->id)->get()
         ]);
     }
 

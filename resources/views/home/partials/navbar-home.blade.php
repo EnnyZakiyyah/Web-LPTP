@@ -16,12 +16,12 @@
                         Sirkulasi
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        @can('admin')
+                        @can('user')
                         <a class="dropdown-item" href="/home/sirkulasi/peminjaman-buku">Peminjaman Buku</a>
                         <a class="dropdown-item" href="/home/sirkulasi/pengembalian-buku">Pengembalian Buku</a>
                         @endcan
                         <a class="dropdown-item" href="/home/sirkulasi/penelusuran-katalog">Penelusuran Katalog</a>
-                        @can('admin')
+                        @can('user')
                         <a class="dropdown-item" href="/home/sirkulasi/bebas-pustaka">Bebas Pustaka</a>
                         @endcan
                     </div>
@@ -33,7 +33,7 @@
                         Layanan
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        @can('admin')
+                        @can('user')
                         <a class="dropdown-item" href="/home/layanan/keanggotaan">Keanggotaan</a>
                         @endcan
                         <a class="dropdown-item" href="/home/layanan/bibliography">Bibliography</a>
@@ -50,7 +50,9 @@
                         Welcome back, {{ auth()->user()->name }}
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        @role('admin')
                         <a class="dropdown-item" href="/dashboard">My Dashboard</a>
+                        @endrole
                         <hr class="dropdown-divider">
                         <form action="/logout" method="POST">
                             @csrf

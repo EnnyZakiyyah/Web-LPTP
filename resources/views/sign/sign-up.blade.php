@@ -121,7 +121,17 @@
         </div>
       @enderror
     </div>
-
+    <div class="col-md-6">
+        {{-- <label class="form-label">Role</label> --}}
+        <input type="hidden" id="is_admin"
+            class="form-control @error('is_admin')is-invalid @enderror" placeholder=""
+            name="is_admin" value="1" required readonly/>
+        @error('is_admin')
+        <div class="invalid-feedback">
+            {{ $message }}
+        </div>
+        @enderror
+    </div>
 
 
 
