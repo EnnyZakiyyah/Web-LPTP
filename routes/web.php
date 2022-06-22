@@ -13,6 +13,7 @@ use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\KeanggotaanController;
 use App\Http\Controllers\BebasPustakaController;
 use App\Http\Controllers\PengembalianController;
+use App\Http\Controllers\DashboardUserController;
 use App\Http\Controllers\DashboardAuthorController;
 use App\Http\Controllers\DashboardAnggotaController;
 use App\Http\Controllers\DashboardContactController;
@@ -112,8 +113,8 @@ Route::middleware(['auth', 'role:admin|admin'])->group(function () {
     Route::resource('/dashboard/peminjamans', DashboardPeminjamanController::class);
 
     //Users
-    Route::get('/dashboard/users/checkSlug', [DashboardCategoryController::class, 'checkSlug']);
-    Route::resource('/dashboard/users', DashboardCategoryController::class);
+    Route::get('/dashboard/users/checkSlug', [DashboardUserController::class, 'checkSlug']);
+    Route::resource('/dashboard/users', DashboardUserController::class);
 
     //Category
     Route::get('/dashboard/categories/checkSlug', [DashboardCategoryController::class, 'checkSlug']);
