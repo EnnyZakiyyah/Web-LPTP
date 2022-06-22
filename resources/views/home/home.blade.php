@@ -214,7 +214,7 @@
                   <div class="col-md-4 mb-4">
                     <div class="card-book card-span text-white h-100" style="background-color:#E5E5E5"><center><img class="img-thumbnail" src="{{ asset('storage/' . $bukus->image) }}" alt="..." /></center>
                       <div class="card-book-body ps-0" style="background-color:#ffffff">
-                        <p class="text-secondary">By <a class="fw-bold text-decoration-none me-1" href="#">{{ $bukus->author->nama }}</a>|<span class="ms-1">{{ $bukus->created_at }}</span></p>
+                        <p class="text-secondary">By <a class="fw-bold text-decoration-none me-1" href="#">{{ $bukus->author->nama }}</a>|<span class="ms-1">{{ $bukus->created_at->diffForHumans() }}</span></p>
                         <h3 class="fw-bold">{{ $bukus->title }}</h3>
                       </div>
                     </div>
@@ -222,7 +222,7 @@
                   <div class="col-md-4 mb-4">
                     <div class="card-book card-span text-white h-100" style="background-color:#E5E5E5"><center><img class="img-thumbnail" src="{{ asset('storage/' . $bukus->image) }}" alt="..." /></center>
                       <div class="card-book-body ps-0" style="background-color:#ffffff">
-                        <p class="text-secondary">By <a class="fw-bold text-decoration-none me-1" href="#">{{ $bukus->author->nama }}</a>|<span class="ms-1">{{ $bukus->created_at }}</span></p>
+                        <p class="text-secondary">By <a class="fw-bold text-decoration-none me-1" href="#">{{ $bukus->author->nama }}</a>|<span class="ms-1">{{ $bukus->created_at->diffForHumans() }}</span></p>
                         <h3 class="fw-bold">{{ $bukus->title }}</h3>
                       </div>
                     </div>
@@ -230,7 +230,7 @@
                   <div class="col-md-4 mb-4">
                     <div class="card-book card-span text-white h-100" style="background-color:#E5E5E5"><center><img class="img-thumbnail" src="{{ asset('storage/' . $bukus->image) }}" alt="..." /></center>
                       <div class="card-book-body ps-0" style="background-color:#ffffff">
-                        <p class="text-secondary">By <a class="fw-bold text-decoration-none me-1" href="#">{{ $bukus->author->nama }}</a>|<span class="ms-1">{{ $bukus->created_at }}</span></p>
+                        <p class="text-secondary">By <a class="fw-bold text-decoration-none me-1" href="#">{{ $bukus->author->nama }}</a>|<span class="ms-1">{{ $bukus->created_at->diffForHumans() }}</span></p>
                         <h3 class="fw-bold">{{ $bukus->title }}</h3>
                       </div>
                     </div>

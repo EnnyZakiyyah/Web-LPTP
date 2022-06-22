@@ -38,7 +38,7 @@
     <li class="nav-item">
         <a href="/dashboard/koleksi-digital"
             class="nav-link {{ Request::is('/dashboard/koleksi-digital') ? 'active' : '' }}"><span
-                class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Koleksi
+                class="pcoded-micon"><i class="feather icon-book"></i></span><span class="pcoded-mtext">Koleksi
                 Digital</span></a>
     </li>
     <li class="nav-item pcoded-menu-caption">
@@ -47,22 +47,22 @@
     <li class="nav-item">
         <a href="/dashboard/authors"
             class="nav-link {{ Request::is('/dashboard/authors') ? 'active' : '' }}"><span
-                class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Penulis</span></a>
+                class="pcoded-micon"><i class="feather icon-user"></i></span><span class="pcoded-mtext">Penulis</span></a>
     </li>
     <li class="nav-item">
         <a href="/dashboard/heroes"
             class="nav-link {{ Request::is('/dashboard/heroes') ? 'active' : '' }}"><span
-                class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Header</span></a>
+                class="pcoded-micon"><i class="feather icon-image"></i></span><span class="pcoded-mtext">Header</span></a>
     </li>
     <li class="nav-item">
         <a href="/dashboard/informasi"
             class="nav-link {{ Request::is('/dashboard/informasi') ? 'active' : '' }}"><span
-                class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Informasi</span></a>
+                class="pcoded-micon"><i class="feather icon-info"></i></span><span class="pcoded-mtext">Informasi</span></a>
     </li>
     <li class="nav-item">
         <a href="/dashboard/categories"
             class="nav-link {{ Request::is('/dashboard/categories') ? 'active' : '' }}"><span
-                class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Category</span></a>
+                class="pcoded-micon"><i class="feather icon-copy"></i></span><span class="pcoded-mtext">Category</span></a>
     </li>
     <li class="nav-item pcoded-menu-caption">
         <label>Pages</label>
@@ -76,9 +76,14 @@
         </ul>
     </li>
     <li class="nav-item">
+        <a href="/dashboard/users"
+            class="nav-link {{ Request::is('/dashboard/users') ? 'active' : '' }}"><span
+                class="pcoded-micon"><i class="feather icon-users"></i></span><span class="pcoded-mtext">User</span></a>
+    </li>
+    <li class="nav-item">
         <a href="/dashboard/contact-us"
             class="nav-link {{ Request::is('/dashboard/koleksi-digital') ? 'active' : '' }}"><span
-                class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Contact Us</span></a>
+                class="pcoded-micon"><i class="feather icon-message-square"></i></span><span class="pcoded-mtext">Contact Us</span></a>
     </li>
     {{-- <li class="nav-item">
         <a href="/dashboard/anggota"

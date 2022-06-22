@@ -111,6 +111,10 @@ Route::middleware(['auth', 'role:admin|admin'])->group(function () {
     Route::get('/dashboard/peminjamans/checkSlug', [DashboardPeminjamanController::class, 'checkSlug']);
     Route::resource('/dashboard/peminjamans', DashboardPeminjamanController::class);
 
+    //Users
+    Route::get('/dashboard/users/checkSlug', [DashboardCategoryController::class, 'checkSlug']);
+    Route::resource('/dashboard/users', DashboardCategoryController::class);
+
     //Category
     Route::get('/dashboard/categories/checkSlug', [DashboardCategoryController::class, 'checkSlug']);
     Route::resource('/dashboard/categories', DashboardCategoryController::class);

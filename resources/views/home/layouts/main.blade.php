@@ -142,8 +142,8 @@
               <div class="col-lg-3 col-md-6 mb-4 mb-lg-0 order-3 order-md-3 order-lg-2">
                 <p class="fs-2 mb-lg-4">Quick Links</p>
                 <ul class="list-unstyled mb-0">
-                  <li class="mb-1"><a class="link-900 text-secondary text-decoration-none" href="#!">Tentang Kami</a></li>
-                  <li class="mb-1"><a class="link-900 text-secondary text-decoration-none" href="#!">Kontak Kami</a></li>
+                  <li class="mb-1"><a class="link-900 text-secondary text-decoration-none" href="/">Tentang Kami</a></li>
+                  <li class="mb-1"><a class="link-900 text-secondary text-decoration-none" href="/contact-us">Kontak Kami</a></li>
                   <li class="mb-1"><a class="link-900 text-secondary text-decoration-none" href="#!">FAQ</a></li>
                 </ul>
               </div>
@@ -151,8 +151,8 @@
                 <p class="fs-2 mb-lg-4">Layanan</p>
                 <ul class="list-unstyled mb-0">
                   <li class="mb-1"><a class="link-900 text-secondary text-decoration-none" href="#!">Daftar Anggota</a></li>
-                  <li class="mb-1"><a class="link-900 text-secondary text-decoration-none" href="#!">Koleksi Digital</a></li>
-                  <li class="mb-1"><a class="link-900 text-secondary text-decoration-none" href="#!">Sirkulasi</a></li>
+                  <li class="mb-1"><a class="link-900 text-secondary text-decoration-none" href="/home/koleksi-digital">Koleksi Digital</a></li>
+                  <li class="mb-1"><a class="link-900 text-secondary text-decoration-none" href="/home/sirkulasi/peminjaman-buku">Sirkulasi</a></li>
                 </ul>
               </div>
               <div class="col-lg-4 col-md-6 col-6 mb-4 mb-lg-0 order-2 order-md-2 order-lg-4">

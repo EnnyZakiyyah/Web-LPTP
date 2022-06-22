@@ -25,7 +25,7 @@
       @if (request('author'))
       <input type="hidden" class="form-control rounded-pill" placeholder="Search books, articles, keywords" name="author" value="{{ request('author') }}">
       @endif
-      <div class="col-md-auto mt-2">
+      {{-- <div class="col-md-auto mt-2">
         <select class="form-select rounded-pill" aria-label="Default select example" name="">
           <option selected>Jenis</option>
           <option value="booklet">Booklet</option>
@@ -35,7 +35,7 @@
           <option value="majalah">Majalah</option>
           <option value="softfile">Softfile</option>
         </select>
-      </div>
+      </div> --}}
       <div class="col-md-auto mt-2">
             <button class="btn btn-search " type="submit">Search</button>
       </div>

@@ -47,7 +47,123 @@
         </div>
     </div>
   </section>
+ <!--Koleksi Digital-->
+ <section class="pt-2">
 
+    <div class="container">
+        <div class="row h-100 align-items-center">
+            <div class="col-md-4 mb-4">
+              <div class="card card-span text-white h-100" style="background-color: #F9F7F7; border : 1px solid #E5E5E5; "><center><img class="img-thumbnail" src="{{ asset('assets/img/sirkulasi/lord-rings-2.png') }}" alt="..." /></center>
+                <div class="card-custom-avatar">
+                    <img class="img-fluid" src="{{ asset('assets/img/sirkulasi/lord-of-the-ring.png') }}" alt="Avatar" />
+                </div>
+              </div>
+                <div class="card-body">
+                  <h6 class="pt-5">The Lord of The Rings is an epic high-fantasy</h6><a class="text-muted stretched-link text-decoration-none" style="font-size: 13px" href="#!">J.R.R Tolkien</a>
+                </div>
+            </div>
+          <div class="col-md-4 mb-4">
+            <div class="card card-span text-white h-100" style="background-color: #F9F7F7; border : 1px solid #E5E5E5; "><center><img class="img-thumbnail" src="{{ asset('assets/img/sirkulasi/lord-rings-2.png') }}" alt="..." /></center>
+              <div class="card-custom-avatar">
+                  <img class="img-fluid" src="{{ asset('assets/img/sirkulasi/lord-of-the-ring.png') }}" alt="Avatar" />
+              </div>
+            </div>
+              <div class="card-body">
+                <h6 class="pt-5">The Lord of The Rings is an epic high-fantasy</h6><a class="text-muted stretched-link text-decoration-none" style="font-size: 13px" href="#!">J.R.R Tolkien</a>
+              </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="card card-span text-white h-100" style="background-color: #F9F7F7; border : 1px solid #E5E5E5; "><center><img class="img-thumbnail" src="{{ asset('assets/img/sirkulasi/lord-rings-2.png') }}" alt="..." /></center>
+              <div class="card-custom-avatar">
+                  <img class="img-fluid" src="{{ asset('assets/img/sirkulasi/lord-of-the-ring.png') }}" alt="Avatar" />
+              </div>
+            </div>
+              <div class="card-body">
+                <h6 class="pt-5">The Lord of The Rings is an epic high-fantasy</h6><a class="text-muted stretched-link text-decoration-none" style="font-size: 13px" href="#!">J.R.R Tolkien</a>
+              </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="card card-span text-white h-100" style="background-color: #F9F7F7; border : 1px solid #E5E5E5; "><center><img class="img-thumbnail" src="{{ asset('assets/img/sirkulasi/lord-rings-2.png') }}" alt="..." /></center>
+              <div class="card-custom-avatar">
+                  <img class="img-fluid" src="{{ asset('assets/img/sirkulasi/lord-of-the-ring.png') }}" alt="Avatar" />
+              </div>
+            </div>
+              <div class="card-body">
+                <h6 class="pt-5">The Lord of The Rings is an epic high-fantasy</h6><a class="text-muted stretched-link text-decoration-none" style="font-size: 13px" href="#!">J.R.R Tolkien</a>
+              </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="card card-span text-white h-100" style="background-color: #F9F7F7; border : 1px solid #E5E5E5; "><center><img class="img-thumbnail" src="{{ asset('assets/img/sirkulasi/lord-rings-2.png') }}" alt="..." /></center>
+              <div class="card-custom-avatar">
+                  <img class="img-fluid" src="{{ asset('assets/img/sirkulasi/lord-of-the-ring.png') }}" alt="Avatar" />
+              </div>
+            </div>
+              <div class="card-body">
+                <h6 class="pt-5">The Lord of The Rings is an epic high-fantasy</h6><a class="text-muted stretched-link text-decoration-none" style="font-size: 13px" href="#!">J.R.R Tolkien</a>
+              </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="card card-span text-white h-100" style="background-color: #F9F7F7; border : 1px solid #E5E5E5; "><center><img class="img-thumbnail" src="{{ asset('assets/img/sirkulasi/lord-rings-2.png') }}" alt="..." /></center>
+              <div class="card-custom-avatar">
+                  <img class="img-fluid" src="{{ asset('assets/img/sirkulasi/lord-of-the-ring.png') }}" alt="Avatar" />
+              </div>
+            </div>
+              <div class="card-body">
+                <h6 class="pt-5">The Lord of The Rings is an epic high-fantasy</h6><a class="text-muted stretched-link text-decoration-none" style="font-size: 13px" href="#!">J.R.R Tolkien</a>
+              </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="card card-span text-white h-100" style="background-color: #F9F7F7; border : 1px solid #E5E5E5; "><center><img class="img-thumbnail" src="{{ asset('assets/img/sirkulasi/lord-rings-2.png') }}" alt="..." /></center>
+              <div class="card-custom-avatar">
+                  <img class="img-fluid" src="{{ asset('assets/img/sirkulasi/lord-of-the-ring.png') }}" alt="Avatar" />
+              </div>
+            </div>
+              <div class="card-body">
+                <h6 class="pt-5">The Lord of The Rings is an epic high-fantasy</h6><a class="text-muted stretched-link text-decoration-none" style="font-size: 13px" href="#!">J.R.R Tolkien</a>
+              </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="card card-span text-white h-100" style="background-color: #F9F7F7; border : 1px solid #E5E5E5; "><center><img class="img-thumbnail" src="{{ asset('assets/img/sirkulasi/lord-rings-2.png') }}" alt="..." /></center>
+              <div class="card-custom-avatar">
+                  <img class="img-fluid" src="{{ asset('assets/img/sirkulasi/lord-of-the-ring.png') }}" alt="Avatar" />
+              </div>
+            </div>
+              <div class="card-body">
+                <h6 class="pt-5">The Lord of The Rings is an epic high-fantasy</h6><a class="text-muted stretched-link text-decoration-none" style="font-size: 13px" href="#!">J.R.R Tolkien</a>
+              </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="card card-span text-white h-100" style="background-color: #F9F7F7; border : 1px solid #E5E5E5; "><center><img class="img-thumbnail" src="{{ asset('assets/img/sirkulasi/lord-rings-2.png') }}" alt="..." /></center>
+              <div class="card-custom-avatar">
+                  <img class="img-fluid" src="{{ asset('assets/img/sirkulasi/lord-of-the-ring.png') }}" alt="Avatar" />
+              </div>
+            </div>
+              <div class="card-body">
+                <h6 class="pt-5">The Lord of The Rings is an epic high-fantasy</h6><a class="text-muted stretched-link text-decoration-none" style="font-size: 13px" href="#!">J.R.R Tolkien</a>
+              </div>
+          </div>
+        </div>
+      </div>
 
-     </div>
+            <!--PAGINATION-->
+            <nav aria-label="Page navigation example">
+              <ul class="pagination justify-content-center">
+                <li class="page-item">
+                  <a class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                  </a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                  <a class="page-link" href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+</section>
+</div> 
 @endsection
