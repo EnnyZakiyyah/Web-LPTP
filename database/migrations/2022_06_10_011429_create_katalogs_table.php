@@ -16,8 +16,8 @@ class CreateKatalogsTable extends Migration
         Schema::create('katalogs', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->foreignId('category_id');
-            $table->foreignId('author_id');
+            $table->foreignId('category_id')->constrained('categories')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('author_id')->constrained('authors')->onDelete('cascade')->onUpdate('cascade');
             $table->string('edisi');
             $table->string('isbn');
             $table->string('penerbit');
@@ -25,7 +25,7 @@ class CreateKatalogsTable extends Migration
             $table->string('tempat_terbit');
             $table->string('jumlah');
             $table->string('bahasa');
-            $table->foreignId('lokasi_id');
+            $table->foreignId('lokasi_id')->constrained('lokasis')->onDelete('cascade')->onUpdate('cascade');
             $table->string('slug')->unique();
             $table->text('excerpt');
             $table->string('image')->nullable();

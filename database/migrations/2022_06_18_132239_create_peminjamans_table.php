@@ -17,13 +17,13 @@ class CreatePeminjamansTable extends Migration
             $table->id();
             $table->string('no_peminjaman')->unique();
             $table->string('slug')->unique();
-            $table->foreignId('id_peminjam');
-            $table->foreignId('id_petugas')->nullable();
-            $table->foreignId('id_buku');
-            $table->foreignId('id_lokasi');
+            $table->foreignId('id_peminjam')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('id_petugas')->constrained('users')->onDelete('cascade')->onUpdate('cascade')->nullable();
+            $table->foreignId('id_buku')->constrained('katalogs')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('id_lokasi')->constrained('lokasis')->onDelete('cascade')->onUpdate('cascade');
             $table->date('tgl_pinjam')->nullable();
             $table->date('tgl_kembali')->nullable();
-            $table->foreignId('id_status');
+            $table->foreignId('id_status')->constrained('statuses')->onDelete('cascade')->onUpdate('cascade');
             $table->string('denda')->nullable();
             $table->timestamps();
         });

@@ -18128,3 +18128,80 @@ CARDS
 .contact .php-email-form2 button[type="submit"]:hover {
   background: #EB8E02;
 }
+
+
+/* dd */
+
+.card-katalog{
+  position: relative;
+  width: 320px;
+  height: 400px;
+  background: #232323;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.card-katalog:before{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: 0.5s ease-in-out;
+}
+
+.card-katalog:after{
+  position: absolute;
+  top: 0%;
+  left: -20%;
+  font-size: 12em;
+  font-weight: 800;
+  font-style: italic;
+  color: rgba(255,255,25,0.05)
+  
+}
+
+.card-katalog .contentBx{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 80px;
+  text-align: center;
+  transition: 1s;
+  z-index: 10;
+  padding-top:10px;
+  padding-bottom:10px;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.card-katalog:hover .contentBx{
+  height: 100%;
+  padding-top: 45px;
+}
+
+.card-katalog .contentBx h5{
+  position: relative;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #fff;
+  margin: 0;
+}
+
+.card-katalog .contentBx a{
+  display: inline-block;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 600;
+  color: #FFFFFF;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: 0.5s;
+  margin-top: 0;
+}
+
+.card-katalog:hover .contentBx a{
+  opacity: 1;
+  transform: translateY(0px);
+  transition-delay: 0.75s;
+} 

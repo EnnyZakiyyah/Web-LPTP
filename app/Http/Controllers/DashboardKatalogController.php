@@ -55,7 +55,7 @@ class DashboardKatalogController extends Controller
         // ]);
         
         $validateData = $request->validate([
-            'title' => 'required|max:255',
+            'title' => 'required|max:50',
             'slug' => 'required|unique:katalogs',
             'category_id' => 'required',
             'author_id' => '',
@@ -69,15 +69,15 @@ class DashboardKatalogController extends Controller
             'jumlah' => 'required',
             'bahasa' => '',
             'lokasi_id' => '',
-            'image' => 'image|file|max:5000'
+            'image' => 'image|file|max:5120'
         ]);
 
         if ($request->file('image')) {
             $validateData['image'] = $request->file('image')->store('katalog-images');
         }
-
+        $validateData['title'] = Str::limit(strip_tags($request->title), 35);
         // $validateData['author_id'] = auth()->user->id;    //INI JUGA SAMA. SEMENTARA PAKAI AUTHOR DULU. KALAU MAU GANTI USER ID, NANTI BISA.
-        $validateData['excerpt'] = Str::limit(strip_tags($request->body), 200);
+        $validateData['excerpt'] = Str::limit(strip_tags($request->body), 100);
 
         Katalog::create($validateData);
         return redirect('/dashboard/sirkulasi/katalogs')->with('success', 'New Katalog has been addedd!');
@@ -124,7 +124,7 @@ class DashboardKatalogController extends Controller
     public function update(Request $request, Katalog $katalog)
     {
         $rules = ([
-            'title' => 'required|max:255',    
+            'title' => 'required|max:50',    
             'category_id' => 'required',
             'body' => 'required',
             'edisi' => '',
@@ -136,7 +136,7 @@ class DashboardKatalogController extends Controller
             'bahasa' => '',
             'lokasi_id' => '',
             'author_id' => '',
-            'image' =>'image|file|max:5000'
+            'image' =>'image|file|max:5120'
         ]);
 
         if($request->slug != $katalog->slug) {
@@ -153,7 +153,7 @@ class DashboardKatalogController extends Controller
             $validateData['image'] = $request->file('image')->store('katalog-images');
         }
         
-        $validateData['excerpt'] = Str::limit(strip_tags($request->body), 200);
+        $validateData['excerpt'] = Str::limit(strip_tags($request->body), 100);
 
         Katalog::where('id', $katalog->id)->update($validateData);
         return redirect('/dashboard/sirkulasi/katalogs')->with('success', 'Katalog has been updatedd!');

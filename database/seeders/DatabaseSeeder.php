@@ -22,10 +22,39 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Katalog::factory(20)->create();
-
+        
         $this->call(RoleSeeder::class);
         $this->call(UserSeeder::class);
+        Author::create([
+            'nama' => 'Enny Zakiyyah',
+            'slug' => 'ennyzakiyyah'
+        ]);
+        Author::create([
+            'nama' => 'Ana Wildatun',
+            'slug' => 'anawildatun'
+        ]);
+        
+        Category::create([
+            'name' => 'Majalah',
+            'slug' => 'majalah'
+        ]);
+        
+        Category::create([
+            'name' => 'Buku',
+            'slug' => 'buku'
+        ]);
+        Lokasi::create([
+            'nama' => 'Perpustakaan Akademi Komunitas Adiyasa'
+        ]);
+
+        Lokasi::create([
+            'nama' => 'Perpustakaan LSP/Training'
+        ]);
+
+        Lokasi::create([
+            'nama' => 'Perpustakaan Program'
+        ]);
+        Katalog::factory(20)->create();
         // User::factory(5)->create();
 
         // $user = User::create([
@@ -45,24 +74,8 @@ class DatabaseSeeder extends Seeder
 
         // $user->assignRole('admin');
         
-        Category::create([
-            'name' => 'Majalah',
-            'slug' => 'majalah'
-        ]);
 
-        Category::create([
-            'name' => 'Buku',
-            'slug' => 'buku'
-        ]);
-
-        Author::create([
-            'nama' => 'Enny Zakiyyah',
-            'slug' => 'ennyzakiyyah'
-        ]);
-        Author::create([
-            'nama' => 'Ana Wildatun',
-            'slug' => 'anawildatun'
-        ]);
+       
 
         Informasi::create([
             'nama' => 'Libur Nata',
@@ -71,17 +84,7 @@ class DatabaseSeeder extends Seeder
             'informasi' => 'Libur Natal'
         ]);
 
-        Lokasi::create([
-            'nama' => 'Perpustakaan Akademi Komunitas Adiyasa'
-        ]);
-
-        Lokasi::create([
-            'nama' => 'Perpustakaan LSP/Training'
-        ]);
-
-        Lokasi::create([
-            'nama' => 'Perpustakaan Program'
-        ]);
+        
 
         Status::create([
             'nama' => 'Kembali'

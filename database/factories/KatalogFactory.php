@@ -30,7 +30,7 @@ class KatalogFactory extends Factory
                         ->map(fn($p) => "<p>$p</p>")
                         ->implode(''),
             'author_id' => mt_rand(1,2),
-            'category_id' => mt_rand(1,2)
+            'category_id' => mt_rand(1,2),
         ];
     }
 }

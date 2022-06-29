@@ -46,7 +46,7 @@ class HeroController extends Controller
         $validateData = $request->validate([
             'nama' => 'required|max:255',
             'slug' => 'unique:heroes',
-            'image' => 'image|file|max:5120'
+            'image' => 'required|image|file|max:5120'
         ]);
 
         if ($request->file('image')) {
@@ -106,7 +106,7 @@ class HeroController extends Controller
             if ($request->oldImage) {
                 Storage::delete($request->oldImage);
             }
-            $validateData['image'] = $request->file('image')->store('katalog-images');
+            $validateData['image'] = $request->file('image')->store('hero-images');
         }
 
         Hero::where('id', $hero->id)->update($validateData);
