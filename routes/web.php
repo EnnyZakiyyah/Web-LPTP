@@ -20,6 +20,8 @@ use App\Http\Controllers\DashboardContactController;
 use App\Http\Controllers\DashboardKatalogController;
 use App\Http\Controllers\DashboardCategoryController;
 use App\Http\Controllers\DashboardPeminjamanController;
+use App\Http\Controllers\DashboardKoleksiDigitalController;
+use App\Http\Controllers\KoleksiDigitalController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,16 +55,19 @@ Route::get('/home/layanan/bibliography/detil', function () {
     ]);
 });
 //Home-Koleksi-Digital
-Route::get('/home/koleksi-digital', function () {
-    return view('home.koleksi-digital.koleksi-digital', [
-        "title" => "Koleksi Digital",
-    ]);
-});
-Route::get('/home/koleksi-digital/koleksi-digital/detil', function () {
-    return view('home.detil-koleksi-digital', [
-        "title" => "Koleksi Digital",
-    ]);
-});
+// Route::get('/home/koleksi-digital', function () {
+//     return view('home.koleksi-digital.koleksi-digital', [
+//         "title" => "Koleksi Digital",
+//     ]);
+// });
+// Route::get('/home/koleksi-digital/koleksi-digital/detil', function () {
+//     return view('home.detil-koleksi-digital', [
+//         "title" => "Koleksi Digital",
+//     ]);
+// });
+Route::get('/home/koleksi-digital', [KoleksiDigitalController::class, 'index']);
+Route::get('/home/koleksi-digital/detail/{koleksidigital:slug}', [KoleksiDigitalController::class, 'show']);
+Route::get('/home/koleksi-digital/read/{koleksidigital:slug}', [KoleksiDigitalController::class, 'baca']);
 //Contact
 Route::get('/contact-us', [ContactController::class, 'showForm']);
 Route::post('/contact-us', [ContactController::class, 'send'])->name('send.email');
@@ -104,6 +109,10 @@ Route::middleware(['auth', 'role:admin|admin'])->group(function () {
     //Penelusuran Katalog
     Route::get('/dashboard/sirkulasi/katalogs/checkSlug', [DashboardKatalogController::class, 'checkSlug']);
     Route::resource('/dashboard/sirkulasi/katalogs', DashboardKatalogController::class);
+
+    //Koleksi Digital
+    Route::get('/dashboard/koleksidigitals/checkSlug', [DashboardKoleksiDigitalController::class, 'checkSlug']);
+    Route::resource('/dashboard/koleksidigitals', DashboardKoleksiDigitalController::class);
     
     //Contact-us
     Route::get('/dashboard/contact-us', [DashboardContactController::class, 'index']);

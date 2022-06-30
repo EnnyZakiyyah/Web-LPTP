@@ -33,6 +33,10 @@ class Peminjaman extends Model
         return $this->belongsTo(Katalog::class, 'id_buku');
     }
 
+    public function koleksidigitals(){
+        return $this->hasMany(Koleksidigital::class);
+    }
+
     public function status(){
         return $this->belongsTo(Status::class, 'id_status');
     }

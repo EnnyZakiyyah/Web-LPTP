@@ -15,6 +15,10 @@ class Author extends Model
     public function katalogs(){
         return $this->hasMany(Katalog::class);
     }
+    
+    public function koleksidigitals(){
+        return $this->hasMany(Koleksidigital::class);
+    }
 
     public function getRouteKeyName()
     {
