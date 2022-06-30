@@ -21,7 +21,7 @@
         <label class="form-label">Nomor KTP</label>
         <input type="text" id="no_ktp"
             class="form-control @error('no_ktp')is-invalid @enderror" placeholder="658 799 8941"
-            name="no_ktp" value="{{ old('no_ktp') }}" required/>
+            name="no_ktp" value="{{ old('no_ktp') }}" maxlength="16" required/>
         @error('no_ktp')
         <div class="invalid-feedback">
             {{ $message }}
@@ -82,7 +82,7 @@
         <label class="form-label">Nomor Telepon</label>
         <input type="text" id="no_tlpn"
             class="form-control @error('no_tlpn')is-invalid @enderror"
-            placeholder="658 799 8941" name="no_tlpn" value="{{ old('no_tlpn') }}" required/>
+            placeholder="658 799 8941" name="no_tlpn" value="{{ old('no_tlpn') }}" maxlength="13" required/>
         @error('no_tlpn')
         <div class="invalid-feedback">
             {{ $message }}
@@ -99,14 +99,6 @@
             {{ $message }}
         </div>
         @enderror
-        {{-- <label class="form-label">Alamat</label>
-        <input class="form-control @error('alamat')is-invalid @enderror" type="text"
-            id="alamat" name="alamat" value="{{ old('alamat') }}" required/>
-        @error('alamat')
-        <div class="invalid-feedback">
-            {{ $message }}
-        </div>
-        @enderror --}}
     </div>
 
 
