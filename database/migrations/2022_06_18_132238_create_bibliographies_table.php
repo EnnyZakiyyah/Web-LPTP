@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateKoleksidigitalsTable extends Migration
+class CreateBibliographiesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateKoleksidigitalsTable extends Migration
      */
     public function up()
     {
-        Schema::create('koleksidigitals', function (Blueprint $table) {
+        Schema::create('bibliographies', function (Blueprint $table) {
             $table->id();
             $table->string('title');
             $table->foreignId('category_id')->constrained('categories')->onDelete('cascade')->onUpdate('cascade');
@@ -23,11 +23,12 @@ class CreateKoleksidigitalsTable extends Migration
             $table->string('penerbit');
             $table->string('tahun_terbit');
             $table->string('tempat_terbit');
+            $table->string('jumlah');
             $table->string('bahasa');
+            $table->foreignId('lokasi_id')->constrained('lokasis')->onDelete('cascade')->onUpdate('cascade');
             $table->string('slug')->unique();
             $table->text('excerpt');
-            $table->longText('image')->nullable();
-            $table->longText('filekatalog');
+            $table->string('image')->nullable();
             $table->text('body');
             $table->timestamp('publish_at')->nullable();
             $table->timestamps();
@@ -41,6 +42,6 @@ class CreateKoleksidigitalsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('koleksidigitals');
+        Schema::dropIfExists('bibliographies');
     }
 }

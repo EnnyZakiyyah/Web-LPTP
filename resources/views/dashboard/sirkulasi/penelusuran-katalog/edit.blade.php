@@ -21,7 +21,7 @@
         <!-- [ breadcrumb ] end -->
         <!-- [ Main Content ] start -->
         <div class="card">
-            <h5 class="card-header">Edit Data Penelusuran Katalog</h5>
+            <h5 class="card-header">{{ $title }}</h5>
             <div class="card-body table-border-style">
                 <div class="col-lg-10">
                     <form method="POST" action="/dashboard/sirkulasi/katalogs/{{ $katalog->slug }}" enctype="multipart/form-data">
@@ -105,7 +105,7 @@
                         <div class="mb-3 row">
                             <label for="tahun_terbit" class="col-md-2 col-form-label">Tahun Terbit</label>
                             <div class="col-md-10">
-                              <input class="form-control" type="year" name="tahun_terbit" id="tahun_terbit" value="{{ old('tahun_terbit', $katalog->tahun_terbit) }}"/>
+                              <input class="form-control" type="number" name="tahun_terbit" id="tahun_terbit" value="{{ old('tahun_terbit', $katalog->tahun_terbit) }}"/>
                             </div>
                         </div>
                         <div class="mb-3 row">

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Katalog extends Model
+class Bibliography extends Model
 {
     use HasFactory, Sluggable;
 
@@ -43,11 +43,11 @@ class Katalog extends Model
     }
 
     public function author(){
-        return $this->belongsTo(Author::class, );
+        return $this->belongsTo(Author::class);
     }
 
     public function pinjams(){
-        return $this->hasMany(Peminjaman::class, 'id_buku');
+        return $this->hasMany(Peminjaman::class, 'id_bibliography');
     }
 
     public function lokasi(){
@@ -67,5 +67,4 @@ class Katalog extends Model
             ]
         ];
     }
-    
 }

@@ -50,7 +50,7 @@
             @foreach ($katalogs as $katalog)
             <div class="col mb-5" >
                 <div class="card-katalog">
-                    <img src="{{ asset('storage/' . $katalog->image) }}" class="card-img-top" alt="...">
+                    {{-- <img src="{{ asset('storage/' . $katalog->label->image) }}" class="card-img-top" alt="..."> --}}
                     <div class="contentBx">
                         <h5 class="card-title">{{ $katalog->title }}</h5>
                         <p class="mt-5" style="color: white !important; padding-top:10px;">by <a
@@ -81,16 +81,16 @@
         <p class="text-center fs-4">No Post Found.</p>
         @endif
 
+        <!--PAGINATION-->
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                <li class="page-item">
+                    {{ $katalogs->links() }}
+                </li>
+            </ul>
+        </nav>
     </section>
 </div>
-<!--PAGINATION-->
-<nav aria-label="Page navigation example">
-    <ul class="pagination justify-content-center">
-        <li class="page-item">
-            {{ $katalogs->links() }}
-        </li>
-    </ul>
-</nav>
 </div>
 
 @endsection

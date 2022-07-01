@@ -91,6 +91,20 @@
                             </div>
                         </div>
                         <div class="mb-3 row">
+                            <label for="id_bibliography" class="col-md-2 col-form-label">Nama Bibliography</label>
+                            <div class="col-md-10">
+                                <select class='fstdropdown-select' id="first" name="id_bibliography">
+                                    @foreach ($katalogs as $katalog)
+                                    @if (old('id_bibliography') == $katalog->id)
+                                    <option value="{{ $katalog->id }}" selected>{{ $katalog->title }}</option>
+                                    @else
+                                    <option value="{{ $katalog->id }}">{{ $katalog->title }}</option>
+                                    @endif
+                                    @endforeach
+                                  </select>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
                             <label for="tgl_pinjam" class="col-md-2 col-form-label">Tanggal Pinjam</label>
                             <div class="col-md-10">
                               <input class="form-control @error('tgl_pinjam') is-invalid @enderror" type="date" name="tgl_pinjam" id="tgl_pinjam" value="{{ old('tgl_pinjam') }}"/>

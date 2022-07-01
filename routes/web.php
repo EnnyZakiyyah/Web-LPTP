@@ -12,16 +12,18 @@ use App\Http\Controllers\InformasiController;
 use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\KeanggotaanController;
 use App\Http\Controllers\BebasPustakaController;
+use App\Http\Controllers\BibliographyController;
 use App\Http\Controllers\PengembalianController;
 use App\Http\Controllers\DashboardUserController;
+use App\Http\Controllers\KoleksiDigitalController;
 use App\Http\Controllers\DashboardAuthorController;
 use App\Http\Controllers\DashboardAnggotaController;
 use App\Http\Controllers\DashboardContactController;
 use App\Http\Controllers\DashboardKatalogController;
 use App\Http\Controllers\DashboardCategoryController;
 use App\Http\Controllers\DashboardPeminjamanController;
+use App\Http\Controllers\DashboardBibliographyController;
 use App\Http\Controllers\DashboardKoleksiDigitalController;
-use App\Http\Controllers\KoleksiDigitalController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,27 +46,10 @@ Route::get('/home/sirkulasi/penelusuran-katalog/{katalog:slug}', [KatalogControl
 Route::resource('/home/sirkulasi/bebas-pustaka', BebasPustakaController::class)->except('show')->middleware('admin');
 //Home-Layanan
 Route::resource('/home/layanan/keanggotaan', KeanggotaanController::class)->except('show')->middleware('admin');
-Route::get('/home/layanan/bibliography', function () {
-    return view('home.layanan.bibliography', [
-        "title" => "Layanan",
-    ]);
-});
-Route::get('/home/layanan/bibliography/detil', function () {
-    return view('home.detil.detil-bibliography', [
-        "title" => "Layanan",
-    ]);
-});
+Route::get('/home/layanan/bibliographies', [BibliographyController::class, 'index']);
+Route::get('/home/layanan/bibliographies/detail/{katalog:slug}', [KatalogController::class, 'showbiblio']);
+Route::get('/home/layanan/bibliographies/{katalog:slug}', [KatalogController::class, 'pinjam']);
 //Home-Koleksi-Digital
-// Route::get('/home/koleksi-digital', function () {
-//     return view('home.koleksi-digital.koleksi-digital', [
-//         "title" => "Koleksi Digital",
-//     ]);
-// });
-// Route::get('/home/koleksi-digital/koleksi-digital/detil', function () {
-//     return view('home.detil-koleksi-digital', [
-//         "title" => "Koleksi Digital",
-//     ]);
-// });
 Route::get('/home/koleksi-digital', [KoleksiDigitalController::class, 'index']);
 Route::get('/home/koleksi-digital/detail/{koleksidigital:slug}', [KoleksiDigitalController::class, 'show']);
 Route::get('/home/koleksi-digital/read/{koleksidigital:slug}', [KoleksiDigitalController::class, 'baca']);
@@ -113,6 +98,10 @@ Route::middleware(['auth', 'role:admin|admin'])->group(function () {
     //Koleksi Digital
     Route::get('/dashboard/koleksidigitals/checkSlug', [DashboardKoleksiDigitalController::class, 'checkSlug']);
     Route::resource('/dashboard/koleksidigitals', DashboardKoleksiDigitalController::class);
+
+    //Bibliography
+    Route::get('/dashboard/layanan/bibliography/checkSlug', [DashboardBibliographyController::class, 'checkSlug']);
+    Route::resource('/dashboard/layanan/bibliography', DashboardBibliographyController::class);
     
     //Contact-us
     Route::get('/dashboard/contact-us', [DashboardContactController::class, 'index']);

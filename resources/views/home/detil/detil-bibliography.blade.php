@@ -2,14 +2,14 @@
 
 @section('container')
 <div class="container" >
-  <h1 class="pt-5 mb-2 fs-7 fw-bold"><span style="color: #002147"> {{ $koleksidigital->title }} </span></h1>
+  <h1 class="pt-5 mb-2 fs-7 fw-bold"><span style="color: #002147"> {{ $katalog->title }} </span></h1>
   {{-- style="background-color: #E5E5E5" --}}
       <!--Header-->
       <nav class="pb-4" style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a class="text-decoration-none"  href="/">Home</a></li>
-          <li class="breadcrumb-item"><a class="text-decoration-none" href="/home/koleksi-digital">Koleksi Digital</a></li>
-          <li class="breadcrumb-item active" aria-current="page">{{ $koleksidigital->title }}</li>
+          <li class="breadcrumb-item"><a class="text-decoration-none" href="/home/sirkulasi/penelusuran-katalog">Penelusuran Katalog</a></li>
+          <li class="breadcrumb-item active" aria-current="page">{{ $katalog->title }}</li>
         </ol>
       </nav>
   
@@ -21,8 +21,8 @@
                   <div class="row">
                     <div class="col-md-4">
                       <div class="card-image">
-                        <a href="#"> <img class="img" src="{{ asset('storage/' . $koleksidigital->image) }}">
-                          <div class="card-caption px-2 py-1"><a href="/home/koleksi-digital?category={{ $koleksidigital->category->slug }}" class="text-white text-decoration-none"> {{ $koleksidigital->category->name }} </a></div>
+                        <a href="#"> <img class="img" src="{{ asset('storage/' . $katalog->image) }}">
+                          <div class="card-caption px-2 py-1"><a href="/home/layanan/bibliographies?category={{ $katalog->category->slug }}" class="text-white text-decoration-none"> {{ $katalog->category->name }} </a></div>
                         </a>
                     </div>
                     </div>
@@ -30,56 +30,60 @@
                       <div class="table-responsive-sm">
                         <table class="table table-hover">
                           <tbody>
-                              <tr>
-                                <th scope="row" style="text-align: left;">Baca Koleksi</th>
-                                <td >:</td>
-                                  <td style="text-align: left;">  <a type="button" class="btn btn-outline-warning btn-sm" style="font-weight: bold;" href="/home/koleksi-digital/read/{{ $koleksidigital->slug }}">Baca</a></td>
-                              </tr>
                             <tr>
                               <th scope="row" style="text-align: left;">Judul</th>
                               <td >:</td>
-                              <td style="text-align: justify !important">{{ $koleksidigital->title }}</td>
+                              <td style="text-align: justify !important">{{ $katalog->title }}</td>
                             </tr>
                             <tr>
                               <th scope="row" style="text-align: left">Penulis</th>
                               <td>:</td>
-                              <td style="text-align: justify !important"><a href="/home/sirkulasi/penelusuran-katalog?author={{ $koleksidigital->author->slug }}" class="text-decoration-none">{{ $koleksidigital->author->nama }}</a></td>
+                              <td style="text-align: justify !important"><a href="/home/layanan/bibliographies?author={{ $katalog->author->slug }}" class="text-decoration-none">{{ $katalog->author->nama }}</a></td>
                             </tr>
                             <tr>
                               <th scope="row" style="text-align: left">Edisi</th>
                               <td>:</td>
-                              <td style="text-align: justify !important">{{ $koleksidigital->edisi }}</td>
+                              <td style="text-align: justify !important">{{ $katalog->edisi }}</td>
                             </tr>
                             <tr>
                               <th scope="row" style="text-align: left">ISBN</th>
                               <td>:</td>
-                              <td style="text-align: justify !important">{{ $koleksidigital->isbn}}</a></td>
+                              <td style="text-align: justify !important">{{ $katalog->isbn}}</a></td>
                             </tr>
                             <tr>
                               <th scope="row" style="text-align: left">Penerbit</th>
                               <td>:</td>
-                              <td style="text-align: justify !important">{{ $koleksidigital->penerbit }}</td>
+                              <td style="text-align: justify !important">{{ $katalog->penerbit }}</td>
                             </tr>
                             <tr>
                               <th scope="row" style="text-align: left">Tahun Terbit</th>
                               <td >:</td>
-                              <td style="text-align: justify !important">{{ $koleksidigital->tahun_terbit }}</td>
+                              <td style="text-align: justify !important">{{ $katalog->tahun_terbit }}</td>
                             </tr>
                             <tr>
                               <th scope="row" style="text-align: left">Tempat Terbit</th>
                               <td >:</td>
-                              <td style="text-align: justify !important">{{ $koleksidigital->tempat_terbit }}</td>
+                              <td style="text-align: justify !important">{{ $katalog->tempat_terbit }}</td>
+                            </tr>
+                            <tr>
+                              <th scope="row" style="text-align: left">Jumlah</th>
+                              <td>:</td>
+                              <td style="text-align: justify !important">{{ $katalog->jumlah }}</td>
                             </tr>
                             <tr>
                               <th scope="row" style="text-align: left">Bahasa</th>
                               <td>:</td>
-                              <td style="text-align: justify !important">{{ $koleksidigital->bahasa }}</td>
+                              <td style="text-align: justify !important">{{ $katalog->bahasa }}</td>
                             </tr>
                             <tr>
+                              <th scope="row" style="text-align: left">Lokasi Buku</th>
+                              <td>:</td>
+                              <td style="text-align: justify !important">{{ $katalog->lokasi->nama }}</td>
+                            </tr>
                             <tr>
                               <th scope="row" style="text-align: left">Sinopsis</th>
                               <td >:</td>
-                              <td style="text-align: justify !important">{!! $koleksidigital->body !!}</td>
+                              <td style="text-align: justify !important">{!! $katalog->body !!}</td>
                             </tr>
                           </tbody>
                         </table>

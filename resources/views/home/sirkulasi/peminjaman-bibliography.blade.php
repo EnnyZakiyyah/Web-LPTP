@@ -41,26 +41,20 @@
                     {{ session('success') }}
                 </div>
                 @endif
-                @if (session()->has('loginError'))
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    {{ session('loginError') }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-                @endif
                 @foreach ($peminjamans as $peminjaman)
                 <tr> 
                  
                   <th scope="row">{{ $loop->iteration }}</th>
                   <td>{{ $peminjaman->no_peminjaman }}</td>
                   <td>{{ $peminjaman->katalogs->isbn }}</td>
-                   @if ($peminjaman->katalogs->isbn){
-                    <td> {{ $peminjaman->katalogs->title }}</td>
+                  @if ($peminjaman->katalogs->isbn){
+                    <td>{{ $peminjaman->katalogs->title }}</td>
                   }
                       
                   @elseif ($peminjaman->bibliographies->isbn){
-                    <td> {{ $peminjaman->bibliographies->title }} </td>
+                    <td>{{ $peminjaman->bibliographies->title }}</td>
                   }
-               
+                      ('dd');
                   @endif
                   {{-- <td>{{ $peminjaman->bibliographies->title }}</td> --}}
                   {{-- <td>{{ $peminjaman->katalogs->title }}</td> --}}

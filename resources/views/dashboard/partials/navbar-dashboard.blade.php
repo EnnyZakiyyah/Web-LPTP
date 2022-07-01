@@ -37,7 +37,7 @@
     </li>
     <li class="nav-item">
         <a href="/dashboard/koleksidigitals"
-            class="nav-link {{ Request::is('/dashboard/koleksidigitals') ? 'active' : '' }}"><span
+            class="nav-link {{ Request::is('/dashboard/koleksidigitals*') ? 'active' : '' }}"><span
                 class="pcoded-micon"><i class="feather icon-book"></i></span><span class="pcoded-mtext">Koleksi
                 Digital</span></a>
     </li>

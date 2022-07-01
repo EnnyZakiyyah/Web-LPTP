@@ -34,7 +34,7 @@
                         @can('user')
                         <li><a class="dropdown-item" href="/home/layanan/keanggotaan">Keanggotaan</a></li>
                         @endcan
-                        <li><a class="dropdown-item" href="/home/layanan/bibliography">Bibliography</a></li>
+                        <li><a class="dropdown-item" href="/home/layanan/bibliographies">Bibliography</a></li>
                     </ul>
                 </li>
                 <li class="nav-item"><a

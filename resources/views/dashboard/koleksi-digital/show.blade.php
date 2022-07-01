@@ -39,7 +39,6 @@
                                     <th scope="row" style="text-align: left;">Kategori</th>
                                     <td>:</td>
                                     <td style="text-align: justify !important"><a
-                                            href="/home/sirkulasi/penelusuran-katalog?category={{ $koleksidigital->category->slug }}"
                                             class="badge bg-dark text-white">{{ $koleksidigital->category->name }}</a></td>
                                 </tr>
                                 <tr>
@@ -76,11 +75,6 @@
                                     <th scope="row" style="text-align: left">Tempat Terbit</th>
                                     <td>:</td>
                                     <td style="text-align: justify !important">{{ $koleksidigital->tempat_terbit }}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row" style="text-align: left">Jumlah</th>
-                                    <td>:</td>
-                                    <td style="text-align: justify !important">{{ $koleksidigital->jumlah }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row" style="text-align: left">Bahasa</th>

@@ -20,6 +20,10 @@ class Author extends Model
         return $this->hasMany(Koleksidigital::class);
     }
 
+    public function bibliographies(){
+        return $this->hasMany(Bibliography::class);
+    }
+
     public function getRouteKeyName()
     {
         return 'slug';

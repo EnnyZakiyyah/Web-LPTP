@@ -18,4 +18,8 @@ class Lokasi extends Model
     public function peminjamans(){
         return $this->hasMany(Peminjaman::class);
     }
+
+    public function bibliographies(){
+        return $this->hasMany(Bibliography::class);
+    }
 }

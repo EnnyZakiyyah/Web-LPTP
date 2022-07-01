@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Peminjaman;
+use App\Models\Peminjamanbiblio;
 use Illuminate\Http\Request;
 
 class PeminjamanController extends Controller
@@ -16,7 +17,17 @@ class PeminjamanController extends Controller
     {
         return view('home.sirkulasi.peminjaman-buku', [
             'title' => 'Sirkulasi',
-            "peminjamans" => Peminjaman::where('id_peminjam', auth()->user()->id)->get()
+            "peminjamans" => Peminjaman::where('id_peminjam', auth()->user()->id)->get(),
+            // "peminjamanbiblios" => Peminjamanbiblio::where('id_peminjam', auth()->user()->id)->get()
+        ]);
+    }
+
+    public function indexbib()
+    {
+        return view('home.sirkulasi.peminjaman-bibliography', [
+            'title' => 'Sirkulasi',
+            // "peminjamans" => Peminjaman::where('id_peminjam', auth()->user()->id)->get(),
+            "peminjamanbiblios" => Peminjamanbiblio::where('id_peminjam', auth()->user()->id)->get()
         ]);
     }
 

@@ -18,6 +18,7 @@ class CreateKatalogsTable extends Migration
             $table->string('title');
             $table->foreignId('category_id')->constrained('categories')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('author_id')->constrained('authors')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('label_id')->constrained('labels')->onDelete('cascade')->onUpdate('cascade');
             $table->string('edisi');
             $table->string('isbn');
             $table->string('penerbit');

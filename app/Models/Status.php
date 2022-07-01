@@ -14,4 +14,5 @@ class Status extends Model
     public function peminjamans(){
         return $this->hasMany(Peminjaman::class);
     }
+
 }

@@ -32,7 +32,7 @@
             @endif
     
             <div class="col-md-4 px-3 py-3">
-                <a href="/dashboard/koleksidigitals/create" class="btn btn-primary me-2 px-3">Tambah Data</a>
+                <a href="/dashboard/layanan/bibliography/create" class="btn btn-primary me-2 px-3">Tambah Data</a>
             </div>
             <div class="card-body table-border-style">
                 <div class="table-responsive text-nowrap">
@@ -48,18 +48,18 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($koleksidigitals as $koleksidigital)
+                            @foreach ($bibliographies as $bibliography)
                             <tr>
                                 <th scope="row">{{ $loop->iteration }}</th>
-                                <td>{{ $koleksidigital->title }}</td>
-                                <td>{{ $koleksidigital->author->nama }}</td>
-                                <td>{{ $koleksidigital->isbn }}</td>
-                                <td>{{ $koleksidigital->tahun_terbit }}</td>
+                                <td>{{ $bibliography->title }}</td>
+                                <td>{{ $bibliography->author->nama }}</td>
+                                <td>{{ $bibliography->isbn }}</td>
+                                <td>{{ $bibliography->tahun_terbit }}</td>
                                 <td>
-                                    <a href="/dashboard/koleksidigitals/{{ $koleksidigital->slug }}"
+                                    <a href="/dashboard/layanan/bibliography/{{ $bibliography->slug }}"
                                         class="badge bg-info"><i class="feather icon-eye" style="color: white"></i></a>
-                                    <a href="/dashboard/koleksidigitals/{{ $koleksidigital->slug }}/edit" class="badge bg-warning"><i class="feather icon-edit" style="color: white"></i></a>
-                                    <form action="/dashboard/koleksidigitals/{{ $koleksidigital->slug }}" method="POST" class="d-inline">
+                                    <a href="/dashboard/layanan/bibliography/{{ $bibliography->slug }}/edit" class="badge bg-warning"><i class="feather icon-edit" style="color: white"></i></a>
+                                    <form action="/dashboard/layanan/bibliography/{{ $bibliography->slug }}" method="POST" class="d-inline">
                                         @method('delete')
                                         @csrf
                                         <button class="badge bg-danger border-0" onclick="return confirm('Are you sure?')"><i class="feather icon-trash" style="color: white"></i></button>
@@ -75,7 +75,7 @@
             <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-center">
                   <li class="page-item">
-                    {{ $koleksidigitals->links() }}
+                    {{ $bibliographies->links() }}
                   </li>
                 </ul>
             </nav>

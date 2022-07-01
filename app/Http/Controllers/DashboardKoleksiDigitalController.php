@@ -49,7 +49,7 @@ class DashboardKoleksiDigitalController extends Controller
     {
         $validateData = $request->validate([
             'title' => 'required|max:50',
-            'slug' => 'required|unique:katalogs',
+            'slug' => 'required|unique:koleksidigitals',
             'category_id' => 'required',
             'author_id' => '',
             'body' => 'required',
@@ -59,7 +59,6 @@ class DashboardKoleksiDigitalController extends Controller
             'penerbit' => '',
             'tahun_terbit' => '',
             'tempat_terbit' => '',
-            'jumlah' => 'required',
             'bahasa' => '',
             'filekatalog' => 'file|max:2048',
             'image' => 'image|file|max:2048'
@@ -129,7 +128,6 @@ class DashboardKoleksiDigitalController extends Controller
             'penerbit' => '',
             'tahun_terbit' => '',
             'tempat_terbit' => '',
-            'jumlah' => 'required',
             'bahasa' => '',
             'author_id' => '',
             'filekatalog' => 'file|max:2048',
