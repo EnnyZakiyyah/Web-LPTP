@@ -65,6 +65,20 @@
                                 </div>
                           </div>
                           <div class="mb-3 row">
+                            <label for="label" class="col-md-2 col-form-label">Jenis Label</label>
+                            <div class="col-md-10">
+                            <select class="form-control" id="label" name="label_id">
+                                @foreach ($labels as $label)
+                                @if (old('label_id', $katalog->label_id) == $label->id)
+                                <option value="{{ $label->id }}" selected>{{ $label->name }}</option>
+                                @else
+                                <option value="{{ $label->id }}">{{ $label->name }}</option>
+                                @endif
+                                @endforeach
+                            </select>
+                            </div>
+                      </div>
+                          <div class="mb-3 row">
                             <label for="penulis" class="col-md-2 col-form-label">Penulis</label>
                             <div class="col-md-10">
                             <select class='fstdropdown-select' id="first" name="author_id">

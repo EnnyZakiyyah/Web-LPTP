@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Author;
 use App\Models\Katalog;
 use App\Models\Category;
+use App\Models\Label;
 use App\Models\Lokasi;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -36,6 +37,7 @@ class DashboardKatalogController extends Controller
         return view('dashboard.sirkulasi.penelusuran-katalog.create', [
             'title' => "Tambah Data Katalog",
             'categories' => Category::all(),
+            'labels' => Label::all(),
             'authors' => Author::all(),
             'lokasis' => Lokasi::all()
         ]);
@@ -58,6 +60,7 @@ class DashboardKatalogController extends Controller
             'title' => 'required|max:50',
             'slug' => 'required|unique:katalogs',
             'category_id' => 'required',
+            'label_id' => 'required',
             'author_id' => '',
             'body' => 'required',
             // 'author_id' => (int)$author->id,
@@ -109,6 +112,7 @@ class DashboardKatalogController extends Controller
             'title' => "Edit Data Katalog",
             'katalog' =>$katalog,
             'categories' => Category::all(),
+            'labels' => Label::all(),
             'authors' => Author::all(),
             'lokasis' => Lokasi::all()
         ]);
@@ -126,6 +130,7 @@ class DashboardKatalogController extends Controller
         $rules = ([
             'title' => 'required|max:50',    
             'category_id' => 'required',
+            'label_id' => 'required',
             'body' => 'required',
             'edisi' => '',
             'isbn' => '',

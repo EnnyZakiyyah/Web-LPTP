@@ -40,6 +40,12 @@
                                             class="badge bg-dark text-white">{{ $katalog->category->name }}</a></td>
                                 </tr>
                                 <tr>
+                                    <th scope="row" style="text-align: left;">Label</th>
+                                    <td>:</td>
+                                    <td style="text-align: justify !important"><a
+                                            class="badge bg-primary text-white">{{ $katalog->label->name }}</a></td>
+                                </tr>
+                                <tr>
                                     <th scope="row" style="text-align: left;">Judul</th>
                                     <td>:</td>
                                     <td style="text-align: justify !important">{{ $katalog->title }}</td>
