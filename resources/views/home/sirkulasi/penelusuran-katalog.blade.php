@@ -49,7 +49,7 @@
         <div class="row row-cols-1 row-cols-md-3 g-4">
             @foreach ($katalogs as $katalog)
             <div class="col mb-5" >
-                <div class="card-katalog">
+                <div class="card-katalog" style="cursor: pointer">
                     <img src="{{ asset('storage/' . $katalog->image) }}" class="card-img-top" alt="...">
                     <div class="contentBx">
                         <h5 class="card-title">{{ $katalog->title }}</h5>
@@ -61,7 +61,7 @@
                             <a href="/home/sirkulasi/penelusuran-katalog/detail/{{ $katalog->slug }}"
                                 class="text-primary">Read
                                 More...</a></p>
-                        <a type="button" class="btn btn-outline-secondary btn-sm" style="font-weight: bold;"
+                        <a type="button" class="btn btn-outline-success btn-sm" style="font-weight: bold;"
                             href="/home/sirkulasi/penelusuran-katalog?category={{ $katalog->category->slug }}">{{ $katalog->category->name }}</a>
                         @if ($katalog->jumlah == 0)
                         <a type="button" class="btn btn-outline-danger btn-sm" style="font-weight: bold;">Full</a>
