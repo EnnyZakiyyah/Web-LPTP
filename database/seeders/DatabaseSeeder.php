@@ -8,6 +8,7 @@ use App\Models\Lokasi;
 use App\Models\Status;
 use App\Models\Katalog;
 use App\Models\Category;
+use App\Models\Condition;
 use App\Models\Informasi;
 use App\Models\Koleksidigital;
 use App\Models\Label;
@@ -65,6 +66,17 @@ class DatabaseSeeder extends Seeder
         Label::create([
             'name' => 'Bibliography',
             'slug' => 'bibliography'
+        ]);
+
+        Condition::create([
+            'nama' => 'Hilang'
+        ]);
+
+        Condition::create([
+            'nama' => 'Rusak'
+        ]);
+        Condition::create([
+            'nama' => 'Bagus'
         ]);
         Katalog::factory(20)->create();
         Koleksidigital::factory(5)->create();

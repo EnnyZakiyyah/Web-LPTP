@@ -64,9 +64,19 @@
                                     <td style="text-align: justify !important">{{ $peminjaman->tgl_kembali }}</td>
                                 </tr>
                                 <tr>
+                                    <th scope="row" style="text-align: left">Tanggal Pengembalian</th>
+                                    <td>:</td>
+                                    <td style="text-align: justify !important">{{ $peminjaman->tgl_pengembalian }}</td>
+                                </tr>
+                                <tr>
                                     <th scope="row" style="text-align: left">Status</th>
                                     <td>:</td>
                                     <td style="text-align: justify !important">{{ $peminjaman->status->nama }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" style="text-align: left">Kondisi Buku</th>
+                                    <td>:</td>
+                                    <td style="text-align: justify !important">{{ $peminjaman->kondisi->nama }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row" style="text-align: left">Denda</th>

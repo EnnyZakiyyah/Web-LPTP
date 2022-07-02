@@ -143,6 +143,20 @@
                             </div>
                         </div>
                         <div class="mb-3 row">
+                            <label for="kondisi" class="col-md-2 col-form-label">Kondisi Buku</label>
+                            <div class="col-md-10">
+                                <select class="form-control" id="kondisi" name="id_kondisi">
+                                    @foreach ($kondisis as $kondisi)
+                                    @if (old('id_kondisi', $peminjaman->id_kondisi) == $kondisi->id)
+                                    <option value="{{ $kondisi->id }}" selected>{{ $kondisi->nama }}</option>
+                                    @else
+                                    <option value="{{ $kondisi->id }}">{{ $kondisi->nama }}</option>
+                                    @endif
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
                             <label for="denda" class="col-md-2 col-form-label">Denda</label>
                             <div class="col-md-10">
                               <input class="form-control @error('denda') is-invalid @enderror" type="text" name="denda" id="denda" value="{{ old('denda', $peminjaman->denda) }}"/>

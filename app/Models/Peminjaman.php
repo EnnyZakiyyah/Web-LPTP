@@ -41,6 +41,10 @@ class Peminjaman extends Model
         return $this->belongsTo(Status::class, 'id_status');
     }
 
+    public function kondisi(){
+        return $this->belongsTo(Condition::class, 'id_kondisi');
+    }
+
     public function lokasi(){
         return $this->belongsTo(Lokasi::class, 'id_lokasi');
     }

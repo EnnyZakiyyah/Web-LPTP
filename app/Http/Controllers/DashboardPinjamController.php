@@ -32,7 +32,6 @@ class DashboardPinjamController extends Controller
             'id_petugas_kembali' => auth()->user()->id,
             'tgl_pengembalian' => today(),
             'id_status' => 1,
-            'keterlambatan' => '',
             'denda' => 0
     ]; 
     if (Carbon::create($peminjaman->tgl_kembali)->lessThan(today())) {

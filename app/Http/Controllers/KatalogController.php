@@ -6,7 +6,6 @@ use App\Models\Author;
 use App\Models\Bibliography;
 use App\Models\Katalog;
 use App\Models\Category;
-use App\Models\Label;
 use App\Models\Peminjaman;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;

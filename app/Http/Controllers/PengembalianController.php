@@ -16,6 +16,7 @@ class PengembalianController extends Controller
     {
         return view('home.sirkulasi.pengembalian-buku', [
             "title" => "Sirkulasi",
+            "pengembalians" => Peminjaman::where('id_status', 1)->latest()->filter(request(['search', 'category', 'author']))->paginate(6)->withQueryString()
         ]);
     }
 

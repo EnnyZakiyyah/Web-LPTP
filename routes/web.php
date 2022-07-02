@@ -70,9 +70,7 @@ Route::get('/sign-up', [RegisterController::class, 'index'])->middleware('guest'
 Route::post('/sign-up', [RegisterController::class, 'store']);
 
 //DASHBOARD
-
 // Auth::routes();
-
 Route::middleware(['auth', 'role:admin|admin'])->group(function () {
     
     Route::get('/dashboard', function () {

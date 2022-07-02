@@ -9,6 +9,7 @@ use App\Models\Status;
 use App\Models\Katalog;
 use App\Models\Peminjaman;
 use App\Models\Bibliography;
+use App\Models\Condition;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Cviebrock\EloquentSluggable\Services\SlugService;
@@ -40,7 +41,8 @@ class DashboardPeminjamanController extends Controller
             'users' => User::all(),
             'katalogs' => Katalog::all(),
             'statuses' => Status::all(),
-            'lokasis' => Lokasi::all()
+            'lokasis' => Lokasi::all(),
+            'kondisis' => Condition::all()
         ]);
     }
 
@@ -59,6 +61,7 @@ class DashboardPeminjamanController extends Controller
             'id_peminjam' => 'required',
             'id_petugas' => 'required',
             'id_buku' => '',
+            'id_kondisi' => '',
             'id_bibliography' => '',
             'tgl_pinjam' => 'required',
             'tgl_kembali' => 'required',
@@ -100,7 +103,8 @@ class DashboardPeminjamanController extends Controller
             'users' => User::all(),
             'katalogs' => Katalog::all(),
             'statuses' => Status::all(),
-            'lokasis' => Lokasi::all()
+            'lokasis' => Lokasi::all(),
+            'kondisis' => Condition::all()
         ]);
     }
 
@@ -120,10 +124,11 @@ class DashboardPeminjamanController extends Controller
             'id_petugas' => 'required',
             'id_buku' => 'required',
             'tgl_pinjam' => 'required',
-            // 'tgl_kembali' => 'required',
+            'tgl_kembali' => 'required',
             'id_buku' => 'required',
             'id_lokasi' => 'required',
             'id_status' => 'required',
+            'id_kondisi' => 'required',
             'denda' => '',
         ]);
 
@@ -131,7 +136,7 @@ class DashboardPeminjamanController extends Controller
             $rules['slug'] = 'required|unique:peminjamans';
         }
         $validateData['tgl_pinjam'] =  $todayDate;
-        $validateData['tgl_kembali'] = Carbon::create($this->tgl_pinjam)->addDays(7);
+        $validateData['tgl_kembali'] = Carbon::create($todayDate)->addDays(7);
         $katalog->jumlah = $katalog->jumlah-1;
         $validateData = $request->validate($rules);
 
