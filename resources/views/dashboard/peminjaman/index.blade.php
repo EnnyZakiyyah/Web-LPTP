@@ -70,18 +70,20 @@
                                 @endif
                                 <td>{{ $peminjaman->denda }}</td>
                                 <td>
+                                    @if ($peminjaman->status->nama == 'Konfirmasi')
+                                    <a href="/dashboard/peminjaman-buku/{{ $peminjaman->slug }}" class="badge bg-danger" style="color: white">Setujui</a>
+                                    @endif
+                                    @if ($peminjaman->status->nama == 'Sedang Dipinjam')
+                                        <a href="/dashboard/pengembalian-buku/{{ $peminjaman->slug }}" class="badge bg-primary" style="color: white">Kembali</a>  
+                                    @endif
                                     @if ($peminjaman->status->nama == 'Pending')
-                                    {{-- <form action="/dashboard/peminjaman-buku/{{ $peminjaman->slug }}" method="POST" class="d-inline">
-                                        @method('put')
-                                        @csrf
-                                        <button type="submit" class="badge bg-danger">Pinjam</button>
-                                    </form> --}}
-                                    <a href="/dashboard/peminjaman-buku/{{ $peminjaman->slug }}" class="badge bg-danger" style="color: white">Pinjam</a>
+                                    <a href="/dashboard/peminjaman-buku/{{ $peminjaman->slug }}" class="badge bg-danger" style="color: white">Setujui</a>
+                                    <a href="/dashboard/konfirmasi-buku/{{ $peminjaman->slug }}" class="badge bg-success" style="color: white">Konfirmasi</a>
                                     @else
                                     <a href="/dashboard/peminjamans/{{ $peminjaman->slug }}"
                                         class="badge bg-info"><i class="feather icon-eye" style="color: white"></i></a>
+                                        <a href="/dashboard/peminjamans/{{ $peminjaman->slug }}/edit" class="badge bg-warning"><i class="feather icon-edit" style="color: white"></i></a>
                                     @endif
-                                    <a href="/dashboard/peminjamans/{{ $peminjaman->slug }}/edit" class="badge bg-warning"><i class="feather icon-edit" style="color: white"></i></a>
                                     <form action="/dashboard/peminjamans/{{ $peminjaman->slug }}" method="POST" class="d-inline">
                                         @method('delete')
                                         @csrf

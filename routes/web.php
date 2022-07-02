@@ -111,10 +111,9 @@ Route::middleware(['auth', 'role:admin|admin'])->group(function () {
     
     //Peminjaman
     Route::get('/dashboard/peminjamans/checkSlug', [DashboardPeminjamanController::class, 'checkSlug']);
-    // Route::get('/dashboard/peminjamans', [DashboardPeminjamanController::class, 'pinjam']);
-    // Route::get('/dashboard/peminjaman-buku/{peminjaman:slug}', [DashboardPinjamController::class, 'pinjam']);
     Route::get('/dashboard/peminjaman-buku/{peminjaman:slug}', [DashboardPinjamController::class, 'pinjam']);
-    // Route::post('/dashboard/peminjaman-buku/{peminjaman:slug}', [DashboardPinjamController::class, 'pinjam'])->name('pinjam');
+    Route::get('/dashboard/pengembalian-buku/{peminjaman:slug}', [DashboardPinjamController::class, 'kembali']);
+    Route::get('/dashboard/konfirmasi-buku/{peminjaman:slug}', [DashboardPinjamController::class, 'konfirmasi']);
     Route::resource('/dashboard/peminjamans', DashboardPeminjamanController::class);
     // Route::resource('/dashboard/peminjaman/checkSlug', PeminjamanController::class);
     

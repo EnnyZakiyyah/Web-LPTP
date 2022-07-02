@@ -12,18 +12,47 @@ class DashboardPinjamController extends Controller
 {
     public $tgl_pinjam;
    
-    public function pinjam(Peminjaman $peminjaman, Request $request)
+    public function pinjam(Peminjaman $peminjaman, Katalog $katalog)
     {
         $todayDate = date('Y/m/d');
         $peminjaman->update([
                 'id_petugas' => auth()->user()->id,
                 'tgl_pinjam' => $todayDate,
-                'tgl_kembali' => Carbon::create($this->tgl_pinjam)->addDays(7),
+                'tgl_kembali' => Carbon::create($todayDate)->addDays(7),
                 'id_status' => 2
         ]);
+        $katalog->jumlah = $katalog->jumlah-1;
         $peminjaman->save();
         return redirect('/dashboard/peminjamans')->with('success', 'Data Peminjaman has been added!');
     }
 
+    public function kembali(Peminjaman $peminjaman)
+    {
+        $data = [
+            'id_petugas_kembali' => auth()->user()->id,
+            'tgl_pengembalian' => today(),
+            'id_status' => 1,
+            'keterlambatan' => '',
+            'denda' => 0
+    ]; 
+    if (Carbon::create($peminjaman->tgl_kembali)->lessThan(today())) {
+        $denda = Carbon::create($peminjaman->tgl_kembali)->diffInDays(today());
+        $denda = $denda * 1000;
+        $data['denda'] = $denda;
+    } 
+       $peminjaman->update($data);
+       return redirect('/dashboard/peminjamans')->with('success', 'Peminjaman has been returned!');
+    
+    } 
+
+    public function konfirmasi(Peminjaman $peminjaman)
+    {
+        $peminjaman->update([
+            'id_petugas' => auth()->user()->id,
+            'id_status' => 4
+    ]);
+    $peminjaman->save();
+    return redirect('/dashboard/peminjamans')->with('success', 'Data Peminjaman has been confirmationed!');
+    }
     
 }

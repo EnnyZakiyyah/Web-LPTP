@@ -61,10 +61,9 @@
                   }
                
                   @endif
-                  {{-- <td>{{ $peminjaman->bibliographies->title }}</td> --}}
-                  {{-- <td>{{ $peminjaman->katalogs->title }}</td> --}}
                   <td>{{ $peminjaman->tgl_pinjam }}</td>
                   <td>{{ $peminjaman->tgl_kembali }}</td>
+               
                   @if ($peminjaman->status->nama == 'Konfirmasi')
                   <td><span class="badge rounded-pill bg-success text-white">{{ $peminjaman->status->nama }}</span></td> 
                   @elseif ($peminjaman->status->nama == 'Kembali')

@@ -120,7 +120,7 @@ class DashboardPeminjamanController extends Controller
             'id_petugas' => 'required',
             'id_buku' => 'required',
             'tgl_pinjam' => 'required',
-            'tgl_kembali' => 'required',
+            // 'tgl_kembali' => 'required',
             'id_buku' => 'required',
             'id_lokasi' => 'required',
             'id_status' => 'required',
