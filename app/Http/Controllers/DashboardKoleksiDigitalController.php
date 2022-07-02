@@ -53,9 +53,8 @@ class DashboardKoleksiDigitalController extends Controller
             'category_id' => 'required',
             'author_id' => '',
             'body' => 'required',
-            // 'author_id' => (int)$author->id,
             'edisi' => '',
-            'isbn' => '',
+            'isbn' => 'required|unique:koleksidigitals',
             'penerbit' => '',
             'tahun_terbit' => '',
             'tempat_terbit' => '',
@@ -71,7 +70,7 @@ class DashboardKoleksiDigitalController extends Controller
         if ($request->file('filekatalog')) {
             $validateData['filekatalog'] = $request->file('filekatalog')->store('koleksi-files');
         }
-
+        $validateData['author_id'] = implode(', ', $request->author_id);
         $validateData['title'] = Str::limit(strip_tags($request->title), 35);
         // $validateData['author_id'] = auth()->user->id;    //INI JUGA SAMA. SEMENTARA PAKAI AUTHOR DULU. KALAU MAU GANTI USER ID, NANTI BISA.
         $validateData['excerpt'] = Str::limit(strip_tags($request->body), 100);
@@ -138,6 +137,10 @@ class DashboardKoleksiDigitalController extends Controller
             $rules['slug'] = 'required|unique:koleksidigitals';
         }
 
+        if($request->isbn != $koleksidigital->isbn) {
+            $rules['isbn'] = 'required|unique:koleksidigitals';
+        }
+
         // $validateData['author_id'] = auth()->user()->id;
         $validateData = $request->validate($rules);
 
@@ -147,15 +150,15 @@ class DashboardKoleksiDigitalController extends Controller
             }
             $validateData['image'] = $request->file('image')->store('koleksi-images');
         } 
-        $validateData['excerpt'] = Str::limit(strip_tags($request->body), 100);
         if($request->file('filekoleksi')) {
             if ($request->oldFile) {
                 Storage::delete($request->oldFile);
             }
             $validateData['filekatalog'] = $request->file('filekatalog')->store('koleksi-files');
         }
-        
-
+        $validateData['excerpt'] = Str::limit(strip_tags($request->body), 100);
+        $validateData['title'] = Str::limit(strip_tags($request->title), 35);
+        $validateData['author_id'] = implode(', ', $request->author_id);
 
         Koleksidigital::where('id', $koleksidigital->id)->update($validateData);
         return redirect('/dashboard/koleksidigitals')->with('success', 'Koleksi Digital has been updatedd!');

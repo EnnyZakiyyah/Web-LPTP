@@ -9,6 +9,7 @@ use App\Models\Status;
 use App\Models\Katalog;
 use App\Models\Category;
 use App\Models\Informasi;
+use App\Models\Koleksidigital;
 use App\Models\Label;
 use Illuminate\Database\Seeder;
 use Database\Seeders\RoleSeeder;
@@ -66,7 +67,7 @@ class DatabaseSeeder extends Seeder
             'slug' => 'bibliography'
         ]);
         Katalog::factory(20)->create();
-        // User::factory(5)->create();
+        Koleksidigital::factory(5)->create();
 
         // $user = User::create([
         //     'name' => 'Enny Zakiyyah',

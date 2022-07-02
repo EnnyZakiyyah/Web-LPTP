@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Label;
 use App\Models\Author;
 use App\Models\Lokasi;
+use App\Models\Katalog;
 use App\Models\Category;
 use Illuminate\Support\Str;
 use App\Models\Bibliography;
@@ -22,7 +24,7 @@ class DashboardBibliographyController extends Controller
     {
         return view('dashboard.layanan.bibliography.index', [
             'title' => "Bibliography",
-            'bibliographies' => Bibliography::latest()->paginate(5)
+            'bibliographies' => Katalog::where('label_id', 2)->latest()->paginate(5)
         ]);
     }
 
@@ -33,9 +35,10 @@ class DashboardBibliographyController extends Controller
      */
     public function create()
     {
-        return view('dashboard.layanan.bibliography.create', [
+        return view('dashboard.sirkulasi.penelusuran-katalog.create', [
             'title' => "Tambah Data Bibliography",
             'categories' => Category::all(),
+            'labels' => Label::all(),
             'authors' => Author::all(),
             'lokasis' => Lokasi::all()
         ]);
@@ -54,9 +57,10 @@ class DashboardBibliographyController extends Controller
             'slug' => 'required|unique:bibliographies',
             'category_id' => 'required',
             'author_id' => '',
+            'label_id' => 'required',
             'body' => 'required',
             'edisi' => '',
-            'isbn' => '',
+            'isbn' => 'required|unique:bibliographies',
             'penerbit' => '',
             'tahun_terbit' => '',
             'tempat_terbit' => '',
@@ -69,6 +73,7 @@ class DashboardBibliographyController extends Controller
         if ($request->file('image')) {
             $validateData['image'] = $request->file('image')->store('bibliographies-images');
         }
+        $validateData['author_id'] = implode(', ', $request->author_id);
         $validateData['title'] = Str::limit(strip_tags($request->title), 35);
         $validateData['excerpt'] = Str::limit(strip_tags($request->body), 100);
 
@@ -121,7 +126,8 @@ class DashboardBibliographyController extends Controller
             'category_id' => 'required',
             'body' => 'required',
             'edisi' => '',
-            'isbn' => '',
+            // 'isbn' => 'required|unique:bibliographies',
+            'label_id' => 'required',
             'penerbit' => '',
             'tahun_terbit' => '',
             'tempat_terbit' => '',
@@ -136,6 +142,10 @@ class DashboardBibliographyController extends Controller
             $rules['slug'] = 'required|unique:bibliographies';
         }
 
+        if($request->isbn != $bibliography->isbn) {
+            $rules['isbn'] = 'required|unique:katalogs';
+        }
+
         // $validateData['author_id'] = auth()->user()->id;
         $validateData = $request->validate($rules);
 
@@ -145,7 +155,8 @@ class DashboardBibliographyController extends Controller
             }
             $validateData['image'] = $request->file('image')->store('bibliographies-images');
         }
-        
+        $validateData['author_id'] = implode(', ', $request->author_id);
+        $validateData['title'] = Str::limit(strip_tags($request->title), 35);
         $validateData['excerpt'] = Str::limit(strip_tags($request->body), 100);
 
         Bibliography::where('id', $bibliography->id)->update($validateData);

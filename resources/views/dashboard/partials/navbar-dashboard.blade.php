@@ -23,7 +23,8 @@
         <ul class="pcoded-submenu">
             <li><a href="/dashboard/peminjamans" target="_blank">Peminjaman Buku</a></li>
             <li><a href="/dashboard/sirkulasi/pengembalian-buku" target="_blank">Pengembalian Buku</a></li>
-            <li><a href="/dashboard/sirkulasi/katalogs" target="_blank">Penelusuran Katalog</a></li>
+            <li><a href="/dashboard/sirkulasi/penelusuran-katalog" target="_blank">Penelusuran Katalog</a></li>
+            {{-- <li><a href="/dashboard/sirkulasi/katalogs" target="_blank">Penelusuran Katalog</a></li> --}}
             <li><a href="/dashboard/sirkulasi/bebas-pustaka" target="_blank">Bebas Pustaka</a></li>
         </ul>
     </li>
@@ -40,6 +41,19 @@
             class="nav-link {{ Request::is('/dashboard/koleksidigitals*') ? 'active' : '' }}"><span
                 class="pcoded-micon"><i class="feather icon-book"></i></span><span class="pcoded-mtext">Koleksi
                 Digital</span></a>
+    </li>
+    <li class="nav-item pcoded-menu-caption">
+        <label>Transaction</label>
+    </li>
+    <li class="nav-item">
+        <a href="/dashboard/peminjamans"
+            class="nav-link {{ Request::is('/dashboard/peminjamans') ? 'active' : '' }}"><span
+                class="pcoded-micon"><i class="feather icon-user"></i></span><span class="pcoded-mtext">Transaksi Peminjaman</span></a>
+    </li>
+    <li class="nav-item">
+        <a href="/dashboard/bookcollection"
+            class="nav-link {{ Request::is('dashboard/bookcollection') ? 'active' : '' }}"><span
+                class="pcoded-micon"><i class="feather icon-user"></i></span><span class="pcoded-mtext">Koleksi Buku</span></a>
     </li>
     <li class="nav-item pcoded-menu-caption">
         <label>Forms</label>

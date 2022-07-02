@@ -22,11 +22,10 @@ class KatalogController extends Controller
         }
 
         if (request('author')) {
-            $author = Author::firstWhere('slug', request('author'));
-            $title = ' by '. $author->nama;
+            $author = Author::firstWhere('id', request('author'));
+            $title = ' by '. $author->id;
         }
-        
-        $label = Label::all();
+       
         return view('home.sirkulasi.penelusuran-katalog', [
             "title" => "Sirkulasi" . $title,
             "katalogs" => Katalog::where('label_id', 1)->latest()->filter(request(['search', 'category', 'author']))->paginate(6)->withQueryString()

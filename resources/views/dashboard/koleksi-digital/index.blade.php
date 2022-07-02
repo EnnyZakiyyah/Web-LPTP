@@ -52,7 +52,7 @@
                             <tr>
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{ $koleksidigital->title }}</td>
-                                <td>{{ $koleksidigital->author->nama }}</td>
+                                <td>{{ $koleksidigital->author_id }}</td>
                                 <td>{{ $koleksidigital->isbn }}</td>
                                 <td>{{ $koleksidigital->tahun_terbit }}</td>
                                 <td>

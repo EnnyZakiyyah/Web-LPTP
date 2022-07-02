@@ -18,7 +18,8 @@ class Koleksidigital extends Model
 
         $query->when($filters['search'] ?? false, function($query, $search) {
             return $query->where('title', 'like', '%' . $search . '%')
-                     ->orWhere('body', 'like', '%' . $search . '%') ;
+                     ->orWhere('body', 'like', '%' . $search . '%') 
+                     ->orWhere('author_id', 'like', '%' . $search . '%') ;
         });
 
         $query->when($filters['category'] ?? false, function($query, $catergory) {
@@ -34,6 +35,9 @@ class Koleksidigital extends Model
         );
     }
 
+    public function label(){
+        return $this->belongsTo(Label::class);
+    }
     public function category(){
         return $this->belongsTo(Category::class);
     }

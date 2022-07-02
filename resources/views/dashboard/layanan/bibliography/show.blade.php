@@ -98,8 +98,8 @@
                         </table>
                         <div class="py-3">
                             <a href="/dashboard/layanan/bibliography" class="btn btn-info"><i class="feather icon-arrow-left" style="color: white"></i>Back</a>
-                            <a href="/dashboard/layanan/bibliography/{{ $bibliography->slug }}/edit" class="btn btn-warning"><i class="feather icon-edit" style="color: white"></i></i>Edit</a>
-                            <form action="/dashboard/layanan/bibliography/{{ $bibliography->slug }}" method="POST" class="d-inline">
+                            <a href="/dashboard/sirkulasi/katalogs/{{ $bibliography->slug }}/edit" class="btn btn-warning"><i class="feather icon-edit" style="color: white"></i></i>Edit</a>
+                            <form action="/dashboard/sirkulasi/katalogs/{{ $bibliography->slug }}" method="POST" class="d-inline">
                                 @method('delete')
                                 @csrf
                                 <button class="btn btn-danger" onclick="return confirm('Are you sure?')"><i class="feather icon-trash" style="color: white"></i>Delete</button>

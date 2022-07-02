@@ -38,7 +38,7 @@
                             <tr>
                               <th scope="row" style="text-align: left">Penulis</th>
                               <td>:</td>
-                              <td style="text-align: justify !important"><a href="/home/sirkulasi/penelusuran-katalog?author={{ $katalog->author->slug }}" class="text-decoration-none">{{ $katalog->author->nama }}</a></td>
+                              <td style="text-align: justify !important"><a class="text-decoration-none">{{ $katalog->author_id }}</a></td>
                             </tr>
                             <tr>
                               <th scope="row" style="text-align: left">Edisi</th>

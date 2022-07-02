@@ -53,7 +53,7 @@
                                 <tr>
                                     <th scope="row" style="text-align: left">Penulis</th>
                                     <td>:</td>
-                                    <td style="text-align: justify !important">{{ $katalog->author->nama}}</td>
+                                    <td style="text-align: justify !important">{{ $katalog->author_id }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row" style="text-align: left">Edisi</th>

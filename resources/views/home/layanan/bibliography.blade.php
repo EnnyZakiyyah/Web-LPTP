@@ -49,13 +49,12 @@
         <div class="row row-cols-1 row-cols-md-3 g-4">
             @foreach ($bibliographies as $bibliography)
             <div class="col mb-5" >
-                <div class="card-katalog">
+                <div class="card-katalog" style="cursor: pointer">
                     <img src="{{ asset('storage/' . $bibliography->image) }}" class="card-img-top" alt="...">
                     <div class="contentBx">
                         <h5 class="card-title">{{ $bibliography->title }}</h5>
                         <p class="mt-5" style="color: white !important; padding-top:10px;">by <a
-                                href="/home/layanan/bibliographies?author={{ $bibliography->author->slug }}"
-                                class="text-primary" style="font-size: 15px;">{{ $bibliography->author->nama }}</a></p>
+                                class="text-primary" style="font-size: 15px;">{{ $bibliography->author_id }}</a></p>
                         <p style="font-size: 13px; color: white !important">2016</p>
                         <p style="color: white !important">{!! $bibliography->excerpt !!}
                             <a href="/home/layanan/bibliographies/detail/{{ $bibliography->slug }}"

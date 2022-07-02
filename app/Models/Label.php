@@ -15,6 +15,14 @@ class Label extends Model
         return $this->hasMany(Katalog::class);
     }
 
+    public function bibliogrphies(){
+        return $this->hasMany(Bibliography::class);
+    }
+
+    public function koleksidigitals(){
+        return $this->hasMany(Koleksidigital::class);
+    }
+
     public function getRouteKeyName()
     {
         return 'slug';

@@ -51,11 +51,9 @@ class DashboardKatalogController extends Controller
      */
     public function store(Request $request)
     {
-        // $author = Author::create([
-        //     'name' => $request->penulis,
-        //     'username' => $request->penulis
-        // ]);
-        
+        // dd($request->all());
+        // $input = $request->all();
+        // $author = $input['author_id'];
         $validateData = $request->validate([
             'title' => 'required|max:50',
             'slug' => 'required|unique:katalogs',
@@ -63,9 +61,8 @@ class DashboardKatalogController extends Controller
             'label_id' => 'required',
             'author_id' => '',
             'body' => 'required',
-            // 'author_id' => (int)$author->id,
             'edisi' => '',
-            'isbn' => '',
+            'isbn' => 'required|unique:katalogs',
             'penerbit' => '',
             'tahun_terbit' => '',
             'tempat_terbit' => '',
@@ -74,15 +71,17 @@ class DashboardKatalogController extends Controller
             'lokasi_id' => '',
             'image' => 'image|file|max:2048'
         ]);
-
         if ($request->file('image')) {
             $validateData['image'] = $request->file('image')->store('katalog-images');
         }
+        $validateData['author_id'] = implode(', ', $request->author_id);
         $validateData['title'] = Str::limit(strip_tags($request->title), 35);
-        // $validateData['author_id'] = auth()->user->id;    //INI JUGA SAMA. SEMENTARA PAKAI AUTHOR DULU. KALAU MAU GANTI USER ID, NANTI BISA.
         $validateData['excerpt'] = Str::limit(strip_tags($request->body), 100);
-
+        // dd($validateData);
         Katalog::create($validateData);
+        // Katalog::create([
+            
+        // ]);
         return redirect('/dashboard/sirkulasi/katalogs')->with('success', 'New Katalog has been addedd!');
     }
 
@@ -133,7 +132,7 @@ class DashboardKatalogController extends Controller
             'label_id' => 'required',
             'body' => 'required',
             'edisi' => '',
-            'isbn' => '',
+            // 'isbn' => 'required|unique:katalogs',
             'penerbit' => '',
             'tahun_terbit' => '',
             'tempat_terbit' => '',
@@ -148,6 +147,10 @@ class DashboardKatalogController extends Controller
             $rules['slug'] = 'required|unique:katalogs';
         }
 
+        if($request->isbn != $katalog->isbn) {
+            $rules['isbn'] = 'required|unique:katalogs';
+        }
+
         // $validateData['author_id'] = auth()->user()->id;
         $validateData = $request->validate($rules);
 
@@ -157,7 +160,8 @@ class DashboardKatalogController extends Controller
             }
             $validateData['image'] = $request->file('image')->store('katalog-images');
         }
-        
+        $validateData['author_id'] = implode(', ', $request->author_id);
+        $validateData['title'] = Str::limit(strip_tags($request->title), 35);
         $validateData['excerpt'] = Str::limit(strip_tags($request->body), 100);
 
         Katalog::where('id', $katalog->id)->update($validateData);

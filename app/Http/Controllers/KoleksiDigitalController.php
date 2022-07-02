@@ -29,7 +29,7 @@ class KoleksiDigitalController extends Controller
 
     public function show(Koleksidigital $koleksidigital){
         return view('home.detil.detil-koleksi-digital', [
-            "title" => "Sirkulasi",
+            "title" => "Koleksi Digital",
             "koleksidigital" => $koleksidigital
         ]);
     }
@@ -37,7 +37,7 @@ class KoleksiDigitalController extends Controller
 
     public function baca(Koleksidigital $koleksidigital){
         return view('home.koleksi-digital.baca-koleksi-digital', [
-            "title" => "baca",
+            "title" => "Koleksi Digital",
             "koleksidigital" => $koleksidigital
         ]);
     }

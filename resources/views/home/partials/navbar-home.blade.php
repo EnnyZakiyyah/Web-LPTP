@@ -38,7 +38,7 @@
                     </ul>
                 </li>
                 <li class="nav-item"><a
-                        class="nav-link {{ Request::is('home/koleksi-digital') ? 'active' : '' }}"
+                        class="nav-link {{ Request::is('home/koleksi-digital*') ? 'active' : '' }}"
                         aria-current="page" href="/home/koleksi-digital">Koleksi Digital</a></li>
                 @auth
                 <li class="nav-item dropdown">

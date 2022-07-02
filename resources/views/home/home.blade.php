@@ -257,8 +257,8 @@
                     <img src="{{ asset('storage/' . $buku[0]->image) }}" class="card-img-top" alt="...">
                     <div class="contentBx-terbaru">
                         <h5 class="card-title" style="padding-left:5px; padding-right:5px">{{ $buku[0]->title }}</h5>
-                        <a href="/home/sirkulasi/penelusuran-katalog?author={{ $buku[0]->author->slug }}"
-                            class="text-primary" style="font-size: 15px;">{{ $buku[0]->author->nama }}</a>
+                        <a href="/home/sirkulasi/penelusuran-katalog?author={{ $buku[0]->author_id }}"
+                            class="text-primary" style="font-size: 15px;">{{ $buku[0]->author_id }}</a>
                     </div>
                 </div>
             </a>
@@ -269,8 +269,8 @@
                     <img src="{{ asset('storage/' . $buku[1]->image) }}" class="card-img-top" alt="...">
                     <div class="contentBx-terbaru">
                         <h5 class="card-title" style="padding-left:5px; padding-right:5px">{{ $buku[1]->title }}</h5>
-                        <a href="/home/sirkulasi/penelusuran-katalog?author={{ $buku[1]->author->slug }}"
-                            class="text-primary" style="font-size: 15px;">{{ $buku[1]->author->nama }}</a>
+                        <a href="/home/sirkulasi/penelusuran-katalog?author={{ $buku[1]->author_id }}"
+                            class="text-primary" style="font-size: 15px;">{{ $buku[1]->author_id}}</a>
                     </div>
                 </div>
             </a>
@@ -281,8 +281,8 @@
                     <img src="{{ asset('storage/' . $buku[2]->image) }}" class="card-img-top" alt="...">
                     <div class="contentBx-terbaru">
                         <h5 class="card-title" style="padding-left:5px; padding-right:5px">{{ $buku[2]->title }}</h5>
-                        <a href="/home/sirkulasi/penelusuran-katalog?author={{ $buku[2]->author->slug }}"
-                            class="text-primary" style="font-size: 15px;">{{ $buku[2]->author->nama }}</a>
+                        <a href="/home/sirkulasi/penelusuran-katalog?author={{ $buku[2]->author_id }}"
+                            class="text-primary" style="font-size: 15px;">{{ $buku[2]->author_id }}</a>
                     </div>
                 </div>
             </a>

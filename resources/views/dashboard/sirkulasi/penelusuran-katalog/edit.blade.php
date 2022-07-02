@@ -1,5 +1,7 @@
 @extends('dashboard.layouts.main')
 @section('container')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/css/bootstrap-select.min.css" integrity="sha512-mR/b5Y7FRsKqrYZou7uysnOdCIJib/7r5QeJMFvLNHNhtye3xJp1TdJVPLtetkukFn227nKpXD9OjUc09lx97Q==" crossorigin="anonymous"
+  referrerpolicy="no-referrer" />
 <div class="pcoded-main-container">
     <div class="pcoded-content">
         <!-- [ breadcrumb ] start -->
@@ -78,20 +80,20 @@
                             </select>
                             </div>
                       </div>
-                          <div class="mb-3 row">
-                            <label for="penulis" class="col-md-2 col-form-label">Penulis</label>
-                            <div class="col-md-10">
-                            <select class='fstdropdown-select' id="first" name="author_id">
+                      <div class="mb-3 row">
+                        <label for="author" class="col-md-2 col-form-label">Penulis</label>
+                        <div class="col-md-10">
+                              <select class="selectpicker" multiple aria-label="size 3 select example" data-show-subtext="true" data-live-search="true" id="first" name="author_id[]">
                                 @foreach ($authors as $author)
-                                @if (old('author_id', $katalog->author_id) == $author->id)
+                                @if (old('author_id') == $author->id)
                                 <option value="{{ $author->id, $katalog->author_id }}" selected>{{ $author->nama }}</option>
                                 @else
-                                <option value="{{ $author->id }}">{{ $author->nama }}</option>
+                                <option value="{{ $author->nama }}">{{ $author->nama }}</option>
                                 @endif
                                 @endforeach
-                            </select>
-                            </div>
+                              </select>
                         </div>
+                    </div>
                           <div class="mb-3 row">
                             <label for="edisi" class="col-md-2 col-form-label">Edisi</label>
                             <div class="col-md-10">
@@ -185,6 +187,9 @@
     </div>
 </div>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/js/bootstrap-select.min.js" integrity="sha512-FHZVRMUW9FsXobt+ONiix6Z0tIkxvQfxtCSirkKc5Sb4TKHmqq1dZa8DphF0XqKb3ldLu/wgMa8mT6uXiLlRlw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
     //SLUG
     const title = document.querySelector('#title');

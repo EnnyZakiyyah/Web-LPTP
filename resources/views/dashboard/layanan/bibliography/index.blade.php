@@ -52,14 +52,14 @@
                             <tr>
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{ $bibliography->title }}</td>
-                                <td>{{ $bibliography->author->nama }}</td>
+                                <td>{{ $bibliography->author_id }}</td>
                                 <td>{{ $bibliography->isbn }}</td>
                                 <td>{{ $bibliography->tahun_terbit }}</td>
                                 <td>
-                                    <a href="/dashboard/layanan/bibliography/{{ $bibliography->slug }}"
+                                    <a href="/dashboard/sirkulasi/katalogs/{{ $bibliography->slug }}"
                                         class="badge bg-info"><i class="feather icon-eye" style="color: white"></i></a>
-                                    <a href="/dashboard/layanan/bibliography/{{ $bibliography->slug }}/edit" class="badge bg-warning"><i class="feather icon-edit" style="color: white"></i></a>
-                                    <form action="/dashboard/layanan/bibliography/{{ $bibliography->slug }}" method="POST" class="d-inline">
+                                    <a href="/dashboard/sirkulasi/katalogs/{{ $bibliography->slug }}/edit" class="badge bg-warning"><i class="feather icon-edit" style="color: white"></i></a>
+                                    <form action="/dashboard/sirkulasi/katalogs/{{ $bibliography->slug }}" method="POST" class="d-inline">
                                         @method('delete')
                                         @csrf
                                         <button class="badge bg-danger border-0" onclick="return confirm('Are you sure?')"><i class="feather icon-trash" style="color: white"></i></button>
