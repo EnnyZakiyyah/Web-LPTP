@@ -17,6 +17,7 @@ use App\Http\Controllers\PengembalianController;
 use App\Http\Controllers\DashboardUserController;
 use App\Http\Controllers\KoleksiDigitalController;
 use App\Http\Controllers\DashboardAuthorController;
+use App\Http\Controllers\DashboardPinjamController;
 use App\Http\Controllers\DashboardAnggotaController;
 use App\Http\Controllers\DashboardContactController;
 use App\Http\Controllers\DashboardKatalogController;
@@ -38,8 +39,8 @@ use App\Http\Controllers\DashboardPenelusuranKatalogController;
 */
 
 Route::get('/', [HomeController::class, 'index']);
-//Home-Sirkulasi 
-Route::resource('/home/sirkulasi/peminjaman-buku', PeminjamanController::class)->except('show')->middleware('admin');
+//Home-Sirkulasi
+Route::resource('/home/sirkulasi/peminjaman-buku', PeminjamanController::class)->except('show')->middleware('admin'); 
 Route::resource('/home/sirkulasi/pengembalian-buku', PengembalianController::class)->except('show')->middleware('admin');
 Route::get('/home/sirkulasi/penelusuran-katalog', [KatalogController::class, 'index']);
 Route::get('/home/sirkulasi/penelusuran-katalog/detail/{katalog:slug}', [KatalogController::class, 'show']);
@@ -79,7 +80,7 @@ Route::middleware(['auth', 'role:admin|admin'])->group(function () {
             'title' => 'Dashboard'
         ]);
     });
-
+    
     //Penulis
     Route::get('/dashboard/authors/checkSlug', [DashboardAuthorController::class, 'checkSlug']);
     Route::resource('/dashboard/authors', DashboardAuthorController::class);
@@ -96,11 +97,11 @@ Route::middleware(['auth', 'role:admin|admin'])->group(function () {
     Route::get('/dashboard/sirkulasi/katalogs/checkSlug', [DashboardKatalogController::class, 'checkSlug']);
     Route::resource('/dashboard/sirkulasi/katalogs', DashboardKatalogController::class);
     Route::resource('/dashboard/sirkulasi/penelusuran-katalog', DashboardPenelusuranKatalogController::class);
-
+    
     //Koleksi Digital
     Route::get('/dashboard/koleksidigitals/checkSlug', [DashboardKoleksiDigitalController::class, 'checkSlug']);
     Route::resource('/dashboard/koleksidigitals', DashboardKoleksiDigitalController::class);
-
+    
     //Bibliography
     Route::get('/dashboard/layanan/bibliography/checkSlug', [DashboardBibliographyController::class, 'checkSlug']);
     Route::resource('/dashboard/layanan/bibliography', DashboardBibliographyController::class);
@@ -110,16 +111,21 @@ Route::middleware(['auth', 'role:admin|admin'])->group(function () {
     
     //Peminjaman
     Route::get('/dashboard/peminjamans/checkSlug', [DashboardPeminjamanController::class, 'checkSlug']);
+    // Route::get('/dashboard/peminjamans', [DashboardPeminjamanController::class, 'pinjam']);
+    // Route::get('/dashboard/peminjaman-buku/{peminjaman:slug}', [DashboardPinjamController::class, 'pinjam']);
+    Route::get('/dashboard/peminjaman-buku/{peminjaman:slug}', [DashboardPinjamController::class, 'pinjam']);
+    // Route::post('/dashboard/peminjaman-buku/{peminjaman:slug}', [DashboardPinjamController::class, 'pinjam'])->name('pinjam');
     Route::resource('/dashboard/peminjamans', DashboardPeminjamanController::class);
-
-     //Koleksi-Buku
-     Route::get('/dashboard/bookcollection/checkSlug', [DashboardKatalogController::class, 'checkSlug']);
-     Route::resource('/dashboard/bookcollection', DashboardKatalogController::class);
-
+    // Route::resource('/dashboard/peminjaman/checkSlug', PeminjamanController::class);
+    
+    //Koleksi-Buku
+    Route::get('/dashboard/bookcollection/checkSlug', [DashboardKatalogController::class, 'checkSlug']);
+    Route::resource('/dashboard/bookcollection', DashboardKatalogController::class);
+    
     //Users
     Route::get('/dashboard/users/checkSlug', [DashboardUserController::class, 'checkSlug']);
     Route::resource('/dashboard/users', DashboardUserController::class);
-
+    
     //Category
     Route::get('/dashboard/categories/checkSlug', [DashboardCategoryController::class, 'checkSlug']);
     Route::resource('/dashboard/categories', DashboardCategoryController::class);

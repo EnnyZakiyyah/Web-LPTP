@@ -29,7 +29,6 @@
                   <th scope="col">No Identitas</th>
                   <th scope="col">Nomor ISBN</th>
                   <th scope="col">Nama Buku</th>
-                  <th scope="col">Nama Bibliography</th>
                   <th scope="col">Tanggal Peminjaman</th>
                   <th scope="col">Tanggal Pengembalian</th>
                   <th scope="col">Status</th>

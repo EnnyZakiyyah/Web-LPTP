@@ -71,6 +71,12 @@
                                 <td>{{ $peminjaman->denda }}</td>
                                 <td>
                                     @if ($peminjaman->status->nama == 'Pending')
+                                    {{-- <form action="/dashboard/peminjaman-buku/{{ $peminjaman->slug }}" method="POST" class="d-inline">
+                                        @method('put')
+                                        @csrf
+                                        <button type="submit" class="badge bg-danger">Pinjam</button>
+                                    </form> --}}
+                                    <a href="/dashboard/peminjaman-buku/{{ $peminjaman->slug }}" class="badge bg-danger" style="color: white">Pinjam</a>
                                     @else
                                     <a href="/dashboard/peminjamans/{{ $peminjaman->slug }}"
                                         class="badge bg-info"><i class="feather icon-eye" style="color: white"></i></a>

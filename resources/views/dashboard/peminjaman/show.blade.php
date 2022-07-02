@@ -36,7 +36,7 @@
                                 <tr>
                                     <th scope="row" style="text-align: left">Nama Petugas</th>
                                     <td>:</td>
-                                    <td style="text-align: justify !important">{{ $peminjaman->petugas->name}}</td>
+                                    <td style="text-align: justify !important">{{ $peminjaman->users->name}}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row" style="text-align: left">Nama Peminjam</th>
