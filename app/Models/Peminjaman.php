@@ -5,9 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Peminjaman extends Model
 {
+    use SoftDeletes;
     use HasFactory,  Sluggable;
     protected $table = 'peminjamans';   //karena resource ngedetect peminjamens
     protected $guarded = ['id'];

@@ -73,6 +73,11 @@
                   @else
                   <td><span class="badge rounded-pill bg-warning text-white">{{ $peminjaman->status->nama }}</span></td>
                   @endif
+                  <td><a href="/home/sirkulasi/perpanjangan/{{ $peminjaman->slug }}" class="badge rounded-pill bg-warning text-white text-decoration-none">Perpanjangan</a></td>
+                  {{-- @if ($peminjaman->status->nama == 'Kembali')
+                  <input type="hidden" value="{{ redirect('/home/sirkulasi/pengembalian-buku') }}">
+                  <a href="/home/sirkulasi/pengembalian" class="btn btn-info" value><i class="feather icon-arrow-left" style="color: white"></i>Back</a>
+                  @endif --}}
                 </tr>
                 @endforeach
               </tbody>

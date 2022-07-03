@@ -24,13 +24,18 @@
             <div class="card-header">
                 <h5>{{ $title }}</h5>
             </div>
-    
+
             @if (session()->has('success'))
-                <div class="alert alert-success" role="alert">
-                    {{ session('success') }}
-                </div>
+            <div class="alert alert-success" role="alert">
+                {{ session('success') }}
+            </div>
             @endif
-    
+            @if (session()->has('loginError'))
+            <div class="alert alert-danger" role="alert">
+                {{ session('loginError') }}
+            </div>
+            @endif
+
             <div class="col-md-4 px-3 py-3">
                 <a href="/dashboard/peminjamans/create" class="btn btn-primary me-2 px-3">Tambah Data</a>
             </div>
@@ -46,6 +51,7 @@
                                 <th>Tgl Pinjam</th>
                                 <th>Tgl Kembali</th>
                                 <th>Status</th>
+                                <th>Kondisi Buku Peminjaman</th>
                                 <th>Denda</th>
                                 <th>Aksi</th>
                             </tr>
@@ -60,34 +66,62 @@
                                 <td>{{ $peminjaman->tgl_pinjam }}</td>
                                 <td>{{ $peminjaman->tgl_kembali }}</td>
                                 @if ($peminjaman->status->nama == 'Konfirmasi')
-                                <td><span class="badge rounded-pill bg-success text-white">{{ $peminjaman->status->nama }}</span></td> 
+                                <td><span
+                                        class="badge rounded-pill bg-success text-white">{{ $peminjaman->status->nama }}</span>
+                                </td>
                                 @elseif ($peminjaman->status->nama == 'Kembali')
-                                <td><span class="badge rounded-pill bg-primary text-white">{{ $peminjaman->status->nama }}</span></td>
+                                <td><span
+                                        class="badge rounded-pill bg-primary text-white">{{ $peminjaman->status->nama }}</span>
+                                </td>
                                 @elseif ($peminjaman->status->nama == 'Pending')
-                                <td><span class="badge rounded-pill bg-danger text-white">{{ $peminjaman->status->nama }}</span></td>
+                                <td><span
+                                        class="badge rounded-pill bg-danger text-white">{{ $peminjaman->status->nama }}</span>
+                                </td>
                                 @else
-                                <td><span class="badge rounded-pill bg-warning text-white">{{ $peminjaman->status->nama }}</span></td>
+                                <td><span
+                                        class="badge rounded-pill bg-warning text-white">{{ $peminjaman->status->nama }}</span>
+                                </td>
                                 @endif
+                                <td>
+                                    <form action="/dashboard/kondisi/peminjamans/{{ $peminjaman->slug }}" method="POST"
+                                        class="d-inline">
+                                        @csrf
+                                        <button class="badge bg-danger border-0 text-white">Hilang</button>
+                                        <button class="badge bg-warning border-0 text-white">Rusak</button>
+                                        <button class="badge bg-success border-0 text-white">Bagus</button>
+                                    </form>
+                                </td>
                                 <td>{{ $peminjaman->denda }}</td>
                                 <td>
                                     @if ($peminjaman->status->nama == 'Konfirmasi')
-                                    <a href="/dashboard/peminjaman-buku/{{ $peminjaman->slug }}" class="badge bg-danger" style="color: white">Setujui</a>
+                                    <a href="/dashboard/peminjaman-buku/{{ $peminjaman->slug }}" class="badge bg-danger"
+                                        style="color: white">Setujui</a>
                                     @endif
                                     @if ($peminjaman->status->nama == 'Sedang Dipinjam')
-                                        <a href="/dashboard/pengembalian-buku/{{ $peminjaman->slug }}" class="badge bg-primary" style="color: white">Kembali</a>  
-                                    @endif
-                                    @if ($peminjaman->status->nama == 'Pending')
-                                    <a href="/dashboard/peminjaman-buku/{{ $peminjaman->slug }}" class="badge bg-danger" style="color: white">Setujui</a>
-                                    <a href="/dashboard/konfirmasi-buku/{{ $peminjaman->slug }}" class="badge bg-success" style="color: white">Konfirmasi</a>
-                                    @else
-                                    <a href="/dashboard/peminjamans/{{ $peminjaman->slug }}"
-                                        class="badge bg-info"><i class="feather icon-eye" style="color: white"></i></a>
-                                        <a href="/dashboard/peminjamans/{{ $peminjaman->slug }}/edit" class="badge bg-warning"><i class="feather icon-edit" style="color: white"></i></a>
-                                    @endif
-                                    <form action="/dashboard/peminjamans/{{ $peminjaman->slug }}" method="POST" class="d-inline">
+                                    <form action="/dashboard/peminjamans/{{ $peminjaman->slug }}" method="POST"
+                                        class="d-inline">
                                         @method('delete')
                                         @csrf
-                                        <button class="badge bg-danger border-0" onclick="return confirm('Are you sure?')"><i class="feather icon-trash" style="color: white"></i></button>
+                                        <button class="badge bg-primary border-0 text-white">Kembali</button>
+                                    </form>
+                                    @endif
+                                    @if ($peminjaman->status->nama == 'Pending')
+                                    <a href="/dashboard/peminjaman-buku/{{ $peminjaman->slug }}"
+                                        class="badge bg-secondary" style="color: white">Setujui</a>
+                                    <a href="/dashboard/konfirmasi-buku/{{ $peminjaman->slug }}"
+                                        class="badge bg-success" style="color: white">Konfirmasi</a>
+                                    @else
+                                    <a href="/dashboard/peminjamans/{{ $peminjaman->slug }}/edit"
+                                        class="badge bg-warning"><i class="feather icon-edit"
+                                            style="color: white"></i></a>
+                                    @endif
+                                    <form action="/dashboard/peminjamans/{{ $peminjaman->slug }}" method="POST"
+                                        class="d-inline">
+                                        @method('delete')
+                                        @csrf
+                                        <button class="badge bg-danger border-0"
+                                            onclick="return confirm('Are you sure?')"><i class="feather icon-trash"
+                                                style="color: white"></i></button>
                                     </form>
                                 </td>
                             </tr>
@@ -99,12 +133,12 @@
             <!--PAGINATION-->
             <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-center">
-                  <li class="page-item">
-                    {{-- {{ $peminjamans->links() }} --}}
-                  </li>
+                    <li class="page-item">
+                        {{-- {{ $peminjamans->links() }} --}}
+                    </li>
                 </ul>
             </nav>
-        </div>  
+        </div>
         <!-- [ Main Content ] end -->
     </div>
 </div>

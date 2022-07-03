@@ -19,6 +19,7 @@ class CreatePeminjamansTable extends Migration
             $table->string('slug')->unique();
             $table->foreignId('id_peminjam')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('id_petugas')->nullable()->constrained('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('id_perpanjangan')->nullable()->constrained('perpanjangans')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('id_petugas_kembali')->nullable()->constrained('users')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('id_buku')->nullable()->constrained('katalogs')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('id_lokasi')->nullable()->constrained('lokasis')->onDelete('cascade')->onUpdate('cascade');

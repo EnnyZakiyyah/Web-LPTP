@@ -24,7 +24,7 @@ class KatalogFactory extends Factory
             'jumlah' => $this->faker->randomNumber(3, true),
             'bahasa' => $this->faker->sentence(mt_rand(2,8)),
             'lokasi_id' => mt_rand(1,2),
-            'excerpt' =>$this->faker->sentence(mt_rand(10,25)),
+            'excerpt' =>$this->faker->sentence(5),
             // 'body' => $this->faker->paragraphs(mt_rand(1,2)),
             'body' => collect($this->faker->paragraphs(mt_rand(1,2)))
                         ->map(fn($p) => "<p>$p</p>")

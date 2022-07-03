@@ -24,6 +24,7 @@ use App\Http\Controllers\DashboardKatalogController;
 use App\Http\Controllers\DashboardCategoryController;
 use App\Http\Controllers\DashboardPeminjamanController;
 use App\Http\Controllers\DashboardBibliographyController;
+use App\Http\Controllers\DashboardPengembalianController;
 use App\Http\Controllers\DashboardKoleksiDigitalController;
 use App\Http\Controllers\DashboardPenelusuranKatalogController;
 
@@ -43,6 +44,7 @@ Route::get('/', [HomeController::class, 'index']);
 Route::resource('/home/sirkulasi/peminjaman-buku', PeminjamanController::class)->except('show')->middleware('admin'); 
 Route::resource('/home/sirkulasi/pengembalian-buku', PengembalianController::class)->except('show')->middleware('admin');
 Route::get('/home/sirkulasi/penelusuran-katalog', [KatalogController::class, 'index']);
+Route::get('/home/sirkulasi/perpanjangan/{peminjaman:slug}', [PeminjamanController::class, 'perpanjangan']);
 Route::get('/home/sirkulasi/penelusuran-katalog/detail/{katalog:slug}', [KatalogController::class, 'show']);
 Route::get('/home/sirkulasi/penelusuran-katalog/{katalog:slug}', [KatalogController::class, 'pinjam']);
 Route::resource('/home/sirkulasi/bebas-pustaka', BebasPustakaController::class)->except('show')->middleware('admin');
@@ -112,9 +114,14 @@ Route::middleware(['auth', 'role:admin|admin'])->group(function () {
     Route::get('/dashboard/peminjaman-buku/{peminjaman:slug}', [DashboardPinjamController::class, 'pinjam']);
     Route::get('/dashboard/pengembalian-buku/{peminjaman:slug}', [DashboardPinjamController::class, 'kembali']);
     Route::get('/dashboard/konfirmasi-buku/{peminjaman:slug}', [DashboardPinjamController::class, 'konfirmasi']);
+    Route::post('/dashboard/kondisi/peminjamans/{peminjaman:slug}', [DashboardPinjamController::class, 'kondisi']);
     Route::resource('/dashboard/peminjamans', DashboardPeminjamanController::class);
-    // Route::resource('/dashboard/peminjaman/checkSlug', PeminjamanController::class);
     
+    //Pengembalian
+    // Route::resource('/dashboard/sirkulasi/pengembalians/', [DashboardPengembalianController::class, 'index']);
+    Route::get('/dashboard/sirkulasi/pengembalians/checkSlug', [DashboardPengembalianController::class, 'checkSlug']);
+    Route::resource('/dashboard/sirkulasi/pengembalians', DashboardPengembalianController::class);
+
     //Koleksi-Buku
     Route::get('/dashboard/bookcollection/checkSlug', [DashboardKatalogController::class, 'checkSlug']);
     Route::resource('/dashboard/bookcollection', DashboardKatalogController::class);

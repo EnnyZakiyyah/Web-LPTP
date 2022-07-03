@@ -40,7 +40,10 @@ class DashboardPinjamController extends Controller
         $data['denda'] = $denda;
     } 
        $peminjaman->update($data);
-       return redirect('/dashboard/peminjamans')->with('success', 'Peminjaman has been returned!');
+       if ($peminjaman->id_status == 1) {
+        return redirect('/dashboard/sirkulasi/pengembalians')->with('success', 'Peminjaman has been returned!');
+       }
+       return redirect('/dashboard/peminjamans')->with('loginError', 'Peminjaman has been returned!');
     
     } 
 
@@ -52,6 +55,15 @@ class DashboardPinjamController extends Controller
     ]);
     $peminjaman->save();
     return redirect('/dashboard/peminjamans')->with('success', 'Data Peminjaman has been confirmationed!');
+    }
+
+    public function kondisi(Peminjaman $peminjaman)
+    {
+        $peminjaman->update([
+            'id_kondisi' => $peminjaman->id_kondisi
+        ]);
+        $peminjaman->save();
+        return redirect('/dashboard/peminjamans')->with('success', 'Kondisi Buku has been confirmationed!');
     }
     
 }

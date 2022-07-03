@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Peminjaman;
 use Illuminate\Http\Request;
 
-class PengembalianController extends Controller
+class DashboardPengembalianController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class PengembalianController extends Controller
      */
     public function index()
     {
-        return view('home.sirkulasi.pengembalian-buku', [
-            "title" => "Sirkulasi",
+        return view('dashboard.sirkulasi.pengembalian.index', [
+            "title" => "Sirkulasi Pengembalian Buku",
             "pengembalians" => Peminjaman::onlyTrashed()->latest()->filter(request(['search', 'category', 'author']))->paginate(6)->withQueryString()
         ]);
     }
@@ -49,7 +49,10 @@ class PengembalianController extends Controller
      */
     public function show(Peminjaman $peminjaman)
     {
-        //
+        return view('dashboard.peminjaman.show', [
+            'title' => "Detail Pengembalian",
+            'peminjaman' => $peminjaman
+        ]);
     }
 
     /**

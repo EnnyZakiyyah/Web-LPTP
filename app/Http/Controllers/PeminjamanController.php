@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use App\Models\Peminjaman;
 use Illuminate\Http\Request;
 use App\Models\Peminjamanbiblio;
+use App\Models\Perpanjangan;
 
 class PeminjamanController extends Controller
 {
@@ -23,15 +24,6 @@ class PeminjamanController extends Controller
             // "peminjamanbiblios" => Peminjamanbiblio::where('id_peminjam', auth()->user()->id)->get()
         ]);
     }
-
-    // public function indexbib()
-    // {
-    //     return view('home.sirkulasi.peminjaman-bibliography', [
-    //         'title' => 'Sirkulasi',
-    //         // "peminjamans" => Peminjaman::where('id_peminjam', auth()->user()->id)->get(),
-    //         "peminjamanbiblios" => Peminjamanbiblio::where('id_peminjam', auth()->user()->id)->get()
-    //     ]);
-    // }
 
     /**
      * Show the form for creating a new resource.
@@ -123,5 +115,10 @@ class PeminjamanController extends Controller
     public function destroy(Peminjaman $peminjaman)
     {
         //
+    }
+
+    public function perpanjangan(Peminjaman $peminjaman)
+    {
+        dd($peminjaman);
     }
 }
