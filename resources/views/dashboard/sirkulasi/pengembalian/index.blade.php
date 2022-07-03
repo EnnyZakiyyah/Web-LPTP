@@ -37,6 +37,8 @@
             @endif
             <div class="card-body table-border-style">
                 <div class="table-responsive text-nowrap">
+                    <div class="container">
+                        <div class="row align-items-start">
                     <table class="table table-hover">
                         <thead>
                             <tr class="text-nowrap">
@@ -71,7 +73,7 @@
                                 @endif
                                 <td>{{ $pengembalian->denda }}</td>
                                 <td>
-                                    <a href="/dashboard/sirkulasi/pengembalians/{{ $pengembalian->slug }}"
+                                    <a href="/dashboard/peminjamans/{{ $pengembalian->slug }}"
                                         class="badge bg-info"><i class="feather icon-eye" style="color: white"></i></a>
                                     <form action="/dashboard/sirkulasi/pengembalians/{{ $pengembalian->slug }}" method="POST" class="d-inline">
                                         @method('delete')

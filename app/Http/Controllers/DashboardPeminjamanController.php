@@ -21,13 +21,15 @@ class DashboardPeminjamanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Peminjaman $peminjaman)
     {
-        return view('dashboard.peminjaman.index', [
-            'title' => 'Peminjaman Buku',
-            'peminjamans' => Peminjaman::all(),
-            'kondisis' => Condition::all()
-        ]);
+        if ($peminjaman->id_status != 1 ) {
+            return view('dashboard.peminjaman.index', [
+                'title' => 'Peminjaman Buku',
+                'peminjamans' => Peminjaman::where('id_status', 2 )->orWhere('id_status', 3)->orWhere('id_status', 4)->get(),
+                'kondisis' => Condition::all()
+            ]); 
+        } 
     }
 
     /**
@@ -153,20 +155,23 @@ class DashboardPeminjamanController extends Controller
      */
     public function destroy(Peminjaman $peminjaman)
     {
-        if (Peminjaman::destroy($peminjaman->id)) {
-            $peminjaman->update([
-                'id_status' => 1,
-                'id_petugas' => auth()->user()->id
-            ]);
-        }
-        $peminjaman->save();
-        return redirect('/dashboard/peminjamans')->with('success', 'Data Peminjaman has been returned!');
+        // if (Peminjaman::destroy($peminjaman->id)) {
+        //     $peminjaman->update([
+        //         'id_status' => 1,
+        //         'id_petugas' => auth()->user()->id
+        //     ]);
+        // }
+        // $peminjaman->save();
+        Peminjaman::destroy($peminjaman->id);
+        return redirect('/dashboard/peminjamans')->with('success', 'Data Peminjaman has been deleted!');
     }
 
     public function checkSlug(Request $request){
         $slug = SlugService::createSlug(Peminjaman::class, 'slug', $request->no_peminjaman);
         return response()->json(['slug' => $slug]);
     }
+
+
    
 
 }

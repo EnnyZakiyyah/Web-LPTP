@@ -58,6 +58,9 @@
                         </thead>
                         <tbody>
                             @foreach ($peminjamans as $peminjaman)
+                            @if ($peminjaman->id_status == 1)
+                                
+                            @endif
                             <tr>
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{ $peminjaman->no_peminjaman }}</td>
@@ -98,12 +101,7 @@
                                         style="color: white">Setujui</a>
                                     @endif
                                     @if ($peminjaman->status->nama == 'Sedang Dipinjam')
-                                    <form action="/dashboard/peminjamans/{{ $peminjaman->slug }}" method="POST"
-                                        class="d-inline">
-                                        @method('delete')
-                                        @csrf
-                                        <button class="badge bg-primary border-0 text-white">Kembali</button>
-                                    </form>
+                                        <a href="/dashboard/pengembalian-buku/{{ $peminjaman->slug }}" class="badge bg-primary border-0 text-white">Kembali</a>
                                     @endif
                                     @if ($peminjaman->status->nama == 'Pending')
                                     <a href="/dashboard/peminjaman-buku/{{ $peminjaman->slug }}"

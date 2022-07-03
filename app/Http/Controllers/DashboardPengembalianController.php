@@ -16,7 +16,7 @@ class DashboardPengembalianController extends Controller
     {
         return view('dashboard.sirkulasi.pengembalian.index', [
             "title" => "Sirkulasi Pengembalian Buku",
-            "pengembalians" => Peminjaman::onlyTrashed()->latest()->filter(request(['search', 'category', 'author']))->paginate(6)->withQueryString()
+            "pengembalians" => Peminjaman::where('id_status', 1)->latest()->filter(request(['search', 'category', 'author']))->paginate(6)->withQueryString()
         ]);
     }
 
@@ -49,9 +49,9 @@ class DashboardPengembalianController extends Controller
      */
     public function show(Peminjaman $peminjaman)
     {
-        return view('dashboard.peminjaman.show', [
+        return view('dashboard.sirkulasi.pengembalian.show', [
             'title' => "Detail Pengembalian",
-            'peminjaman' => $peminjaman
+            'pengembalian' => $peminjaman
         ]);
     }
 

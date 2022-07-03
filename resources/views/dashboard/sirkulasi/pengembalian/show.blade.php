@@ -31,69 +31,69 @@
                                 <tr>
                                     <th scope="row" style="text-align: left;">No Peminjaman</th>
                                     <td>:</td>
-                                    <td style="text-align: justify !important">{{ $peminjaman->no_peminjaman }}</td>
+                                    <td style="text-align: justify !important">{{ $pengembalian->no_peminjaman }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row" style="text-align: left">Nama Petugas</th>
                                     <td>:</td>
-                                    <td style="text-align: justify !important">{{ $peminjaman->petugas->name}}</td>
+                                    {{-- <td style="text-align: justify !important">{{ $pengembalian->petugas->name}}</td> --}}
                                 </tr>
                                 <tr>
                                     <th scope="row" style="text-align: left">Nama Peminjam</th>
                                     <td>:</td>
-                                    <td style="text-align: justify !important">{{ $peminjaman->users->name }}</td>
+                                    {{-- <td style="text-align: justify !important">{{ $pengembalian->users->name }}</td> --}}
                                 </tr>
                                 <tr>
                                     <th scope="row" style="text-align: left">Nama Buku</th>
                                     <td>:</td>
-                                    <td style="text-align: justify !important">{{ $peminjaman->katalogs->title }}</td>
+                                    {{-- <td style="text-align: justify !important">{{ $pengembalian->katalogs->title }}</td> --}}
                                 </tr>
                                 <tr>
                                     <th scope="row" style="text-align: left">ISBN</th>
                                     <td>:</td>
-                                    <td style="text-align: justify !important">{{ $peminjaman->katalogs->isbn }}</td>
+                                    {{-- <td style="text-align: justify !important">{{ $pengembalian->katalogs->isbn }}</td> --}}
                                 </tr>
                                 <tr>
                                     <th scope="row" style="text-align: left">Tanggal Peminjaman</th>
                                     <td>:</td>
-                                    <td style="text-align: justify !important">{{ $peminjaman->tgl_pinjam }}</td>
+                                    {{-- <td style="text-align: justify !important">{{ $pengembalian->tgl_pinjam }}</td> --}}
                                 </tr>
                                 <tr>
                                     <th scope="row" style="text-align: left">Tanggal Kembali</th>
                                     <td>:</td>
-                                    <td style="text-align: justify !important">{{ $peminjaman->tgl_kembali }}</td>
+                                    {{-- <td style="text-align: justify !important">{{ $pengembalian->tgl_kembali }}</td> --}}
                                 </tr>
                                 <tr>
                                     <th scope="row" style="text-align: left">Tanggal Pengembalian</th>
                                     <td>:</td>
-                                    <td style="text-align: justify !important">{{ $peminjaman->tgl_pengembalian }}</td>
+                                    {{-- <td style="text-align: justify !important">{{ $pengembalian->tgl_pengembalian }}</td> --}}
                                 </tr>
                                 <tr>
                                     <th scope="row" style="text-align: left">Status</th>
                                     <td>:</td>
-                                    <td style="text-align: justify !important">{{ $peminjaman->status->nama }}</td>
+                                    {{-- <td style="text-align: justify !important">{{ $pengembalian->status->nama }}</td> --}}
                                 </tr>
                                 <tr>
                                     <th scope="row" style="text-align: left">Kondisi Buku</th>
                                     <td>:</td>
-                                    {{-- <td style="text-align: justify !important">{{ $peminjaman->kondisi->nama }}</td> --}}
+                                    {{-- <td style="text-align: justify !important">{{ $pengembalian->kondisi->nama }}</td> --}}
                                 </tr>
                                 <tr>
                                     <th scope="row" style="text-align: left">Denda</th>
                                     <td>:</td>
-                                    <td style="text-align: justify !important">{{ $peminjaman->denda }}</td>
+                                    <td style="text-align: justify !important">{{ $pengembalian->denda }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row" style="text-align: left">Lokasi Peminjaman</th>
                                     <td>:</td>
-                                    <td style="text-align: justify !important">{{ $peminjaman->lokasi->nama }}</td>
+                                    {{-- <td style="text-align: justify !important">{{ $pengembalian->lokasi->nama }}</td> --}}
                                 </tr>
                             </tbody>
                         </table>
                         <div class="py-3">
                             <a href="/dashboard/peminjamans" class="btn btn-info"><i class="feather icon-arrow-left" style="color: white"></i>Back</a>
-                            <a href="/dashboard/peminjamans/{{ $peminjaman->slug }}/edit" class="btn btn-warning"><i class="feather icon-edit" style="color: white"></i></i>Edit</a>
-                            <form action="/dashboard/peminjamans/{{ $peminjaman->slug }}" method="POST" class="d-inline">
+                            <a href="/dashboard/peminjamans/{{ $pengembalian->slug }}/edit" class="btn btn-warning"><i class="feather icon-edit" style="color: white"></i></i>Edit</a>
+                            <form action="/dashboard/peminjamans/{{ $pengembalian->slug }}" method="POST" class="d-inline">
                                 @method('delete')
                                 @csrf
                                 <button class="btn btn-danger" onclick="return confirm('Are you sure?')"><i class="feather icon-trash" style="color: white"></i>Delete</button>

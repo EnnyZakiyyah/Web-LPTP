@@ -16,13 +16,23 @@ class PeminjamanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Peminjaman $peminjaman)
     {
-        return view('home.sirkulasi.peminjaman-buku', [
-            'title' => 'Sirkulasi',
-            "peminjamans" => Peminjaman::where('id_peminjam', auth()->user()->id)->get(),
-            // "peminjamanbiblios" => Peminjamanbiblio::where('id_peminjam', auth()->user()->id)->get()
-        ]);
+        if ($peminjaman->id_status != 1) {
+            return view('home.sirkulasi.peminjaman-buku', [
+                'title' => 'Sirkulasi',
+                "peminjamans" => Peminjaman::where([
+                                ['id_peminjam', auth()->user()->id],
+                                ['id_status', 3]
+                    ])->orWhere([
+                        ['id_peminjam', auth()->user()->id],
+                        ['id_status', 4]
+                    ])->orWhere([
+                        ['id_peminjam', auth()->user()->id],
+                        ['id_status', 2]
+                    ])->get()
+            ]);
+        } 
     }
 
     /**

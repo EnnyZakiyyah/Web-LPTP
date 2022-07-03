@@ -25,6 +25,7 @@ class KatalogController extends Controller
             $author = Author::firstWhere('id', request('author'));
             $title = ' by ' . $author->id;
         }
+        
 
         return view('home.sirkulasi.penelusuran-katalog', [
             "title" => "Sirkulasi" . $title,

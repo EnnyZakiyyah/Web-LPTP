@@ -14,10 +14,10 @@ class PengembalianController extends Controller
      */
     public function index()
     {
-        return view('home.sirkulasi.pengembalian-buku', [
-            "title" => "Sirkulasi",
-            "pengembalians" => Peminjaman::onlyTrashed()->latest()->filter(request(['search', 'category', 'author']))->paginate(6)->withQueryString()
-        ]);
+            return view('home.sirkulasi.pengembalian-buku', [
+                "title" => "Sirkulasi",
+                "pengembalians" => Peminjaman::where('id_status', 1)->where('id_peminjam', auth()->user()->id)->latest()->filter(request(['search', 'category', 'author']))->paginate(6)->withQueryString()
+            ]);
     }
 
     /**
