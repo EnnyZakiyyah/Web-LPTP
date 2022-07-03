@@ -23,6 +23,9 @@
           <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
             <div style="overflow-x:auto;">
             <table class="table table-hover">
+              <a href="/home/sirkulasi/perpanjangan" class="btn btn-primary">
+                Perpanjangan
+              </a>
               <thead>
                 <tr>
                   <th scope="col">No</th>
@@ -52,14 +55,11 @@
                   <th scope="row">{{ $loop->iteration }}</th>
                   <td>{{ $peminjaman->no_peminjaman }}</td>
                   <td>{{ $peminjaman->katalogs->isbn }}</td>
-                   @if ($peminjaman->katalogs->isbn){
-                    <td> {{ $peminjaman->katalogs->title }}</td>
-                  }
-                      
-                  @elseif ($peminjaman->bibliographies->isbn){
-                    <td> {{ $peminjaman->bibliographies->title }} </td>
-                  }
-               
+                   <td>@if ($peminjaman->katalogs->isbn)
+                    {{ $peminjaman->katalogs->title }}
+                  </td>
+                  <td>@elseif ($peminjaman->bibliographies->isbn)
+                     {{ $peminjaman->bibliographies->title }} </td>
                   @endif
                   <td>{{ $peminjaman->tgl_pinjam }}</td>
                   <td>{{ $peminjaman->tgl_kembali }}</td>
@@ -73,7 +73,7 @@
                   @else
                   <td><span class="badge rounded-pill bg-warning text-white">{{ $peminjaman->status->nama }}</span></td>
                   @endif
-                  <td><a href="/home/sirkulasi/perpanjangan/{{ $peminjaman->slug }}" class="badge rounded-pill bg-warning text-white text-decoration-none">Perpanjangan</a></td>
+                  
                 </tr>
                 @endforeach
               </tbody>
@@ -89,6 +89,7 @@
             </nav>
           </div>
         </div>
+  
       </section>
 
       

@@ -33,31 +33,29 @@
                                 <th>No</th>
                                 <th>Nama</th>
                                 <th>Email</th>
-                                <th>Subject</th>
                                 <th>Phone</th>
-                                <th>Pesan</th>
+                                <th>Alasan Pengajuan</th>
                                 <th>Created</th>
                                 {{-- <th>Aksi</th> --}}
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($contacts as $contact)
+                            @foreach ($perpanjangans as $perpanjangan)
                             <tr>
                                 <th scope="row">{{ $loop->iteration }}</th>
-                                <td>{{ $contact->name }}</td>
-                                <td>{{ $contact->email }}</td>
-                                <td>{{ $contact->subject }}</td>
-                                <td>{{ $contact->phone }}</td>
-                                <td>{{ $contact->pesan }}</td>
-                                <td>{{ $contact->created_at }}</td>
+                                <td>{{ $perpanjangan->name }}</td>
+                                <td>{{ $perpanjangan->email }}</td>
+                                <td>{{ $perpanjangan->phone }}</td>
+                                <td>{{ $perpanjangan->pesan }}</td>
+                                <td>{{ $perpanjangan->created_at }}</td>
                                 {{-- <td> --}}
                                     {{-- <a href="/dashboard/authors/{{ $authors->slug }}/edit" class="badge bg-warning"><i class="feather icon-edit" style="color: white"></i></a> --}}
-                                    {{-- <form action="/dashboard/contact-us/{{ $contact->id }}" method="POST" class="d-inline">
+                                    {{-- <form action="/dashboard/ajuan-perpanjangan/{{ $perpanjangan->id }}" method="POST" class="d-inline">
                                         @method('delete')
                                         @csrf
                                         <button class="badge bg-danger border-0" onclick="return confirm('Are you sure?')"><i class="feather icon-trash" style="color: white"></i></button>
-                                    </form>
-                                </td> --}}
+                                    </form> --}}
+                                {{-- </td> --}}
                             </tr>
                             @endforeach
                         </tbody>

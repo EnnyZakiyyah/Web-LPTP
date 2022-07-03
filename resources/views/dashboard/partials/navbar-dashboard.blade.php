@@ -48,12 +48,17 @@
     <li class="nav-item">
         <a href="/dashboard/peminjamans"
             class="nav-link {{ Request::is('/dashboard/peminjamans') ? 'active' : '' }}"><span
-                class="pcoded-micon"><i class="feather icon-user"></i></span><span class="pcoded-mtext">Transaksi Peminjaman</span></a>
+                class="pcoded-micon"><i class="feather icon-file"></i></span><span class="pcoded-mtext">Transaksi Peminjaman</span></a>
     </li>
     <li class="nav-item">
         <a href="/dashboard/bookcollection"
             class="nav-link {{ Request::is('dashboard/bookcollection') ? 'active' : '' }}"><span
-                class="pcoded-micon"><i class="feather icon-user"></i></span><span class="pcoded-mtext">Koleksi Buku</span></a>
+                class="pcoded-micon"><i class="feather icon-book"></i></span><span class="pcoded-mtext">Koleksi Buku</span></a>
+    </li>
+    <li class="nav-item">
+        <a href="/dashboard/ajuan-perpanjangan"
+            class="nav-link {{ Request::is('dashboard/ajuan-perpanjangan') ? 'active' : '' }}"><span
+                class="pcoded-micon"><i class="feather icon-file-plus"></i></span><span class="pcoded-mtext">Ajuan Perpanjangan</span></a>
     </li>
     <li class="nav-item pcoded-menu-caption">
         <label>Forms</label>

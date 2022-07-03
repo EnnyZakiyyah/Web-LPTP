@@ -14,6 +14,7 @@ use App\Http\Controllers\KeanggotaanController;
 use App\Http\Controllers\BebasPustakaController;
 use App\Http\Controllers\BibliographyController;
 use App\Http\Controllers\PengembalianController;
+use App\Http\Controllers\PerpanjanganController;
 use App\Http\Controllers\DashboardUserController;
 use App\Http\Controllers\KoleksiDigitalController;
 use App\Http\Controllers\DashboardAuthorController;
@@ -25,6 +26,7 @@ use App\Http\Controllers\DashboardCategoryController;
 use App\Http\Controllers\DashboardPeminjamanController;
 use App\Http\Controllers\DashboardBibliographyController;
 use App\Http\Controllers\DashboardPengembalianController;
+use App\Http\Controllers\DashboardPerpanjanganController;
 use App\Http\Controllers\DashboardKoleksiDigitalController;
 use App\Http\Controllers\DashboardPenelusuranKatalogController;
 
@@ -44,8 +46,8 @@ Route::get('/', [HomeController::class, 'index']);
 Route::resource('/home/sirkulasi/peminjaman-buku', PeminjamanController::class)->except('show')->middleware('admin'); 
 Route::resource('/home/sirkulasi/pengembalian-buku', PengembalianController::class)->except('show')->middleware('admin');
 Route::get('/home/sirkulasi/penelusuran-katalog', [KatalogController::class, 'index']);
-Route::get('/home/sirkulasi/perpanjangan/{peminjaman:slug}', [PeminjamanController::class, 'perpanjangan']);
-Route::get('/home/sirkulasi/penelusuran-katalog/detail/{katalog:slug}', [KatalogController::class, 'show']);
+Route::get('/home/sirkulasi/perpanjangan', [PerpanjanganController::class, 'showForm']);
+Route::post('/home/sirkulasi/perpanjangan', [PerpanjanganController::class, 'send'])->name('send.perpanjangan');
 Route::get('/home/sirkulasi/penelusuran-katalog/{katalog:slug}', [KatalogController::class, 'pinjam']);
 Route::resource('/home/sirkulasi/bebas-pustaka', BebasPustakaController::class)->except('show')->middleware('admin');
 //Home-Layanan
@@ -108,6 +110,9 @@ Route::middleware(['auth', 'role:admin|admin'])->group(function () {
     
     //Contact-us
     Route::get('/dashboard/contact-us', [DashboardContactController::class, 'index']);
+     
+    //Ajuan Perpanjangan
+    Route::resource('/dashboard/ajuan-perpanjangan', DashboardPerpanjanganController::class);
     
     //Peminjaman
     Route::get('/dashboard/peminjamans/checkSlug', [DashboardPeminjamanController::class, 'checkSlug']);
@@ -118,8 +123,6 @@ Route::middleware(['auth', 'role:admin|admin'])->group(function () {
     Route::resource('/dashboard/peminjamans', DashboardPeminjamanController::class);
     
     //Pengembalian
-    // Route::resource('/dashboard/sirkulasi/pengembalians/', [DashboardPengembalianController::class, 'index']);
-    // Route::get('/dashboard/sirkulasi/pengembalians', [DashboardPengembalianController::class, 'restore']);
     Route::get('/dashboard/sirkulasi/pengembalians/checkSlug', [DashboardPengembalianController::class, 'checkSlug']);
     Route::resource('/dashboard/sirkulasi/pengembalians', DashboardPengembalianController::class);
 

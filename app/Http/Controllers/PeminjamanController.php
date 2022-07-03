@@ -126,9 +126,5 @@ class PeminjamanController extends Controller
     {
         //
     }
-
-    public function perpanjangan(Peminjaman $peminjaman)
-    {
-        dd($peminjaman);
-    }
+    
 }
