@@ -86,6 +86,7 @@ class DashboardPengembalianController extends Controller
      */
     public function destroy(Peminjaman $peminjaman)
     {
-        //
+        Peminjaman::destroy($peminjaman->id);
+        return redirect('/dashboard/sirkulasi/pengembalians')->with('success', 'Data Peminjaman has been deleted!');
     }
 }

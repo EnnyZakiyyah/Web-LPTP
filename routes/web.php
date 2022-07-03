@@ -119,7 +119,7 @@ Route::middleware(['auth', 'role:admin|admin'])->group(function () {
     
     //Pengembalian
     // Route::resource('/dashboard/sirkulasi/pengembalians/', [DashboardPengembalianController::class, 'index']);
-    Route::get('/dashboard/sirkulasi/pengembalians', [DashboardPengembalianController::class, 'restore']);
+    // Route::get('/dashboard/sirkulasi/pengembalians', [DashboardPengembalianController::class, 'restore']);
     Route::get('/dashboard/sirkulasi/pengembalians/checkSlug', [DashboardPengembalianController::class, 'checkSlug']);
     Route::resource('/dashboard/sirkulasi/pengembalians', DashboardPengembalianController::class);
 

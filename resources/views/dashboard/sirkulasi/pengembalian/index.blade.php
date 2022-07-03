@@ -75,7 +75,7 @@
                                 <td>
                                     <a href="/dashboard/peminjamans/{{ $pengembalian->slug }}"
                                         class="badge bg-info"><i class="feather icon-eye" style="color: white"></i></a>
-                                    <form action="/dashboard/sirkulasi/pengembalians/{{ $pengembalian->slug }}" method="POST" class="d-inline">
+                                    <form action="/dashboard/peminjamans/{{ $pengembalian->slug }}" method="POST" class="d-inline">
                                         @method('delete')
                                         @csrf
                                         <button class="badge bg-danger border-0" onclick="return confirm('Are you sure?')"><i class="feather icon-trash" style="color: white"></i></button>

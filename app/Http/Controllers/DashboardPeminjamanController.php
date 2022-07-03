@@ -155,13 +155,6 @@ class DashboardPeminjamanController extends Controller
      */
     public function destroy(Peminjaman $peminjaman)
     {
-        // if (Peminjaman::destroy($peminjaman->id)) {
-        //     $peminjaman->update([
-        //         'id_status' => 1,
-        //         'id_petugas' => auth()->user()->id
-        //     ]);
-        // }
-        // $peminjaman->save();
         Peminjaman::destroy($peminjaman->id);
         return redirect('/dashboard/peminjamans')->with('success', 'Data Peminjaman has been deleted!');
     }
