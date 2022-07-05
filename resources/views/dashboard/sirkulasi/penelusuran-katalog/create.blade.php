@@ -135,19 +135,18 @@
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label for="lokasi" class="col-md-2 col-form-label">Lokasi</label>
-                            <div class="col-md-10">
-                                <select class="form-control" id="lokasi" name="lokasi_id">
-                                    @foreach ($lokasis as $lokasi)
-                                    @if (old('lokasi_id') == $lokasi->id)
-                                    <option value="{{ $lokasi->id }}" selected>{{ $lokasi->nama }}</option>
+                            <label for="category" class="col-md-2 col-form-label">Category</label>
+                                <div class="col-md-10">
+                                <select class="form-control" id="category" name="category_id">
+                                    @foreach ($categories as $category)
+                                    @if (old('category_id') == $category->id)
+                                    <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
                                     @else
-                                    <option value="{{ $lokasi->id }}">{{ $lokasi->nama }}</option>
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
                                     @endif
                                     @endforeach
                                 </select>
-                              {{-- <input class="form-control" type="text" name="lokasi" id="lokasi" value="{{ old('lokasi') }}"/> --}}
-                            </div>
+                                </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="image" class="col-md-2 col-form-label">Upload Gambar</label>

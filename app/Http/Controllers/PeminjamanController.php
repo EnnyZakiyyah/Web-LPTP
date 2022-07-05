@@ -30,7 +30,10 @@ class PeminjamanController extends Controller
                     ])->orWhere([
                         ['id_peminjam', auth()->user()->id],
                         ['id_status', 2]
-                    ])->get()
+                    ])->orWhere([
+                        ['id_peminjam', auth()->user()->id],
+                        ['id_status', 5]
+                    ])->latest()->paginate(5)->withQueryString()
             ]);
         } 
     }

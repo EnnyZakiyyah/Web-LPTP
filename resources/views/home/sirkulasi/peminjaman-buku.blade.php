@@ -29,12 +29,13 @@
               <thead>
                 <tr>
                   <th scope="col">No</th>
-                  <th scope="col">No Identitas</th>
+                  <th scope="col">No Peminjaman</th>
                   <th scope="col">Nomor ISBN</th>
                   <th scope="col">Nama Buku</th>
                   <th scope="col">Tanggal Peminjaman</th>
                   <th scope="col">Tanggal Pengembalian</th>
                   <th scope="col">Status</th>
+                  <th scope="col">Perpanjangan</th>
                 </tr>
               </thead>
               <tbody>
@@ -57,12 +58,12 @@
                   <td>{{ $peminjaman->katalogs->isbn }}</td>
                    <td>@if ($peminjaman->katalogs->isbn)
                     {{ $peminjaman->katalogs->title }}
-                  </td>
-                  <td>@elseif ($peminjaman->bibliographies->isbn)
+                  @elseif ($peminjaman->bibliographies->isbn)
                      {{ $peminjaman->bibliographies->title }} </td>
                   @endif
                   <td>{{ $peminjaman->tgl_pinjam }}</td>
                   <td>{{ $peminjaman->tgl_kembali }}</td>
+                  {{-- <td></td> --}}
                
                   @if ($peminjaman->status->nama == 'Konfirmasi')
                   <td><span class="badge rounded-pill bg-success text-white">{{ $peminjaman->status->nama }}</span></td> 
@@ -70,10 +71,12 @@
                   <td><span class="badge rounded-pill bg-primary text-white">{{ $peminjaman->status->nama }}</span></td>
                   @elseif ($peminjaman->status->nama == 'Pending')
                   <td><span class="badge rounded-pill bg-danger text-white">{{ $peminjaman->status->nama }}</span></td>
+                  @elseif ($peminjaman->status->nama == 'Ditolak')
+                  <td><span class="badge rounded-pill bg-secondary text-white">{{ $peminjaman->status->nama }}</span></td>
                   @else
                   <td><span class="badge rounded-pill bg-warning text-white">{{ $peminjaman->status->nama }}</span></td>
                   @endif
-                  
+                  <td><a href="/home/sirkulasi/perpanjangan" class="badge rounded-pill bg-warning text-white">Ajukan</a></td>
                 </tr>
                 @endforeach
               </tbody>
@@ -83,7 +86,7 @@
             <nav aria-label="Page navigation example" class="mt-3">
               <ul class="pagination justify-content-center">
                 <li class="page-item">
-                  {{-- {{ $peminjamans->links() }} --}}
+                  {{ $peminjamans->links() }}
                 </li>
               </ul>
             </nav>

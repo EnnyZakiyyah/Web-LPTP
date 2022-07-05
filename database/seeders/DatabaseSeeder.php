@@ -126,5 +126,11 @@ class DatabaseSeeder extends Seeder
             'nama' => 'Konfirmasi'
         ]);
 
+        Status::create([
+            'nama' => 'Ditolak'
+        ]);
+
+        
+
     }
 }

@@ -48,6 +48,7 @@
                                 <th>Nama Buku</th>
                                 <th>Tgl Pinjam</th>
                                 <th>Tgl Kembali</th>
+                                <th>Tanggal Pengembalian</th>
                                 <th>Status</th>
                                 <th>Denda</th>
                                 <th>Aksi</th>
@@ -62,6 +63,7 @@
                                 <td>{{ $pengembalian->katalogs->title }}</td>
                                 <td>{{ $pengembalian->tgl_pinjam }}</td>
                                 <td>{{ $pengembalian->tgl_kembali }}</td>
+                                <td>{{ $pengembalian->tgl_pengembalian }}</td>
                                 @if ($pengembalian->status->nama == 'Konfirmasi')
                                 <td><span class="badge rounded-pill bg-success text-white">{{ $pengembalian->status->nama }}</span></td> 
                                 @elseif ($pengembalian->status->nama == 'Kembali')
@@ -75,11 +77,11 @@
                                 <td>
                                     <a href="/dashboard/peminjamans/{{ $pengembalian->slug }}"
                                         class="badge bg-info"><i class="feather icon-eye" style="color: white"></i></a>
-                                    <form action="/dashboard/peminjamans/{{ $pengembalian->slug }}" method="POST" class="d-inline">
+                                    {{-- <form action="/dashboard/peminjamans/{{ $pengembalian->slug }}" method="POST" class="d-inline">
                                         @method('delete')
                                         @csrf
                                         <button class="badge bg-danger border-0" onclick="return confirm('Are you sure?')"><i class="feather icon-trash" style="color: white"></i></button>
-                                    </form>
+                                    </form> --}}
                                 </td>
                             </tr>
                             @endforeach

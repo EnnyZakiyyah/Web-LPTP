@@ -68,6 +68,7 @@ class KatalogController extends Controller
                         ->join('peminjamans', 'katalogs.id', '=', 'peminjamans.id_buku')
                         ->where('id_peminjam', auth()->user()->id)
                         ->where('id_status', '!=', 1)
+                        ->where('id_status', '!=', 5)
                         ->get();
                     if ($peminjaman_lama->count() == 2) {
                         return redirect('/home/sirkulasi/peminjaman-buku')->with('loginError', 'Maksimal 2 buku!');
@@ -91,6 +92,7 @@ class KatalogController extends Controller
                         ->join('peminjamans', 'bibliographies.id', '=', 'peminjamans.id_bibliography')
                         ->where('id_peminjam', auth()->user()->id)
                         ->where('id_status', '!=', 1)
+                        ->where('id_status', '!=', 5)
                         ->get();
                     if ($peminjaman_lama->count() == 2) {
                         return redirect('/home/layanan/bibliographies')->with('loginError', 'Maksimal 2 buku!');

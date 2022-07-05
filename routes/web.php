@@ -46,6 +46,7 @@ Route::get('/', [HomeController::class, 'index']);
 Route::resource('/home/sirkulasi/peminjaman-buku', PeminjamanController::class)->except('show')->middleware('admin'); 
 Route::resource('/home/sirkulasi/pengembalian-buku', PengembalianController::class)->except('show')->middleware('admin');
 Route::get('/home/sirkulasi/penelusuran-katalog', [KatalogController::class, 'index']);
+Route::get('/home/sirkulasi/penelusuran-katalog/detail/{katalog:slug}', [KatalogController::class, 'show']);
 Route::get('/home/sirkulasi/perpanjangan', [PerpanjanganController::class, 'showForm']);
 Route::post('/home/sirkulasi/perpanjangan', [PerpanjanganController::class, 'send'])->name('send.perpanjangan');
 Route::get('/home/sirkulasi/penelusuran-katalog/{katalog:slug}', [KatalogController::class, 'pinjam']);
@@ -119,7 +120,8 @@ Route::middleware(['auth', 'role:admin|admin'])->group(function () {
     Route::get('/dashboard/peminjaman-buku/{peminjaman:slug}', [DashboardPinjamController::class, 'pinjam']);
     Route::get('/dashboard/pengembalian-buku/{peminjaman:slug}', [DashboardPinjamController::class, 'kembali']);
     Route::get('/dashboard/konfirmasi-buku/{peminjaman:slug}', [DashboardPinjamController::class, 'konfirmasi']);
-    Route::post('/dashboard/kondisi/peminjamans/{peminjaman:slug}', [DashboardPinjamController::class, 'kondisi']);
+    Route::get('/dashboard/tolak-peminjaman/{peminjaman:slug}', [DashboardPinjamController::class, 'tolak']);
+    Route::put('/dashboard/kondisi-peminjaman/{peminjaman:slug}', [DashboardPinjamController::class, 'kondisi']);
     Route::resource('/dashboard/peminjamans', DashboardPeminjamanController::class);
     
     //Pengembalian

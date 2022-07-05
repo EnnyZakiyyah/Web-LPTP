@@ -26,8 +26,8 @@ class DashboardPeminjamanController extends Controller
         if ($peminjaman->id_status != 1 ) {
             return view('dashboard.peminjaman.index', [
                 'title' => 'Peminjaman Buku',
-                'peminjamans' => Peminjaman::where('id_status', 2 )->orWhere('id_status', 3)->orWhere('id_status', 4)->get(),
-                'kondisis' => Condition::all()
+                'peminjamans' => Peminjaman::where('id_status', 2 )->orWhere('id_status', 3)->orWhere('id_status', 4)->orWhere('id_status', 5)->get(),
+                'conditions' => Condition::all()
             ]); 
         } 
     }

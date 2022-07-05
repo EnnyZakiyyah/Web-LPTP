@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Models\Katalog;
 use App\Models\Peminjaman;
 use App\Models\Bibliography;
+use App\Models\Condition;
 use Illuminate\Http\Request;
 
 class DashboardPinjamController extends Controller
@@ -57,13 +58,25 @@ class DashboardPinjamController extends Controller
     return redirect('/dashboard/peminjamans')->with('success', 'Data Peminjaman has been confirmationed!');
     }
 
-    public function kondisi(Peminjaman $peminjaman)
+    public function kondisi(Peminjaman $peminjaman, Request $request)
     {
+        $validateData = $request->validate([
+            'id_kondisi' => '',
+        ]);
+            
+        Peminjaman::where('id', $peminjaman->id)->update($validateData);
+        return redirect('/dashboard/peminjamans')->with('success', 'Kondisi Buku has been confirmationed!');
+    }
+
+    public function tolak(Peminjaman $peminjaman)
+    {
+        // dd($peminjaman);
         $peminjaman->update([
-            'id_kondisi' => $peminjaman->id_kondisi
+            'id_petugas' => auth()->user()->id,
+            'id_status' => 5
         ]);
         $peminjaman->save();
-        return redirect('/dashboard/peminjamans')->with('success', 'Kondisi Buku has been confirmationed!');
+        return redirect('/dashboard/peminjamans')->with('success', 'Kondisi Buku has been rejected !');
     }
     
 }

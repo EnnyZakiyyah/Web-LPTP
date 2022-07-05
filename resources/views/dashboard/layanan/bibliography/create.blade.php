@@ -64,7 +64,7 @@
                                 </select>
                                 </div>
                           </div>
-                          <div class="mb-3 row">
+                          {{-- <div class="mb-3 row">
                             <label for="label_id" class="col-md-2 col-form-label">Jenis Label</label>
                             <div class="col-md-10">
                                 <input class="form-control @error('label_id') is-invalid @enderror" type="text" name="label_id" id="label_id" value="2" readonly/>
@@ -83,7 +83,7 @@
                                     @endforeach
                                   </select>
                             </div>
-                        </div>
+                        </div> --}}
                           <div class="mb-3 row">
                             <label for="edisi" class="col-md-2 col-form-label">Edisi</label>
                             <div class="col-md-10">

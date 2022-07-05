@@ -73,6 +73,7 @@ class DashboardBibliographyController extends Controller
         if ($request->file('image')) {
             $validateData['image'] = $request->file('image')->store('bibliographies-images');
         }
+        $validateData['label_id'] = 2;
         $validateData['author_id'] = implode(', ', $request->author_id);
         $validateData['title'] = Str::limit(strip_tags($request->title), 35);
         $validateData['excerpt'] = Str::limit(strip_tags($request->body), 100);
@@ -126,8 +127,6 @@ class DashboardBibliographyController extends Controller
             'category_id' => 'required',
             'body' => 'required',
             'edisi' => '',
-            // 'isbn' => 'required|unique:bibliographies',
-            'label_id' => 'required',
             'penerbit' => '',
             'tahun_terbit' => '',
             'tempat_terbit' => '',
@@ -155,6 +154,7 @@ class DashboardBibliographyController extends Controller
             }
             $validateData['image'] = $request->file('image')->store('bibliographies-images');
         }
+        $validateData['label_id'] = 2;
         $validateData['author_id'] = implode(', ', $request->author_id);
         $validateData['title'] = Str::limit(strip_tags($request->title), 35);
         $validateData['excerpt'] = Str::limit(strip_tags($request->body), 100);
