@@ -15,8 +15,8 @@ class KeanggotaanController extends Controller
     public function index()
     {
         return view('home.layanan.keanggotaan', [
-                    "title" => "Layanan",
-                    // "keanggotaan" => User::all()
+                    'title' => 'Layanan',
+                    'keanggotaan' => User::where('id', auth()->user()->id)->get()
                 ]);
     }
 

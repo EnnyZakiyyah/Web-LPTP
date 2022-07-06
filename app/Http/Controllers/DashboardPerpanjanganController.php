@@ -88,26 +88,7 @@ class DashboardPerpanjanganController extends Controller
         Perpanjangan::destroy($perpanjangan->id);
         return redirect('/dashboard/ajuan-perpanjangan')->with('success', 'Data Ajuan has been deleted!');
     }
-
-    // public function tolak(Perpanjangan $perpanjangan, Request $request, $id)
-    // {
-    //     $validatedData = $request->validate([
-    //         'ajuan' => '',
-    //     ]);
-    //     Perpanjangan::whereId($id)->update($validatedData);
-    //     // dd($validatedData);
-    //     return redirect('/dashboard/ajuan-perpanjangan')->with('success', 'Perpanjangan has been rejected!');
-    // }
-
-    // public function setujui(Perpanjangan $perpanjangan, Request $request, $id)
-    // {
-    //     $validateData = $request->validate([
-    //         'ajuan' => '',
-    //     ]);
-            
-    //     Perpanjangan::whereId($id)->update($validateData);
-    //     return redirect('/dashboard/ajuan-perpanjangan')->with('success', 'Perpanjangan has been approved!');
-    // }
+    
     public function tolak(Peminjaman $peminjaman, Request $request)
     {
         $validateData = $request->validate([
@@ -129,13 +110,6 @@ class DashboardPerpanjanganController extends Controller
                 'id_perpanjangan' => 'Disetujui',
         ]);
         $peminjaman->save();
-
-        // $validateData = $request->validate([
-        //     'id_perpanjangan' => '',
-        // ]);
-            
-        // Peminjaman::where('id', $peminjaman->id)->update($validateData);
-        // dd($validateData);
         return redirect('/dashboard/peminjamans')->with('success', 'Perpanjangan has been approved!');
     }
 }
