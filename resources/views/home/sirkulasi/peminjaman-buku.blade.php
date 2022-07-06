@@ -23,9 +23,6 @@
           <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
             <div style="overflow-x:auto;">
             <table class="table table-hover">
-              <a href="/home/sirkulasi/perpanjangan" class="btn btn-primary">
-                Perpanjangan
-              </a>
               <thead>
                 <tr>
                   <th scope="col">No</th>
@@ -76,7 +73,33 @@
                   @else
                   <td><span class="badge rounded-pill bg-warning text-white">{{ $peminjaman->status->nama }}</span></td>
                   @endif
-                  <td><a href="/home/sirkulasi/perpanjangan" class="badge rounded-pill bg-warning text-white">Ajukan</a></td>
+                  @if ($peminjaman->status->nama == 'Sedang Dipinjam')
+                      @if ($peminjaman->id_perpanjangan == null)
+                      <td>
+                        <form action="/home/sirkulasi/ajukan-perpanjangan/{{ $peminjaman->slug }}" method="POST"
+                        class="d-inline" enctype="multipart/form-data">
+                        @method('put')
+                        @csrf
+                        <input type="hidden" value="Pengajuan" name="id_perpanjangan">
+                        <button type="submit" class="badge bg-info border-0 text-white">Ajukan</button>
+                        </form>
+                      </td>
+                      @endif
+                      @if ($peminjaman->id_perpanjangan == 'Pengajuan')
+                      <td><a class="badge rounded-pill bg-warning text-white text-decoration-none">Sedang Diajukan</a></td>
+                      @endif
+                      @if ($peminjaman->id_perpanjangan == 'Disetujui')
+                      <td><a class="badge rounded-pill bg-success text-white text-decoration-none">Disetujui</a></td>
+                      @elseif ($peminjaman->id_perpanjangan == 'Ditolak')
+                      <td><a class="badge rounded-pill bg-secondary text-white text-decoration-none">Ditolak</a></td>
+                      @else
+                      @endif
+                  @else
+                  @if ($peminjaman->id_perpanjangan == 'Disetujui')
+                  <td><a class="badge rounded-pill bg-success text-white text-decoration-none">Disetujui</a></td>
+                  @endif
+                  <td></td>
+                  @endif
                 </tr>
                 @endforeach
               </tbody>

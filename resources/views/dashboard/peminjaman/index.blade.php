@@ -51,14 +51,16 @@
                                 <th>Tgl Pinjam</th>
                                 <th>Tgl Kembali</th>
                                 <th>Status</th>
-                                <th>Kondisi Buku Peminjaman</th>
+                                <th>Kondisi Buku</th>
+                                <th>Perpanjangan</th>
                                 <th>Aksi</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($peminjamans as $peminjaman)
                             @if ($peminjaman->id_status == 1)
-                                
+
                             @endif
                             <tr>
                                 <th scope="row">{{ $loop->iteration }}</th>
@@ -67,58 +69,163 @@
                                 <td>{{ $peminjaman->katalogs->title }}</td>
                                 <td>{{ $peminjaman->tgl_pinjam }}</td>
                                 <td>{{ $peminjaman->tgl_kembali }}</td>
-                                @if ($peminjaman->status->nama == 'Konfirmasi')
-                                <td><span
+                                {{-- ===== STATUS ===== --}}
+                                <td>@if ($peminjaman->status->nama == 'Konfirmasi')
+                                    <span
                                         class="badge rounded-pill bg-success text-white">{{ $peminjaman->status->nama }}</span>
-                                </td>
-                                @elseif ($peminjaman->status->nama == 'Kembali')
-                                <td><span
-                                        class="badge rounded-pill bg-primary text-white">{{ $peminjaman->status->nama }}</span>
-                                </td>
-                                @elseif ($peminjaman->status->nama == 'Pending')
-                                <td><span
-                                        class="badge rounded-pill bg-danger text-white">{{ $peminjaman->status->nama }}</span>
-                                </td>
-                                @elseif ($peminjaman->status->nama == 'Ditolak')
-                                <td><span
-                                        class="badge rounded-pill bg-dark text-white">{{ $peminjaman->status->nama }}</span>
-                                </td>
-                                @else
-                                <td><span
-                                        class="badge rounded-pill bg-warning text-white">{{ $peminjaman->status->nama }}</span>
-                                </td>
-                               @endif
 
+                                    @elseif ($peminjaman->status->nama == 'Kembali')
+                                    <span
+                                        class="badge rounded-pill bg-primary text-white">{{ $peminjaman->status->nama }}</span>
+
+                                    @elseif ($peminjaman->status->nama == 'Pending')
+                                    <span
+                                        class="badge rounded-pill bg-danger text-white">{{ $peminjaman->status->nama }}</span>
+
+                                    @elseif ($peminjaman->status->nama == 'Ditolak')
+                                    <span
+                                        class="badge rounded-pill bg-dark text-white">{{ $peminjaman->status->nama }}</span>
+
+                                    @else
+                                    <span
+                                        class="badge rounded-pill bg-warning text-white">{{ $peminjaman->status->nama }}</span>
+                                    @endif
+                                </td>
+                                {{-- ===== KONDISI BUKU ===== --}}
                                 <td>
+                                    @if ($peminjaman->id_kondisi == null)
+                                    @if ($peminjaman->id_perpanjangan == null)
+                                    @if ($peminjaman->status->nama == 'Sedang Dipinjam')
                                     <form action="/dashboard/kondisi-peminjaman/{{ $peminjaman->slug }}" method="POST"
                                         class="d-inline" enctype="multipart/form-data">
                                         @method('put')
                                         @csrf
                                         <input type="hidden" value="1" name="id_kondisi">
-                                        <button type="submit" class="badge bg-danger border-0 text-white">Hilang</button>
+                                        <button type="submit"
+                                            class="badge bg-danger border-0 text-white">Hilang</button>
                                     </form>
                                     <form action="/dashboard/kondisi-peminjaman/{{ $peminjaman->slug }}" method="POST"
                                         class="d-inline" enctype="multipart/form-data">
                                         @method('put')
                                         @csrf
                                         <input type="hidden" value="2" name="id_kondisi">
-                                        <button type="submit" class="badge bg-success border-0 text-white">Bagus</button>
+                                        <button type="submit"
+                                            class="badge bg-warning border-0 text-white">Rusak</button>
                                     </form>
                                     <form action="/dashboard/kondisi-peminjaman/{{ $peminjaman->slug }}" method="POST"
                                         class="d-inline" enctype="multipart/form-data">
                                         @method('put')
                                         @csrf
                                         <input type="hidden" value="3" name="id_kondisi">
-                                        <button type="submit" class="badge bg-warning border-0 text-white">Rusak</button>
+                                        <button type="submit"
+                                            class="badge bg-success border-0 text-white">Bagus</button>
                                     </form>
+                                    @else
+                                    {{-- <td></td>  --}}
+                                    @endif
+                                    @endif
+                                    @endif
+                                    {{-- <td></td> --}}
+                                    @if ($peminjaman->id_kondisi != null)
+                                    <a class="badge bg-primary text-white">Berhasil Dikonfirmasi</a>
+                                    
+
+                                    {{-- KONDISI 2 --}}
+                                    <br>
+                                    @elseif ($peminjaman->status->nama == 'Perpanjangan')
+                                    <form action="/dashboard/kondisi-peminjaman/{{ $peminjaman->slug }}" method="POST"
+                                        class="d-inline" enctype="multipart/form-data">
+                                        @method('put')
+                                        @csrf
+                                        <input type="hidden" value="1" name="id_kondisi">
+                                        <button type="submit"
+                                            class="badge bg-danger border-0 text-white">Hilang</button>
+                                    </form>
+                                    <form action="/dashboard/kondisi-peminjaman/{{ $peminjaman->slug }}" method="POST"
+                                        class="d-inline" enctype="multipart/form-data">
+                                        @method('put')
+                                        @csrf
+                                        <input type="hidden" value="2" name="id_kondisi">
+                                        <button type="submit"
+                                            class="badge bg-warning border-0 text-white">Rusak</button>
+                                    </form>
+                                    <form action="/dashboard/kondisi-peminjaman/{{ $peminjaman->slug }}" method="POST"
+                                        class="d-inline" enctype="multipart/form-data">
+                                        @method('put')
+                                        @csrf
+                                        <input type="hidden" value="3" name="id_kondisi">
+                                        <button type="submit"
+                                            class="badge bg-success border-0 text-white">Bagus</button>
+                                    </form>
+                                    @elseif($peminjaman->id_perpanjangan == 'Ditolak')
+                                    <form action="/dashboard/kondisi-peminjaman/{{ $peminjaman->slug }}" method="POST"
+                                        class="d-inline" enctype="multipart/form-data">
+                                        @method('put')
+                                        @csrf
+                                        <input type="hidden" value="1" name="id_kondisi">
+                                        <button type="submit"
+                                            class="badge bg-danger border-0 text-white">Hilang</button>
+                                    </form>
+                                    <form action="/dashboard/kondisi-peminjaman/{{ $peminjaman->slug }}" method="POST"
+                                        class="d-inline" enctype="multipart/form-data">
+                                        @method('put')
+                                        @csrf
+                                        <input type="hidden" value="2" name="id_kondisi">
+                                        <button type="submit"
+                                            class="badge bg-warning border-0 text-white">Rusak</button>
+                                    </form>
+                                    <form action="/dashboard/kondisi-peminjaman/{{ $peminjaman->slug }}" method="POST"
+                                        class="d-inline" enctype="multipart/form-data">
+                                        @method('put')
+                                        @csrf
+                                        <input type="hidden" value="3" name="id_kondisi">
+                                        <button type="submit"
+                                            class="badge bg-success border-0 text-white">Bagus</button>
+                                    </form>
+                                    @else
+                                    @endif
                                 </td>
+                                {{-- ===== PERPANJANGAN ===== --}}
+                                <td>
+                                    @if ($peminjaman->id_perpanjangan != null)
+                                    @if ($peminjaman->id_perpanjangan == 'Pengajuan')
+                                    <a class="badge bg-info text-white">Mengajukan</a>
+                                    <br>
+                                    <form action="/dashboard/ajuan-disetujui/{{ $peminjaman->slug }}" method="POST"
+                                        class="d-inline" enctype="multipart/form-data">
+                                        @method('put')
+                                        @csrf
+                                        <input type="hidden" value="Disetujui" name="id_perpanjangan">
+                                        <button type="submit"
+                                            class="badge bg-success border-0 text-white">Disetujui</button>
+                                    </form>
+                                    <form action="/dashboard/ajuan-ditolak/{{ $peminjaman->slug }}" method="POST"
+                                        class="d-inline" enctype="multipart/form-data">
+                                        @method('put')
+                                        @csrf
+                                        <input type="hidden" value="Ditolak" name="id_perpanjangan">
+                                        <button type="submit"
+                                            class="badge bg-danger border-0 text-white">Ditolak</button>
+                                    </form>
+                                    @endif
+                                    @if ($peminjaman->id_perpanjangan == 'Disetujui')
+                                    <a
+                                        class="badge rounded-pill bg-success text-white text-decoration-none">Disetujui</a>
+                                    @elseif ($peminjaman->id_perpanjangan == 'Ditolak')
+                                    <a
+                                        class="badge rounded-pill bg-secondary text-white text-decoration-none">Ditolak</a>
+                                    @endif
+                                    @endif
+                                </td>
+                                {{-- ===== AKSI ===== --}}
                                 <td>
                                     @if ($peminjaman->status->nama == 'Konfirmasi')
-                                    <a href="/dashboard/peminjaman-buku/{{ $peminjaman->slug }}" class="badge bg-secondary"
-                                        style="color: white">Setujui</a> 
+                                    <a href="/dashboard/peminjaman-buku/{{ $peminjaman->slug }}"
+                                        class="badge bg-secondary" style="color: white">Setujui</a>
                                     @endif
-                                    @if ($peminjaman->status->nama == 'Sedang Dipinjam')
-                                        <a href="/dashboard/pengembalian-buku/{{ $peminjaman->slug }}" class="badge bg-primary border-0 text-white">Kembali</a>
+                                    @if ($peminjaman->id_kondisi != null)
+                                    <a href="/dashboard/pengembalian-buku/{{ $peminjaman->slug }}"
+                                        class="badge bg-primary border-0 text-white">Kembali</a>
                                     @endif
                                     @if ($peminjaman->status->nama == 'Pending')
                                     <a href="/dashboard/tolak-peminjaman/{{ $peminjaman->slug }}"
@@ -126,21 +233,20 @@
                                     <a href="/dashboard/konfirmasi-buku/{{ $peminjaman->slug }}"
                                         class="badge bg-success" style="color: white">Konfirmasi</a>
                                     @endif
-                                    {{-- @if($peminjaman->status->nama == 'Sedang Dipinjam')
-                                    <a href="/dashboard/peminjamans/{{ $peminjaman->slug }}/edit"
-                                        class="badge bg-warning"><i class="feather icon-edit"
-                                            style="color: white"></i></a>
-                                    @endif --}}
-                                    {{-- <br><form action="/dashboard/peminjamans/{{ $peminjaman->slug }}" method="POST"
-                                        class="d-inline">
-                                        @method('delete')
-                                        @csrf
-                                        <button class="badge bg-danger border-0"
-                                            onclick="return confirm('Are you sure?')"><i class="feather icon-trash"
-                                                style="color: white"></i></button>
-                                    </form> --}}
                                     @if ($peminjaman->status->nama == 'Ditolak')
                                     @endif
+                                    {{-- @if($peminjaman->status->nama == 'Sedang Dipinjam')
+                                    <a href="/dashboard/peminjamans/{{ $peminjaman->slug }}/edit"
+                                    class="badge bg-warning"><i class="feather icon-edit" style="color: white"></i></a>
+                                    @endif --}}
+                                    {{-- <br><form action="/dashboard/peminjamans/{{ $peminjaman->slug }}" method="POST"
+                                    class="d-inline">
+                                    @method('delete')
+                                    @csrf
+                                    <button class="badge bg-danger border-0"
+                                        onclick="return confirm('Are you sure?')"><i class="feather icon-trash"
+                                            style="color: white"></i></button>
+                                    </form> --}}
                                 </td>
                             </tr>
                             @endforeach

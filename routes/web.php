@@ -47,8 +47,10 @@ Route::resource('/home/sirkulasi/peminjaman-buku', PeminjamanController::class)-
 Route::resource('/home/sirkulasi/pengembalian-buku', PengembalianController::class)->except('show')->middleware('admin');
 Route::get('/home/sirkulasi/penelusuran-katalog', [KatalogController::class, 'index']);
 Route::get('/home/sirkulasi/penelusuran-katalog/detail/{katalog:slug}', [KatalogController::class, 'show']);
-Route::get('/home/sirkulasi/perpanjangan', [PerpanjanganController::class, 'showForm']);
-Route::post('/home/sirkulasi/perpanjangan', [PerpanjanganController::class, 'send'])->name('send.perpanjangan');
+// Route::get('/home/sirkulasi/perpanjangan/{peminjaman:slug}', [PerpanjanganController::class, 'perpanjangan']);
+Route::put('/home/sirkulasi/ajukan-perpanjangan/{peminjaman:slug}', [PerpanjanganController::class, 'perpanjangan']);
+// Route::get('/home/sirkulasi/perpanjangan', [PerpanjanganController::class, 'showForm']);
+// Route::post('/home/sirkulasi/perpanjangan', [PerpanjanganController::class, 'send'])->name('send.perpanjangan');
 Route::get('/home/sirkulasi/penelusuran-katalog/{katalog:slug}', [KatalogController::class, 'pinjam']);
 Route::resource('/home/sirkulasi/bebas-pustaka', BebasPustakaController::class)->except('show')->middleware('admin');
 //Home-Layanan
@@ -114,6 +116,10 @@ Route::middleware(['auth', 'role:admin|admin'])->group(function () {
      
     //Ajuan Perpanjangan
     Route::resource('/dashboard/ajuan-perpanjangan', DashboardPerpanjanganController::class);
+    // Route::put('/dashboard/tolak-pengajuan/{id}', [DashboardPerpanjanganController::class, 'tolak']);
+    // Route::put('/dashboard/setuju-pengajuan/{id}', [DashboardPerpanjanganController::class, 'setujui']);
+    Route::put('/dashboard/ajuan-ditolak/{peminjaman:slug}', [DashboardPerpanjanganController::class, 'tolak']);
+    Route::put('/dashboard/ajuan-disetujui/{peminjaman:slug}', [DashboardPerpanjanganController::class, 'setujui']);
     
     //Peminjaman
     Route::get('/dashboard/peminjamans/checkSlug', [DashboardPeminjamanController::class, 'checkSlug']);

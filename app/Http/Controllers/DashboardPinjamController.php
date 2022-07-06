@@ -76,7 +76,7 @@ class DashboardPinjamController extends Controller
             'id_status' => 5
         ]);
         $peminjaman->save();
-        return redirect('/dashboard/peminjamans')->with('success', 'Kondisi Buku has been rejected !');
+        return redirect('/dashboard/peminjamans')->with('success', 'Peminjaman Buku has been rejected !');
     }
     
 }

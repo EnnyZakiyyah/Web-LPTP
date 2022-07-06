@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
+use App\Models\Peminjaman;
 use App\Models\Perpanjangan;
 use Illuminate\Http\Request;
 
@@ -85,5 +87,55 @@ class DashboardPerpanjanganController extends Controller
     {
         Perpanjangan::destroy($perpanjangan->id);
         return redirect('/dashboard/ajuan-perpanjangan')->with('success', 'Data Ajuan has been deleted!');
+    }
+
+    // public function tolak(Perpanjangan $perpanjangan, Request $request, $id)
+    // {
+    //     $validatedData = $request->validate([
+    //         'ajuan' => '',
+    //     ]);
+    //     Perpanjangan::whereId($id)->update($validatedData);
+    //     // dd($validatedData);
+    //     return redirect('/dashboard/ajuan-perpanjangan')->with('success', 'Perpanjangan has been rejected!');
+    // }
+
+    // public function setujui(Perpanjangan $perpanjangan, Request $request, $id)
+    // {
+    //     $validateData = $request->validate([
+    //         'ajuan' => '',
+    //     ]);
+            
+    //     Perpanjangan::whereId($id)->update($validateData);
+    //     return redirect('/dashboard/ajuan-perpanjangan')->with('success', 'Perpanjangan has been approved!');
+    // }
+    public function tolak(Peminjaman $peminjaman, Request $request)
+    {
+        $validateData = $request->validate([
+            'id_perpanjangan' => '',
+        ]);
+        Peminjaman::where('id', $peminjaman->id)->update($validateData);
+        // dd($validateData);
+        return redirect('/dashboard/peminjamans')->with('success', 'Perpanjangan has been rejected!');
+    }
+
+    public function setujui(Peminjaman $peminjaman, Request $request)
+    {
+        $todayDate = date('Y/m/d');
+        $peminjaman->update([
+                'id_petugas' => auth()->user()->id,
+                'tgl_pinjam' => $todayDate,
+                'tgl_kembali' => Carbon::create($todayDate)->addDays(7),
+                'id_status' => 6,
+                'id_perpanjangan' => 'Disetujui',
+        ]);
+        $peminjaman->save();
+
+        // $validateData = $request->validate([
+        //     'id_perpanjangan' => '',
+        // ]);
+            
+        // Peminjaman::where('id', $peminjaman->id)->update($validateData);
+        // dd($validateData);
+        return redirect('/dashboard/peminjamans')->with('success', 'Perpanjangan has been approved!');
     }
 }

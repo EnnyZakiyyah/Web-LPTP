@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Peminjaman;
 use App\Models\Perpanjangan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -58,5 +59,16 @@ class PerpanjanganController extends Controller
         } else {
             return false;
         }
+    }
+
+    public function perpanjangan(Peminjaman $peminjaman, Request $request)
+    {
+        $validateData = $request->validate([
+            'id_perpanjangan' => '',
+        ]);
+        
+        Peminjaman::where('id', $peminjaman->id)->update($validateData);
+        // dd($validateData);
+        return redirect('/home/sirkulasi/peminjaman-buku')->with('success', 'Perpanjangan Buku sedang di ajukan! tunggu konfirmasi kembali');
     }
 }

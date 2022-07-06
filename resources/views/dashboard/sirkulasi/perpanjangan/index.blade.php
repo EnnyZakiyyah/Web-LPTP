@@ -24,7 +24,11 @@
             <div class="card-header">
                 <h5>{{ $title }}</h5>
             </div>
-    
+            @if (session()->has('success'))
+            <div class="alert alert-success" role="alert">
+                {{ session('success') }}
+            </div>
+            @endif
             <div class="card-body table-border-style">
                 <div class="table-responsive text-nowrap">
                     <table class="table table-hover">
@@ -36,18 +40,34 @@
                                 <th>Phone</th>
                                 <th>Alasan Pengajuan</th>
                                 <th>Created</th>
-                                {{-- <th>Aksi</th> --}}
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($perpanjangans as $perpanjangan)
                             <tr>
                                 <th scope="row">{{ $loop->iteration }}</th>
-                                <td>{{ $perpanjangan->name }}</td>
-                                <td>{{ $perpanjangan->email }}</td>
-                                <td>{{ $perpanjangan->phone }}</td>
+                                <td>{{ $perpanjangan->peminjaman->katalogs->title }}</td>
+                                <td>{{ $perpanjangan->peminjaman->users->name }}</td>
+                                <td>{{ $perpanjangan->peminjaman->users->no_tlpn }}</td>
                                 <td>{{ $perpanjangan->pesan }}</td>
-                                <td>{{ $perpanjangan->created_at }}</td>
+                                <td>{{ $perpanjangan->created_at->toFormattedDateString() }}</td>
+                                <td>
+                                    <form action="/dashboard/tolak-pengajuan/{{ $perpanjangan->id }}" method="POST"
+                                        class="d-inline" enctype="multipart/form-data">
+                                        @method('put')
+                                        @csrf
+                                        <input type="hidden" value="Ditolak" name="ajuan">
+                                        <button type="submit" class="badge bg-danger border-0 text-white">Ditolak</button>
+                                    </form>
+                                    <form action="/dashboard/setuju-pengajuan/{{ $perpanjangan->id }}" method="POST"
+                                        class="d-inline" enctype="multipart/form-data">
+                                        @method('put')
+                                        @csrf
+                                        <input type="hidden" value="Disetujui" name="ajuan">
+                                        <button type="submit" class="badge bg-success border-0 text-white">Disetujui</button>
+                                    </form>
+                                </td>
                                 {{-- <td> --}}
                                     {{-- <a href="/dashboard/authors/{{ $authors->slug }}/edit" class="badge bg-warning"><i class="feather icon-edit" style="color: white"></i></a> --}}
                                     {{-- <form action="/dashboard/ajuan-perpanjangan/{{ $perpanjangan->id }}" method="POST" class="d-inline">

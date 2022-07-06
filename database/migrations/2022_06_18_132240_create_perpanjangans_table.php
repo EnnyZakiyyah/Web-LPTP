@@ -15,11 +15,9 @@ class CreatePerpanjangansTable extends Migration
     {
         Schema::create('perpanjangans', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email');
-            $table->string('phone');
-            $table->string('subject');
+            $table->foreignId('peminjaman_id')->constrained('peminjamans')->onDelete('cascade')->onUpdate('cascade');
             $table->text('pesan');
+            $table->text('ajuan')->nullable();
             $table->timestamps();
         });
     }

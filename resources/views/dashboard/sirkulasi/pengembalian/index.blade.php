@@ -50,6 +50,7 @@
                                 <th>Tgl Kembali</th>
                                 <th>Tanggal Pengembalian</th>
                                 <th>Status</th>
+                                <th>Perpanjangan</th>
                                 <th>Denda</th>
                                 <th>Aksi</th>
                             </tr>
@@ -73,6 +74,7 @@
                                 @else
                                 <td><span class="badge rounded-pill bg-warning text-white">{{ $pengembalian->status->nama }}</span></td>
                                 @endif
+                                <td>{{ $pengembalian->id_perpanjangan }}</td>
                                 <td>{{ $pengembalian->denda }}</td>
                                 <td>
                                     <a href="/dashboard/peminjamans/{{ $pengembalian->slug }}"

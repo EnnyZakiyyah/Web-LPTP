@@ -51,6 +51,10 @@ class Peminjaman extends Model
         return $this->belongsTo(Lokasi::class, 'id_lokasi');
     }
 
+    public function perpanjangan(){
+        return $this->belongsTo(Perpanjangan::class, );
+    }
+
     public function getRouteKeyName()
     {
         return 'slug';
