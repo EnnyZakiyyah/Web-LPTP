@@ -25,14 +25,14 @@
             <li><a href="/dashboard/sirkulasi/pengembalians" target="_blank">Pengembalian Buku</a></li>
             <li><a href="/dashboard/sirkulasi/penelusuran-katalog" target="_blank">Penelusuran Katalog</a></li>
             {{-- <li><a href="/dashboard/sirkulasi/katalogs" target="_blank">Penelusuran Katalog</a></li> --}}
-            <li><a href="/dashboard/sirkulasi/bebaspustaka" target="_blank">Bebas Pustaka</a></li>
+            {{-- <li><a href="/dashboard/sirkulasi/bebaspustaka" target="_blank">Bebas Pustaka</a></li> --}}
         </ul>
     </li>
     <li class="nav-item pcoded-hasmenu">
         <a class="nav-link "><span class="pcoded-micon"><i class="feather icon-layout"></i></span><span
                 class="pcoded-mtext">Layanan</span></a>
         <ul class="pcoded-submenu {{ Request::is('/dashboard/layanan*/') ? 'active' : '' }}">
-            <li><a href="/dashboard/layanan/keanggotaan" target="_blank">Keanggotaan</a></li>
+            {{-- <li><a href="/dashboard/layanan/keanggotaan" target="_blank">Keanggotaan</a></li> --}}
             <li><a href="/dashboard/layanan/bibliography" target="_blank">Bibliography</a></li>
         </ul>
     </li>
@@ -55,11 +55,11 @@
             class="nav-link {{ Request::is('dashboard/bookcollection') ? 'active' : '' }}"><span
                 class="pcoded-micon"><i class="feather icon-book"></i></span><span class="pcoded-mtext">Koleksi Buku</span></a>
     </li>
-    <li class="nav-item">
+    {{-- <li class="nav-item">
         <a href="/dashboard/ajuan-perpanjangan"
             class="nav-link {{ Request::is('dashboard/ajuan-perpanjangan') ? 'active' : '' }}"><span
                 class="pcoded-micon"><i class="feather icon-file-plus"></i></span><span class="pcoded-mtext">Ajuan Perpanjangan</span></a>
-    </li>
+    </li> --}}
     <li class="nav-item pcoded-menu-caption">
         <label>Forms</label>
     </li>
