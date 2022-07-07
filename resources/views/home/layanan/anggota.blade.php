@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bebas Pustaka</title>
+    <title>Keanggotaan</title>
     <style>
         body{
+            background-color: #F6F6F6; 
             margin: 0;
             padding: 0;
         }
@@ -18,12 +19,12 @@
             padding: 0;
         }
         .container{
-            width: 90%;
+            width: 80%;
             margin-right: auto;
             margin-left: auto;
         }
         .brand-section{
-           /* background-color: #060b42; */
+           background-color: #060b42;
            padding: 10px 40px;
         }
         .logo{
@@ -45,21 +46,21 @@
             display: inline;
             clear: both;
         } 
-        /* .text-white{
+        .text-white{
             color: #fff;
-        } */
+        }
         .company-details{
             float: center;
             text-align: center;
         }
         .body-section{
             padding: 16px;
-            /* border: 1px solid gray; */
+            border: 1px solid gray;
         }
 
         .body-image{
             padding: 2px;
-            /* border: 1px solid gray; */
+            border: 1px solid gray;
         }
 
         .heading{
@@ -91,37 +92,18 @@
                 </div>
                 <div class="col-10">
                     <div class="company-details">
-                        <p ><h4>PERPUSTAKAAN</h4></p>
-                        <p ><h4>LEMBAGA PENGEMBANGAN TEKNOLOGI PEDESAAN</h4></p>
-                        <p ><h4>SURAKARTA</h4></p>
-                        <p style="font-size: 11px">Jl. Raya Palur Km. 5 Tagal Asri, RT.04/RW.06, Jurug, Ngringo, </p>
-                        <p style="font-size: 11px">Kec. Jaten, Kabupaten Karanganyar, Jawa Tengah 57731 </p>
+                        <p class="text-white" ><h2 style="color:#fff !important">PERPUSTAKAAN</h2></p>
+                        <p class="text-white" style="font-size: 14px">LEMBAGA PENGEMBANGAN TEKNOLOGI PEDESAAN</p>
+                        <p class="text-white" style="font-size: 14px">SURAKARTA</p>
                     </div>
                 </div>
             </div>
-            <hr style="border: 4px">
         </div>
 
         <div class="body-section">
-            <h3 class="heading" style="text-align: center">SURAT KETERANGAN BEBAS PERPUSTAKAAN</h3>
+            <h3 class="heading" style="text-align: center">KARTU ANGGOTA</h3>
             <br>
-            <p style="padding-left: 25px; text-align: justify; padding-right:25px;">Yang bertanda tangan di bawah ini, Petugas Perpustakaan Lembaga Pengembangan Teknologi Pedesaan menerangkan bahwa anggota :</p>
-            <br>
-            @foreach ($data as $row)
-            <p style="padding-left: 50px">Nama&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : {{ $row->name }}</p>
-            <p style="padding-left: 50px">No. Anggota		: {{ $row->no_ktp }}</p>
-            @endforeach
-            <br>
-            <p style="padding-left: 25px; text-align: justify; padding-right:25px; padding-bottom: 50px">Dinyatakan bebas dari segala peminjaman apapun di Perpustakaan Lembaga Pengembangan Teknologi Pedesaan. Demikian surat keterangan ini dibuat agar dapat digunakan sebagaimana mestinya.</p>
-            <span style="float:right; padding-right:25px;">
-                Surakarta, {{ now()->toDateString() }}
-                <br>
-                <br>
-                <br>
-                <br> Petugas Perpustakaan
-                <br> Lembaga Pengembangan Teknologi Pedesaan
-            </span>
-            {{-- <div class="row">
+            <div class="row">
                 <div class="col-10">
                     <table>
                         @foreach ($data as $row)
@@ -176,7 +158,7 @@
                <br> Petugas
             </span>
             </div>
-        </div>       --}}
+        </div>      
     </div>      
 
 </body>

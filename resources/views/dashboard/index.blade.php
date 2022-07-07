@@ -29,7 +29,7 @@
                             <div class="card-body">
                                 <div class="row align-items-center">
                                     <div class="col-8">
-                                        <h4 class="text-c-yellow">200</h4>
+                                        <h4 class="text-c-yellow">{{ $katalogs->count() }}</h4>
                                         <h6 class="text-muted m-b-0">Buku</h6>
                                     </div>
                                     <div class="col-4 text-right">
@@ -54,7 +54,7 @@
                             <div class="card-body">
                                 <div class="row align-items-center">
                                     <div class="col-8">
-                                        <h4 class="text-c-green">290+</h4>
+                                        <h4 class="text-c-green">{{ auth()->user()->count() }}</h4>
                                         <h6 class="text-muted m-b-0">Anggota</h6>
                                     </div>
                                     <div class="col-4 text-right">
@@ -79,7 +79,7 @@
                             <div class="card-body">
                                 <div class="row align-items-center">
                                     <div class="col-8">
-                                        <h4 class="text-c-red">145</h4>
+                                        <h4 class="text-c-red">{{ $peminjamans->count() }}</h4>
                                         <h6 class="text-muted m-b-0">Transaksi</h6>
                                     </div>
                                     <div class="col-4 text-right">
@@ -104,7 +104,7 @@
                             <div class="card-body">
                                 <div class="row align-items-center">
                                     <div class="col-8">
-                                        <h4 class="text-c-blue">500</h4>
+                                        <h4 class="text-c-blue">{{ $pengembalians->count() }}</h4>
                                         <h6 class="text-muted m-b-0">Riwayat</h6>
                                     </div>
                                     <div class="col-4 text-right">

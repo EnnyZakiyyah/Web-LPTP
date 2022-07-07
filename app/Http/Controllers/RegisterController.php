@@ -19,13 +19,15 @@ class RegisterController extends Controller
             'name' => 'required|max:255',
             'no_ktp' => 'required|unique:users',
             'tempat_lahir' => 'required',
+            'jk' => '',
             'tgl_lahir' => 'required',
             'email' => 'required|email:dns|unique:users',
             'username' => ['required', 'min:3', 'max:255', 'unique:users'],
             'password' =>'required|min:5|max:255',
             'no_tlpn' => 'required',
             'alamat' => 'required',
-            'image' => 'image|file|max:1024',
+            'image_bukti' => 'image|file|max:1024',
+            'image_foto' => 'image|file|max:1024',
             'is_admin' => ''
             
         ]);

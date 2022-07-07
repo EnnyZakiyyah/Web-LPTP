@@ -19,10 +19,21 @@
     </div>
     <div class="col-md-6">
         <label class="form-label">Nomor KTP</label>
-        <input type="text" id="no_ktp"
+        <input type="number" id="no_ktp"
             class="form-control @error('no_ktp')is-invalid @enderror" placeholder="658 799 8941"
             name="no_ktp" value="{{ old('no_ktp') }}" maxlength="16" required/>
         @error('no_ktp')
+        <div class="invalid-feedback">
+            {{ $message }}
+        </div>
+        @enderror
+    </div>
+    <div class="col-md-6">
+        <label class="form-label">Jenis Kelamin</label>
+        <input type="text" id="jk"
+            class="form-control @error('jk')is-invalid @enderror" placeholder="658 799 8941"
+            name="jk" value="{{ old('jk') }}" required/>
+        @error('jk')
         <div class="invalid-feedback">
             {{ $message }}
         </div>

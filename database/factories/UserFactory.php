@@ -18,6 +18,7 @@ class UserFactory extends Factory
             'name' => $this->faker->name(),
             'no_ktp' => $this->faker->unique()->randomNumber(5, true),
             'tempat_lahir' => $this->faker->city(),
+            'jk' => $this->faker->gender('Male|Female'),
             'tgl_lahir' => $this->faker->dateTime(),
             'username' => $this->faker->unique()->userName(),
             'email' => $this->faker->unique()->safeEmail(),
@@ -25,7 +26,8 @@ class UserFactory extends Factory
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'no_tlpn' => $this->faker->phoneNumber(),
             'alamat' => $this->faker->address() ,
-            'image' => $this->faker->image(null, 640, 480),
+            'image_bukti' => $this->faker->image(null, 640, 480),
+            'image_foto' => $this->faker->image(null, 640, 480),
             'remember_token' => Str::random(10),
         ];
     }

@@ -25,7 +25,7 @@
             <li><a href="/dashboard/sirkulasi/pengembalians" target="_blank">Pengembalian Buku</a></li>
             <li><a href="/dashboard/sirkulasi/penelusuran-katalog" target="_blank">Penelusuran Katalog</a></li>
             {{-- <li><a href="/dashboard/sirkulasi/katalogs" target="_blank">Penelusuran Katalog</a></li> --}}
-            <li><a href="/dashboard/sirkulasi/bebas-pustaka" target="_blank">Bebas Pustaka</a></li>
+            <li><a href="/dashboard/sirkulasi/bebaspustaka" target="_blank">Bebas Pustaka</a></li>
         </ul>
     </li>
     <li class="nav-item pcoded-hasmenu">

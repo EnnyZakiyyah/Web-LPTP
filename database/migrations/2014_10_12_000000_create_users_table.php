@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('no_ktp')->unique();
             $table->string('tempat_lahir');
+            $table->string('jk');
             $table->date('tgl_lahir');
             $table->string('username')->unique();
             $table->string('email')->unique();
@@ -25,7 +26,8 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('no_tlpn');
             $table->string('alamat');
-            $table->string('image')->nullable();
+            $table->string('image_bukti')->nullable();
+            $table->string('image_foto')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

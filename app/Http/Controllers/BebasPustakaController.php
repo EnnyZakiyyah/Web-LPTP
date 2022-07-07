@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Peminjaman;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade as PDF;
+use Illuminate\Support\Facades\DB;
 
 class BebasPustakaController extends Controller
 {
@@ -13,10 +17,11 @@ class BebasPustakaController extends Controller
      */
     public function index()
     {
-        return view('home.sirkulasi.bebas-pustaka', [
-                    "title" => "Sirkulasi"
-                ]);
+       
+               
     }
+        
+    
 
     /**
      * Show the form for creating a new resource.
@@ -47,7 +52,7 @@ class BebasPustakaController extends Controller
      */
     public function show($id)
     {
-        //
+        dd($id);
     }
 
     /**
@@ -82,5 +87,27 @@ class BebasPustakaController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function pustaka(Peminjaman $peminjaman)
+    {
+        // dd($peminjaman);
+        $data = User::where('id', auth()->user()->id)->get();
+                        
+        view()->share('data', $data);
+        $pdf = PDF::loadView('home/sirkulasi/bebas-pustaka');   
+        
+
+        $peminjaman_lama = DB::table('katalogs')
+                        ->join('peminjamans', 'katalogs.id', '=', 'peminjamans.id_buku')
+                        ->where('id_peminjam', auth()->user()->id)
+                        ->where('id_status', '!=', 2)
+                        ->where('id_status', '!=', 6)
+                        ->get();
+                        dd($peminjaman_lama);
+                        if ($peminjaman_lama == true) {
+                        }
+                        // dd($peminjaman_lama);
+                        return $pdf->download('cetak-bebas-pustaka.pdf');
     }
 }

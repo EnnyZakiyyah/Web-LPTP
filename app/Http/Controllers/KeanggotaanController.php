@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class KeanggotaanController extends Controller
 {
@@ -84,5 +85,16 @@ class KeanggotaanController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function cetak(Request $request)
+    {
+
+        $data = User::where('id', auth()->user()->id)->get();
+           
+        view()->share('data', $data);
+        $pdf = PDF::loadView('home/layanan/anggota');    
+        return $pdf->download('cetak-kartu.pdf');
+
     }
 }

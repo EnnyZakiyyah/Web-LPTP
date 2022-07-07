@@ -25,7 +25,7 @@
                 </div>
               </div>
               <div class="col-md-8 py-4 px-4 mb-3">
-                <button style="float: right">Cetak Kartu</button>
+                <a href="/home/layanan/keanggotaan/cetak-kartu" class="btn btn-primary" style="float: right">Cetak Kartu</a>
                 <div class="table-responsive-sm">
                   <table class="table table-hover">
                     <tbody>

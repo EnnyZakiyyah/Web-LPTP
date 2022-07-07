@@ -8,6 +8,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\KatalogController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InformasiController;
 use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\KeanggotaanController;
@@ -49,9 +50,11 @@ Route::get('/home/sirkulasi/penelusuran-katalog', [KatalogController::class, 'in
 Route::get('/home/sirkulasi/penelusuran-katalog/detail/{katalog:slug}', [KatalogController::class, 'show']);
 Route::put('/home/sirkulasi/ajukan-perpanjangan/{peminjaman:slug}', [PerpanjanganController::class, 'perpanjangan']);
 Route::get('/home/sirkulasi/penelusuran-katalog/{katalog:slug}', [KatalogController::class, 'pinjam']);
-Route::resource('/home/sirkulasi/bebas-pustaka', BebasPustakaController::class)->except('show')->middleware('admin');
+// Route::resource('/home/sirkulasi/bebaspustaka/', BebasPustakaController::class)->except('show')->middleware('admin');
+Route::get('/home/sirkulasi/bebas-pustaka/', [BebasPustakaController::class, 'pustaka']);
 //Home-Layanan
 Route::resource('/home/layanan/keanggotaan', KeanggotaanController::class)->except('show')->middleware('admin');
+Route::get('/home/layanan/keanggotaan/cetak-kartu', [KeanggotaanController::class, 'cetak']);
 Route::get('/home/layanan/bibliographies', [BibliographyController::class, 'index']);
 Route::get('/home/layanan/bibliographies/detail/{katalog:slug}', [KatalogController::class, 'showbiblio']);
 Route::get('/home/layanan/bibliographies/{katalog:slug}', [KatalogController::class, 'pinjam']);
@@ -77,11 +80,7 @@ Route::post('/sign-up', [RegisterController::class, 'store']);
 // Auth::routes();
 Route::middleware(['auth', 'role:admin|admin'])->group(function () {
     
-    Route::get('/dashboard', function () {
-        return view('dashboard.index', [
-            'title' => 'Dashboard'
-        ]);
-    });
+    Route::get('/dashboard', [DashboardController::class, 'index']);
     
     //Penulis
     Route::get('/dashboard/authors/checkSlug', [DashboardAuthorController::class, 'checkSlug']);
