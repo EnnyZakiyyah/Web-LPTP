@@ -133,6 +133,10 @@ class DatabaseSeeder extends Seeder
         Status::create([
             'nama' => 'Perpanjangan'
         ]);
+
+        Status::create([
+            'nama' => 'Diperpanjang'
+        ]);
         
 
     }

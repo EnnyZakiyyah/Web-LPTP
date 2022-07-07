@@ -96,22 +96,10 @@
                                     @if ($peminjaman->id_kondisi == null)
                                     @if ($peminjaman->id_perpanjangan == null)
                                     @if ($peminjaman->status->nama == 'Sedang Dipinjam')
-                                    <form action="/dashboard/kondisi-peminjaman/{{ $peminjaman->slug }}" method="POST"
-                                        class="d-inline" enctype="multipart/form-data">
-                                        @method('put')
-                                        @csrf
-                                        <input type="hidden" value="1" name="id_kondisi">
-                                        <button type="submit"
-                                            class="badge bg-danger border-0 text-white">Hilang</button>
-                                    </form>
-                                    <form action="/dashboard/kondisi-peminjaman/{{ $peminjaman->slug }}" method="POST"
-                                        class="d-inline" enctype="multipart/form-data">
-                                        @method('put')
-                                        @csrf
-                                        <input type="hidden" value="2" name="id_kondisi">
-                                        <button type="submit"
-                                            class="badge bg-warning border-0 text-white">Rusak</button>
-                                    </form>
+                                    <a href="/dashboard/kondisi-peminjaman/hilang/{{ $peminjaman->slug }}"
+                                        class="badge bg-danger border-0 text-white">Hilang</a>
+                                    <a href="/dashboard/kondisi-peminjaman/rusak/{{ $peminjaman->slug }}"
+                                        class="badge bg-warning border-0 text-white">Rusak</a>
                                     <form action="/dashboard/kondisi-peminjaman/{{ $peminjaman->slug }}" method="POST"
                                         class="d-inline" enctype="multipart/form-data">
                                         @method('put')
@@ -128,27 +116,24 @@
                                     {{-- <td></td> --}}
                                     @if ($peminjaman->id_kondisi != null)
                                     <a class="badge bg-primary text-white">Berhasil Dikonfirmasi</a>
-                                    
+                                    <br>
+                                    @if ($peminjaman->status->nama == 'Diperpanjang')
+                                        @if ($peminjaman->id_kondisi == 1)
+                                        <button
+                                        class="badge bg-danger border-0 text-white">Hilang</button>
+                                        @elseif ($peminjaman->id_kondisi == 2)
+                                        <button
+                                        class="badge bg-warning border-0 text-white">Rusak</button>
+                                        @endif
+                                    @endif
 
                                     {{-- KONDISI 2 --}}
                                     <br>
                                     @elseif ($peminjaman->status->nama == 'Perpanjangan')
-                                    <form action="/dashboard/kondisi-peminjaman/{{ $peminjaman->slug }}" method="POST"
-                                        class="d-inline" enctype="multipart/form-data">
-                                        @method('put')
-                                        @csrf
-                                        <input type="hidden" value="1" name="id_kondisi">
-                                        <button type="submit"
-                                            class="badge bg-danger border-0 text-white">Hilang</button>
-                                    </form>
-                                    <form action="/dashboard/kondisi-peminjaman/{{ $peminjaman->slug }}" method="POST"
-                                        class="d-inline" enctype="multipart/form-data">
-                                        @method('put')
-                                        @csrf
-                                        <input type="hidden" value="2" name="id_kondisi">
-                                        <button type="submit"
-                                            class="badge bg-warning border-0 text-white">Rusak</button>
-                                    </form>
+                                    <a href="/dashboard/kondisi-peminjaman/hilang/{{ $peminjaman->slug }}"
+                                        class="badge bg-danger border-0 text-white">Hilang</a>
+                                    <a href="/dashboard/kondisi-peminjaman/rusak/{{ $peminjaman->slug }}"
+                                        class="badge bg-warning border-0 text-white">Rusak</a>
                                     <form action="/dashboard/kondisi-peminjaman/{{ $peminjaman->slug }}" method="POST"
                                         class="d-inline" enctype="multipart/form-data">
                                         @method('put')
@@ -182,7 +167,6 @@
                                         <button type="submit"
                                             class="badge bg-success border-0 text-white">Bagus</button>
                                     </form>
-                                    @else
                                     @endif
                                 </td>
                                 {{-- ===== PERPANJANGAN ===== --}}

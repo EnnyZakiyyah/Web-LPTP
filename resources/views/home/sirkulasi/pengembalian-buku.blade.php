@@ -72,6 +72,11 @@
                         <span class="badge rounded-pill bg-warning text-white">{{  $pengembalian->kondisi->nama }}</span>
                         @endif
                       </div>
+                      <div class="card-footer">
+                        <small class="text-muted">
+                          Tanggal Pengembalian : {{ $pengembalian->tgl_pengembalian }}
+                        </small>
+                      </div>
                     </div>
                   </div>
                 </div>

@@ -114,7 +114,7 @@
             <br>
             <p style="padding-left: 25px; text-align: justify; padding-right:25px; padding-bottom: 50px">Dinyatakan bebas dari segala peminjaman apapun di Perpustakaan Lembaga Pengembangan Teknologi Pedesaan. Demikian surat keterangan ini dibuat agar dapat digunakan sebagaimana mestinya.</p>
             <span style="float:right; padding-right:25px;">
-                Surakarta, {{ now()->toDateString() }}
+                Surakarta, {{ now()->isoFormat('D MMMM Y') }}
                 <br>
                 <br>
                 <br>
