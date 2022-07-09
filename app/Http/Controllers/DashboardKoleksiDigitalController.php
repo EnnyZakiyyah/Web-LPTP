@@ -150,7 +150,7 @@ class DashboardKoleksiDigitalController extends Controller
             }
             $validateData['image'] = $request->file('image')->store('koleksi-images');
         } 
-        if($request->file('filekoleksi')) {
+        if($request->file('filekatalog')) {
             if ($request->oldFile) {
                 Storage::delete($request->oldFile);
             }
@@ -161,6 +161,7 @@ class DashboardKoleksiDigitalController extends Controller
         $validateData['author_id'] = implode(', ', $request->author_id);
 
         Koleksidigital::where('id', $koleksidigital->id)->update($validateData);
+        // dd($validateData);
         return redirect('/dashboard/koleksidigitals')->with('success', 'Koleksi Digital has been updatedd!');
     }
 

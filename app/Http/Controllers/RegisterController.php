@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use App\Notifications\AdminNewUserNotification;
 
 class RegisterController extends Controller
 {
@@ -28,7 +30,8 @@ class RegisterController extends Controller
             'alamat' => 'required',
             'image_bukti' => 'image|file|max:1024',
             'image_foto' => 'image|file|max:1024',
-            'is_admin' => ''
+            'is_admin' => '',
+            'approved' => ''
             
         ]);
 
@@ -38,8 +41,15 @@ class RegisterController extends Controller
 
         $validateData['password'] = Hash::make($validateData['password']);
         
-        User::create($validateData);
+        $user = User::create($validateData);
+        $administrators = User::whereHas('roles', function($q){
+            $q->where('name', 'admin');
+        })->get();
+        foreach ($administrators as $administrator) {
+            $administrator->notify(new AdminNewUserNotification($user));
+        }
 
+        return $user;
         return redirect('/sign-in')->with('success', 'Registration successfull! Please login');
     }
 }

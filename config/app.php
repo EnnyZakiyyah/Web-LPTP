@@ -80,7 +80,7 @@ return [
     |
     */
 
-    'locale' => 'id',
+    'locale' => 'id', 'en',
 
     /*
     |--------------------------------------------------------------------------
@@ -166,16 +166,16 @@ return [
         /*
          * Package Service Providers...
          */
-
+        
         /*
-         * Application Service Providers...
-         */
+        * Application Service Providers...
+        */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
+        Spatie\Permission\PermissionServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        Spatie\Permission\PermissionServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
 
     ],

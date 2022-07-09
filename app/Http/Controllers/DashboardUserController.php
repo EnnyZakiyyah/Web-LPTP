@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Notifications\UserApprovedNotification;
 
 class DashboardUserController extends Controller
 {
@@ -16,7 +17,8 @@ class DashboardUserController extends Controller
     {
         return view('dashboard.user.index', [
             'title' => 'User',
-            'users' => User::latest()->get()
+            'users' => User::latest()->get(),
+            'roles'
         ]);
     }
 
@@ -75,7 +77,24 @@ class DashboardUserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $validateData = $request->validate([
+            'approved' => '',
+        ]);
+        
+        $user->assignRole('user');
+        User::where('id', $user->id)->update($validateData, $user);
+        // dd($validateData);
+        return redirect('/dashboard/users')->with('success', 'Approved');
+        // $approved = $user->approved;
+
+        // $user->update($request->all());
+        // $user->roles()->sync($request->input('roles', []));
+
+        // if ($approved == 0 && $user->approved == 2) {
+        //     $user->notify(new UserApprovedNotification());
+        // }
+
+        // return redirect('/dashboard/users');
     }
 
     /**
@@ -89,4 +108,8 @@ class DashboardUserController extends Controller
         User::destroy($user->id);
         return redirect('/dashboard/users')->with('success', 'Data User has been deleted!');
     }
+
+    // public function approved(){
+    //     dd('berhasil');
+    // }
 }

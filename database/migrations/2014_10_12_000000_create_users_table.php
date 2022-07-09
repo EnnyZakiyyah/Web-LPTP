@@ -28,6 +28,7 @@ class CreateUsersTable extends Migration
             $table->string('alamat');
             $table->string('image_bukti')->nullable();
             $table->string('image_foto')->nullable();
+            $table->boolean('approved')->default(false)->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

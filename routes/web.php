@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HeroController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\KatalogController;
@@ -76,11 +77,16 @@ Route::post('/logout', [LoginController::class, 'logout']);
 Route::get('/sign-up', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('/sign-up', [RegisterController::class, 'store']);
 
+
 //DASHBOARD
 // Auth::routes();
 Route::middleware(['auth', 'role:admin|admin'])->group(function () {
     
     Route::get('/dashboard', [DashboardController::class, 'index']);
+    
+    //ROLE
+    // Route::get('/dashboard/roles/checkSlug', [RoleController::class, 'checkSlug']);
+    Route::resource('/dashboard/roles', RoleController::class);
     
     //Penulis
     Route::get('/dashboard/authors/checkSlug', [DashboardAuthorController::class, 'checkSlug']);
@@ -135,6 +141,7 @@ Route::middleware(['auth', 'role:admin|admin'])->group(function () {
     Route::resource('/dashboard/bookcollection', DashboardKatalogController::class);
     
     //Users
+    // Route::get('/dashboard/users/approved/{user:id}', [DashboardUserController::class, 'approved']);
     Route::get('/dashboard/users/checkSlug', [DashboardUserController::class, 'checkSlug']);
     Route::resource('/dashboard/users', DashboardUserController::class);
     

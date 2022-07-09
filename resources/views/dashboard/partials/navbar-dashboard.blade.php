@@ -92,6 +92,7 @@
         <ul class="pcoded-submenu">
             <li><a href="/sign-up" target="_blank">Sign up</a></li>
             <li><a href="/sign-in" target="_blank">Sign in</a></li>
+            <li><a href="/dashboard/roles" target="_blank">Roles</a></li>
         </ul>
     </li>
     <li class="nav-item">

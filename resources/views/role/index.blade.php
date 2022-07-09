@@ -30,7 +30,10 @@
                     {{ session('success') }}
                 </div>
             @endif
-
+    
+            <div class="col-md-4 px-3 py-3">
+                <a href="/dashboard/informasi/create" class="btn btn-primary me-2 px-3">Tambah Data</a>
+            </div>
             <div class="card-body table-border-style">
                 <div class="table-responsive text-nowrap">
                     <table class="table table-hover">
@@ -38,31 +41,23 @@
                             <tr class="text-nowrap">
                                 <th>No</th>
                                 <th>Nama</th>
-                                <th>No Ktp</th>
-                                <th>Username</th>
-                                <th>Email</th>
-                                <th>Validasi Akun</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($users as $user)
+                            @foreach ($roles as $role)
                             <tr>
                                 <th scope="row">{{ $loop->iteration }}</th>
-                                <td>{{ $user->name }}</td>
-                                <td>{{ $user->no_ktp }}</td>
-                                <td>{{ $user->username }}</td>
-                                <td>{{ $user->email }}</td>
-                                <td>{{ $user->approved }}</td>
+                                <td>{{ $role->name }}</td>
                                 <td>
-                                    <form action="/dashboard/users/{{ $user->id }}" method="POST" class="d-inline">
-                                        @method('put')
-                                        @csrf
-                                        <input type="hidden" value="2" name="approved">
-                                        <button class="badge bg-success border-0"><i class="feather icon-check-square" style="color: white"></i></button>
-                                    </form>
-                                    <a href="/dashboard/users/{{ $user->id }}"
+                                    <a href="/dashboard/roles/{{ $role->id }}"
                                         class="badge bg-info"><i class="feather icon-eye" style="color: white"></i></a>
+                                    <a href="/dashboard/roles/{{ $role->id }}/edit" class="badge bg-warning"><i class="feather icon-edit" style="color: white"></i></a>
+                                    <form action="/dashboard/roles/{{ $role->id }}" method="POST" class="d-inline">
+                                        @method('delete')
+                                        @csrf
+                                        <button class="badge bg-danger border-0" onclick="return confirm('Are you sure?')"><i class="feather icon-trash" style="color: white"></i></button>
+                                    </form>
                                 </td>
                             </tr>
                             @endforeach
@@ -74,7 +69,7 @@
             <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-center">
                   <li class="page-item">
-                    {{-- {{ $users->links() }} --}}
+                    {{-- {{ $authors->links() }} --}}
                   </li>
                 </ul>
             </nav>
