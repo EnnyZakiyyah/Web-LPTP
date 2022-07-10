@@ -62,7 +62,7 @@
 </form>
 
 <p class="text-center">
-    <span>Tidak unya akun?</span>
+    <span>Tidak punya akun?</span>
     <a href="/sign-up">
         <span>Buat akun</span>
     </a>

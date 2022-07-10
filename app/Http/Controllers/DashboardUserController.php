@@ -76,12 +76,17 @@ class DashboardUserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        $approved = $user->approved;
         $validateData = $request->validate([
             'approved' => '',
         ]);
         
         $user->assignRole('user');
         User::where('id', $user->id)->update($validateData, $user);
+
+        if ($approved == 0 && $user->approved) {
+            $user->notify(new UserApprovedNotification());
+        }
         return redirect('/dashboard/users')->with('success', 'User has been Approved!');
     }
 

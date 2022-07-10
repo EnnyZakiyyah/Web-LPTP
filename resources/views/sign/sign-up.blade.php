@@ -20,7 +20,7 @@
         <label class="form-label">Nomor KTP</label>
         <input type="number" id="no_ktp"
             class="form-control @error('no_ktp')is-invalid @enderror" placeholder="6587998941"
-            name="no_ktp" value="{{ old('no_ktp') }}" length="16" required/>
+            name="no_ktp" value="{{ old('no_ktp') }}" maxlength="16" required/>
         @error('no_ktp')
         <div class="invalid-feedback">
             {{ $message }}
