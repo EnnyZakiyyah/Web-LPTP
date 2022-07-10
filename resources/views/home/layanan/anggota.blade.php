@@ -104,7 +104,7 @@
             <h3 class="heading" style="text-align: center">KARTU ANGGOTA</h3>
             <br>
             <div class="row">
-                <div class="col-10">
+                {{-- <div class="col-10"> --}}
                     <table>
                         @foreach ($data as $row)
                         <tr>
@@ -139,10 +139,12 @@
                             </tr>
                             @endforeach
                     </table>
-                </div>
-                <div class="col-2">
+                {{-- </div> --}}
+                {{-- <div class="col-2">
+                   
                     <img src="{{ $row->image_foto }}" style="width:60px; height:60px;" alt="">
-                </div>
+                    <img src=" {{ public_path("storage/register-images" . $row->image_foto) }}" style="width:60px; height:60px;" alt="">
+                </div> --}}
             </div>
             
         </div>
@@ -154,7 +156,7 @@
             <p style="font-size: 10px"> - Anggota harus mentaati aturan perpustakaan </p>
             <p style="font-size: 10px"> - Kartu berlaku selama 1 tahun </p>
             <span style="float:right">
-                Surakarta, {{ now()->toDateString() }}
+                Surakarta, {{ now()->isoFormat('D MMMM Y') }}
                <br> Petugas
             </span>
             </div>

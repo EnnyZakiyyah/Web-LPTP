@@ -20,7 +20,7 @@
               <div class="col-md-4">
                 @foreach ($keanggotaan as $keanggotaans)
                 <div class="card-image">
-                  <a href="#"> <img class="img" src="{{asset('storage/' . $keanggotaans->image)}}">
+                  <a href="#"> <img class="img" src="{{asset('storage/' . $keanggotaans->image_foto)}}">
                   </a>
                 </div>
               </div>

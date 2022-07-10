@@ -3,7 +3,6 @@
 <h4 class="mb-2">Selamat Datang di
     <h4>Perpustakaan LPTP Surakarta!</h4>
 </h4>
-<p class="mb-4">Make your app management easy and fun!</p>
 
 <form class="row g-3" action="/sign-up" method="POST" enctype="multipart/form-data">
     @csrf
@@ -20,8 +19,8 @@
     <div class="col-md-6">
         <label class="form-label">Nomor KTP</label>
         <input type="number" id="no_ktp"
-            class="form-control @error('no_ktp')is-invalid @enderror" placeholder="658 799 8941"
-            name="no_ktp" value="{{ old('no_ktp') }}" maxlength="16" required/>
+            class="form-control @error('no_ktp')is-invalid @enderror" placeholder="6587998941"
+            name="no_ktp" value="{{ old('no_ktp') }}" length="16" required/>
         @error('no_ktp')
         <div class="invalid-feedback">
             {{ $message }}
@@ -30,14 +29,18 @@
     </div>
     <div class="col-md-6">
         <label class="form-label">Jenis Kelamin</label>
-        <input type="text" id="jk"
+        <select class="form-select form-select-md" aria-label=".form-select-md example" name="jk" >
+            <option value="laki-laki">Laki-laki</option>
+            <option value="perempuan">Perempuan</option>
+        </select>
+        {{-- <input type="text" id="jk"
             class="form-control @error('jk')is-invalid @enderror" placeholder="658 799 8941"
             name="jk" value="{{ old('jk') }}" required/>
         @error('jk')
         <div class="invalid-feedback">
             {{ $message }}
         </div>
-        @enderror
+        @enderror --}}
     </div>
     <div class="col-md-6">
         <label class="form-label">Tempat Lahir</label>
@@ -112,13 +115,19 @@
         @enderror
     </div>
 
-
-
-
     <div class="col-md-6">
         <label for="Upload Foto" class="form-label">Upload Foto</label>
-        <input class="form-control @error('image') is-invalid @enderror"" type="file" id="image" name="image" value="{{ old('image') }}" onchange="previewImage()"/>
-      @error('image')
+        <input class="form-control @error('image_foto') is-invalid @enderror"" type="file" id="image_foto" name="image_foto" value="{{ old('image_foto') }}" onchange="previewImage()"/>
+      @error('image_foto')
+        <div class="invalid-feedback">
+            {{ $message }}
+        </div>
+      @enderror
+    </div>
+    <div class="col-md-6">
+        <label for="Upload Bukti" class="form-label">Upload Bukti</label>
+        <input class="form-control @error('image_bukti') is-invalid @enderror"" type="file" id="image_bukti" name="image_bukti" value="{{ old('image_bukti') }}" onchange="previewImage()"/>
+      @error('image_bukti')
         <div class="invalid-feedback">
             {{ $message }}
         </div>
@@ -139,14 +148,14 @@
 
 
 
-    <button type="submit" class="btn btn-primary">Send</button>
+    <button type="submit" class="btn btn-primary mt-3">Send</button>
 </form>
 
 
-<p class="text-center">
-    <span>Already have an account?</span>
+<p class="text-center mt-2">
+    <span>Sudah punya akun?</span>
     <a href="sign-in">
-        <span>Sign in instead</span>
+        <span>Sign in</span>
     </a>
 </p>
 @endsection

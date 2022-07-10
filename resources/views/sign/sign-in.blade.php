@@ -23,7 +23,6 @@
 <h4 class="mb-2">Selamat Datang di
     <h4>Perpustakaan LPTP Surakarta!</h4>
 </h4>
-<p class="mb-4">Please sign-in to your account and start the adventure</p>
 
 <form id="formAuthentication" class="mb-3" action="/sign-in" method="POST">
     @csrf
@@ -63,9 +62,9 @@
 </form>
 
 <p class="text-center">
-    <span>New on our platform?</span>
+    <span>Tidak unya akun?</span>
     <a href="/sign-up">
-        <span>Create an account</span>
+        <span>Buat akun</span>
     </a>
 </p>
 @endsection

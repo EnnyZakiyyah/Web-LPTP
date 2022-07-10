@@ -17,8 +17,7 @@ class DashboardUserController extends Controller
     {
         return view('dashboard.user.index', [
             'title' => 'User',
-            'users' => User::latest()->get(),
-            'roles'
+            'users' => User::latest()->paginate(5),
         ]);
     }
 
@@ -83,18 +82,7 @@ class DashboardUserController extends Controller
         
         $user->assignRole('user');
         User::where('id', $user->id)->update($validateData, $user);
-        // dd($validateData);
-        return redirect('/dashboard/users')->with('success', 'Approved');
-        // $approved = $user->approved;
-
-        // $user->update($request->all());
-        // $user->roles()->sync($request->input('roles', []));
-
-        // if ($approved == 0 && $user->approved == 2) {
-        //     $user->notify(new UserApprovedNotification());
-        // }
-
-        // return redirect('/dashboard/users');
+        return redirect('/dashboard/users')->with('success', 'User has been Approved!');
     }
 
     /**

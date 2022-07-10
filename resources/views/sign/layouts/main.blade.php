@@ -133,7 +133,7 @@
       </div>
 
     <!-- / Content -->
-
+    
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
     <script src="{{ asset('assets-sign/assets/vendor/libs/jquery/jquery.js') }}"></script>

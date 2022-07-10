@@ -28,15 +28,19 @@ class RegisterController extends Controller
             'password' =>'required|min:5|max:255',
             'no_tlpn' => 'required',
             'alamat' => 'required',
-            'image_bukti' => 'image|file|max:1024',
-            'image_foto' => 'image|file|max:1024',
+            'image_bukti' => 'image|file|max:2048',
+            'image_foto' => 'image|file|max:2048',
             'is_admin' => '',
             'approved' => ''
             
         ]);
 
-        if ($request->file('image')) {
-            $validateData['image'] = $request->file('image')->store('register-images');
+        if ($request->file('image_foto')) {
+            $validateData['image_foto'] = $request->file('image_foto')->store('register-images');
+        }
+
+        if ($request->file('image_bukti')) {
+            $validateData['image_bukti'] = $request->file('image_bukti')->store('register-images');
         }
 
         $validateData['password'] = Hash::make($validateData['password']);
@@ -49,7 +53,7 @@ class RegisterController extends Controller
             $administrator->notify(new AdminNewUserNotification($user));
         }
 
-        return $user;
-        return redirect('/sign-in')->with('success', 'Registration successfull! Please login');
+        // return $user;
+        return redirect('/sign-in')->with('success', 'Registrati Berhasil! Tunggu Konfirmasi dari Admin');
     }
 }

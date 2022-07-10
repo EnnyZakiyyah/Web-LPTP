@@ -22,6 +22,12 @@
         <!-- [ Main Content ] start -->
         <div class="card">
             <div class="row g-0">
+                <div class="col-md-4">
+                    {{-- <div style="max-height: 350px; overflow:hidden;"> --}}
+                    <img class="card-img card-img-left" src="{{ asset('storage/' . $user->image_foto) }}" alt="Card image" />
+                    <img class="card-img card-img-left" src="{{ asset('storage/' . $user->image_bukti) }}" alt="Card image" />
+                    {{-- </div> --}}
+                </div>
                 <div class="col-md-8">
                     <div class="card-body">
                       <div class="card-body table-border-style">
