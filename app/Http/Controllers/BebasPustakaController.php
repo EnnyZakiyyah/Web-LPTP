@@ -15,10 +15,12 @@ class BebasPustakaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Peminjaman $peminjaman)
     {
-       
-               
+        return view('home.sirkulasi.index-bebas-pustaka', [
+            'title' => 'Sirkulasi',
+            'pustaka' => Peminjaman::all()
+        ]);
     }
         
     
@@ -50,9 +52,9 @@ class BebasPustakaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Peminjaman $peminjaman)
     {
-        dd($id);
+       
     }
 
     /**
@@ -91,23 +93,20 @@ class BebasPustakaController extends Controller
 
     public function pustaka(Peminjaman $peminjaman)
     {
-        // dd($peminjaman);
+        if ($peminjaman->id_status == 2 || $peminjaman->id_status == 7) {
+            return redirect('/home/sirkulasi/peminjaman-buku')->with('loginError', 'Masih ada Peminjaman Buku');
+        }
         $data = User::where('id', auth()->user()->id)->get();
-                        
         view()->share('data', $data);
         $pdf = PDF::loadView('home/sirkulasi/bebas-pustaka');   
-        
-
-        // $peminjaman_lama = DB::table('katalogs')
-        //                 ->join('peminjamans', 'katalogs.id', '=', 'peminjamans.id_buku')
-        //                 ->where('id_peminjam', auth()->user()->id)
-        //                 ->where('id_status', '!=', 2)
-        //                 ->where('id_status', '!=', 6)
-        //                 ->get();
-        //                 dd($peminjaman_lama);
-        //                 if ($peminjaman_lama == true) {
-        //                 }
-        //                 dd($peminjaman_lama);
-                        return $pdf->download('cetak-bebas-pustaka.pdf');
+        return $pdf->download('cetak-bebas-pustaka.pdf');
+    }        
+    
+    public function bebas(Peminjaman $peminjaman)
+    {
+        return view('home.sirkulasi.index-bebas-pustaka', [
+            'title' => 'Sirkulasi',
+            'pustaka' => $peminjaman
+        ]);
     }
 }

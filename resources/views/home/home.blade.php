@@ -9,9 +9,10 @@
         <div class="row align-items-center">
             <div class="col-md-6 text-sm-start text-center py-6">
                 <h1 class="mb-4 fs-9 fw-bold">Selamat Datang di Perpustakaan LPTP Surakarta</h1>
-                <p class="mb-5 lead text-secondary">Tools tutorials, design and innovation experts, all<br
-                        class="d-none d-xl-block" />in one place! The most intuitive way to imagine<br
-                        class="d-none d-xl-block" />your next user experience.</p>
+                 
+                <p class="mb-5 lead text-secondary" style="font-size:17px;">Perpustakaan LPTP surakarta menyediakan <br
+                        class="d-none d-xl-block" />peminjaman  buku secara online serta bisa<br
+                        class="d-none d-xl-block" />membaca buku tanpa harus pergi ke perpustakaan.</p>
                 <form>
                     <div class="search rounded-pill w-xl-75 w-xxl-50 d-flex flex-end-center"><input type="text"
                             class="form-control rounded-pill" placeholder="Search books, articles, keywords"> <i
@@ -162,7 +163,7 @@
                 <div class="px-0 px-lg-3"><img class="img-fluid mb-4"
                         src="{{asset('assets/img/layanan/Keanggotaan.png')}}" width="102" height="106" alt="..." />
                     <h3 class="h5 mb-4 font-base">Keanggotaan</h3>
-                    <p class="lh-lg">Publish with Wiley Explore our resource library Learn about topics and trends</p>
+                    <p class="lh-lg">Informasi mengenai data pribadi dan cetak kartu anggota</p>
                 </div>
             </div>
             <div class="col-sm-6 col-lg-3 mb-4 mb-lg-0 text-center">

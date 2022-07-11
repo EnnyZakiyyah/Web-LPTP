@@ -22,34 +22,35 @@
         <div class="tab-content" id="myTabContent">
           <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
             <div style="overflow-x:auto;">
-            <table class="table table-hover">
-              <thead>
-                <tr>
-                  <th scope="col">No</th>
-                  <th scope="col">No Peminjaman</th>
-                  <th scope="col">Nomor ISBN</th>
-                  <th scope="col">Nama Buku</th>
-                  <th scope="col">Tanggal Peminjaman</th>
-                  <th scope="col">Tanggal Pengembalian</th>
-                  <th scope="col">Status</th>
-                  <th scope="col">Perpanjangan</th>
-                </tr>
-              </thead>
-              <tbody>
-                @if (session()->has('success'))
-                <div class="alert alert-success" role="alert">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">No</th>
+                    <th scope="col">No Peminjaman</th>
+                    <th scope="col">Nomor ISBN</th>
+                    <th scope="col">Nama Buku</th>
+                    <th scope="col">Tanggal Peminjaman</th>
+                    <th scope="col">Tanggal Pengembalian</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Perpanjangan</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @if (session()->has('success'))
+                  <div class="alert alert-success" role="alert">
                     {{ session('success') }}
-                </div>
+                  </div>
                 @endif
                 @if (session()->has('loginError'))
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     {{ session('loginError') }}
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-                @endif
-                @foreach ($peminjamans as $peminjaman)
-                <tr> 
-                 
+                  </div>
+                  @endif
+                  @foreach ($peminjamans as $peminjaman)
+                  {{-- <a href="/home/sirkulasi/bebas-pustaka/detail/{{ $peminjaman->slug }}" class="btn btn-primary" style="float: right">BEBAS PUSTAKA</a> --}}
+                  <tr> 
+                    
                   <th scope="row">{{ $loop->iteration }}</th>
                   <td>{{ $peminjaman->no_peminjaman }}</td>
                   <td>{{ $peminjaman->katalogs->isbn }}</td>
@@ -74,9 +75,9 @@
                   <td><span class="badge rounded-pill bg-warning text-white">{{ $peminjaman->status->nama }}</span></td>
                   @endif
                   @if ($peminjaman->status->nama == 'Sedang Dipinjam')
-                      @if ($peminjaman->id_perpanjangan == null)
-                      <td>
-                        <form action="/home/sirkulasi/ajukan-perpanjangan/{{ $peminjaman->slug }}" method="POST"
+                  @if ($peminjaman->id_perpanjangan == null)
+                  <td>
+                    <form action="/home/sirkulasi/ajukan-perpanjangan/{{ $peminjaman->slug }}" method="POST"
                         class="d-inline" enctype="multipart/form-data">
                         @method('put')
                         @csrf

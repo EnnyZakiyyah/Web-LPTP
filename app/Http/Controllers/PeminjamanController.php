@@ -73,7 +73,7 @@ class PeminjamanController extends Controller
      */
     public function show(Peminjaman $peminjaman)
     {
-        //
+        
     }
 
     /**

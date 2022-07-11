@@ -64,12 +64,17 @@ class PerpanjanganController extends Controller
 
     public function perpanjangan(Peminjaman $peminjaman, Request $request)
     {
-        $validateData = $request->validate([
-            'id_perpanjangan' => '',
-        ]);
+        // $todayDate = date('Y/m/d');
         
-        Peminjaman::where('id', $peminjaman->id)->update($validateData);
         // dd($validateData);
-        return redirect('/home/sirkulasi/peminjaman-buku')->with('success', 'Perpanjangan Buku sedang di ajukan! tunggu konfirmasi kembali');
+        if (Carbon::create($peminjaman->tgl_kembali)->lessThan(today())) {
+            dd('berhasil');
+            $validateData = $request->validate([
+                'id_perpanjangan' => '',
+            ]);
+            Peminjaman::where('id', $peminjaman->id)->update($validateData);
+            return redirect('/home/sirkulasi/peminjaman-buku')->with('success', 'Perpanjangan Buku sedang di ajukan! tunggu konfirmasi kembali');
+        }
+        return redirect('/home/sirkulasi/peminjaman-buku')->with('loginError', 'Perpanjangan Buku bisa dilakukan H-1 Pengembalian');
     }
 }

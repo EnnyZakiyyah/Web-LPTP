@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 use App\Notifications\UserApprovedNotification;
 
 class DashboardUserController extends Controller
@@ -76,17 +77,14 @@ class DashboardUserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $approved = $user->approved;
         $validateData = $request->validate([
             'approved' => '',
         ]);
         
         $user->assignRole('user');
         User::where('id', $user->id)->update($validateData, $user);
-
-        if ($approved == 0 && $user->approved) {
-            $user->notify(new UserApprovedNotification());
-        }
+            $users = User::where('id', auth()->user()->id);
+            $user->notify(new UserApprovedNotification($users));
         return redirect('/dashboard/users')->with('success', 'User has been Approved!');
     }
 

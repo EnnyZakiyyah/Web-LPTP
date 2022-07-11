@@ -17,6 +17,7 @@ use App\Http\Controllers\BebasPustakaController;
 use App\Http\Controllers\BibliographyController;
 use App\Http\Controllers\PengembalianController;
 use App\Http\Controllers\PerpanjanganController;
+use App\Http\Controllers\BebasPustakaaController;
 use App\Http\Controllers\DashboardUserController;
 use App\Http\Controllers\KoleksiDigitalController;
 use App\Http\Controllers\DashboardAuthorController;
@@ -51,8 +52,11 @@ Route::get('/home/sirkulasi/penelusuran-katalog', [KatalogController::class, 'in
 Route::get('/home/sirkulasi/penelusuran-katalog/detail/{katalog:slug}', [KatalogController::class, 'show']);
 Route::put('/home/sirkulasi/ajukan-perpanjangan/{peminjaman:slug}', [PerpanjanganController::class, 'perpanjangan']);
 Route::get('/home/sirkulasi/penelusuran-katalog/{katalog:slug}', [KatalogController::class, 'pinjam']);
-// Route::resource('/home/sirkulasi/bebaspustaka/', BebasPustakaController::class)->except('show')->middleware('admin');
-Route::get('/home/sirkulasi/bebas-pustaka/', [BebasPustakaController::class, 'pustaka']);
+Route::resource('/home/sirkulasi/bebas-pustaka/', BebasPustakaController::class)->except('show')->middleware('admin');
+// Route::resource('/home/sirkulasi/bebas-pustaka/', BebasPustakaController::class);
+// Route::get('/home/sirkulasi/bebas-pustaka/checkSlug', [BebasPustakaController::class, 'checkSlug']);
+Route::get('/home/sirkulasi/bebas-pustaka/', [BebasPustakaaController::class, 'pustaka'])->middleware('admin');;
+Route::get('/home/sirkulasi/bebas-pustaka/detail/{peminjaman:slug}', [BebasPustakaaController::class, 'cetak']);
 //Home-Layanan
 Route::resource('/home/layanan/keanggotaan', KeanggotaanController::class)->except('show')->middleware('admin');
 Route::get('/home/layanan/keanggotaan/cetak-kartu', [KeanggotaanController::class, 'cetak']);
@@ -141,7 +145,6 @@ Route::middleware(['auth', 'role:admin|admin'])->group(function () {
     Route::resource('/dashboard/bookcollection', DashboardKatalogController::class);
     
     //Users
-    // Route::get('/dashboard/users/approved/{user:id}', [DashboardUserController::class, 'approved']);
     Route::get('/dashboard/users/checkSlug', [DashboardUserController::class, 'checkSlug']);
     Route::resource('/dashboard/users', DashboardUserController::class);
     

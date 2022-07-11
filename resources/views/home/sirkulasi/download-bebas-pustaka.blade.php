@@ -1,0 +1,1 @@
+<a href="/home/sirkulasi/bebas-pustaka/{{ $peminjaman->slug }}" class="btn btn-primary" style="float: right">BEBAS PUSTAKA</a>
