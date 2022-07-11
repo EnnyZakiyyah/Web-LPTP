@@ -17,10 +17,13 @@ class PeminjamanController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Peminjaman $peminjaman)
-    {
+    {   
         if ($peminjaman->id_status != 1) {
+            $reminder = Peminjaman::whereDate('reminder_at', '<', today())->get();
+            // $expired = Peminjaman::whereDate('reminder_at', '<', today())->get();
             return view('home.sirkulasi.peminjaman-buku', [
                 'title' => 'Sirkulasi',
+                'reminders' => $reminder,
                 "peminjamans" => Peminjaman::where([
                                 ['id_peminjam', auth()->user()->id],
                                 ['id_status', 3]

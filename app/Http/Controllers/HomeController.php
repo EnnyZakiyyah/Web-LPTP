@@ -11,10 +11,10 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-        
-        public function index(){
+    public function index(){
+            $informasi = Informasi::whereDate('tanggal', '>=', today())->get();
             $hero = Hero::latest()->get();
-            $informasi = Informasi::latest()->get();
+            // $informasi = $informasi;
             $bukuTerbaru = Katalog::latest()->get();
             
             return view('home.home', [

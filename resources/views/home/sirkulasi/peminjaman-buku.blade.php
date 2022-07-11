@@ -14,6 +14,24 @@
 
     <!--Koleksi-Dipinjam-->
   <section class="pt-2">
+{{-- 
+    @if (\Carbon\Carbon::parse($peminjamans->tgl_kembali)->lessThan(now()))
+        
+    @endif --}}
+    <div class="card mb-5">
+      <div class="card-header">
+        Reminder Pengembalian Buku
+      </div>
+      <div class="card-body">
+        <blockquote class="blockquote mb-0">
+            @foreach ($reminders as $reminder)
+            <span style="font-size: 14px"> {{ \Carbon\Carbon::parse($reminder->reminder_at)->isoFormat('D MMMM Y') }}</span>
+            <p style="font-size: 14px">Judul Buku : {{ $reminder->katalogs->title}}</p>
+            @endforeach
+        </blockquote>
+      </div>
+    </div>
+
         <ul class="nav nav-tabs" id="myTab" role="tablist">
           <li class="nav-item" role="presentation">
             <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true"><span style="color: #002147"> Koleksi </span><span style="color : #FF9900">Dipinjam</span></button>
