@@ -27,7 +27,7 @@ class KoleksidigitalFactory extends Factory
             'body' => collect($this->faker->paragraphs(mt_rand(1,2)))
                         ->map(fn($p) => "<p>$p</p>")
                         ->implode(''),
-            'author_id' => mt_rand(1,2),
+            'author_id' => $this->faker->name('male'|'female'),
             'filekatalog'=> $this->faker->sentence(mt_rand(2,8)),
             'category_id' => mt_rand(1,2),
         ];

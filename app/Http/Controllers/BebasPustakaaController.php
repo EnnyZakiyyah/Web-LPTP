@@ -18,16 +18,7 @@ class BebasPustakaaController extends Controller
                 ['id_status', 3]
                 ])->orWhere([
                     ['id_peminjam', auth()->user()->id],
-                    ['id_status', 4]
-                ])->orWhere([
-                    ['id_peminjam', auth()->user()->id],
                     ['id_status', 2]
-                ])->orWhere([
-                    ['id_peminjam', auth()->user()->id],
-                    ['id_status', 5]
-                ])->orWhere([
-                    ['id_peminjam', auth()->user()->id],
-                    ['id_status', 6]
                 ])->orWhere([
                     ['id_peminjam', auth()->user()->id],
                     ['id_status', 7]

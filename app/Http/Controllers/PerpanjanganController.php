@@ -67,7 +67,7 @@ class PerpanjanganController extends Controller
         // $todayDate = date('Y/m/d');
         
         // dd($validateData);
-        if (Carbon::create($peminjaman->tgl_kembali)->lessThan(today())) {
+        if (Carbon::create($peminjaman->tgl_kembali)->lessThan(now())) {
             dd('berhasil');
             $validateData = $request->validate([
                 'id_perpanjangan' => '',

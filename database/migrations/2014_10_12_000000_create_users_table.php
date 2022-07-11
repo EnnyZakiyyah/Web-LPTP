@@ -29,6 +29,7 @@ class CreateUsersTable extends Migration
             $table->string('image_bukti')->nullable();
             $table->string('image_foto')->nullable();
             $table->boolean('approved')->default(false)->nullable();
+            $table->foreignId('id_petugas_approved')->nullable()->constrained('users')->onDelete('cascade')->onUpdate('cascade');
             $table->rememberToken();
             $table->timestamps();
         });

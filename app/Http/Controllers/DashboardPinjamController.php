@@ -19,6 +19,7 @@ class DashboardPinjamController extends Controller
         $peminjaman->update([
                 'id_petugas' => auth()->user()->id,
                 'tgl_pinjam' => $todayDate,
+                'reminder_at' => Carbon::create($todayDate)->addDays(6),
                 'tgl_kembali' => Carbon::create($todayDate)->addDays(7),
                 'id_status' => 2
         ]);
@@ -71,6 +72,7 @@ class DashboardPinjamController extends Controller
             $validateData = $request->validate([
                 'id_petugas' => auth()->user()->id,
                 'tgl_pinjam' => $todayDate,
+                'reminder_at' => Carbon::create($todayDate)->addDays(6),
                 'tgl_kembali' => Carbon::create($todayDate)->addDays(7),
                 'id_status' => 6
             ]);
@@ -95,6 +97,7 @@ class DashboardPinjamController extends Controller
         $data = [
             'id_petugas' => auth()->user()->id,
             'tgl_pinjam' => $todayDate,
+            'reminder_at' => Carbon::create($todayDate)->addDays(6),
             'tgl_kembali' => Carbon::create($todayDate)->addDays(7),
             'id_status' => 7,
             'id_kondisi' => 1,
@@ -115,6 +118,7 @@ public function rusak(Peminjaman $peminjaman, Request $request){
     $data = [
         'id_petugas' => auth()->user()->id,
         'tgl_pinjam' => $todayDate,
+        'reminder_at' => Carbon::create($todayDate)->addDays(6),
         'tgl_kembali' => Carbon::create($todayDate)->addDays(7),
         'id_status' => 7,
         'id_kondisi' => 2,

@@ -25,6 +25,7 @@ class CreatePeminjamansTable extends Migration
             $table->foreignId('id_lokasi')->nullable()->constrained('lokasis')->onDelete('cascade')->onUpdate('cascade');
             $table->date('tgl_pinjam')->nullable();
             $table->date('tgl_kembali')->nullable();
+            $table->date('reminder_at')->nullable();
             $table->date('tgl_pengembalian')->nullable();
             $table->foreignId('id_kondisi')->nullable()->constrained('conditions')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('id_status')->constrained('statuses')->onDelete('cascade')->onUpdate('cascade');

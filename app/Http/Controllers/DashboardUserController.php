@@ -79,6 +79,7 @@ class DashboardUserController extends Controller
     {
         $validateData = $request->validate([
             'approved' => '',
+            // 'id_petugas_approved' => auth()->user()->id,
         ]);
         
         $user->assignRole('user');

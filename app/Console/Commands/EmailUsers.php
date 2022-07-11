@@ -2,10 +2,13 @@
 
 namespace App\Console\Commands;
 
+use App\Mail\ReminderEmailDigest;
 use Carbon\Carbon;
 use App\Models\User;
+use App\Models\Peminjaman;
 use Illuminate\Console\Command;
 use App\Notifications\AdminNewUserNotification;
+use Illuminate\Support\Facades\Mail;
 
 class EmailUsers extends Command
 {
@@ -14,14 +17,14 @@ class EmailUsers extends Command
      *
      * @var string
      */
-    protected $signature = 'email:users';
+    protected $signature = 'reminder:emails';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Send email notification to user about reminders';
 
     /**
      * Create a new command instance.
@@ -40,12 +43,24 @@ class EmailUsers extends Command
      */
     public function handle()
     {
-        $limit = Carbon::now()->subDay(30);
-        $inactive_user = User::where('tgl_kembali', '<', $limit)->get();
+        $reminders = Peminjaman::query()
+                    // ->where('id_status', 7 )  
+                    ->where('reminder_at', now()->format('Y-m-d'))            
+                    ->get();
+        $data = [];
 
-        foreach ($inactive_user as $user) {
-            $user->notify(new AdminNewUserNotification($inactive_user));
+        foreach ($reminders as $reminder) {
+            $data[$reminder->id_peminjam][] = $reminder->toArray();
         }
-        return true;
+            // dd($data);
+        foreach ($data as $userId => $reminders) {
+            $this->sendEmailToUser($userId, $reminders);
+        }
+    }
+
+    private function sendEmailToUser($userId, $reminders){
+        $user = User::find($userId);
+
+        Mail::to($user)->send(new ReminderEmailDigest($reminders));
     }
 }

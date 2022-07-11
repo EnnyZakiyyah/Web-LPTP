@@ -28,7 +28,8 @@
             <p>2. Buku yang hilang (jika ada) telah diganti sesaui dengan ketentuan</p>
             <p>3. Tidak memiliki tanggungan denda yang belum dibayarkan.</p>
             <p>4. Ketentuan bisa di download @foreach ($pustaka as $pustakas)
-              <a href="/home/sirkulasi/bebas-pustaka/detail/{{ $pustakas->slug }}">disini</a>
+              <a href="/home/sirkulasi/bebas-pustaka/detail/{{ $pustakas->slug }}" style="color: #002147">disini</a>
+               {{-- <a href="/home/sirkulasi/bebas-pustaka/detail/{{ $peminjaman->slug }}" class="btn btn-primary" style="float: right">BEBAS PUSTAKA</a> --}}
              @endforeach
           </p>
             </p><span style="color: #002147">Ketentuan</span> ini berlaku untuk Perpustakaan LPTP Surakarta.
