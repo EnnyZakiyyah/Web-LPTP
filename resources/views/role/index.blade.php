@@ -41,7 +41,6 @@
                             <tr class="text-nowrap">
                                 <th>No</th>
                                 <th>Nama</th>
-                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -49,7 +48,7 @@
                             <tr>
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{ $role->name }}</td>
-                                <td>
+                                {{-- <td>
                                     <a href="/dashboard/roles/{{ $role->id }}"
                                         class="badge bg-info"><i class="feather icon-eye" style="color: white"></i></a>
                                     <a href="/dashboard/roles/{{ $role->id }}/edit" class="badge bg-warning"><i class="feather icon-edit" style="color: white"></i></a>
@@ -58,7 +57,7 @@
                                         @csrf
                                         <button class="badge bg-danger border-0" onclick="return confirm('Are you sure?')"><i class="feather icon-trash" style="color: white"></i></button>
                                     </form>
-                                </td>
+                                </td> --}}
                             </tr>
                             @endforeach
                         </tbody>

@@ -81,12 +81,15 @@ class DashboardPinjamController extends Controller
         return redirect('/dashboard/peminjamans')->with('success', 'Kondisi Buku has been confirmationed!');
     }
 
-    public function tolak(Peminjaman $peminjaman)
+    public function tolak(Peminjaman $peminjaman, Request $request)
     {
-        // dd($peminjaman);
+        $this->validate($request, [
+            'alasan' => '',
+        ]);
         $peminjaman->update([
             'id_petugas' => auth()->user()->id,
-            'id_status' => 5
+            'id_status' => 5,
+            'alasan' => $request->alasan,
         ]);
         $peminjaman->save();
         return redirect('/dashboard/peminjamans')->with('success', 'Peminjaman Buku has been rejected !');

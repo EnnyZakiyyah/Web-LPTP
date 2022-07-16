@@ -131,7 +131,7 @@ Route::middleware(['auth', 'role:admin|admin'])->group(function () {
     Route::get('/dashboard/peminjaman-buku/{peminjaman:slug}', [DashboardPinjamController::class, 'pinjam']);
     Route::get('/dashboard/pengembalian-buku/{peminjaman:slug}', [DashboardPinjamController::class, 'kembali']);
     Route::get('/dashboard/konfirmasi-buku/{peminjaman:slug}', [DashboardPinjamController::class, 'konfirmasi']);
-    Route::get('/dashboard/tolak-peminjaman/{peminjaman:slug}', [DashboardPinjamController::class, 'tolak']);
+    Route::put('/dashboard/tolak-peminjaman/{peminjaman:slug}', [DashboardPinjamController::class, 'tolak']);
     Route::put('/dashboard/kondisi-peminjaman/{peminjaman:slug}', [DashboardPinjamController::class, 'kondisi']);
     Route::get('/dashboard/kondisi-peminjaman/hilang/{peminjaman:slug}', [DashboardPinjamController::class, 'hilang']);
     Route::get('/dashboard/kondisi-peminjaman/rusak/{peminjaman:slug}', [DashboardPinjamController::class, 'rusak']);

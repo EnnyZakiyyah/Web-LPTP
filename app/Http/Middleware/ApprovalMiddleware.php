@@ -20,7 +20,7 @@ class ApprovalMiddleware
             if(!auth()->user()->approved) {
                 auth()->logout();
 
-                return redirect('/sign-in')->with('message', 'Tunggu Konfirmasi dari Admin');
+                return redirect('/sign-in')->with('message', 'Tunggu Konfirmasi dari Admin, Paling lambat 1x24 jam dihari kerja');
             }
             if(auth()->user()->approved == 3) {
                 auth()->logout();

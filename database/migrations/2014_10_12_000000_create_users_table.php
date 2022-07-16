@@ -29,8 +29,9 @@ class CreateUsersTable extends Migration
             $table->string('unit_kerja');
             $table->string('image_bukti')->nullable();
             $table->string('image_foto')->nullable();
+            $table->string('alasan')->nullable();
             $table->boolean('approved')->default(false)->nullable();
-            $table->foreignId('id_petugas_approved')->nullable()->constrained('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->integer('id_petugas_approved')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

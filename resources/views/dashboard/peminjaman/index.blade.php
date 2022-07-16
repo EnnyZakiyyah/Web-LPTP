@@ -85,7 +85,7 @@
                                     @elseif ($peminjaman->status->nama == 'Ditolak')
                                     <span
                                         class="badge rounded-pill bg-dark text-white">{{ $peminjaman->status->nama }}</span>
-
+                                        <br>{{ $peminjaman->alasan }}
                                     @else
                                     <span
                                         class="badge rounded-pill bg-warning text-white">{{ $peminjaman->status->nama }}</span>
@@ -187,9 +187,10 @@
                                         class="d-inline" enctype="multipart/form-data">
                                         @method('put')
                                         @csrf
+                                        <input type="text" name="alasan_ajuan" required>
                                         <input type="hidden" value="Ditolak" name="id_perpanjangan">
                                         <button type="submit"
-                                            class="badge bg-danger border-0 text-white">Ditolak</button>
+                                            class="badge bg-danger border-0 text-white" onclick="return confirm('Mohon diisi alasan penolakan!')">Ditolak</button>
                                     </form>
                                     @endif
                                     @if ($peminjaman->id_perpanjangan == 'Disetujui')
@@ -198,6 +199,7 @@
                                     @elseif ($peminjaman->id_perpanjangan == 'Ditolak')
                                     <a
                                         class="badge rounded-pill bg-secondary text-white text-decoration-none">Ditolak</a>
+                                        <br>{{ $peminjaman->alasan_ajuan }}
                                     @endif
                                     @endif
                                 </td>
@@ -212,8 +214,16 @@
                                         class="badge bg-primary border-0 text-white">Kembali</a>
                                     @endif
                                     @if ($peminjaman->status->nama == 'Pending')
-                                    <a href="/dashboard/tolak-peminjaman/{{ $peminjaman->slug }}"
-                                        class="badge bg-danger" style="color: white">Ditolak</a>
+                                    <form action="/dashboard/tolak-peminjaman/{{ $peminjaman->slug }}" method="POST"
+                                        class="d-inline" enctype="multipart/form-data">
+                                        @method('put')
+                                        @csrf
+                                        <input type="text" name="alasan" required>
+                                        <button type="submit"
+                                        class="badge bg-danger border-0" style="color: white" onclick="return confirm('Mohon diisikan alasan peminjaman ditolak?')">Ditolak</button>
+                                    </form>
+                                    {{-- <a href="/dashboard/tolak-peminjaman/{{ $peminjaman->slug }}"
+                                        class="badge bg-danger" style="color: white" id="b">Ditolak</a> --}}
                                     <a href="/dashboard/konfirmasi-buku/{{ $peminjaman->slug }}"
                                         class="badge bg-success" style="color: white">Konfirmasi</a>
                                     @endif

@@ -73,7 +73,7 @@ class PerpanjanganController extends Controller
                 'id_perpanjangan' => '',
             ]);
             Peminjaman::where('id', $peminjaman->id)->update($validateData);
-            return redirect('/home/sirkulasi/peminjaman-buku')->with('success', 'Perpanjangan Buku sedang di ajukan! tunggu konfirmasi kembali');
+            return redirect('/home/sirkulasi/peminjaman-buku')->with('success', 'Perpanjangan Buku sedang di ajukan! tunggu konfirmasi kembali paling lambat 1x24 jam dihari kerja');
         }
         return redirect('/home/sirkulasi/peminjaman-buku')->with('loginError', 'Perpanjangan Buku bisa dilakukan H-1 Pengembalian');
     }

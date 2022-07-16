@@ -53,7 +53,20 @@
                                 <td>{{ $user->no_ktp }}</td>
                                 <td>{{ $user->username }}</td>
                                 <td>{{ $user->email }}</td>
-                                <td>{{ $user->approved }}</td>
+                                <td>
+                                    @if ($user->approved == 1)
+                                    <span
+                                    class="badge rounded-pill bg-primary text-white">Admin</span>
+                                    @elseif($user->approved == 2)
+                                        <span
+                                        class="badge rounded-pill bg-warning text-white">Anggota</span>
+                                    @else
+                                    <span
+                                    class="badge rounded-pill bg-dark text-white">Ditolak</span>
+                                    <br>{{ $user->alasan }}
+                                    @endif
+                                    {{-- {{ $user->approved }} --}}
+                                </td>
                                 <td>
                                     @if ($user->approved == 0)
                                     <form action="/dashboard/users/{{ $user->id }}" method="POST" class="d-inline">
@@ -65,8 +78,9 @@
                                     <form action="/dashboard/users/ditolak/{{ $user->id }}" method="POST" class="d-inline">
                                         @method('put')
                                         @csrf
+                                        <input type="text" name="alasan" required>
                                         <input type="hidden" value="3" name="approved">
-                                        <button class="badge bg-danger border-0"><i class="feather icon-x-square" style="color: white"></i></button>
+                                        <button class="badge bg-danger border-0"><i class="feather icon-x-square" style="color: white" onclick="return confirm('Mohon diisi alasan penolakan!')"></i></button>
                                     </form>
                                     @endif
                                     <a href="/dashboard/users/{{ $user->id }}"

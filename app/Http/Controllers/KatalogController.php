@@ -84,9 +84,9 @@ class KatalogController extends Controller
                         ]);
                         $katalog->jumlah = $katalog->jumlah - 1;
                         $katalog->save();
-                        return redirect('/home/sirkulasi/peminjaman-buku')->with('success', 'Tunggu status berubah konfirmasi!');
+                        return redirect('/home/sirkulasi/peminjaman-buku')->with('success', 'Tunggu status berubah konfirmasi! paling lambat 1x24 jam dihari kerja');
                     }
-                    return redirect('/home/sirkulasi/peminjaman-buku')->with('success', 'Tunggu status berubah konfirmasi!');
+                    return redirect('/home/sirkulasi/peminjaman-buku')->with('success', 'Tunggu status berubah konfirmasi! paling lambat 1x24 jam dihari kerja');
                 } else {
                     $peminjaman_lama = DB::table('bibliographies')
                         ->join('peminjamans', 'bibliographies.id', '=', 'peminjamans.id_bibliography')
@@ -112,7 +112,7 @@ class KatalogController extends Controller
                         $bibliography->jumlah = $bibliography->jumlah - 1;
                         $bibliography->save();
                         // dd($bibliography);
-                        return redirect('/home/sirkulasi/peminjaman-buku')->with('success', 'Tunggu status berubah konfirmasi!');
+                        return redirect('/home/sirkulasi/peminjaman-buku')->with('success', 'Tunggu status berubah konfirmasi! paling lambat 1x24 jam dihari kerja');
                     }
                 }
             } else {

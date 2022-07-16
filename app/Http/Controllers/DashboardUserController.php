@@ -104,10 +104,12 @@ class DashboardUserController extends Controller
     public function ditolak(Request $request, $id){
         $this->validate($request, [
             'approved' => '',
+            'alasan' => '',
         ]);
         $reject = User::findOrFail($id);
         $reject->update([
             'approved' => $request->approved,
+            'alasan' => $request->alasan,
             $users = User::where('id', auth()->user()->id),
             $reject->notify(new UserRejectedNotification($users))
         ]);

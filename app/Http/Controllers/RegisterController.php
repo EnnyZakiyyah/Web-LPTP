@@ -55,6 +55,6 @@ class RegisterController extends Controller
         }
 
         // return $user;
-        return redirect('/sign-in')->with('success', 'Registrati Berhasil! Tunggu Konfirmasi dari Admin');
+        return redirect('/sign-in')->with('success', 'Registrati Berhasil! Tunggu Konfirmasi dari Admin. Paling lambat 1x24 jam dihari kerja');
     }
 }

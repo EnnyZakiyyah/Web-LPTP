@@ -93,6 +93,7 @@ class DashboardPerpanjanganController extends Controller
     {
         $validateData = $request->validate([
             'id_perpanjangan' => '',
+            'alasan_ajuan' => '',
         ]);
         Peminjaman::where('id', $peminjaman->id)->update($validateData);
         // dd($validateData);

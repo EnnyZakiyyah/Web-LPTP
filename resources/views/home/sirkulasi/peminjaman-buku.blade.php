@@ -88,7 +88,7 @@
                   @elseif ($peminjaman->status->nama == 'Pending')
                   <td><span class="badge rounded-pill bg-danger text-white">{{ $peminjaman->status->nama }}</span></td>
                   @elseif ($peminjaman->status->nama == 'Ditolak')
-                  <td><span class="badge rounded-pill bg-secondary text-white">{{ $peminjaman->status->nama }}</span></td>
+                  <td><span class="badge rounded-pill bg-secondary text-white">{{ $peminjaman->status->nama }}</span><br>{{ $peminjaman->alasan }}</td>
                   @else
                   <td><span class="badge rounded-pill bg-warning text-white">{{ $peminjaman->status->nama }}</span></td>
                   @endif
@@ -110,7 +110,7 @@
                       @if ($peminjaman->id_perpanjangan == 'Disetujui')
                       <td><a class="badge rounded-pill bg-success text-white text-decoration-none">Disetujui</a></td>
                       @elseif ($peminjaman->id_perpanjangan == 'Ditolak')
-                      <td><a class="badge rounded-pill bg-secondary text-white text-decoration-none">Ditolak</a></td>
+                      <td><a class="badge rounded-pill bg-secondary text-white text-decoration-none">Ditolak</a><br>{{ $peminjaman->alasan_ajuan }}</td>
                       @else
                       @endif
                   @else
