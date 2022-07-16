@@ -28,6 +28,7 @@ class RegisterController extends Controller
             'password' =>'required|min:5|max:255',
             'no_tlpn' => 'required',
             'alamat' => 'required',
+            'unit_kerja' => 'required',
             'image_bukti' => 'image|file|max:2048',
             'image_foto' => 'image|file|max:2048',
             'is_admin' => '',

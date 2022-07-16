@@ -22,7 +22,13 @@ class ApprovalMiddleware
 
                 return redirect('/sign-in')->with('message', 'Tunggu Konfirmasi dari Admin');
             }
-        }
+            if(auth()->user()->approved == 3) {
+                auth()->logout();
+
+                return redirect('/sign-in')->with('message', 'Maaf anda tidak dapat login');
+            }
+        } 
+        
         return $next($request);
     }
 }

@@ -21,11 +21,36 @@
                   <div class="row">
                     <div class="col-md-4">
                       <div class="card-image">
+                    
+                    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                  {{-- @foreach($katalog as $katalogs) --}}
+                                  {{-- <div class="carousel-item {{$key == 0 ? 'active' : '' }}"> --}}
                         <a href="#"> <img class="img" src="{{ asset('storage/' . $katalog->image) }}">
-                          <div class="card-caption px-2 py-1"><a href="/home/sirkulasi/penelusuran-katalog?category={{ $katalog->category->slug }}" class="text-white text-decoration-none"> {{ $katalog->category->name }} </a></div>
+                          {{-- <div class="card-caption px-2 py-1"><a href="/home/sirkulasi/penelusuran-katalog?category={{ $katalog->category->slug }}" class="text-white text-decoration-none"> {{ $katalog->category->name }} </a></div> --}}
                         </a>
-                    </div>
-                    </div>
+                                  {{-- </div> --}}
+                        {{-- @endforeach --}}
+                        {{-- @foreach($katalog as $key => $katalogs) --}}
+                        {{-- <div class="carousel-item ">
+                            <img src="{{asset('storage/' . $katalog->image)}}" class="d-block w-100" alt="...">
+                        </div> --}}
+                        {{-- @endforeach --}}
+                      </div>
+                      <button class="carousel-control-prev" type="button"
+                      data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button"
+                    data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                  </button>
+                </div>
+                
+              </div>
+              </div>
                     <div class="col-md-8 py-4 px-4 mb-3">
                       <div class="table-responsive-sm">
                         <table class="table table-hover">

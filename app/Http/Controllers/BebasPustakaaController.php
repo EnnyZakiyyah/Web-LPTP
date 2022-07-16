@@ -31,7 +31,7 @@ class BebasPustakaaController extends Controller
         if ($peminjaman->id_status == 2 || $peminjaman->id_status == 7) {
             return redirect('/home/sirkulasi/peminjaman-buku')->with('loginError', 'Masih ada Peminjaman Buku');
         }
-        dd('berhasil');
+        // dd('berhasil');
         $data = User::where('id', auth()->user()->id)->get();
         view()->share('data', $data);
         $pdf = PDF::loadView('home/sirkulasi/bebas-pustaka');   

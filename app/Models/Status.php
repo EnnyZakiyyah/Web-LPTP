@@ -12,7 +12,7 @@ class Status extends Model
     protected $guarded = ['id'];
 
     public function peminjamans(){
-        return $this->hasMany(Peminjaman::class);
+        return $this->hasMany(Peminjaman::class, 'id_status');
     }
 
 }

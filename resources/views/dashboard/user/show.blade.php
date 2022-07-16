@@ -73,12 +73,20 @@
                         </table>
                         <div class="py-3">
                             <a href="/dashboard/users" class="btn btn-info"><i class="feather icon-arrow-left" style="color: white"></i>Back</a>
+                            @if ($user->approved == 0)
+                            <form action="/dashboard/users/ditolak/{{ $user->id }}" method="POST" class="d-inline">
+                                @method('put')
+                                @csrf
+                                <input type="hidden" value="3" name="approved">
+                                <button class="btn btn-danger"><i class="feather icon-x-square" style="color: white"></i>Tolak</button>
+                            </form>
                             <form action="/dashboard/users/{{ $user->id }}" method="POST" class="d-inline">
                                 @method('put')
                                 @csrf
                                 <input type="hidden" value="2" name="approved">
                                 <button class="btn btn-success"><i class="feather icon-check-square" style="color: white"></i>Setujui</button>
                             </form>
+                            @endif
                             <form action="/dashboard/users/{{ $user->slug }}" method="POST" class="d-inline">
                                 @method('delete')
                                 @csrf

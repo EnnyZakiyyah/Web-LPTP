@@ -16,10 +16,13 @@ class Peminjaman extends Model
 
     public function scopeFilter($query, array $filters)
     {
-
         $query->when($filters['search'] ?? false, function($query, $search) {
             return $query->where('title', 'like', '%' . $search . '%')
                      ->orWhere('body', 'like', '%' . $search . '%') ;
+        });
+
+        $query->when($filters['id_kondisi'] ?? false, function($query, $id_kondisi){
+            return $query->where('id_kondisi', 'like', '%' . $id_kondisi . '%');
         });
     }
 

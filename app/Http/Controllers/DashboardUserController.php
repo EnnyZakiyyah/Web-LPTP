@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\UserApprovedNotification;
+use App\Notifications\UserRejectedNotification;
 
 class DashboardUserController extends Controller
 {
@@ -81,11 +82,10 @@ class DashboardUserController extends Controller
             'approved' => '',
             // 'id_petugas_approved' => auth()->user()->id,
         ]);
-        
         $user->assignRole('user');
         User::where('id', $user->id)->update($validateData, $user);
-            $users = User::where('id', auth()->user()->id);
-            $user->notify(new UserApprovedNotification($users));
+        $users = User::where('id', auth()->user()->id);
+        $user->notify(new UserApprovedNotification($users));
         return redirect('/dashboard/users')->with('success', 'User has been Approved!');
     }
 
@@ -101,7 +101,16 @@ class DashboardUserController extends Controller
         return redirect('/dashboard/users')->with('success', 'Data User has been deleted!');
     }
 
-    // public function approved(){
-    //     dd('berhasil');
-    // }
+    public function ditolak(Request $request, $id){
+        $this->validate($request, [
+            'approved' => '',
+        ]);
+        $reject = User::findOrFail($id);
+        $reject->update([
+            'approved' => $request->approved,
+            $users = User::where('id', auth()->user()->id),
+            $reject->notify(new UserRejectedNotification($users))
+        ]);
+        return redirect('/dashboard/users')->with('success', 'User has been Approved!');
+    }
 }

@@ -25,6 +25,7 @@ use App\Http\Controllers\DashboardPinjamController;
 use App\Http\Controllers\DashboardAnggotaController;
 use App\Http\Controllers\DashboardContactController;
 use App\Http\Controllers\DashboardKatalogController;
+use App\Http\Controllers\DashboardLaporanController;
 use App\Http\Controllers\DashboardCategoryController;
 use App\Http\Controllers\DashboardPeminjamanController;
 use App\Http\Controllers\DashboardBibliographyController;
@@ -140,23 +141,22 @@ Route::middleware(['auth', 'role:admin|admin'])->group(function () {
     Route::get('/dashboard/sirkulasi/pengembalians/checkSlug', [DashboardPengembalianController::class, 'checkSlug']);
     Route::resource('/dashboard/sirkulasi/pengembalians', DashboardPengembalianController::class);
 
+    //Laporan
+    Route::resource('/dashboard/laporan', DashboardLaporanController::class);
+    Route::get('/dashboard/cetak-laporan', [DashboardLaporanController::class, 'cetak']);
+    Route::get('/dashboard/cetak', [DashboardLaporanController::class, 'print']);
+    Route::get('/dashboard/cetak-laporan-tanggal/{fromdate}/{todate}', [DashboardLaporanController::class, 'laporan']);
+
     //Koleksi-Buku
     Route::get('/dashboard/bookcollection/checkSlug', [DashboardKatalogController::class, 'checkSlug']);
     Route::resource('/dashboard/bookcollection', DashboardKatalogController::class);
     
     //Users
     Route::get('/dashboard/users/checkSlug', [DashboardUserController::class, 'checkSlug']);
+    Route::put('/dashboard/users/ditolak/{id}', [DashboardUserController::class, 'ditolak']);
     Route::resource('/dashboard/users', DashboardUserController::class);
     
     //Category
     Route::get('/dashboard/categories/checkSlug', [DashboardCategoryController::class, 'checkSlug']);
     Route::resource('/dashboard/categories', DashboardCategoryController::class);
 });
-
-//Anggota
-// Route::get('/dashboard/authors/checkSlug', [DashboardAuthorController::class, 'checkSlug'])->middleware('auth');
-// Route::resource('/dashboard/anggota', DashboardAnggotaController::class)->middleware('auth');
-
-
-//ROLE ADMIN
-// Route::resource('/home/sirkulasi/peminjaman-buku', AnggotaController::class)->except('show')->middleware('auth');

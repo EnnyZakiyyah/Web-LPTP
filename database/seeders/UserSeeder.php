@@ -29,6 +29,7 @@ class UserSeeder extends Seeder
             'image_bukti' => '0',
             'image_foto' => '0',
             'jk' => 'Perempuan',
+            'unit_kerja' => 'Mahasiswa',
             'remember_token' => 'wer3r32',
             // 'is_admin' => ''
         ]);
@@ -49,6 +50,7 @@ class UserSeeder extends Seeder
             'image_bukti' => '0',
             'image_foto' => '0',
             'jk' => 'Perempuan',
+            'unit_kerja' => 'Staf Proyek',
             'remember_token' => 'wwwewef',
             // 'is_admin' => ''
         ]);

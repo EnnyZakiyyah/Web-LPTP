@@ -13,9 +13,9 @@
                 <p class="mb-5 lead text-secondary" style="font-size:17px;">Perpustakaan LPTP surakarta menyediakan <br
                         class="d-none d-xl-block" />peminjaman  buku secara online serta bisa<br
                         class="d-none d-xl-block" />membaca buku tanpa harus pergi ke perpustakaan.</p>
-                <form>
+                <form action="/">
                     <div class="search rounded-pill w-xl-75 w-xxl-50 d-flex flex-end-center"><input type="text"
-                            class="form-control rounded-pill" placeholder="Search books, articles, keywords"> <i
+                            class="form-control rounded-pill" placeholder="Search books, articles, keywords" name="searc"  value="{{ request('search') }}"> <i
                             class="fa fa-search"></i></div>
                 </form>
             </div>

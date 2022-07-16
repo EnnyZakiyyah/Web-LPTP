@@ -39,6 +39,10 @@ class Katalog extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function categories(){
+        return $this->belongsTo(Category::class);
+    }
+
     public function label(){
         return $this->belongsTo(Label::class);
     }

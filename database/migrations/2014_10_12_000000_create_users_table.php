@@ -26,6 +26,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('no_tlpn');
             $table->string('alamat');
+            $table->string('unit_kerja');
             $table->string('image_bukti')->nullable();
             $table->string('image_foto')->nullable();
             $table->boolean('approved')->default(false)->nullable();

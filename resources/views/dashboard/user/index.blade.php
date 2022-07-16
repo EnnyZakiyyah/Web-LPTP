@@ -62,6 +62,12 @@
                                         <input type="hidden" value="2" name="approved">
                                         <button class="badge bg-success border-0"><i class="feather icon-check-square" style="color: white"></i></button>
                                     </form>
+                                    <form action="/dashboard/users/ditolak/{{ $user->id }}" method="POST" class="d-inline">
+                                        @method('put')
+                                        @csrf
+                                        <input type="hidden" value="3" name="approved">
+                                        <button class="badge bg-danger border-0"><i class="feather icon-x-square" style="color: white"></i></button>
+                                    </form>
                                     @endif
                                     <a href="/dashboard/users/{{ $user->id }}"
                                         class="badge bg-info"><i class="feather icon-eye" style="color: white"></i></a>

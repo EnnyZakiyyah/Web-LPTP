@@ -30,17 +30,9 @@
     <div class="col-md-6">
         <label class="form-label">Jenis Kelamin</label>
         <select class="form-select form-select-md" aria-label=".form-select-md example" name="jk" >
-            <option value="laki-laki">Laki-laki</option>
-            <option value="perempuan">Perempuan</option>
+            <option value="Laki-Laki">Laki-laki</option>
+            <option value="Perempuan">Perempuan</option>
         </select>
-        {{-- <input type="text" id="jk"
-            class="form-control @error('jk')is-invalid @enderror" placeholder="658 799 8941"
-            name="jk" value="{{ old('jk') }}" required/>
-        @error('jk')
-        <div class="invalid-feedback">
-            {{ $message }}
-        </div>
-        @enderror --}}
     </div>
     <div class="col-md-6">
         <label class="form-label">Tempat Lahir</label>
@@ -132,6 +124,14 @@
             {{ $message }}
         </div>
       @enderror
+    </div>
+    <div class="col-md-12">
+        <label class="form-label">Unit Kerja</label>
+        <select class="form-select form-select-md" aria-label=".form-select-md example" name="unit_kerja" >
+            <option value="Mahasiswa">Mahasiswa</option>
+            <option value="Staf Proyek">Staf Proyek</option>
+            <option value="Staf Kantor">Staf Kantor</option>
+        </select>
     </div>
     <div class="col-md-6">
         {{-- <label class="form-label">Role</label> --}}
