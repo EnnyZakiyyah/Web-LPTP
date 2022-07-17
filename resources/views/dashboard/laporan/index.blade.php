@@ -36,16 +36,16 @@
                     <label for="fromdate" class="col-md-2 col-form-label" style="font-weight: 600">Tanggal Pinjam
                         Awal</label>
                     <div class="col-md-4">
-                        <input class="form-control" type="date" name="fromdate" id="fromdate" />
+                        <input class="form-control" type="date" name="tglawal" id="tglawal" required/>
                     </div>
                     <label for="todate" class="col-md-2 col-form-label" style="font-weight: 600">Tanggal Pinjam
                         Akhir</label>
                     <div class="col-md-4">
-                        <input class="form-control" type="date" name="todate" id="todate" />
+                        <input class="form-control" type="date" name="tglakhir" id="tglakhir" required/>
                     </div>
                     <label class="col-md-2 col-form-label" style="font-weight: 600">Kondisi Buku</label>
-                    <div class="col-md-3">
-                        <select class="form-control" id="lokasi" name="id_kondisi">
+                    <div class="col-md-4">
+                        <select class="form-control" id="kondisi" name="id_kondisi">
                             @foreach ($kondisis as $kondisi)
                             @if (old('id_kondisi') == $kondisi->id)
                             <option value="{{ $kondisi->id }}" selected>{{ $kondisi->nama }}</option>
@@ -55,16 +55,22 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="col-md-2 col-form-label">
+                    <label class="col-md-2 col-form-label" style="font-weight: 600">Unit Kerja Anggota</label>
+                    <div class="col-md-2">
+                        <select class="form-control" id="unitkerja" name="unit_kerja">
+                            <option value="Mahasiswa">Mahasiswa</option>
+                            <option value="Staf Proyek">Staf Proyek</option>
+                            <option value="Staf Kantor">Staf Kantor</option>
+                        </select>
+                    </div>
+                    <div class="col-md-1 col-form-label">
                         <button class="btn btn-primary btn-sm" type="submit">Search</button>
                     </div>
+                    <div class="col-md-1 col-form-label">
+                        <a href="" onclick="this.href='/dashboard/cetak-laporan-tanggal/'+ document.getElementById('tglawal').value + '/' + document.getElementById('tglakhir').value + '/' + document.getElementById('kondisi').value + '/' + document.getElementById('unitkerja').value" target="_blank" class="btn btn-info btn-sm" style="float: right"><i class="feather icon-printer"></i> Cetak </a>
+                    </div><br>
                 </div>
             </form>
-            <div class="mb-2 row ml-4">
-                <a href="/dashboard/cetak-laporan" class="btn btn-primary"> <i class="feather icon-printer mr-1"></i>
-                    Cetak Laporan </a>
-                {{-- <a href="" onclick="this.href='/dashboard/cetak-laporan-tanggal'+ document.getElementById('fromdate').value + '/' + document.getElementById('todate').value" target="_blank" class="btn btn-primary"> Cetak Laporan Tanggal </a> --}}
-            </div><br>
             @if ($laporans->count())
             <div class="card-body table-border-style">
                 <div class="table-responsive text-nowrap">

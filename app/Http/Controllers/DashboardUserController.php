@@ -80,10 +80,12 @@ class DashboardUserController extends Controller
     {
         $validateData = $request->validate([
             'approved' => '',
-            // 'id_petugas_approved' => auth()->user()->id,
         ]);
         $user->assignRole('user');
         User::where('id', $user->id)->update($validateData, $user);
+        $user->update([
+            'id_petugas_approved' => auth()->user()->id,
+        ]);
         $users = User::where('id', auth()->user()->id);
         $user->notify(new UserApprovedNotification($users));
         return redirect('/dashboard/users')->with('success', 'User has been Approved!');
@@ -110,6 +112,7 @@ class DashboardUserController extends Controller
         $reject->update([
             'approved' => $request->approved,
             'alasan' => $request->alasan,
+            'id_petugas_approved' => auth()->user()->id,
             $users = User::where('id', auth()->user()->id),
             $reject->notify(new UserRejectedNotification($users))
         ]);

@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use Svg\Tag\Rect;
+use Carbon\Carbon;
 use App\Models\Label;
 use App\Models\Status;
 use App\Models\Katalog;
 use App\Models\Category;
 use App\Models\Condition;
 use App\Models\Peminjaman;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\DB;
-use Svg\Tag\Rect;
 
 class DashboardLaporanController extends Controller
 {
@@ -22,13 +24,15 @@ class DashboardLaporanController extends Controller
      */
     public function index(Request $request)
     {
-        $fromdate = $request->fromdate;
-        $todate = $request->todate;
+        $tglawal = $request->tglawal;
+        $tglakhir = $request->tglakhir;
         $id_kondisi = $request->id_kondisi;
         return view('dashboard.laporan.index', [
             'title' => 'Laporan',
-            'laporans' => Peminjaman::whereBetween('tgl_pinjam', [$fromdate, $todate])->latest()->where('id_kondisi', [$id_kondisi])->paginate(5)->withQueryString(),
-            'kondisis' => Condition::all()
+            'laporans' => Peminjaman::whereBetween('tgl_pinjam', [$tglawal, $tglakhir])->latest()->where('id_kondisi', [$id_kondisi])->paginate(5)->withQueryString(),
+            'kondisis' => Condition::all(),
+            'laporan' => Peminjaman::all(),
+            'unitkerja' => User::all()
         ]);
     }
 
@@ -116,30 +120,24 @@ class DashboardLaporanController extends Controller
         $pdf = PDF::loadView('dashboard/laporan/cetak-laporan');    
         return $pdf->download('cetak-laporan.pdf');
 
-
-        // 'laporans' => Peminjaman::whereBetween('tgl_pinjam', [$fromdate, $todate])->where('id_kondisi', [$id_kondisi])->paginate(5)->withQueryString();
-        // $id_kondisi = $request->id_kondisi;
-        // $fromdate = $request->fromdate;
-        // $todate = $request->todate;
-        // $peminjaman = Peminjaman::all();
-        // // dd($peminjaman);
-        // view()->share('peminjaman', $peminjaman);
-        // $pdf = PDF::loadView('dashboard/laporan/laporan');    
-        // return $pdf->download('cetak-laporan.pdf');
-
     }
 
-    public function laporan($fromdate,$todate)
+    public function laporan($tglawal,$tglakhir, $kondisi, $unitkerja)
     {
         
-        // dd("tanggal awal".$fromdate,"tanggal akhir".$todate);
-        // $fromdate = $request->fromdate;
-        // $todate = $request->todate;
-        $cetak = Peminjaman::whereBetween('tgl_pinjam ', [$fromdate, $todate])->get();
-        dd($cetak);
-        return view('dashboard.laporan.cetak', [
-            'cetak' => $cetak,
-        ]);
+        // dd(["tanggal awal".$tgLawal,"tanggal akhir".$tglakhir,"kondisi".$kondisi]);
+        $cetak = Peminjaman::whereBetween('tgl_pinjam',[$tglawal, $tglakhir])->where('id_kondisi', $kondisi)->get();
+        $denda = DB::table('peminjamans')->whereBetween('tgl_pinjam',[$tglawal, $tglakhir])->where('id_kondisi', $kondisi)->sum('denda');
+        $totalpeminjaman = DB::table('peminjamans')->whereBetween('tgl_pinjam',[$tglawal, $tglakhir])->where('id_kondisi', $kondisi)->get();
+        $kondisi = DB::table('conditions') ->join('peminjamans', 'conditions.id', '=', 'peminjamans.id_kondisi')->whereBetween('tgl_pinjam',[$tglawal, $tglakhir])->where('id_kondisi', $kondisi)->get();
+        $unitkerja = User::whereBetween('created_at',[$tglawal, $tglakhir])->where('unit_kerja', $unitkerja)->get();
+        view()->share('cetak', $cetak);
+        view()->share('totalpeminjaman', $totalpeminjaman);
+        view()->share('denda', $denda);
+        view()->share('kondisi', $kondisi);
+        view()->share('unitkerja', $unitkerja);
+        $pdf = PDF::loadView('dashboard/laporan/cetak');    
+        return $pdf->download('cetak-laporan.pdf');
     }
 
     public function print(Request $request)

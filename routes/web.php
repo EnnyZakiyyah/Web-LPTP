@@ -145,7 +145,7 @@ Route::middleware(['auth', 'role:admin|admin'])->group(function () {
     Route::resource('/dashboard/laporan', DashboardLaporanController::class);
     Route::get('/dashboard/cetak-laporan', [DashboardLaporanController::class, 'cetak']);
     Route::get('/dashboard/cetak', [DashboardLaporanController::class, 'print']);
-    Route::get('/dashboard/cetak-laporan-tanggal/{fromdate}/{todate}', [DashboardLaporanController::class, 'laporan']);
+    Route::get('/dashboard/cetak-laporan-tanggal/{tglawal}/{tglakhir}/{kondisi}/{unitkerja}', [DashboardLaporanController::class, 'laporan']);
 
     //Koleksi-Buku
     Route::get('/dashboard/bookcollection/checkSlug', [DashboardKatalogController::class, 'checkSlug']);

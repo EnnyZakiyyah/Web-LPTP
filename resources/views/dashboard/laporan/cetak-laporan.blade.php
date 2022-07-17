@@ -224,7 +224,6 @@
                 @foreach ($peminjaman as $row)
                 <tr>
                     <th scope="row">{{ $loop->iteration }}</th>
-                    {{-- <td>{{ $row->nama }}</td> --}}
                     <td>{{ $row->peminjamans->count('pivot.id_status') }}</td>
                 </tr>
                 @endforeach

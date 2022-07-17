@@ -69,6 +69,11 @@
                                     <td>:</td>
                                     <td style="text-align: justify !important">{{ $user->alamat }}</td>
                                 </tr>
+                                <tr>
+                                    <th scope="row" style="text-align: left">Unit Kerja</th>
+                                    <td>:</td>
+                                    <td style="text-align: justify !important">{{ $user->unit_kerja }}</td>
+                                </tr>
                             </tbody>
                         </table>
                         <div class="py-3">

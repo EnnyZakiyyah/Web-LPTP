@@ -4,27 +4,32 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\Katalog;
+use App\Models\Condition;
 use App\Models\Peminjaman;
 use App\Models\Bibliography;
-use App\Models\Condition;
+use App\Models\User;
+use Illuminate\Contracts\Support\ValidatedData;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DashboardPinjamController extends Controller
 {
     public $tgl_pinjam;
    
-    public function pinjam(Peminjaman $peminjaman, Katalog $katalog)
+    public function pinjam(Peminjaman $peminjaman, Katalog $katalog,)
     {
         $todayDate = date('Y/m/d');
         $peminjaman->update([
-                'id_petugas' => auth()->user()->id,
-                'tgl_pinjam' => $todayDate,
-                'reminder_at' => Carbon::create($todayDate)->addDays(6),
-                'tgl_kembali' => Carbon::create($todayDate)->addDays(7),
-                'id_status' => 2
+            'id_petugas' => auth()->user()->id,
+            'tgl_pinjam' => $todayDate,
+            'reminder_at' => Carbon::create($todayDate)->addDays(6),
+            'tgl_kembali' => Carbon::create($todayDate)->addDays(7),
+            'id_status' => 2,
         ]);
-        $katalog->jumlah = $katalog->jumlah-1;
-        $peminjaman->save();
+        // $jum = Katalog::where('jumlah', auth()->user()->id)->first();
+        // dd($jum);
+        // $jum->jumlah = $jum->jumlah - 0;
+        // $jum->save();
         return redirect('/dashboard/peminjamans')->with('success', 'Data Peminjaman has been added!');
     }
 
@@ -81,8 +86,15 @@ class DashboardPinjamController extends Controller
         return redirect('/dashboard/peminjamans')->with('success', 'Kondisi Buku has been confirmationed!');
     }
 
+    public function jumlah(Peminjaman $peminjaman, Request $request, Katalog $katalog)
+    {
+        dd($katalog);
+     }
+
+
     public function tolak(Peminjaman $peminjaman, Request $request)
     {
+        // dd($id);
         $this->validate($request, [
             'alasan' => '',
         ]);
@@ -92,6 +104,12 @@ class DashboardPinjamController extends Controller
             'alasan' => $request->alasan,
         ]);
         $peminjaman->save();
+        // if ($peminjaman->id_buku) {
+        //     // $katalog = DB::table('katalogs')->first();
+        //     // $katalog->jumlah = $katalog->jumlah + 1;
+        //     // // dd($jum);
+        //     // $katalog->save();
+        // }
         return redirect('/dashboard/peminjamans')->with('success', 'Peminjaman Buku has been rejected !');
     }
 
