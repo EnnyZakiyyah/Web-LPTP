@@ -26,6 +26,9 @@ class DashboardPinjamController extends Controller
             'tgl_kembali' => Carbon::create($todayDate)->addDays(7),
             'id_status' => 2,
         ]);
+        $buku = Katalog::first();
+        $buku->jumlah = $buku->jumlah - 1;
+        $buku->save();
         // $jum = Katalog::where('jumlah', auth()->user()->id)->first();
         // dd($jum);
         // $jum->jumlah = $jum->jumlah - 0;
@@ -47,6 +50,9 @@ class DashboardPinjamController extends Controller
         $data['denda'] = $denda;
     } 
        $peminjaman->update($data);
+       $buku = Katalog::first();
+        $buku->jumlah = $buku->jumlah + 1;
+        $buku->save();
        if ($peminjaman->id_status == 1) {
         return redirect('/dashboard/sirkulasi/pengembalians')->with('success', 'Peminjaman has been returned!');
        }
@@ -103,13 +109,11 @@ class DashboardPinjamController extends Controller
             'id_status' => 5,
             'alasan' => $request->alasan,
         ]);
-        $peminjaman->save();
-        // if ($peminjaman->id_buku) {
-        //     // $katalog = DB::table('katalogs')->first();
-        //     // $katalog->jumlah = $katalog->jumlah + 1;
-        //     // // dd($jum);
-        //     // $katalog->save();
-        // }
+        $peminjaman->save();    
+        // $jum = Peminjaman::with('katalogs')->first();
+        // $buku = Katalog::first();
+        // $buku->jumlah = $buku->jumlah + 1;
+        // $buku->save();
         return redirect('/dashboard/peminjamans')->with('success', 'Peminjaman Buku has been rejected !');
     }
 
