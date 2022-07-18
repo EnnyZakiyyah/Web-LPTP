@@ -8,11 +8,11 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class AdminNewUserNotification extends Notification
+class AdminNewUserNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    private $user;
+    public $user;
     /**
      * Create a new notification instance.
      * @param User $user
@@ -31,7 +31,7 @@ class AdminNewUserNotification extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['mail', 'database'];
     }
 
     /**

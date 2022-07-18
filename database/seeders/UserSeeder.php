@@ -24,7 +24,7 @@ class UserSeeder extends Seeder
             'email' => 'enny.9h08@gmail.com',
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'no_tlpn' => '98493493',
+            'phone_number' => '98493493',
             'alamat' => 'Pamekasan' ,
             'image_bukti' => '0',
             'image_foto' => '0',
@@ -45,7 +45,7 @@ class UserSeeder extends Seeder
             'email' => 'nyza.9h08@gmail.com',
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'no_tlpn' => '98493493',
+            'phone_number' => '98493493',
             'alamat' => 'Pamekasan' ,
             'image_bukti' => '0',
             'image_foto' => '0',

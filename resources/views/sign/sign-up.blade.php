@@ -86,10 +86,10 @@
     </div>
     <div class="col-md-6">
         <label class="form-label">Nomor Telepon</label>
-        <input type="text" id="no_tlpn"
-            class="form-control @error('no_tlpn')is-invalid @enderror"
-            placeholder="658 799 8941" name="no_tlpn" value="{{ old('no_tlpn') }}" maxlength="13" required/>
-        @error('no_tlpn')
+        <input type="text" id="phone_number"
+            class="form-control @error('phone_number')is-invalid @enderror"
+            placeholder="658 799 8941" name="phone_number" value="{{ old('phone_number') }}" maxlength="15" required/>
+        @error('phone_number')
         <div class="invalid-feedback">
             {{ $message }}
         </div>

@@ -26,7 +26,7 @@ class RegisterController extends Controller
             'email' => 'required|email:dns|unique:users',
             'username' => ['required', 'min:3', 'max:255', 'unique:users'],
             'password' =>'required|min:5|max:255',
-            'no_tlpn' => 'required',
+            'phone_number' => 'required',
             'alamat' => 'required',
             'unit_kerja' => 'required',
             'image_bukti' => 'image|file|max:2048',

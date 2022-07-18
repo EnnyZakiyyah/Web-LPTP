@@ -236,4 +236,6 @@ return [
 
     ],
 
+    'admin_sms_number' => env('ADMIN_SMS_NUMBER'),
+
 ];
