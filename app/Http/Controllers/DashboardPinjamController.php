@@ -16,8 +16,11 @@ class DashboardPinjamController extends Controller
 {
     public $tgl_pinjam;
    
-    public function pinjam(Peminjaman $peminjaman, Katalog $katalog,)
+    public function pinjam($id, Request $request)
     {
+        $peminjaman = Peminjaman::findOrFail($id);
+        // $user = $peminjaman->katalogs->id;
+        // dd($user);
         $todayDate = date('Y/m/d');
         $peminjaman->update([
             'id_petugas' => auth()->user()->id,
@@ -26,13 +29,13 @@ class DashboardPinjamController extends Controller
             'tgl_kembali' => Carbon::create($todayDate)->addDays(7),
             'id_status' => 2,
         ]);
-        $buku = Katalog::first();
-        $buku->jumlah = $buku->jumlah - 1;
-        $buku->save();
-        // $jum = Katalog::where('jumlah', auth()->user()->id)->first();
-        // dd($jum);
-        // $jum->jumlah = $jum->jumlah - 0;
-        // $jum->save();
+        DB::table('katalogs')
+            ->join('peminjamans', 'katalogs.id', '=', 'peminjamans.id_buku')
+            ->where('jumlah', $peminjaman->katalogs->jumlah)
+            ->update( array(
+                'jumlah' => DB::raw(  'jumlah - 1' )
+            ));
+
         return redirect('/dashboard/peminjamans')->with('success', 'Data Peminjaman has been added!');
     }
 
@@ -50,9 +53,12 @@ class DashboardPinjamController extends Controller
         $data['denda'] = $denda;
     } 
        $peminjaman->update($data);
-       $buku = Katalog::first();
-        $buku->jumlah = $buku->jumlah + 1;
-        $buku->save();
+       DB::table('katalogs')
+       ->join('peminjamans', 'katalogs.id', '=', 'peminjamans.id_buku')
+       ->where('jumlah', $peminjaman->katalogs->jumlah)
+       ->update( array(
+           'jumlah' => DB::raw(  'jumlah + 1' )
+       ));
        if ($peminjaman->id_status == 1) {
         return redirect('/dashboard/sirkulasi/pengembalians')->with('success', 'Peminjaman has been returned!');
        }

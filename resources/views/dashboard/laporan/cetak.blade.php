@@ -135,7 +135,7 @@
               <thead style="font-size: 12px">
                 <tr>
                   <th scope="col">No</th>
-                  <th scope="col">Total Anggota</th>
+                  <th scope="col">Jumlah Anggota</th>
                 </tr>
               </thead>
               <tbody style="font-size: 12px">

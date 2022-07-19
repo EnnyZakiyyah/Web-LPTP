@@ -80,7 +80,7 @@
                                 <div class="row align-items-center">
                                     <div class="col-8">
                                         <h4 class="text-c-red">{{ $peminjamans->count() }}</h4>
-                                        <h6 class="text-muted m-b-0">Transaksi</h6>
+                                        <h6 class="text-muted m-b-0">Peminjaman</h6>
                                     </div>
                                     <div class="col-4 text-right">
                                         <i class="feather icon-edit f-28"></i>
@@ -105,7 +105,7 @@
                                 <div class="row align-items-center">
                                     <div class="col-8">
                                         <h4 class="text-c-blue">{{ $pengembalians->count() }}</h4>
-                                        <h6 class="text-muted m-b-0">Riwayat</h6>
+                                        <h6 class="text-muted m-b-0">Pengembalian</h6>
                                     </div>
                                     <div class="col-4 text-right">
                                         <i class="feather icon-file-text f-28"></i>

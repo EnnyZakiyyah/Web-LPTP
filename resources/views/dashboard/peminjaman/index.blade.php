@@ -206,7 +206,7 @@
                                 {{-- ===== AKSI ===== --}}
                                 <td>
                                     @if ($peminjaman->status->nama == 'Konfirmasi')
-                                    <a href="/dashboard/peminjaman-buku/{{ $peminjaman->slug }}"
+                                    <a href="/dashboard/peminjaman-buku/{{ $peminjaman->id }}"
                                         class="badge bg-secondary" style="color: white">Setujui</a>
                                     @endif
                                     @if ($peminjaman->id_kondisi != null)
