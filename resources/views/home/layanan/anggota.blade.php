@@ -139,13 +139,13 @@
                             </tr>
                             @endforeach
                     </table>
-                {{-- </div> --}}
+                </div>
                 {{-- <div class="col-2">
                    
                     <img src="{{ $row->image_foto }}" style="width:60px; height:60px;" alt="">
                     <img src=" {{ public_path("storage/register-images" . $row->image_foto) }}" style="width:60px; height:60px;" alt="">
                 </div> --}}
-            </div>
+            {{-- </div> --}}
             
         </div>
 

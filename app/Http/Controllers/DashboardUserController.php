@@ -121,4 +121,12 @@ class DashboardUserController extends Controller
         ]);
         return redirect('/dashboard/users')->with('success', 'User has been Approved!');
     }
+
+    public function register($id)
+    {
+        if ($id) {
+            auth()->user()->unreadnotifications->where('id', $id)->markAsRead();
+        }
+        return back();
+    }
 }

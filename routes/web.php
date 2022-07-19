@@ -154,6 +154,7 @@ Route::middleware(['auth', 'role:admin|admin'])->group(function () {
     //Users
     Route::get('/dashboard/users/checkSlug', [DashboardUserController::class, 'checkSlug']);
     Route::put('/dashboard/users/ditolak/{id}', [DashboardUserController::class, 'ditolak']);
+    Route::get('/dashboard/users/register/{id}', [DashboardUserController::class, 'register']);
     Route::resource('/dashboard/users', DashboardUserController::class);
     
     //Category

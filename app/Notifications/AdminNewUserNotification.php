@@ -57,7 +57,11 @@ class AdminNewUserNotification extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            //
+            'user_id' => $this->user['id'],
+            'name' => $this->user['name'],
+            'email' => $this->user['email'],
+            'image_foto' => $this->user['image_foto'],
+            'phone_number' => $this->user['phone_number']
         ];
     }
 }
