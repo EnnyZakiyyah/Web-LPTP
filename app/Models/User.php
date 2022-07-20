@@ -57,4 +57,9 @@ class User extends Authenticatable
     {
         return $this->phone_number;
     }
+
+    public function routeNotificationForSlack($notification)
+    {
+        return 'https://hooks.slack.com/services/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';
+    }
 }

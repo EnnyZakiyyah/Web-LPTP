@@ -124,8 +124,55 @@
                             </div>
                         </div>
                     </div>
+                    <!-- page statustic card end -->
+                    <!-- Latest Customers start -->
+                    <div class="col-lg-8 col-md-12">
+                        <div class="card table-card review-card">
+                            <div class="card-header borderless ">
+                                <h5>New Register</h5>
+                                <div class="card-header-right">
+                                    <div class="btn-group card-option">
+                                        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="false">
+                                            <i class="feather icon-more-horizontal"></i>
+                                        </button>
+                                        <ul class="list-unstyled card-option dropdown-menu dropdown-menu-right">
+                                            <li class="dropdown-item full-card"><a href="#!"><span><i
+                                                            class="feather icon-maximize"></i> maximize</span><span
+                                                        style="display:none"><i class="feather icon-minimize"></i>
+                                                        Restore</span></a></li>
+                                            <li class="dropdown-item minimize-card"><a href="#!"><span><i
+                                                            class="feather icon-minus"></i> collapse</span><span
+                                                        style="display:none"><i class="feather icon-plus"></i>
+                                                        expand</span></a></li>
+                                            <li class="dropdown-item reload-card"><a href="#!"><i
+                                                        class="feather icon-refresh-cw"></i> reload</a></li>
+                                            <li class="dropdown-item close-card"><a href="#!"><i
+                                                        class="feather icon-trash"></i> remove</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="review-block">
+                                    @foreach (auth()->user()->unreadNotifications as $notification)
+                                    <div class="row">
+                                        <div class="col-sm-auto p-r-0">
+                                            <img src="a{{asset('storage/' . $notification->image_foto)}}"
+                                                class="img-radius profile-img cust-img m-b-15">
+                                        </div>
+                                        <div class="col">
+                                            <h6 class="m-b-15">{{ $notification->data['name'] }}<span class="float-right f-13 text-muted">{{ $notification->created_at }}</span></h6>
+                                            <p class="m-t-15 m-b-15 text-muted">New User Register</p>
+                                        </div>
+                                    </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <!-- page statustic card end -->
+                <!-- Latest Customers end -->
             </div>
         </div>
         <!-- [ Main Content ] end -->

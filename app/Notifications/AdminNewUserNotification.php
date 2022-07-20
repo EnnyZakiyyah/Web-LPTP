@@ -4,9 +4,10 @@ namespace App\Notifications;
 
 use App\Models\User;
 use Illuminate\Bus\Queueable;
+use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-use Illuminate\Notifications\Notification;
+use Illuminate\Notifications\Messages\SlackMessage;
 
 class AdminNewUserNotification extends Notification implements ShouldQueue
 {
@@ -31,7 +32,7 @@ class AdminNewUserNotification extends Notification implements ShouldQueue
      */
     public function via($notifiable)
     {
-        return ['mail', 'database'];
+        return ['mail', 'database', 'slack'];
     }
 
     /**
@@ -46,6 +47,18 @@ class AdminNewUserNotification extends Notification implements ShouldQueue
                     ->line('New user has registered: ' . $this->user->name . '('.$this->user->email.')')
                     ->action('Login to admin panel to approve', url('/dashboard/users', $this->user->id));
                     // ->line('Thank you for using our application!');
+    }
+
+        /**
+     * Get the Slack representation of the notification.
+     *
+     * @param  mixed  $notifiable
+     * @return \Illuminate\Notifications\Messages\SlackMessage
+     */
+    public function toSlack($notifiable)
+    {
+        return (new SlackMessage)
+                    ->content($this->user['name']. 'New User Register, Please Check!');
     }
 
     /**

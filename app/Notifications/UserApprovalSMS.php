@@ -46,13 +46,9 @@ class UserApprovalSMS extends Notification
      */
 
     public function toVonage($notifiable)
-
     {
-
         return (new VonageMessage())
-
-            ->content('Akun anda sudah diverifikasi, silahkan cek email!');
-
+            ->content('::LPTP-Surakarta::       Akun anda sudah diverifikasi, silahkan cek email!');
     }
 
     /**

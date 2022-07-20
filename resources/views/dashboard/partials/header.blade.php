@@ -27,37 +27,38 @@
         <ul class="navbar-nav ml-auto">
             <li>
                 <div class="dropdown">
-                    <a class="dropdown-toggle" href="#" data-toggle="dropdown"><i class="icon feather icon-bell"></i></a>
+                    <a class="dropdown-toggle" href="#" data-toggle="dropdown"><i class="icon feather icon-bell"></i><span class="badge badge-danger bg-sm">{{ auth()->user()->unreadnotifications->count() }}</span></a>
                     <div class="dropdown-menu dropdown-menu-right notification">
                         <div class="noti-head">
                             <h6 class="d-inline-block m-b-0">Notifications</h6>
-                            <div class="float-right">
+                            {{-- <div class="float-right">
                                 <a href="#!" class="m-r-10">mark as read</a>
                                 <a href="#!">clear all</a>
-                            </div>
+                            </div> --}}
                         </div>
                         <ul class="noti-body">
                             <li class="n-title">
                                 <p class="m-b-0">NEW</p>
                             </li>
+                            @foreach (auth()->user()->unreadNotifications as $notification)
+                            <a href="/dashboard/users/register/{{ $notification->id }}">
                             <li class="notification">
-                                @foreach (auth()->user()->unreadNotifications as $notification)
-                                    
                                 <div class="media">
-                                    {{-- <img class="img-radius" src="{{asset('storage/' . $notification->image_foto)}}" alt="Generic placeholder image"> --}}
+                                    
+                                    <img class="img-radius" src="{{asset('storage/' . $notification->image_foto)}}">
                                     <div class="media-body">
-                                        <a href="/dashboard/users/register/{{ $notification->id }}">
-                                        <p><strong>{{ $notification->data['name'] }}</strong><span class="n-time text-muted"><i class="icon feather icon-clock m-r-10"></i>5 min</span></p>
-                                        <p>Registered</p>
-                                        </a>
+                                        <p><strong>{{ $notification->data['name'] }}</strong><span class="n-time text-muted"><i class="icon feather icon-clock m-r-10"></i>{{ $notification->created_at }}</span></p>
+                                        <p>New User Register</p>
                                     </div>
+                                    {{-- <a href="/dashboard/users/register/{{ $notification->id }}">mark as read</a> --}}
                                 </div>
-                                @endforeach
                             </li>
+                            </a>
+                            @endforeach
                         </ul>
-                        <div class="noti-footer">
+                        {{-- <div class="noti-footer">
                             <a href="#!">show all</a>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </li>
