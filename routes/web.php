@@ -57,7 +57,8 @@ Route::resource('/home/sirkulasi/bebas-pustaka/', BebasPustakaController::class)
 // Route::resource('/home/sirkulasi/bebas-pustaka/', BebasPustakaController::class);
 // Route::get('/home/sirkulasi/bebas-pustaka/checkSlug', [BebasPustakaController::class, 'checkSlug']);
 Route::get('/home/sirkulasi/bebas-pustaka/', [BebasPustakaaController::class, 'pustaka'])->middleware('admin');;
-Route::get('/home/sirkulasi/bebas-pustaka/detail/{peminjaman:slug}', [BebasPustakaaController::class, 'cetak']);
+Route::get('/home/sirkulasi/bebas-pustaka/detail/{id}', [BebasPustakaaController::class, 'cetak']);
+Route::get('/home/sirkulasi/bebas-pustaka/details/{id}', [BebasPustakaaController::class, 'cetakkosong']);
 //Home-Layanan
 Route::resource('/home/layanan/keanggotaan', KeanggotaanController::class)->except('show')->middleware('admin');
 Route::get('/home/layanan/keanggotaan/cetak-kartu', [KeanggotaanController::class, 'cetak']);

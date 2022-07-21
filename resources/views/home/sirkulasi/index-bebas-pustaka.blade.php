@@ -27,10 +27,24 @@
             <p>1. Buku yang telah dipinjam telah dikembalikan semua</p>
             <p>2. Buku yang hilang (jika ada) telah diganti sesaui dengan ketentuan</p>
             <p>3. Tidak memiliki tanggungan denda yang belum dibayarkan.</p>
-            <p>4. Ketentuan bisa di download @foreach ($pustaka as $pustakas)
+            <p>4. Ketentuan bisa di download 
+              {{-- @foreach ($pustaka as $pustakas)
               <a href="/home/sirkulasi/bebas-pustaka/detail/{{ $pustakas->slug }}" style="color: #002147">disini</a>
-               {{-- <a href="/home/sirkulasi/bebas-pustaka/detail/{{ $peminjaman->slug }}" class="btn btn-primary" style="float: right">BEBAS PUSTAKA</a> --}}
-             @endforeach
+              @endforeach --}}
+              {{-- @if ($users == null)
+              <a href="/home/sirkulasi/bebas-pustaka/detail/{{ $users->id }}" class="btn btn-primary" style="float: right">BEBAS PUSTAKA</a>
+              @endif --}}
+              @if ($pustaka->isNotEmpty())  
+              {{-- <a href="/home/sirkulasi/bebas-pustaka/detail/{{ $pustaka->id }}" style="color: #002147">disini</a> --}}
+              @foreach ($pustaka as $pustakas)
+              <a href="/home/sirkulasi/bebas-pustaka/detail/{{ $pustakas->id }}" style="color: #002147">disini</a>
+              @endforeach
+              @else
+              @foreach ($users as $pustakas)
+              <a href="/home/sirkulasi/bebas-pustaka/details/{{ $pustakas->id }}" style="color: #002147">disini</a>
+              @endforeach
+              @endif
+            
           </p>
             </p><span style="color: #002147">Ketentuan</span> ini berlaku untuk Perpustakaan LPTP Surakarta.
             <br>
