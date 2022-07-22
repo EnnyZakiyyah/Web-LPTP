@@ -23,25 +23,23 @@
                     <div class="dropdown-toggle" href="#" data-toggle="dropdown"><i class="icon feather icon-bell"></i>&nbsp<span class="badge badge-danger bg-sm">{{ auth()->user()->unreadnotifications->count() }}</span></div>
                     <div class="dropdown-menu dropdown-menu-right notification">
                         <div class="noti-head">
-                            <h6 class="d-inline-block m-b-0">Notifications</h6>
+                            <h6 class="d-inline-block m-b-0">New Register</h6>
                         </div>
                         <ul class="noti-body">
                             <li class="n-title">
                                 <p class="m-b-0">NEW</p>
                             </li>
                             @foreach (auth()->user()->unreadNotifications as $notification)
-                            <a href="/dashboard/users/register/{{ $notification->id }}">
                             <li class="notification">
                                 <div class="media">
                                     
                                     <img class="img-radius" src="{{asset('storage/' . $notification->image_foto)}}">
                                     <div class="media-body">
                                         <p><strong>{{ $notification->data['name'] }}</strong><span class="n-time text-muted"><i class="icon feather icon-clock m-r-10"></i>{{ $notification->created_at }}</span></p>
-                                        {{-- <p>New User Register</p> --}}
+                                        <a href="/dashboard/users/register/{{ $notification->id }}" class="badge bg-dark border-0 text-white" style="float: right">Mark as read</a>
                                     </div>
                                 </div>
                             </li>
-                            </a>
                             @endforeach
                         </ul>
                     </div>
@@ -76,7 +74,6 @@
                                     </div>
                                 </div>
                             </li>
-                            </a>
                             @endforeach
                         </ul>
                     </div>

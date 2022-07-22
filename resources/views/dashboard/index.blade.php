@@ -164,6 +164,7 @@
                                         <div class="col">
                                             <h6 class="m-b-15">{{ $notification->data['name'] }}<span class="float-right f-13 text-muted">{{ $notification->created_at }}</span></h6>
                                             <p class="m-t-15 m-b-15 text-muted">New User Register</p>
+                                            <a href="/dashboard/users/register/{{ $notification->id }}" class="badge bg-dark border-0 text-white" style="float: right">Mark as read</a>
                                         </div>
                                     </div>
                                     @endforeach
