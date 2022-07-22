@@ -17,7 +17,10 @@ class IsAdmin
     public function handle(Request $request, Closure $next)
     {
         if (auth()->guest() || !auth()->user()->is_admin && auth()->user()->is_admin) {
-            abort(403);
+            // abort(403);
+            auth()->logout();
+
+            return redirect('/sign-in')->with('message', 'Please Login');
         }
         return $next($request);
     }

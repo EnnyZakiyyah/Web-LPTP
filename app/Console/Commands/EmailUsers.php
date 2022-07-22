@@ -2,13 +2,15 @@
 
 namespace App\Console\Commands;
 
-use App\Mail\ReminderEmailDigest;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Peminjaman;
 use Illuminate\Console\Command;
-use App\Notifications\AdminNewUserNotification;
+use App\Mail\ReminderEmailDigest;
 use Illuminate\Support\Facades\Mail;
+use App\Notifications\AdminNewUserNotification;
+use App\Notifications\ReminderSMSNotifications;
+use App\Notifications\ReminderEmailNotifications;
 
 class EmailUsers extends Command
 {
@@ -60,7 +62,8 @@ class EmailUsers extends Command
 
     private function sendEmailToUser($userId, $reminders){
         $user = User::find($userId);
-
-        Mail::to($user)->send(new ReminderEmailDigest($reminders));
+        $user->notify(new ReminderSMSNotifications($reminders));
+        $user->notify(new ReminderEmailNotifications($reminders));
+        // Mail::to($user)->send(new ReminderEmailDigest($reminders));
     }
 }

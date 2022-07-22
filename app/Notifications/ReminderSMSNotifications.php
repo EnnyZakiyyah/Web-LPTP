@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Messages\VonageMessage;
 
-class UserApprovalSMS extends Notification
+class ReminderSMSNotifications extends Notification
 {
     use Queueable;
 
@@ -33,7 +33,21 @@ class UserApprovalSMS extends Notification
         return ['vonage'];
     }
 
-     /**
+    /**
+     * Get the mail representation of the notification.
+     *
+     * @param  mixed  $notifiable
+     * @return \Illuminate\Notifications\Messages\MailMessage
+     */
+    public function toMail($notifiable)
+    {
+        return (new MailMessage)
+                    ->line('The introduction to the notification.')
+                    ->action('Notification Action', url('/'))
+                    ->line('Thank you for using our application!');
+    }
+
+    /**
      * Get the Vonage / SMS representation of the notification.
      *
      * @param    mixed  $notifiable
@@ -42,7 +56,7 @@ class UserApprovalSMS extends Notification
     public function toVonage($notifiable)
     {
         return (new VonageMessage())
-            ->content('::LPTP-Surakarta::       Akun anda sudah diverifikasi, silahkan cek email!');
+            ->content('::LPTP-Surakarta::       H-1 Pengembalian Buku');
     }
 
     /**

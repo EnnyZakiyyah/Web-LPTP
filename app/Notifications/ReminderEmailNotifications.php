@@ -2,16 +2,18 @@
 
 namespace App\Notifications;
 
+use App\Models\User;
+use App\Models\Peminjaman;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-use Illuminate\Notifications\Messages\VonageMessage;
 
-class UserApprovalSMS extends Notification
+class ReminderEmailNotifications extends Notification implements ShouldQueue
 {
     use Queueable;
-
+    // public $user;
+    // public $peminjaman;
     /**
      * Create a new notification instance.
      *
@@ -19,7 +21,8 @@ class UserApprovalSMS extends Notification
      */
     public function __construct()
     {
-        //
+        // $this->user = $user;
+        // $this->peminjaman = $peminjaman;
     }
 
     /**
@@ -30,20 +33,23 @@ class UserApprovalSMS extends Notification
      */
     public function via($notifiable)
     {
-        return ['vonage'];
+        return ['mail'];
     }
 
-     /**
-     * Get the Vonage / SMS representation of the notification.
+    /**
+     * Get the mail representation of the notification.
      *
-     * @param    mixed  $notifiable
-     * @return  \Illuminate\Notifications\Messages\VonageMessage
+     * @param  mixed  $notifiable
+     * @return \Illuminate\Notifications\Messages\MailMessage
      */
-    public function toVonage($notifiable)
+    public function toMail($notifiable)
     {
-        return (new VonageMessage())
-            ->content('::LPTP-Surakarta::       Akun anda sudah diverifikasi, silahkan cek email!');
+        return (new MailMessage)
+                    // ->line('Peminjam: ' . $this->user->name . '('.$this->user->email.')')
+                    ->line('H-1 Pengembalian');
+                    // ->action('Check disini', url('/sign-in', $this->user->id));
     }
+
 
     /**
      * Get the array representation of the notification.
