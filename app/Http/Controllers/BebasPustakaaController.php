@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\ContactUs;
 use App\Models\Peminjaman;
-use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\DB;
 
 class BebasPustakaaController extends Controller
@@ -18,18 +19,8 @@ class BebasPustakaaController extends Controller
         return view('home.sirkulasi.index-bebas-pustaka', [
             'title' => 'Sirkulasi',
             'pustaka' => $bebas,
-            'users' => User::where('id', auth()->user()->id)->get()
-            // dd($bebas)
-            // 'pustaka' => Peminjaman::where([
-            //     ['id_peminjam', auth()->user()->id],
-            //     ['id_status', 3]
-            //     ])->orWhere([
-            //         ['id_peminjam', auth()->user()->id],
-            //         ['id_status', 2]
-            //     ])->orWhere([
-            //         ['id_peminjam', auth()->user()->id],
-            //         ['id_status', 7]
-            //     ])->latest()->paginate(5)->withQueryString()
+            'users' => User::where('id', auth()->user()->id)->get(),
+            'contacts' => ContactUs::where('status', 0)->get()
             ]);
     }
 

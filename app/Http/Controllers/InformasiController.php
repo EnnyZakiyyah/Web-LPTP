@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ContactUs;
 use App\Models\Informasi;
 use Illuminate\Http\Request;
-use Cviebrock\EloquentSluggable\Services\SlugService;
 use Symfony\Polyfill\Intl\Idn\Info;
+use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class InformasiController extends Controller
 {
@@ -18,7 +19,8 @@ class InformasiController extends Controller
     {
         return view('dashboard.informasi.index', [
             'title' => "Informasi",
-            'informasis' => Informasi::latest()->get()
+            'informasis' => Informasi::latest()->get(),
+            'contacts' => ContactUs::where('status', 0)->get()
         ]);
         // return Informasi::latest()->get();
     }
@@ -31,7 +33,8 @@ class InformasiController extends Controller
     public function create()
     {
         return view('dashboard.informasi.create', [
-            'title' => "Tambah Data Informasi"
+            'title' => "Tambah Data Informasi",
+            'contacts' => ContactUs::where('status', 0)->get()
         ]);
     }
 
@@ -76,6 +79,7 @@ class InformasiController extends Controller
         return view('dashboard.informasi.edit', [
             'title' => "Edit Data Penulis",
             'informasi' =>$informasi,
+            'contacts' => ContactUs::where('status', 0)->get()
         ]);
     }
 

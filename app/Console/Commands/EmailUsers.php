@@ -62,7 +62,7 @@ class EmailUsers extends Command
 
     private function sendEmailToUser($userId, $reminders){
         $user = User::find($userId);
-        $user->notify(new ReminderSMSNotifications($reminders));
+        // $user->notify(new ReminderSMSNotifications($reminders));
         $user->notify(new ReminderEmailNotifications($reminders));
         // Mail::to($user)->send(new ReminderEmailDigest($reminders));
     }

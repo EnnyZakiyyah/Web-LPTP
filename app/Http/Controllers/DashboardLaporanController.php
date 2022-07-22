@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use Svg\Tag\Rect;
 use Carbon\Carbon;
+use App\Models\User;
 use App\Models\Label;
 use App\Models\Status;
 use App\Models\Katalog;
 use App\Models\Category;
 use App\Models\Condition;
+use App\Models\ContactUs;
 use App\Models\Peminjaman;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\DB;
@@ -32,7 +33,8 @@ class DashboardLaporanController extends Controller
             'laporans' => Peminjaman::whereBetween('tgl_pinjam', [$tglawal, $tglakhir])->latest()->where('id_kondisi', [$id_kondisi])->paginate(5)->withQueryString(),
             'kondisis' => Condition::all(),
             'laporan' => Peminjaman::all(),
-            'unitkerja' => User::all()
+            'unitkerja' => User::all(),
+            'contacts' => ContactUs::where('status', 0)->get()
         ]);
     }
 

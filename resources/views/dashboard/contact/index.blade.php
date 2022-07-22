@@ -24,6 +24,12 @@
             <div class="card-header">
                 <h5>{{ $title }}</h5>
             </div>
+
+            @if (session()->has('success'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('success') }}
+                </div>
+            @endif
     
             <div class="card-body table-border-style">
                 <div class="table-responsive text-nowrap">
@@ -41,15 +47,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($contacts as $contact)
+                            @foreach ($messages as $message)
                             <tr>
                                 <th scope="row">{{ $loop->iteration }}</th>
-                                <td>{{ $contact->name }}</td>
-                                <td>{{ $contact->email }}</td>
-                                <td>{{ $contact->subject }}</td>
-                                <td>{{ $contact->phone }}</td>
-                                <td>{{ $contact->pesan }}</td>
-                                <td>{{ $contact->created_at }}</td>
+                                <td>{{ $message->name }}</td>
+                                <td>{{ $message->email }}</td>
+                                <td>{{ $message->subject }}</td>
+                                <td>{{ $message->phone }}</td>
+                                <td>{{ $message->pesan }}</td>
+                                <td>{{ $message->created_at }}</td>
                                 {{-- <td> --}}
                                     {{-- <a href="/dashboard/authors/{{ $authors->slug }}/edit" class="badge bg-warning"><i class="feather icon-edit" style="color: white"></i></a> --}}
                                     {{-- <form action="/dashboard/contact-us/{{ $contact->id }}" method="POST" class="d-inline">

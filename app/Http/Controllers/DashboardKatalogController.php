@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Label;
 use App\Models\Author;
+use App\Models\Lokasi;
 use App\Models\Katalog;
 use App\Models\Category;
-use App\Models\Label;
-use App\Models\Lokasi;
+use App\Models\ContactUs;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Support\Facades\Storage;
+use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class DashboardKatalogController extends Controller
 {
@@ -23,7 +24,8 @@ class DashboardKatalogController extends Controller
     {
         return view('dashboard.sirkulasi.penelusuran-katalog.index', [
             'title' => "Penelusuran-Katalog",
-            'katalogs' => Katalog::latest()->paginate(5)
+            'katalogs' => Katalog::latest()->paginate(5),
+            'contacts' => ContactUs::where('status', 0)->get()
         ]);
     }
 
@@ -39,7 +41,8 @@ class DashboardKatalogController extends Controller
             'categories' => Category::all(),
             'labels' => Label::all(),
             'authors' => Author::all(),
-            'lokasis' => Lokasi::all()
+            'lokasis' => Lokasi::all(),
+            'contacts' => ContactUs::where('status', 0)->get()
         ]);
     }
 
@@ -95,7 +98,8 @@ class DashboardKatalogController extends Controller
     {
         return view('dashboard.sirkulasi.penelusuran-katalog.show', [
             'title' => "Detail Katalog",
-            'katalog' => $katalog
+            'katalog' => $katalog,
+            'contacts' => ContactUs::where('status', 0)->get()
         ]);
     }
 
@@ -113,7 +117,8 @@ class DashboardKatalogController extends Controller
             'categories' => Category::all(),
             'labels' => Label::all(),
             'authors' => Author::all(),
-            'lokasis' => Lokasi::all()
+            'lokasis' => Lokasi::all(),
+            'contacts' => ContactUs::where('status', 0)->get()
         ]);
     }
 

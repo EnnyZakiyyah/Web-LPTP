@@ -27,14 +27,10 @@
         <ul class="navbar-nav ml-auto">
             <li>
                 <div class="dropdown">
-                    <a class="dropdown-toggle" href="#" data-toggle="dropdown"><i class="icon feather icon-bell"></i><span class="badge badge-danger bg-sm">{{ auth()->user()->unreadnotifications->count() }}</span></a>
+                    <div class="dropdown-toggle" href="#" data-toggle="dropdown"><i class="icon feather icon-bell"></i><span class="badge badge-danger bg-sm">{{ auth()->user()->unreadnotifications->count() }}</span></div>
                     <div class="dropdown-menu dropdown-menu-right notification">
                         <div class="noti-head">
                             <h6 class="d-inline-block m-b-0">Notifications</h6>
-                            {{-- <div class="float-right">
-                                <a href="#!" class="m-r-10">mark as read</a>
-                                <a href="#!">clear all</a>
-                            </div> --}}
                         </div>
                         <ul class="noti-body">
                             <li class="n-title">
@@ -48,17 +44,48 @@
                                     <img class="img-radius" src="{{asset('storage/' . $notification->image_foto)}}">
                                     <div class="media-body">
                                         <p><strong>{{ $notification->data['name'] }}</strong><span class="n-time text-muted"><i class="icon feather icon-clock m-r-10"></i>{{ $notification->created_at }}</span></p>
-                                        <p>New User Register</p>
+                                        {{-- <p>New User Register</p> --}}
                                     </div>
-                                    {{-- <a href="/dashboard/users/register/{{ $notification->id }}">mark as read</a> --}}
                                 </div>
                             </li>
                             </a>
                             @endforeach
                         </ul>
-                        {{-- <div class="noti-footer">
-                            <a href="#!">show all</a>
-                        </div> --}}
+                    </div>
+                </div>
+            </li>
+            {{-- EMAIL --}}
+            <li>
+                <div class="dropdown">
+                    <div class="dropdown-toggle" href="#" data-toggle="dropdown"><i class="icon feather icon-mail"></i><span class="badge badge-danger bg-sm">{{ $contacts->count() }}</span></div>
+                    <div class="dropdown-menu dropdown-menu-right notification">
+                        <div class="noti-head">
+                            <h6 class="d-inline-block m-b-0">Email Messages</h6>
+                        </div>
+                        <ul class="noti-body">
+                            <li class="n-title">
+                                <p class="m-b-0">NEW</p>
+                            </li>
+                            @foreach ($contacts as $notification)
+                            <li class="notification">
+                                <div class="media">
+                                    <img class="img-radius" src="{{asset('storage/' . $notification->image_foto)}}">
+                                    <div class="media-body">
+                                        <p><strong>{{ $notification->name }}</strong><span class="n-time text-muted"><i class="icon feather icon-clock m-r-10"></i>{{ $notification->created_at }}</span></p>
+                                        <form action="/dashboard/contact-us/status/{{ $notification->id }}" method="POST"
+                                            class="d-inline" enctype="multipart/form-data">
+                                            @method('put')
+                                            @csrf
+                                            <input type="hidden" value="1" name="status">
+                                            <button type="submit"
+                                                class="badge bg-dark border-0 text-white" style="float: right">Mark as read</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </li>
+                            </a>
+                            @endforeach
+                        </ul>
                     </div>
                 </div>
             </li>
@@ -69,7 +96,7 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right profile-notification">
                         <div class="pro-head">
-                            <img src="{{asset('storage/'. auth()->user()->image )}}" class="img-radius" width="50px" height="40px" alt="User-Profile-Image">
+                            <img src="{{asset('storage/'. auth()->user()->image )}}" class="img-radius" width="50px" height="40px">
                             <span>{{ auth()->user()->name }}</span>
                             <form action="/logout" method="POST">
                                 @csrf
@@ -78,11 +105,6 @@
                                 </a>
                               </form>
                         </div>
-                        <ul class="pro-body">
-                            <li><a href="user-profile.html" class="dropdown-item"><i class="feather icon-user"></i> Profile</a></li>
-                            <li><a href="email_inbox.html" class="dropdown-item"><i class="feather icon-mail"></i> My Messages</a></li>
-                            <li><a href="auth-signin.html" class="dropdown-item"><i class="feather icon-lock"></i> Lock Screen</a></li>
-                        </ul>
                     </div>
                 </div>
             </li>

@@ -2,25 +2,24 @@
 
 namespace App\Notifications;
 
-use App\Models\User;
+use App\Models\ContactUs;
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notification;
 
-class AdminNewUserNotification extends Notification implements ShouldQueue
+class ContactNotifications extends Notification implements ShouldQueue
 {
     use Queueable;
-
-    public $user;
+    public $contactUs;
     /**
      * Create a new notification instance.
-     * @param User $user
+     *
      * @return void
      */
-    public function __construct(User $user)
+    public function __construct(ContactUs $contactUs)
     {
-        $this->user = $user;
+        $this->contactUs = $contactUs;
     }
 
     /**
@@ -31,7 +30,7 @@ class AdminNewUserNotification extends Notification implements ShouldQueue
      */
     public function via($notifiable)
     {
-        return ['mail', 'database'];
+        return ['mail'];
     }
 
     /**
@@ -43,11 +42,12 @@ class AdminNewUserNotification extends Notification implements ShouldQueue
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('New user has registered: ' . $this->user->name . '('.$this->user->email.')')
-                    ->action('Login to admin panel to approve', url('/dashboard/users', $this->user->id));
-                    // ->line('Thank you for using our application!');
+                    ->line('Name : ' . $this->contactUs->name . '('. $this->contactUs->email .')')
+                    ->line('Phone : ' . $this->contactUs->phone )
+                    ->line('Pesan : ' . $this->contactUs->pesan )
+                    ->action('Admin panel login', url('/'))
+                    ->line('Thank you');
     }
-
 
     /**
      * Get the array representation of the notification.
@@ -58,11 +58,6 @@ class AdminNewUserNotification extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            'user_id' => $this->user['id'],
-            'name' => $this->user['name'],
-            'email' => $this->user['email'],
-            'image_foto' => $this->user['image_foto'],
-            'phone_number' => $this->user['phone_number']
         ];
     }
 }

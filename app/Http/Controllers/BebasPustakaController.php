@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Peminjaman;
 use App\Models\User;
+use App\Models\ContactUs;
+use App\Models\Peminjaman;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\DB;
@@ -19,7 +20,8 @@ class BebasPustakaController extends Controller
     {
         return view('home.sirkulasi.index-bebas-pustaka', [
             'title' => 'Sirkulasi',
-            'pustaka' => Peminjaman::all()
+            'pustaka' => Peminjaman::all(),
+            'contacts' => ContactUs::where('status', 0)->get()
         ]);
     }
         
@@ -106,7 +108,8 @@ class BebasPustakaController extends Controller
     {
         return view('home.sirkulasi.index-bebas-pustaka', [
             'title' => 'Sirkulasi',
-            'pustaka' => $peminjaman
+            'pustaka' => $peminjaman,
+            'contacts' => ContactUs::where('status', 0)->get()
         ]);
     }
 }

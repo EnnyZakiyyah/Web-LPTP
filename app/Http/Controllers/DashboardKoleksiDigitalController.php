@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Author;
 use App\Models\Category;
+use App\Models\ContactUs;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\Koleksidigital;
@@ -21,7 +22,8 @@ class DashboardKoleksiDigitalController extends Controller
     {
         return view('dashboard.koleksi-digital.index', [
             'title' => "Koleksi Digital",
-            'koleksidigitals' => Koleksidigital::latest()->paginate(5)
+            'koleksidigitals' => Koleksidigital::latest()->paginate(5),
+            'contacts' => ContactUs::where('status', 0)->get()
         ]);
     }
 
@@ -35,7 +37,8 @@ class DashboardKoleksiDigitalController extends Controller
         return view('dashboard.koleksi-digital.create', [
             'title' => "Tambah Data Koleksi Digital",
             'categories' => Category::all(),
-            'authors' => Author::all()
+            'authors' => Author::all(),
+            'contacts' => ContactUs::where('status', 0)->get()
         ]);
     }
 
@@ -89,7 +92,8 @@ class DashboardKoleksiDigitalController extends Controller
     {
         return view('dashboard.koleksi-digital.show', [
             'title' => "Detail Koleksi",
-            'koleksidigital' => $koleksidigital
+            'koleksidigital' => $koleksidigital,
+            'contacts' => ContactUs::where('status', 0)->get()
         ]);
     }
 
@@ -105,7 +109,8 @@ class DashboardKoleksiDigitalController extends Controller
             'title' => "Edit Data Koleksi Digital",
             'koleksidigital' =>$koleksidigital,
             'categories' => Category::all(),
-            'authors' => Author::all()
+            'authors' => Author::all(),
+            'contacts' => ContactUs::where('status', 0)->get()
         ]);
     }
 

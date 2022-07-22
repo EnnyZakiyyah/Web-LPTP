@@ -115,11 +115,7 @@ class DashboardPinjamController extends Controller
             'id_status' => 5,
             'alasan' => $request->alasan,
         ]);
-        $peminjaman->save();    
-        // $jum = Peminjaman::with('katalogs')->first();
-        // $buku = Katalog::first();
-        // $buku->jumlah = $buku->jumlah + 1;
-        // $buku->save();
+        $peminjaman->save(); 
         return redirect('/dashboard/peminjamans')->with('success', 'Peminjaman Buku has been rejected !');
     }
 

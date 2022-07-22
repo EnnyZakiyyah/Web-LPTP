@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 // use App\Models\Role;
-use Spatie\Permission\Models\Role;
+use App\Models\ContactUs;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
 class RoleController extends Controller
 {
@@ -17,7 +18,8 @@ class RoleController extends Controller
     {
         return view('role.index',[
             'title' => 'Role-Permissions',
-            'roles' => Role::all()
+            'roles' => Role::all(),
+            'contacts' => ContactUs::where('status', 0)->get()
         ]);
     }
 

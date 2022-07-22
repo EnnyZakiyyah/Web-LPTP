@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use App\Models\ContactUs;
 use App\Models\Peminjaman;
 use App\Models\Perpanjangan;
 use Illuminate\Http\Request;
@@ -18,7 +19,8 @@ class DashboardPerpanjanganController extends Controller
     {
         return view('dashboard.sirkulasi.perpanjangan.index', [
             'title' => 'Ajuan Perpanjangan',
-            'perpanjangans' => Perpanjangan::latest()->get()
+            'perpanjangans' => Perpanjangan::latest()->get(),
+            'contacts' => ContactUs::where('status', 0)->get()
         ]);
     }
 

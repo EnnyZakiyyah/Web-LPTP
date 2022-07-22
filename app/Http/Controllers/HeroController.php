@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Hero;
 use App\Models\Author;
+use App\Models\ContactUs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Cviebrock\EloquentSluggable\Services\SlugService;
@@ -19,7 +20,8 @@ class HeroController extends Controller
     {
         return view('dashboard.hero.index', [
             'title' => "Gambar",
-            'hero' => Hero::all()
+            'hero' => Hero::all(),
+            'contacts' => ContactUs::where('status', 0)->get()
         ]);
     }
 
@@ -31,7 +33,8 @@ class HeroController extends Controller
     public function create()
     {
         return view('dashboard.hero.create', [
-            'title' => "Tambah Data Gambar"
+            'title' => "Tambah Data Gambar",
+            'contacts' => ContactUs::where('status', 0)->get()
         ]);
     }
 
@@ -79,6 +82,7 @@ class HeroController extends Controller
         return view('dashboard.hero.edit', [
             'title' => "Edit Data Penulis",
             'hero' => $hero,
+            'contacts' => ContactUs::where('status', 0)->get()
         ]);
     }
 

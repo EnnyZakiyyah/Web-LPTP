@@ -20,6 +20,7 @@ class CreateContactUsTable extends Migration
             $table->string('phone');
             $table->string('subject');
             $table->text('pesan');
+            $table->boolean('status')->default(false);
             $table->timestamps();
         });
     }

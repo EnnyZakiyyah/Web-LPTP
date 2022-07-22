@@ -31,9 +31,6 @@
                 </div>
             @endif
     
-            <div class="col-md-4 px-3 py-3">
-                <a href="/dashboard/informasi/create" class="btn btn-primary me-2 px-3">Tambah Data</a>
-            </div>
             <div class="card-body table-border-style">
                 <div class="table-responsive text-nowrap">
                     <table class="table table-hover">
@@ -48,16 +45,6 @@
                             <tr>
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{ $role->name }}</td>
-                                {{-- <td>
-                                    <a href="/dashboard/roles/{{ $role->id }}"
-                                        class="badge bg-info"><i class="feather icon-eye" style="color: white"></i></a>
-                                    <a href="/dashboard/roles/{{ $role->id }}/edit" class="badge bg-warning"><i class="feather icon-edit" style="color: white"></i></a>
-                                    <form action="/dashboard/roles/{{ $role->id }}" method="POST" class="d-inline">
-                                        @method('delete')
-                                        @csrf
-                                        <button class="badge bg-danger border-0" onclick="return confirm('Are you sure?')"><i class="feather icon-trash" style="color: white"></i></button>
-                                    </form>
-                                </td> --}}
                             </tr>
                             @endforeach
                         </tbody>

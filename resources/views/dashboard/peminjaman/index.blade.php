@@ -36,9 +36,9 @@
             </div>
             @endif
 
-            <div class="col-md-4 px-3 py-3">
+            {{-- <div class="col-md-4 px-3 py-3">
                 <a href="/dashboard/peminjamans/create" class="btn btn-primary me-2 px-3">Tambah Data</a>
-            </div>
+            </div> --}}
             <div class="card-body table-border-style">
                 <div class="table-responsive text-nowrap">
                     <table class="table table-hover">

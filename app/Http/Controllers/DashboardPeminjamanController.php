@@ -7,9 +7,10 @@ use App\Models\User;
 use App\Models\Lokasi;
 use App\Models\Status;
 use App\Models\Katalog;
+use App\Models\Condition;
+use App\Models\ContactUs;
 use App\Models\Peminjaman;
 use App\Models\Bibliography;
-use App\Models\Condition;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Cviebrock\EloquentSluggable\Services\SlugService;
@@ -27,7 +28,8 @@ class DashboardPeminjamanController extends Controller
             return view('dashboard.peminjaman.index', [
                 'title' => 'Peminjaman Buku',
                 'peminjamans' => Peminjaman::where('id_status', 2 )->orWhere('id_status', 3)->orWhere('id_status', 4)->orWhere('id_status', 5)->orWhere('id_status', 6)->orWhere('id_status', 7)->get(),
-                'conditions' => Condition::all()
+                'conditions' => Condition::all(),
+                'contacts' => ContactUs::where('status', 0)->get()
             ]); 
         } 
     }
@@ -45,7 +47,8 @@ class DashboardPeminjamanController extends Controller
             'katalogs' => Katalog::all(),
             'statuses' => Status::all(),
             'lokasis' => Lokasi::all(),
-            'kondisis' => Condition::all()
+            'kondisis' => Condition::all(),
+            'contacts' => ContactUs::where('status', 0)->get()
         ]);
     }
 
@@ -88,7 +91,8 @@ class DashboardPeminjamanController extends Controller
     {
         return view('dashboard.peminjaman.show', [
             'title' => "Detail Peminjaman",
-            'peminjaman' => $peminjaman
+            'peminjaman' => $peminjaman,
+            'contacts' => ContactUs::where('status', 0)->get()
         ]);
     }
 
@@ -107,7 +111,8 @@ class DashboardPeminjamanController extends Controller
             'katalogs' => Katalog::all(),
             'statuses' => Status::all(),
             'lokasis' => Lokasi::all(),
-            'kondisis' => Condition::all()
+            'kondisis' => Condition::all(),
+            'contacts' => ContactUs::where('status', 0)->get()
         ]);
     }
 

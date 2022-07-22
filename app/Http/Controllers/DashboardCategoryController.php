@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\ContactUs;
 use Illuminate\Http\Request;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 
@@ -18,6 +19,7 @@ class DashboardCategoryController extends Controller
         return view('dashboard.category.index', [
             'title' => 'Category',
             'categories' => Category::latest()->paginate(5), 
+            'contacts' => ContactUs::where('status', 0)->get()
         ]);
     }
 
@@ -29,7 +31,8 @@ class DashboardCategoryController extends Controller
     public function create()
     {
         return view('dashboard.category.create', [
-            'title' => "Tambah Data Category"
+            'title' => "Tambah Data Category",
+            'contacts' => ContactUs::where('status', 0)->get()
         ]);
     }
 
@@ -72,6 +75,7 @@ class DashboardCategoryController extends Controller
         return view('dashboard.category.edit', [
             'title' => "Edit Data Category",
             'category' =>$category,
+            'contacts' => ContactUs::where('status', 0)->get()
         ]);
     }
 

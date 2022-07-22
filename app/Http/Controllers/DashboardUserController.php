@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\ContactUs;
 use Illuminate\Http\Request;
 use App\Notifications\UserApprovalSMS;
 use Illuminate\Support\Facades\Notification;
@@ -21,6 +22,7 @@ class DashboardUserController extends Controller
         return view('dashboard.user.index', [
             'title' => 'User',
             'users' => User::latest()->paginate(5),
+            'contacts' => ContactUs::where('status', 0)->get()
         ]);
     }
 
@@ -55,7 +57,8 @@ class DashboardUserController extends Controller
     {
         return view('dashboard.user.show', [
             'title' => "Detail User",
-            'user' => $user
+            'user' => $user,
+            'contacts' => ContactUs::where('status', 0)->get()
         ]);
     }
 
@@ -89,7 +92,7 @@ class DashboardUserController extends Controller
         ]);
         $users = User::where('id', auth()->user()->id);
         $user->notify(new UserApprovedNotification($users));
-        $user->notify(new UserApprovalSMS($users));
+        // $user->notify(new UserApprovalSMS($users));
         return redirect('/dashboard/users')->with('success', 'User has been Approved!');
     }
 
@@ -117,7 +120,7 @@ class DashboardUserController extends Controller
             'id_petugas_approved' => auth()->user()->id,
             $users = User::where('id', auth()->user()->id),
             $reject->notify(new UserRejectedNotification($users)),
-            $reject->notify(new UserApprovalSMS($users))
+            // $reject->notify(new UserApprovalSMS($users))
         ]);
         return redirect('/dashboard/users')->with('success', 'User has been Approved!');
     }

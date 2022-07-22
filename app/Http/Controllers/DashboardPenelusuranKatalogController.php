@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Katalog;
+use App\Models\ContactUs;
 use Illuminate\Http\Request;
 
 class DashboardPenelusuranKatalogController extends Controller
@@ -16,7 +17,8 @@ class DashboardPenelusuranKatalogController extends Controller
     {
         return view('dashboard.sirkulasi.penelusuran-katalog.index', [
             'title' => "Penelusuran Katalog",
-            'katalogs' => Katalog::where('label_id', 1)->latest()->paginate(5)
+            'katalogs' => Katalog::where('label_id', 1)->latest()->paginate(5),
+            'contacts' => ContactUs::where('status', 0)->get()
         ]);
     }
 

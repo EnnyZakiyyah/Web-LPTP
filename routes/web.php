@@ -121,6 +121,7 @@ Route::middleware(['auth', 'role:admin|admin'])->group(function () {
     
     //Contact-us
     Route::get('/dashboard/contact-us', [DashboardContactController::class, 'index']);
+    Route::put('/dashboard/contact-us/status/{id}', [DashboardContactController::class, 'read']);
      
     //Ajuan Perpanjangan
     Route::resource('/dashboard/ajuan-perpanjangan', DashboardPerpanjanganController::class);

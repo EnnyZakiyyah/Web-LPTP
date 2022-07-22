@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Author;
+use App\Models\ContactUs;
 use Illuminate\Http\Request;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 
@@ -17,7 +18,8 @@ class DashboardAuthorController extends Controller
     {
         return view('dashboard.authors.index', [
             'title' => "Penulis",
-            'author' => Author::all()
+            'author' => Author::all(),
+            'contacts' => ContactUs::where('status', 0)->get()
         ]);
     }
 
@@ -29,7 +31,8 @@ class DashboardAuthorController extends Controller
     public function create()
     {
         return view('dashboard.authors.create', [
-            'title' => "Tambah Data Penulis"
+            'title' => "Tambah Data Penulis",
+            'contacts' => ContactUs::where('status', 0)->get()
         ]);
     }
 
@@ -72,6 +75,7 @@ class DashboardAuthorController extends Controller
         return view('dashboard.authors.edit', [
             'title' => "Edit Data Penulis",
             'author' =>$author,
+            'contacts' => ContactUs::where('status', 0)->get()
         ]);
         //return $author;
     }

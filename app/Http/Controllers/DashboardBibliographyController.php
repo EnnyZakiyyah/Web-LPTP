@@ -7,6 +7,7 @@ use App\Models\Author;
 use App\Models\Lokasi;
 use App\Models\Katalog;
 use App\Models\Category;
+use App\Models\ContactUs;
 use Illuminate\Support\Str;
 use App\Models\Bibliography;
 use Illuminate\Http\Request;
@@ -24,7 +25,8 @@ class DashboardBibliographyController extends Controller
     {
         return view('dashboard.layanan.bibliography.index', [
             'title' => "Bibliography",
-            'bibliographies' => Katalog::where('label_id', 2)->latest()->paginate(5)
+            'bibliographies' => Katalog::where('label_id', 2)->latest()->paginate(5),
+            'contacts' => ContactUs::where('status', 0)->get()
         ]);
     }
 
@@ -40,7 +42,8 @@ class DashboardBibliographyController extends Controller
             'categories' => Category::all(),
             'labels' => Label::all(),
             'authors' => Author::all(),
-            'lokasis' => Lokasi::all()
+            'lokasis' => Lokasi::all(),
+            'contacts' => ContactUs::where('status', 0)->get()
         ]);
     }
 
@@ -92,7 +95,8 @@ class DashboardBibliographyController extends Controller
     {
         return view('dashboard.layanan.bibliography.show', [
             'title' => "Detail Bibliography",
-            'bibliography' => $bibliography
+            'bibliography' => $bibliography,
+            'contacts' => ContactUs::where('status', 0)->get()
         ]);
     }
 
@@ -109,7 +113,8 @@ class DashboardBibliographyController extends Controller
             'bibliography' =>$bibliography,
             'categories' => Category::all(),
             'authors' => Author::all(),
-            'lokasis' => Lokasi::all()
+            'lokasis' => Lokasi::all(),
+            'contacts' => ContactUs::where('status', 0)->get()
         ]);
     }
 

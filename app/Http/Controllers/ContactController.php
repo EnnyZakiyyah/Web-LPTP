@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\ContactUs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use App\Notifications\ContactNotifications;
 
 class ContactController extends Controller
 {
@@ -37,12 +39,13 @@ class ContactController extends Controller
                 'body' => $request->pesan
             ];
 
-            ContactUs::create($request->all());
-            Mail::send('home.contact.email-template', $mail_data, function ($message) use ($mail_data) {
-                $message->to($mail_data['recipient'])
-                    ->from($mail_data['fromEmail'], $mail_data['fromName'])
-                    ->subject($mail_data['subject']);
-            });
+            $user = ContactUs::create($request->all());
+            $administrators = User::whereHas('roles', function($q){
+                $q->where('name', 'admin');
+            })->get();
+            foreach ($administrators as $administrator) {
+                $administrator->notify(new ContactNotifications($user));
+            }
 
             return redirect()->back()->with('success', 'Email Sent!');
             // return 'connect';

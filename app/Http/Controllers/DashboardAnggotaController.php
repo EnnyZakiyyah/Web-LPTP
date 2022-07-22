@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\ContactUs;
 use Illuminate\Http\Request;
 
 class DashboardAnggotaController extends Controller
@@ -16,7 +17,8 @@ class DashboardAnggotaController extends Controller
     {
         return view('dashboard.anggota.index', [
             'title' => "Gambar",
-            'anggota' => User::all()
+            'anggota' => User::all(),
+            'contacts' => ContactUs::where('status', 0)->get()
         ]);
     }
 
