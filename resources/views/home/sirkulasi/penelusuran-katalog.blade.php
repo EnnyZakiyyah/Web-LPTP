@@ -55,7 +55,7 @@
                         <h5 class="card-title">{{ $katalog->title }}</h5>
                         <p class="mt-5" style="color: white !important; padding-top:10px;">by <a
                                 class="text-primary" style="font-size: 15px;">{{ $katalog->author_id }}</a></p>
-                        <p style="font-size: 13px; color: white !important">2016</p>
+                        <p style="font-size: 13px; color: white !important">{{ $katalog->tahun_terbit }}</p>
                         <p style="color: white !important">{!! $katalog->excerpt !!}
                             <a href="/home/sirkulasi/penelusuran-katalog/detail/{{ $katalog->slug }}"
                                 class="text-primary">Read

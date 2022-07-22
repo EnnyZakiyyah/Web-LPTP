@@ -24,15 +24,12 @@
             <li><a href="/dashboard/peminjamans" target="_blank">Peminjaman Buku</a></li>
             <li><a href="/dashboard/sirkulasi/pengembalians" target="_blank">Pengembalian Buku</a></li>
             <li><a href="/dashboard/sirkulasi/penelusuran-katalog" target="_blank">Penelusuran Katalog</a></li>
-            {{-- <li><a href="/dashboard/sirkulasi/katalogs" target="_blank">Penelusuran Katalog</a></li> --}}
-            {{-- <li><a href="/dashboard/sirkulasi/bebaspustaka" target="_blank">Bebas Pustaka</a></li> --}}
         </ul>
     </li>
     <li class="nav-item pcoded-hasmenu">
         <a class="nav-link "><span class="pcoded-micon"><i class="feather icon-layout"></i></span><span
                 class="pcoded-mtext">Layanan</span></a>
         <ul class="pcoded-submenu {{ Request::is('/dashboard/layanan*/') ? 'active' : '' }}">
-            {{-- <li><a href="/dashboard/layanan/keanggotaan" target="_blank">Keanggotaan</a></li> --}}
             <li><a href="/dashboard/layanan/bibliography" target="_blank">Bibliography</a></li>
         </ul>
     </li>
@@ -61,7 +58,7 @@
                 class="pcoded-micon"><i class="feather icon-file-plus"></i></span><span class="pcoded-mtext">Laporan</span></a>
     </li>
     <li class="nav-item pcoded-menu-caption">
-        <label>Forms</label>
+        <label>Management System</label>
     </li>
     <li class="nav-item">
         <a href="/dashboard/authors"

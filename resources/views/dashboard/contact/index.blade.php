@@ -32,6 +32,19 @@
             @endif
     
             <div class="card-body table-border-style">
+                <form action="/dashboard/contact-us" class="d-flex">
+                    <div class="col-lg-11 mb-3">
+                        <div class="form">
+                            <i class="fa fa-search"></i>
+                            <input type="text" class="form-control form-input" placeholder="Search anything..." name="search"
+                            value="{{ request('search') }}">
+                        </div>
+                    </div>
+                    <div class="col-md-auto mt-3">
+                        <button class="btn btn-primary btn-sm" type="submit">Search</button>
+                    </div>
+                    </form>
+                    @if ($messages->count())
                 <div class="table-responsive text-nowrap">
                     <table class="table table-hover">
                         <thead>
@@ -43,7 +56,6 @@
                                 <th>Phone</th>
                                 <th>Pesan</th>
                                 <th>Created</th>
-                                {{-- <th>Aksi</th> --}}
                             </tr>
                         </thead>
                         <tbody>
@@ -56,25 +68,20 @@
                                 <td>{{ $message->phone }}</td>
                                 <td>{{ $message->pesan }}</td>
                                 <td>{{ $message->created_at }}</td>
-                                {{-- <td> --}}
-                                    {{-- <a href="/dashboard/authors/{{ $authors->slug }}/edit" class="badge bg-warning"><i class="feather icon-edit" style="color: white"></i></a> --}}
-                                    {{-- <form action="/dashboard/contact-us/{{ $contact->id }}" method="POST" class="d-inline">
-                                        @method('delete')
-                                        @csrf
-                                        <button class="badge bg-danger border-0" onclick="return confirm('Are you sure?')"><i class="feather icon-trash" style="color: white"></i></button>
-                                    </form>
-                                </td> --}}
                             </tr>
                             @endforeach
                         </tbody>
                     </table>
                 </div>
             </div>
+            @else
+            <p class="text-center fs-4">No Post Found.</p>
+            @endif
             <!--PAGINATION-->
             <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-center">
                   <li class="page-item">
-                    {{-- {{ $authors->links() }} --}}
+                    {{ $messages->links() }}
                   </li>
                 </ul>
             </nav>

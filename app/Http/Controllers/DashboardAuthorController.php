@@ -18,7 +18,7 @@ class DashboardAuthorController extends Controller
     {
         return view('dashboard.authors.index', [
             'title' => "Penulis",
-            'author' => Author::all(),
+            'author' => Author::latest()->filter(request(['search']))->paginate(5)->withQueryString(),
             'contacts' => ContactUs::where('status', 0)->get()
         ]);
     }

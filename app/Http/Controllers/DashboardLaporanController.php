@@ -30,7 +30,7 @@ class DashboardLaporanController extends Controller
         $id_kondisi = $request->id_kondisi;
         return view('dashboard.laporan.index', [
             'title' => 'Laporan',
-            'laporans' => Peminjaman::whereBetween('tgl_pinjam', [$tglawal, $tglakhir])->latest()->where('id_kondisi', [$id_kondisi])->paginate(5)->withQueryString(),
+            'laporans' => Peminjaman::whereBetween('tgl_pinjam', [$tglawal, $tglakhir])->latest()->where('id_kondisi', [$id_kondisi])->latest()->paginate(5)->withQueryString(),
             'kondisis' => Condition::all(),
             'laporan' => Peminjaman::all(),
             'unitkerja' => User::all(),

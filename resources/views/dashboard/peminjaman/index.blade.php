@@ -24,7 +24,7 @@
             <div class="card-header">
                 <h5>{{ $title }}</h5>
             </div>
-
+            
             @if (session()->has('success'))
             <div class="alert alert-success" role="alert">
                 {{ session('success') }}
@@ -35,11 +35,32 @@
                 {{ session('loginError') }}
             </div>
             @endif
-
+            
             {{-- <div class="col-md-4 px-3 py-3">
                 <a href="/dashboard/peminjamans/create" class="btn btn-primary me-2 px-3">Tambah Data</a>
             </div> --}}
+            <!--Penelusuran Katalog-->
             <div class="card-body table-border-style">
+                <form action="/dashboard/peminjamans" class="d-flex">
+                <div class="col-lg-8 mb-3">
+                    <div class="form">
+                        {{-- <div class="col-md-10"> --}}
+                            <select class='fstdropdown-select' id="first" name="search" value="{{ request('search') }}">
+                                @foreach ($katalogs as $katalog)
+                                @if (old('search') == $katalog->id)
+                                <option value="{{ $katalog->id }}" selected>{{ $katalog->title }}</option>
+                                @else
+                                <option value="{{ $katalog->id }}">{{ $katalog->title }}</option>
+                                @endif
+                                @endforeach
+                              </select>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-3">
+                    <button class="btn btn-primary" type="submit">Search</button>
+                </div>
+                </form>
+                @if ($peminjamans->count())
                 <div class="table-responsive text-nowrap">
                     <table class="table table-hover">
                         <thead>
@@ -222,8 +243,6 @@
                                         <button type="submit"
                                         class="badge bg-danger border-0" style="color: white" onclick="return confirm('Mohon diisikan alasan peminjaman ditolak?')">Ditolak</button>
                                     </form>
-                                    {{-- <a href="/dashboard/tolak-peminjaman/{{ $peminjaman->slug }}"
-                                        class="badge bg-danger" style="color: white" id="b">Ditolak</a> --}}
                                     <a href="/dashboard/konfirmasi-buku/{{ $peminjaman->slug }}"
                                         class="badge bg-success" style="color: white">Konfirmasi</a>
                                     @endif
@@ -248,11 +267,14 @@
                     </table>
                 </div>
             </div>
+            @else
+            <p class="text-center fs-4">No Post Found.</p>
+            @endif
             <!--PAGINATION-->
             <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-center">
                     <li class="page-item">
-                        {{-- {{ $peminjamans->links() }} --}}
+                        {{ $peminjamans->links() }}
                     </li>
                 </ul>
             </nav>
@@ -260,4 +282,42 @@
         <!-- [ Main Content ] end -->
     </div>
 </div>
+
+<script>
+    //Dropdown Search
+    function setDrop() {
+            if (!document.getElementById('third').classList.contains("fstdropdown-select"))
+                document.getElementById('third').className = 'fstdropdown-select';
+            setFstDropdown();
+        }
+        setFstDropdown();
+        function removeDrop() {
+            if (document.getElementById('third').classList.contains("fstdropdown-select")) {
+                document.getElementById('third').classList.remove('fstdropdown-select');
+                document.getElementById("third").fstdropdown.dd.remove();
+                document.querySelector("#third~.fstdiv").remove();
+            }
+        }
+        function addOptions(add) {
+            var select = document.getElementById("fourth");
+            for (var i = 0; i < add; i++) {
+                var opt = document.createElement("option");
+                var o = Array.from(document.getElementById("fourth").querySelectorAll("option")).slice(-1)[0];
+                var last = o == undefined ? 1 : Number(o.value) + 1;
+                opt.text = opt.value = last;
+                select.add(opt);
+            }
+        }
+        function removeOptions(remove) {
+            for (var i = 0; i < remove; i++) {
+                var last = Array.from(document.getElementById("fourth").querySelectorAll("option")).slice(-1)[0];
+                if (last == undefined)
+                    break;
+                Array.from(document.getElementById("fourth").querySelectorAll("option")).slice(-1)[0].remove();
+            }
+        }
+        function updateDrop() {
+            document.getElementById("fourth").fstdropdown.rebind();
+        }
+</script>
 @endsection

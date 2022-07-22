@@ -10,7 +10,7 @@ class DashboardContactController extends Controller
     public function index(){
         return view('dashboard.contact.index', [
             'title' => 'Contact Us',
-            'messages' => ContactUs::latest()->get(),
+            'messages' => ContactUs::latest()->filter(request(['search']))->paginate(5)->withQueryString(),
             'contacts' => ContactUs::where('status', 0)->get()
         ]);
     }

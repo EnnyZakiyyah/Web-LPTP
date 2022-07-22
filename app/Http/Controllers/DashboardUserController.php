@@ -21,7 +21,7 @@ class DashboardUserController extends Controller
     {
         return view('dashboard.user.index', [
             'title' => 'User',
-            'users' => User::latest()->paginate(5),
+            'users' => User::latest()->filter(request(['search']))->paginate(5)->withQueryString(),
             'contacts' => ContactUs::where('status', 0)->get()
         ]);
     }

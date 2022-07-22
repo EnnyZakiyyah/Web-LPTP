@@ -18,7 +18,7 @@ class DashboardCategoryController extends Controller
     {
         return view('dashboard.category.index', [
             'title' => 'Category',
-            'categories' => Category::latest()->paginate(5), 
+            'categories' => Category::latest()->filter(request(['search']))->paginate(5)->withQueryString(),
             'contacts' => ContactUs::where('status', 0)->get()
         ]);
     }

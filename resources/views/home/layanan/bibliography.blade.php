@@ -55,7 +55,7 @@
                         <h5 class="card-title">{{ $bibliography->title }}</h5>
                         <p class="mt-5" style="color: white !important; padding-top:10px;">by <a
                                 class="text-primary" style="font-size: 15px;">{{ $bibliography->author_id }}</a></p>
-                        <p style="font-size: 13px; color: white !important">2016</p>
+                        <p style="font-size: 13px; color: white !important">{{ $bibliography->tahun_terbit }}</p>
                         <p style="color: white !important">{!! $bibliography->excerpt !!}
                             <a href="/home/layanan/bibliographies/detail/{{ $bibliography->slug }}"
                                 class="text-primary">Read

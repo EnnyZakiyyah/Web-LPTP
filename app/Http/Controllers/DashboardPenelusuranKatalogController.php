@@ -17,7 +17,7 @@ class DashboardPenelusuranKatalogController extends Controller
     {
         return view('dashboard.sirkulasi.penelusuran-katalog.index', [
             'title' => "Penelusuran Katalog",
-            'katalogs' => Katalog::where('label_id', 1)->latest()->paginate(5),
+            'katalogs' => Katalog::where('label_id', 1)->latest()->filter(request(['search']))->paginate(5)->withQueryString(),
             'contacts' => ContactUs::where('status', 0)->get()
         ]);
     }

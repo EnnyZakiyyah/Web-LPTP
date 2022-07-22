@@ -25,7 +25,7 @@ class DashboardBibliographyController extends Controller
     {
         return view('dashboard.layanan.bibliography.index', [
             'title' => "Bibliography",
-            'bibliographies' => Katalog::where('label_id', 2)->latest()->paginate(5),
+            'bibliographies' => Katalog::where('label_id', 2)->latest()->filter(request(['search']))->paginate(5)->withQueryString(),
             'contacts' => ContactUs::where('status', 0)->get()
         ]);
     }

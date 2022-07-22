@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Katalog;
 use App\Models\ContactUs;
 use App\Models\Peminjaman;
 use Illuminate\Http\Request;
@@ -17,8 +18,9 @@ class DashboardPengembalianController extends Controller
     {
         return view('dashboard.sirkulasi.pengembalian.index', [
             "title" => "Sirkulasi Pengembalian Buku",
-            "pengembalians" => Peminjaman::where('id_status', 1)->latest()->filter(request(['search', 'category', 'author']))->paginate(6)->withQueryString(),
-            'contacts' => ContactUs::where('status', 0)->get()
+            "pengembalians" => Peminjaman::where('id_status', 1)->latest()->filter(request(['search', 'category', 'author']))->filter(request(['search']))->latest()->paginate(5)->withQueryString(),
+            'contacts' => ContactUs::where('status', 0)->get(),
+            'katalogs' => Katalog::all(),
         ]);
     }
 
@@ -54,7 +56,8 @@ class DashboardPengembalianController extends Controller
         return view('dashboard.sirkulasi.pengembalian.show', [
             'title' => "Detail Pengembalian",
             'pengembalian' => $peminjaman,
-            'contacts' => ContactUs::where('status', 0)->get()
+            'contacts' => ContactUs::where('status', 0)->get(),
+            'katalogs' => Katalog::all(),
         ]);
     }
 

@@ -22,7 +22,7 @@ class DashboardKoleksiDigitalController extends Controller
     {
         return view('dashboard.koleksi-digital.index', [
             'title' => "Koleksi Digital",
-            'koleksidigitals' => Koleksidigital::latest()->paginate(5),
+            'koleksidigitals' => Koleksidigital::latest()->filter(request(['search']))->paginate(5)->withQueryString(),
             'contacts' => ContactUs::where('status', 0)->get()
         ]);
     }

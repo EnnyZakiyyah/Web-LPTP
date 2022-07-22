@@ -55,7 +55,7 @@
                         <h5 class="card-title">{{ $koleksidigital->title }}</h5>
                         <p class="mt-5" style="color: white !important; padding-top:10px;">by <a
                                 class="text-primary" style="font-size: 15px;">{{ $koleksidigital->author_id}}</a></p>
-                        <p style="font-size: 13px; color: white !important">2016</p>
+                        <p style="font-size: 13px; color: white !important">{{ $koleksidigital->tahun_terbit}}</p>
                         <p style="color: white !important">{!! $koleksidigital->excerpt !!}
                             <a href="/home/koleksi-digital/detail/{{ $koleksidigital->slug }}"
                                 class="text-primary">Read

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\User;
+use App\Models\Author;
 use App\Models\Lokasi;
 use App\Models\Status;
 use App\Models\Katalog;
@@ -27,9 +28,10 @@ class DashboardPeminjamanController extends Controller
         if ($peminjaman->id_status != 1 ) {
             return view('dashboard.peminjaman.index', [
                 'title' => 'Peminjaman Buku',
-                'peminjamans' => Peminjaman::where('id_status', 2 )->orWhere('id_status', 3)->orWhere('id_status', 4)->orWhere('id_status', 5)->orWhere('id_status', 6)->orWhere('id_status', 7)->get(),
+                'peminjamans' => Peminjaman::where('id_status', 2 )->orWhere('id_status', 3)->orWhere('id_status', 4)->orWhere('id_status', 5)->orWhere('id_status', 6)->orWhere('id_status', 7)->filter(request(['search']))->latest()->paginate(5)->withQueryString(),
                 'conditions' => Condition::all(),
-                'contacts' => ContactUs::where('status', 0)->get()
+                'contacts' => ContactUs::where('status', 0)->get(),
+                'katalogs' => Katalog::all(),
             ]); 
         } 
     }

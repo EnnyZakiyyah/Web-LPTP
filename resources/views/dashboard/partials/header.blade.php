@@ -15,19 +15,12 @@
     <div class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a href="#!" class="pop-search"><i class="feather icon-search"></i></a>
-                <div class="search-bar">
-                    <input type="text" class="form-control border-0 shadow-none" placeholder="Search hear">
-                    <button type="button" class="close" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
             </li>
         </ul>
         <ul class="navbar-nav ml-auto">
             <li>
                 <div class="dropdown">
-                    <div class="dropdown-toggle" href="#" data-toggle="dropdown"><i class="icon feather icon-bell"></i><span class="badge badge-danger bg-sm">{{ auth()->user()->unreadnotifications->count() }}</span></div>
+                    <div class="dropdown-toggle" href="#" data-toggle="dropdown"><i class="icon feather icon-bell"></i>&nbsp<span class="badge badge-danger bg-sm">{{ auth()->user()->unreadnotifications->count() }}</span></div>
                     <div class="dropdown-menu dropdown-menu-right notification">
                         <div class="noti-head">
                             <h6 class="d-inline-block m-b-0">Notifications</h6>
@@ -57,7 +50,7 @@
             {{-- EMAIL --}}
             <li>
                 <div class="dropdown">
-                    <div class="dropdown-toggle" href="#" data-toggle="dropdown"><i class="icon feather icon-mail"></i><span class="badge badge-danger bg-sm">{{ $contacts->count() }}</span></div>
+                    <div class="dropdown-toggle" href="#" data-toggle="dropdown">&nbsp&nbsp<i class="icon feather icon-mail"></i>&nbsp<span class="badge badge-danger bg-sm">{{ $contacts->count() }}</span></div>
                     <div class="dropdown-menu dropdown-menu-right notification">
                         <div class="noti-head">
                             <h6 class="d-inline-block m-b-0">Email Messages</h6>

@@ -19,7 +19,9 @@ class Koleksidigital extends Model
         $query->when($filters['search'] ?? false, function($query, $search) {
             return $query->where('title', 'like', '%' . $search . '%')
                      ->orWhere('body', 'like', '%' . $search . '%') 
-                     ->orWhere('author_id', 'like', '%' . $search . '%') ;
+                     ->orWhere('author_id', 'like', '%' . $search . '%')
+                     ->orWhere('isbn', 'like', '%' . $search . '%')
+                     ->orWhere('tahun_terbit', 'like', '%' . $search . '%');
         });
 
         $query->when($filters['category'] ?? false, function($query, $catergory) {

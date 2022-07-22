@@ -36,6 +36,25 @@
                 </div>
             @endif
             <div class="card-body table-border-style">
+                <form action="/dashboard/sirkulasi/pengembalians" class="d-flex">
+                    <div class="col-lg-8 mb-3">
+                        <div class="form">
+                                <select class='fstdropdown-select' id="first" name="search" value="{{ request('search') }}">
+                                    @foreach ($katalogs as $katalog)
+                                    @if (old('search') == $katalog->id)
+                                    <option value="{{ $katalog->id }}" selected>{{ $katalog->title }}</option>
+                                    @else
+                                    <option value="{{ $katalog->id }}">{{ $katalog->title }}</option>
+                                    @endif
+                                    @endforeach
+                                  </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 mb-3">
+                        <button class="btn btn-primary" type="submit">Search</button>
+                    </div>
+                    </form>
+                    @if ($pengembalians->count())
                 <div class="table-responsive text-nowrap">
                     <div class="container">
                         <div class="row align-items-start">
@@ -91,11 +110,14 @@
                     </table>
                 </div>
             </div>
+            @else
+            <p class="text-center fs-4">No Post Found.</p>
+            @endif
             <!--PAGINATION-->
             <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-center">
                   <li class="page-item">
-                    {{-- {{ $peminjamans->links() }} --}}
+                    {{ $pengembalians->links() }}
                   </li>
                 </ul>
             </nav>

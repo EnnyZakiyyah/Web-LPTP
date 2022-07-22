@@ -35,6 +35,19 @@
                 <a href="/dashboard/sirkulasi/katalogs/create" class="btn btn-primary me-2 px-3">Tambah Data</a>
             </div>
             <div class="card-body table-border-style">
+                <form action="/dashboard/sirkulasi/penelusuran-katalog" class="d-flex">
+                    <div class="col-lg-11 mb-3">
+                        <div class="form">
+                            <i class="fa fa-search"></i>
+                            <input type="text" class="form-control form-input" placeholder="Search anything..." name="search"
+                            value="{{ request('search') }}">
+                        </div>
+                    </div>
+                    <div class="col-md-auto mt-3">
+                        <button class="btn btn-primary btn-sm" type="submit">Search</button>
+                    </div>
+                    </form>
+                    @if ($katalogs->count())
                 <div class="table-responsive text-nowrap">
                     <table class="table table-hover">
                         <thead>
@@ -71,6 +84,9 @@
                     </table>
                 </div>
             </div>
+            @else
+            <p class="text-center fs-4">No Post Found.</p>
+            @endif
             <!--PAGINATION-->
             <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-center">

@@ -21,6 +21,18 @@ class User extends Authenticatable
 
     protected $guarded = ['id'];
 
+    public function scopeFilter($query, array $filters)
+    {
+
+        $query->when($filters['search'] ?? false, function($query, $search) {
+            return $query->where('name', 'like', '%' . $search . '%')
+                     ->orWhere('username', 'like', '%' . $search . '%')
+                     ->orWhere('no_ktp', 'like', '%' . $search . '%')
+                     ->orWhere('email', 'like', '%' . $search . '%');
+        });
+
+    }
+
     public function peminjamanA(){
         return $this->hasMany(Peminjaman::class);
     }

@@ -20,7 +20,7 @@ class HeroController extends Controller
     {
         return view('dashboard.hero.index', [
             'title' => "Gambar",
-            'hero' => Hero::all(),
+            'hero' => Hero::latest()->filter(request(['search']))->paginate(5)->withQueryString(),
             'contacts' => ContactUs::where('status', 0)->get()
         ]);
     }

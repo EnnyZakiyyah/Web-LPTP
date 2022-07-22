@@ -19,7 +19,7 @@ class InformasiController extends Controller
     {
         return view('dashboard.informasi.index', [
             'title' => "Informasi",
-            'informasis' => Informasi::latest()->get(),
+            'informasis' => Informasi::latest()->filter(request(['search']))->paginate(5)->withQueryString(),
             'contacts' => ContactUs::where('status', 0)->get()
         ]);
         // return Informasi::latest()->get();
