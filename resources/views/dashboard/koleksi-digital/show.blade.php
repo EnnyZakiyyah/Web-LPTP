@@ -22,12 +22,10 @@
         <!-- [ Main Content ] start -->
         <div class="card">
             <div class="row g-0">
-                <div class="col-md-4">
-                    {{-- <div style="max-height: 350px; overflow:hidden;"> --}}
-                    <img class="card-img card-img-left" src="{{ asset('storage/' . $koleksidigital->image) }}" alt="Card image" />
+                <div class="col-md-4" style="padding-top: 40px; padding-left: 30px; padding-bottom: 40px">
+                    <img class="card-img card-img-left" src="{{ asset('storage/' . $koleksidigital->image) }}" alt="Card image" /><br><br>
                     <iframe src="{{ asset('storage/' . $koleksidigital->filekatalog) }}" width="100%" height="500px">
                     </iframe>
-                    {{-- </div> --}}
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">

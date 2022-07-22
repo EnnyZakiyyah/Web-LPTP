@@ -30,16 +30,17 @@
                                 <p class="m-b-0">NEW</p>
                             </li>
                             @foreach (auth()->user()->unreadNotifications as $notification)
+                            <a href="/dashboard/users/register/{{ $notification->id }}">
                             <li class="notification">
                                 <div class="media">
-                                    
-                                    <img class="img-radius" src="{{asset('storage/' . $notification->image_foto)}}">
+                                    <img class="img-radius" src="{{ asset('storage/' . $notification->data['image_foto']) }}">
                                     <div class="media-body">
                                         <p><strong>{{ $notification->data['name'] }}</strong><span class="n-time text-muted"><i class="icon feather icon-clock m-r-10"></i>{{ $notification->created_at }}</span></p>
-                                        <a href="/dashboard/users/register/{{ $notification->id }}" class="badge bg-dark border-0 text-white" style="float: right">Mark as read</a>
+                                        <p>New ticket Added</p>
                                     </div>
                                 </div>
                             </li>
+                            </a>
                             @endforeach
                         </ul>
                     </div>
@@ -60,9 +61,9 @@
                             @foreach ($contacts as $notification)
                             <li class="notification">
                                 <div class="media">
-                                    <img class="img-radius" src="{{asset('storage/' . $notification->image_foto)}}">
                                     <div class="media-body">
                                         <p><strong>{{ $notification->name }}</strong><span class="n-time text-muted"><i class="icon feather icon-clock m-r-10"></i>{{ $notification->created_at }}</span></p>
+                                        <p>{{ $notification->subject }} 
                                         <form action="/dashboard/contact-us/status/{{ $notification->id }}" method="POST"
                                             class="d-inline" enctype="multipart/form-data">
                                             @method('put')
@@ -71,6 +72,7 @@
                                             <button type="submit"
                                                 class="badge bg-dark border-0 text-white" style="float: right">Mark as read</button>
                                         </form>
+                                    </p>
                                     </div>
                                 </div>
                             </li>

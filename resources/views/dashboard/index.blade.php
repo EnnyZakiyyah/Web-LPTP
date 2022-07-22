@@ -158,13 +158,13 @@
                                     @foreach (auth()->user()->unreadNotifications as $notification)
                                     <div class="row">
                                         <div class="col-sm-auto p-r-0">
-                                            <img src="a{{asset('storage/' . $notification->image_foto)}}"
+                                            <img src="{{ asset('storage/' . $notification->data['image_foto']) }}"
                                                 class="img-radius profile-img cust-img m-b-15">
                                         </div>
                                         <div class="col">
                                             <h6 class="m-b-15">{{ $notification->data['name'] }}<span class="float-right f-13 text-muted">{{ $notification->created_at }}</span></h6>
-                                            <p class="m-t-15 m-b-15 text-muted">New User Register</p>
-                                            <a href="/dashboard/users/register/{{ $notification->id }}" class="badge bg-dark border-0 text-white" style="float: right">Mark as read</a>
+                                            <p class="m-t-15 m-b-15 text-muted">New User Register
+                                            <a href="/dashboard/users/register/{{ $notification->id }}" class="badge bg-dark border-0 text-white" style="float: right">Mark as read</a></p>
                                         </div>
                                     </div>
                                     @endforeach
@@ -204,13 +204,10 @@
                                     @foreach ($contacts as $notification)
                                     <div class="row">
                                         <div class="col-sm-auto p-r-0">
-                                            <img src="a{{asset('storage/' . $notification->image_foto)}}"
-                                                class="img-radius profile-img cust-img m-b-15">
                                         </div>
                                         <div class="col">
                                             <h6 class="m-b-15">{{ $notification->name }}<span class="float-right f-13 text-muted">{{ $notification->created_at }}</span></h6>
                                             <p class="m-t-15 m-b-15 text-muted">{{ $notification->pesan }}</p>
-                                       
                                             <form action="/dashboard/contact-us/status/{{ $notification->id }}" method="POST"
                                                 class="d-inline" enctype="multipart/form-data">
                                                 @method('put')

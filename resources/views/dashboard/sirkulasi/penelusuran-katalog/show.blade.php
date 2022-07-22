@@ -22,10 +22,8 @@
         <!-- [ Main Content ] start -->
         <div class="card">
             <div class="row g-0">
-                <div class="col-md-4">
-                    {{-- <div style="max-height: 350px; overflow:hidden;"> --}}
+                <div class="col-md-4" style="padding-top: 40px; padding-left: 60px">
                     <img class="card-img card-img-left" src="{{ asset('storage/' . $katalog->image) }}" alt="Card image" />
-                    {{-- </div> --}}
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">

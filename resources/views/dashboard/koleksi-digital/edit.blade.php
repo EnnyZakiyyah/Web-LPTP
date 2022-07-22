@@ -69,10 +69,11 @@
                           <div class="mb-3 row">
                             <label for="author" class="col-md-2 col-form-label">Penulis</label>
                             <div class="col-md-10">
-                                  <select class="selectpicker" multiple aria-label="size 3 select example" data-show-subtext="true" data-live-search="true" id="first" name="author_id[]">
+                                <input class="form-control" type="text" value="{{ old('author_id', $koleksidigital->author_id) }}" readonly/>
+                                  <select class="selectpicker" multiple aria-label="size 3 select example" data-show-subtext="true" data-live-search="true" id="first" name="author_id[]" required>
                                     @foreach ($authors as $author)
                                     @if (old('author_id') == $author->id)
-                                    <option value="{{ $author->id, $katalog->author_id }}" selected>{{ $author->nama }}</option>
+                                    <option value="{{ $author->id, $koleksidifital->author_id }}" selected>{{ $author->nama }}</option>
                                     @else
                                     <option value="{{ $author->nama }}">{{ $author->nama }}</option>
                                     @endif

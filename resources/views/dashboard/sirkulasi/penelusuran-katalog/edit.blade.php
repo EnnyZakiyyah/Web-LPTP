@@ -83,6 +83,7 @@
                       <div class="mb-3 row">
                         <label for="author" class="col-md-2 col-form-label">Penulis</label>
                         <div class="col-md-10">
+                            <input class="form-control" type="text" value="{{ old('author_id', $katalog->author_id) }}" readonly/>
                               <select class="selectpicker" multiple aria-label="size 3 select example" data-show-subtext="true" data-live-search="true" id="first" name="author_id[]" required>
                                 @foreach ($authors as $author)
                                 @if (old('author_id') == $author->id)
