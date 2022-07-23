@@ -36,7 +36,7 @@
                                     <img class="img-radius" src="{{ asset('storage/' . $notification->data['image_foto']) }}">
                                     <div class="media-body">
                                         <p><strong>{{ $notification->data['name'] }}</strong><span class="n-time text-muted"><i class="icon feather icon-clock m-r-10"></i>{{ $notification->created_at }}</span></p>
-                                        <p>New ticket Added</p>
+                                        <p>New User Register</p>
                                     </div>
                                 </div>
                             </li>
@@ -83,12 +83,11 @@
             </li>
             <li>
                 <div class="dropdown drp-user">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown">
                         <i class="feather icon-user"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right profile-notification">
                         <div class="pro-head">
-                            <img src="{{asset('storage/'. auth()->user()->image )}}" class="img-radius" width="50px" height="40px">
                             <span>{{ auth()->user()->name }}</span>
                             <form action="/logout" method="POST">
                                 @csrf

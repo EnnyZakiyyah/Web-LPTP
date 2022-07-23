@@ -243,6 +243,50 @@
 
 
 <!-- ============================================-->
+<!-- <FAQ begin ============================-->
+    <section class="pt-0 pt-md-9 mb-3" id="layanan-kami">
+
+        <div class="container">
+            <h1 class="fs-9 fw-bold mb-4 pb-5 text-center"><span style="color: #002147">Frequently</span><span
+                    style="color : #FF9900">Asked Questions</span></h1>
+            <div class="row justify-content-center">
+            </div>
+            <div class="faq_area section_padding_130" id="faq">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <!-- FAQ Area-->
+                        <div class="col-12 col-sm-10 col-lg-8">
+                            <div class="accordion faq-accordian" id="faqAccordion">
+                                @foreach ($faqs as $faq)
+                                <div class="card border-0 wow fadeInUp" data-wow-delay="{{ $i = $loop->iteration }}00"
+                                    style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
+                                    <div class="card-header" id="headingOne">
+                                        <h6 class="mb-0 collapsed" data-toggle="collapse" data-target="#collapseOne{{ $i }}"
+                                            aria-expanded="true" aria-controls="collapseOne">{{ $faq->name }}<span
+                                                class="lni-chevron-up"></span></h6>
+                                    </div>
+                                    <div class="collapse" id="collapseOne{{ $i }}" aria-labelledby="headingOne"
+                                        data-parent="#faqAccordion">
+                                        <div class="card-body">
+                                            <p>{!! $faq->pertanyaan !!}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
+    
+                    </div>
+                </div>
+            </div>
+        </div><!-- end of .container-->
+    
+    </section>
+    <!-- <FAQ close ============================-->
+    <!-- ============================================-->
+
+
+<!-- ============================================-->
 <!-- <BUKU TERBARU> begin ============================-->
 <section class="pt-5 pb-0 mt-5" id="buku-terbaru">
 
@@ -323,5 +367,10 @@
 <!-- <QUESTION> close ============================-->
 <!-- ============================================-->
 
-
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous">
+</script>
 @endsection

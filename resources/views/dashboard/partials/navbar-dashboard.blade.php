@@ -61,14 +61,19 @@
         <label>Management System</label>
     </li>
     <li class="nav-item">
-        <a href="/dashboard/authors"
-            class="nav-link {{ Request::is('/dashboard/authors') ? 'active' : '' }}"><span
-                class="pcoded-micon"><i class="feather icon-user"></i></span><span class="pcoded-mtext">Penulis</span></a>
-    </li>
-    <li class="nav-item">
         <a href="/dashboard/heroes"
             class="nav-link {{ Request::is('/dashboard/heroes') ? 'active' : '' }}"><span
                 class="pcoded-micon"><i class="feather icon-image"></i></span><span class="pcoded-mtext">Header</span></a>
+    </li>
+    <li class="nav-item">
+        <a href="/dashboard/faqs"
+            class="nav-link {{ Request::is('/dashboard/faqs') ? 'active' : '' }}"><span
+                class="pcoded-micon"><i class="feather icon-help-circle"></i></span><span class="pcoded-mtext">FAQS</span></a>
+    </li>
+    <li class="nav-item">
+        <a href="/dashboard/authors"
+            class="nav-link {{ Request::is('/dashboard/authors') ? 'active' : '' }}"><span
+                class="pcoded-micon"><i class="feather icon-user"></i></span><span class="pcoded-mtext">Penulis</span></a>
     </li>
     <li class="nav-item">
         <a href="/dashboard/informasi"

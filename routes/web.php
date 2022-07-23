@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FaqController;
 use App\Http\Controllers\HeroController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoleController;
@@ -15,6 +16,7 @@ use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\KeanggotaanController;
 use App\Http\Controllers\BebasPustakaController;
 use App\Http\Controllers\BibliographyController;
+use App\Http\Controllers\DashboardFaqController;
 use App\Http\Controllers\PengembalianController;
 use App\Http\Controllers\PerpanjanganController;
 use App\Http\Controllers\BebasPustakaaController;
@@ -22,7 +24,6 @@ use App\Http\Controllers\DashboardUserController;
 use App\Http\Controllers\KoleksiDigitalController;
 use App\Http\Controllers\DashboardAuthorController;
 use App\Http\Controllers\DashboardPinjamController;
-use App\Http\Controllers\DashboardAnggotaController;
 use App\Http\Controllers\DashboardContactController;
 use App\Http\Controllers\DashboardKatalogController;
 use App\Http\Controllers\DashboardLaporanController;
@@ -54,8 +55,6 @@ Route::get('/home/sirkulasi/penelusuran-katalog/detail/{katalog:slug}', [Katalog
 Route::put('/home/sirkulasi/ajukan-perpanjangan/{peminjaman:slug}', [PerpanjanganController::class, 'perpanjangan']);
 Route::get('/home/sirkulasi/penelusuran-katalog/{katalog:slug}', [KatalogController::class, 'pinjam']);
 Route::resource('/home/sirkulasi/bebas-pustaka/', BebasPustakaController::class)->except('show')->middleware('admin');
-// Route::resource('/home/sirkulasi/bebas-pustaka/', BebasPustakaController::class);
-// Route::get('/home/sirkulasi/bebas-pustaka/checkSlug', [BebasPustakaController::class, 'checkSlug']);
 Route::get('/home/sirkulasi/bebas-pustaka/', [BebasPustakaaController::class, 'pustaka'])->middleware('admin');;
 Route::get('/home/sirkulasi/bebas-pustaka/detail/{id}', [BebasPustakaaController::class, 'cetak']);
 Route::get('/home/sirkulasi/bebas-pustaka/details/{id}', [BebasPustakaaController::class, 'cetakkosong']);
@@ -72,6 +71,8 @@ Route::get('/home/koleksi-digital/read/{koleksidigital:slug}', [KoleksiDigitalCo
 //Contact
 Route::get('/contact-us', [ContactController::class, 'showForm']);
 Route::post('/contact-us', [ContactController::class, 'send'])->name('send.email');
+//FAQ
+Route::get('/home/faqs', [FaqController::class, 'index']);
 
 
 //SIGN IN
@@ -85,13 +86,11 @@ Route::post('/sign-up', [RegisterController::class, 'store']);
 
 
 //DASHBOARD
-// Auth::routes();
 Route::middleware(['auth', 'role:admin|admin'])->group(function () {
     
     Route::get('/dashboard', [DashboardController::class, 'index']);
     
     //ROLE
-    // Route::get('/dashboard/roles/checkSlug', [RoleController::class, 'checkSlug']);
     Route::resource('/dashboard/roles', RoleController::class);
     
     //Penulis
@@ -162,4 +161,7 @@ Route::middleware(['auth', 'role:admin|admin'])->group(function () {
     //Category
     Route::get('/dashboard/categories/checkSlug', [DashboardCategoryController::class, 'checkSlug']);
     Route::resource('/dashboard/categories', DashboardCategoryController::class);
+
+    Route::get('/dashboard/faqs/checkSlug', [DashboardFaqController::class, 'checkSlug']);
+    Route::resource('/dashboard/faqs', DashboardFaqController::class);
 });

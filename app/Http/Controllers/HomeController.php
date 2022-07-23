@@ -6,6 +6,7 @@ use App\Models\Hero;
 use App\Models\Author;
 use App\Models\Katalog;
 use App\Models\Category;
+use App\Models\Faq;
 use App\Models\Informasi;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,6 @@ class HomeController extends Controller
 
             $informasi = Informasi::whereDate('tanggal', '>=', today())->get();
             $hero = Hero::latest()->get();
-            // $informasi = $informasi;
             $bukuTerbaru = Katalog::latest()->filter(request(['search']))->get();
             
             return view('home.home', [
@@ -23,7 +23,7 @@ class HomeController extends Controller
                 'hero' => $hero,
                 'informasis' => $informasi,
                 'buku' => $bukuTerbaru,
-                
+                'faqs'=> Faq::all()
             ]);
         }
         
