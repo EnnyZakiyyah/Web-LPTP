@@ -72,13 +72,16 @@
                                     class="badge rounded-pill bg-primary text-white">Admin</span>
                                     @elseif($user->approved == 2)
                                         <span
-                                        class="badge rounded-pill bg-warning text-white">Anggota</span>
+                                        class="badge rounded-pill bg-success text-white">Anggota</span>
+                                    @elseif($user->approved == null)
+                                    <span
+                                    class="badge rounded-pill bg-warning text-white">Validasi</span>
+                                    <br>{{ $user->alasan }}
                                     @else
                                     <span
                                     class="badge rounded-pill bg-dark text-white">Ditolak</span>
                                     <br>{{ $user->alasan }}
                                     @endif
-                                    {{-- {{ $user->approved }} --}}
                                 </td>
                                 <td>
                                     @if ($user->approved == 0)

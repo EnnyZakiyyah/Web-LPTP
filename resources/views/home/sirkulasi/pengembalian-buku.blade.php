@@ -71,6 +71,9 @@
                         @else
                         <span class="badge rounded-pill bg-warning text-white">{{  $pengembalian->kondisi->nama }}</span>
                         @endif
+                        @if ($pengembalian->denda != 0)
+                        <span class="badge rounded-pill bg-danger text-white mt-3">Denda @currency($pengembalian->denda)</span>
+                        @endif
                       </div>
                       <div class="card-footer">
                         <small class="text-muted">

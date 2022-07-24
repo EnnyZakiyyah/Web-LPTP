@@ -175,7 +175,7 @@
                     <div class="col-lg-6 col-md-12">
                         <div class="card table-card review-card">
                             <div class="card-header borderless ">
-                                <h5>New Messages</h5>
+                                <h5>Pengajuan Perpanjangan</h5>
                                 <div class="card-header-right">
                                     <div class="btn-group card-option">
                                         <button type="button" class="btn dropdown-toggle" data-toggle="dropdown"
@@ -201,21 +201,15 @@
                             </div>
                             <div class="card-body">
                                 <div class="review-block">
-                                    @foreach ($contacts as $notification)
+
+                                    @foreach ($perpanjangans as $perpanjangan)
                                     <div class="row">
                                         <div class="col-sm-auto p-r-0">
                                         </div>
                                         <div class="col">
-                                            <h6 class="m-b-15">{{ $notification->name }}<span class="float-right f-13 text-muted">{{ $notification->created_at }}</span></h6>
-                                            <p class="m-t-15 m-b-15 text-muted">{{ $notification->pesan }}</p>
-                                            <form action="/dashboard/contact-us/status/{{ $notification->id }}" method="POST"
-                                                class="d-inline" enctype="multipart/form-data">
-                                                @method('put')
-                                                @csrf
-                                                <input type="hidden" value="1" name="status">
-                                                <button type="submit"
-                                                    class="badge bg-dark border-0 text-white" style="float: right">Mark as read</button>
-                                            </form>
+                                            <h6 class="m-b-15">{{ $perpanjangan->users->name }}<span class="float-right f-13 text-muted">{{ $perpanjangan->created_at }}</span></h6>
+                                            <p class="m-t-15 m-b-15 text-muted">{{ $perpanjangan->katalogs->title }}
+                                            <a href="/dashboard/peminjamans" class="badge bg-warning border-0 text-white" style="float: right">{{ $perpanjangan->id_perpanjangan }}</a></p>
                                         </div>
                                     </div>
                                     @endforeach

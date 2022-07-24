@@ -17,6 +17,7 @@ class DashboardController extends Controller
             'peminjamans' => Peminjaman::all(),
             'pengembalians' => Peminjaman::where('id_status', 1)->get(),
             'contacts' => ContactUs::where('status', 0)->get(),
+            'perpanjangans' => Peminjaman::where('id_perpanjangan', '=', 'Pengajuan')->get()
         ]);
     }
 }
