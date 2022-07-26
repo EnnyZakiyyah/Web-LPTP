@@ -30,6 +30,7 @@ class CreatePeminjamansTable extends Migration
             $table->foreignId('id_kondisi')->nullable()->constrained('conditions')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('id_status')->constrained('statuses')->onDelete('cascade')->onUpdate('cascade');
             $table->string('denda')->nullable();
+            $table->string('denda_kondisi')->nullable();
             $table->string('alasan')->nullable();
             $table->string('alasan_ajuan')->nullable();
             $table->timestamps();

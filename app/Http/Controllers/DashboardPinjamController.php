@@ -35,17 +35,24 @@ class DashboardPinjamController extends Controller
 
     public function kembali(Peminjaman $peminjaman)
     {
+        // dd($peminjaman->denda_kondisi+$peminjaman->denda);
         $data = [
             'id_petugas_kembali' => auth()->user()->id,
             'tgl_pengembalian' => today(),
             'id_status' => 1,
-            'denda' => 0
+            'denda' => 0,
     ]; 
+    
     if (Carbon::create($peminjaman->tgl_kembali)->lessThan(today())) {
         $denda = Carbon::create($peminjaman->tgl_kembali)->diffInDays(today());
-        $denda = $denda * 1000;
+        $denda = ($denda * 1000) + $peminjaman->denda_kondisi;
         $data['denda'] = $denda;
     } 
+    if ($peminjaman->denda_kondisi != 0) {
+        $denda_kondisi = $peminjaman->denda;
+        $denda_kondisi = $peminjaman->denda_kondisi;
+        $data['denda'] = $denda_kondisi;
+    }
        $peminjaman->update($data);
        DB::table('katalogs')
        ->join('peminjamans', 'katalogs.id', '=', 'peminjamans.id_buku')
@@ -134,12 +141,13 @@ class DashboardPinjamController extends Controller
             'tgl_kembali' => Carbon::create($todayDate)->addDays(7),
             'id_status' => 7,
             'id_kondisi' => 1,
-            'denda' => 0
+            'denda' => 0,
+            'denda_kondisi' =>0
         ]; 
         if (Carbon::create($peminjaman->tgl_kembali)->lessThan(today())) {
             $denda = Carbon::create($peminjaman->tgl_kembali)->diffInDays(today());
             $denda = $denda * 1000;
-            $data['denda'] = $denda;
+            $data['denda_kondisi'] = $denda;
         } 
     $peminjaman->update($data);
     return redirect('/dashboard/peminjamans')->with('success', 'Kondisi Buku has been confirmationed!');
@@ -155,12 +163,13 @@ public function rusak(Peminjaman $peminjaman, Request $request){
         'tgl_kembali' => Carbon::create($todayDate)->addDays(7),
         'id_status' => 7,
         'id_kondisi' => 2,
-        'denda' => 0
+        'denda' => 0,
+        'denda_kondisi' =>0
     ]; 
     if (Carbon::create($peminjaman->tgl_kembali)->lessThan(today())) {
         $denda = Carbon::create($peminjaman->tgl_kembali)->diffInDays(today());
         $denda = $denda * 1000;
-        $data['denda'] = $denda;
+        $data['denda_kondisi'] = $denda;
     } 
 $peminjaman->update($data);
 return redirect('/dashboard/peminjamans')->with('success', 'Kondisi Buku has been confirmationed!');
