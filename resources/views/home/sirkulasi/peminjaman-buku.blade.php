@@ -14,10 +14,6 @@
 
     <!--Koleksi-Dipinjam-->
   <section class="pt-2">
-{{-- 
-    @if (\Carbon\Carbon::parse($peminjamans->tgl_kembali)->lessThan(now()))
-        
-    @endif --}}
     <div class="card mb-5">
       <div class="card-header">
         Reminder Pengembalian Buku
@@ -79,7 +75,6 @@
                   @endif
                   <td>{{ $peminjaman->tgl_pinjam }}</td>
                   <td>{{ $peminjaman->tgl_kembali }}</td>
-                  {{-- <td></td> --}}
                
                   @if ($peminjaman->status->nama == 'Konfirmasi')
                   <td><span class="badge rounded-pill bg-success text-white">{{ $peminjaman->status->nama }}</span></td> 

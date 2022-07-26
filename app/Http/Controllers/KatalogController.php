@@ -59,7 +59,7 @@ class KatalogController extends Controller
     public function pinjam(Katalog $katalog, Bibliography $bibliography, Peminjaman $peminjaman)
     {
         if (auth()->user()) {
-            if (auth()->user()->hasRole('user||admin')) {
+            if (auth()->user()->hasRole('user')) {
                 $label = DB::table('labels')
                     ->join('katalogs', 'labels.id', '=', 'katalogs.label_id')
                     ->get();
@@ -115,6 +115,8 @@ class KatalogController extends Controller
                         return redirect('/home/sirkulasi/peminjaman-buku')->with('success', 'Tunggu status berubah konfirmasi! paling lambat 1x24 jam dihari kerja');
                     }
                 }
+            } elseif (auth()->user()->hasRole('admin')) {
+                return redirect('/home/sirkulasi/peminjaman-buku')->with('loginError', 'Anda login sebagai admin!');
             } else {
                 return redirect('/sign-in')->with('loginError', 'Login Terlebih dahulu!');
             }

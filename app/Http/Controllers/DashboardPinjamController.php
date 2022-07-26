@@ -29,12 +29,6 @@ class DashboardPinjamController extends Controller
             'tgl_kembali' => Carbon::create($todayDate)->addDays(7),
             'id_status' => 2,
         ]);
-        DB::table('katalogs')
-            ->join('peminjamans', 'katalogs.id', '=', 'peminjamans.id_buku')
-            ->where('jumlah', $peminjaman->katalogs->jumlah)
-            ->update( array(
-                'jumlah' => DB::raw(  'jumlah - 1' )
-            ));
 
         return redirect('/dashboard/peminjamans')->with('success', 'Data Peminjaman has been added!');
     }
@@ -68,11 +62,23 @@ class DashboardPinjamController extends Controller
 
     public function konfirmasi(Peminjaman $peminjaman)
     {
+        if ($peminjaman->katalogs->jumlah == 0) {
+            return redirect('/dashboard/peminjamans')->with('loginError', 'Stok buku kosong!');
+        } else 
+
         $peminjaman->update([
-            'id_petugas' => auth()->user()->id,
-            'id_status' => 4
-    ]);
-    $peminjaman->save();
+                'id_petugas' => auth()->user()->id,
+                'id_status' => 4
+        ]);
+        $peminjaman->save();
+
+        DB::table('katalogs')
+        ->join('peminjamans', 'katalogs.id', '=', 'peminjamans.id_buku')
+        ->where('jumlah', $peminjaman->katalogs->jumlah)
+        ->update( array(
+            'jumlah' => DB::raw(  'jumlah - 1' )
+        ));
+
     return redirect('/dashboard/peminjamans')->with('success', 'Data Peminjaman has been confirmationed!');
     }
 
