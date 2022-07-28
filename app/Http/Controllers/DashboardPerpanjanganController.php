@@ -104,6 +104,9 @@ class DashboardPerpanjanganController extends Controller
 
     public function setujui(Peminjaman $peminjaman, Request $request)
     {
+        if ($peminjaman->tgl_kembali >= Carbon::now()) {
+            return redirect('/dashboard/peminjamans')->with('loginError', 'Perpanjangan melebihi dari tanggal kembali!');
+        }
         $todayDate = date('Y/m/d');
         $peminjaman->update([
                 'id_petugas' => auth()->user()->id,
@@ -111,8 +114,9 @@ class DashboardPerpanjanganController extends Controller
                 'tgl_kembali' => Carbon::create($todayDate)->addDays(7),
                 'id_status' => 6,
                 'id_perpanjangan' => 'Disetujui',
-        ]);
+            ]);
         $peminjaman->save();
         return redirect('/dashboard/peminjamans')->with('success', 'Perpanjangan has been approved!');
+        
     }
 }

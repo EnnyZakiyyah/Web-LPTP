@@ -54,12 +54,14 @@ class DashboardPinjamController extends Controller
         $data['denda'] = $denda_kondisi;
     }
        $peminjaman->update($data);
-       DB::table('katalogs')
+        DB::table('katalogs')
        ->join('peminjamans', 'katalogs.id', '=', 'peminjamans.id_buku')
+       ->where('id_buku', $peminjaman->id_buku)
        ->where('jumlah', $peminjaman->katalogs->jumlah)
        ->update( array(
            'jumlah' => DB::raw(  'jumlah + 1' )
        ));
+    //    dd($jumlah);
        if ($peminjaman->id_status == 1) {
         return redirect('/dashboard/sirkulasi/pengembalians')->with('success', 'Peminjaman has been returned!');
        }
@@ -81,6 +83,7 @@ class DashboardPinjamController extends Controller
 
         DB::table('katalogs')
         ->join('peminjamans', 'katalogs.id', '=', 'peminjamans.id_buku')
+        // ->where('id_buku', $peminjaman->id_buku)
         ->where('jumlah', $peminjaman->katalogs->jumlah)
         ->update( array(
             'jumlah' => DB::raw(  'jumlah - 1' )

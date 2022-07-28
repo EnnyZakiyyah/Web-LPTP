@@ -67,7 +67,7 @@ class PerpanjanganController extends Controller
         if ($peminjaman->id_kondisi == 1 || $peminjaman->id_kondisi == 2 ) {
             return redirect('/home/sirkulasi/peminjaman-buku')->with('loginError', 'Maaf anda tidak dapat melakukan perpanjangan karena sudah diproses pengembalian');
         }
-        elseif (Carbon::create($peminjaman->tgl_kembali)->lessThan(now())) {
+        elseif (Carbon::create($peminjaman->reminder_at)->lessThan(now())) {
             // dd('berhasil');
             $validateData = $request->validate([
                 'id_perpanjangan' => '',

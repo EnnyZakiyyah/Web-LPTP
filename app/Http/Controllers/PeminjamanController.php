@@ -19,7 +19,7 @@ class PeminjamanController extends Controller
     public function index(Peminjaman $peminjaman)
     {   
         if ($peminjaman->id_status != 1) {
-            $reminder = Peminjaman::whereDate('reminder_at', today())->get();
+            $reminder = Peminjaman::where('id_peminjam', auth()->user()->id)->whereDate('reminder_at', today())->get();
             return view('home.sirkulasi.peminjaman-buku', [
                 'title' => 'Sirkulasi',
                 'reminders' => $reminder,

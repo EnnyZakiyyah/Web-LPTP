@@ -78,7 +78,7 @@ class DatabaseSeeder extends Seeder
         Condition::create([
             'nama' => 'Bagus'
         ]);
-        Katalog::factory(20)->create();
+        Katalog::factory(10)->create();
         Koleksidigital::factory(5)->create();
 
         // $user = User::create([
