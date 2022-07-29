@@ -93,17 +93,6 @@
     
       </div>
     </div>
-    {{-- @foreach ($pengembalians as $pengembalian)
-      <div class="col mb-5">
-        <div class="card-katalog" style="cursor: pointer;">
-          <img src="{{ asset('storage/' . $pengembalian->katalogs->image) }}" class="card-img-top" alt="...">
-          <div class="contentBx-terbaru">
-            <h5 class="card-title" style="padding-left:5px; padding-right:5px">{{ $pengembalian->katalogs->title }}</h5>
-            <a>{{ $pengembalian->katalogs->author_id }}</a>
-          </div>
-        </div>
-      </div>
-      @endforeach --}}
       
     </section>
     

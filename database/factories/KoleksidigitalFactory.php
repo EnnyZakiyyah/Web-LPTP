@@ -30,6 +30,7 @@ class KoleksidigitalFactory extends Factory
             'author_id' => $this->faker->name('male'|'female'),
             'filekatalog'=> $this->faker->sentence(mt_rand(2,8)),
             'category_id' => mt_rand(1,2),
+            'views' => $this->faker->randomNumber(1, true),
         ];
     }
 }

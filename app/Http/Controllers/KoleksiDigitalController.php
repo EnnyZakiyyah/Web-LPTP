@@ -6,6 +6,7 @@ use App\Models\Author;
 use App\Models\Category;
 use App\Models\Koleksidigital;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class KoleksiDigitalController extends Controller
 {
@@ -23,7 +24,8 @@ class KoleksiDigitalController extends Controller
         
         return view('home.koleksi-digital.koleksi-digital', [
             "title" => "Koleksi Digital" . $title,
-            "koleksidigitals" => Koleksidigital::latest()->filter(request(['search', 'category', 'author']))->paginate(6)->withQueryString()
+            "koleksidigitals" => Koleksidigital::latest()->filter(request(['search', 'category', 'author']))->paginate(6)->withQueryString(),
+            'favorit' => DB::table('koleksidigitals')->orderByDesc('views')->get(),
         ]);
     }
 
@@ -36,15 +38,13 @@ class KoleksiDigitalController extends Controller
 
 
     public function baca(Koleksidigital $koleksidigital){
+        // dd($view);
+        DB::table('koleksidigitals')->where('id', $koleksidigital->id)->increment('views');
         return view('home.koleksi-digital.baca-koleksi-digital', [
             "title" => "Koleksi Digital",
-            "koleksidigital" => $koleksidigital
+            "koleksidigital" => $koleksidigital,
+            
+            
         ]);
     }
-    // public function baca(Koleksidigital $koleksidigital){
-    //     return view('home.koleksi-digital.baca-koleksi-digital', [
-    //         "title" => "Baca",
-    //         "koleksidigital" => $koleksidigital
-    //     ]);
-    // }
 }

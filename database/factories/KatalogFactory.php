@@ -32,6 +32,7 @@ class KatalogFactory extends Factory
             'author_id' => $this->faker->name('male'|'female'),
             'label_id' => mt_rand(1,2),
             'category_id' => mt_rand(1,2),
+            'pinjam' => $this->faker->randomNumber(1, true),
         ];
     }
 }

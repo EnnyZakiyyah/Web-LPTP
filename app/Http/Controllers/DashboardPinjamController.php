@@ -71,6 +71,8 @@ class DashboardPinjamController extends Controller
 
     public function konfirmasi(Peminjaman $peminjaman)
     {
+        // DB::table('peminjamans')->where('id_buku', $peminjaman->id_buku)->increment('views');
+        // dd($views);
         if ($peminjaman->katalogs->jumlah == 0) {
             return redirect('/dashboard/peminjamans')->with('loginError', 'Stok buku kosong!');
         } else 
@@ -87,6 +89,14 @@ class DashboardPinjamController extends Controller
         ->where('jumlah', $peminjaman->katalogs->jumlah)
         ->update( array(
             'jumlah' => DB::raw(  'jumlah - 1' )
+        ));
+
+        DB::table('katalogs')
+        ->join('peminjamans', 'katalogs.id', '=', 'peminjamans.id_buku')
+        // ->where('id_buku', $peminjaman->id_buku)
+        ->where('pinjam', $peminjaman->katalogs->pinjam)
+        ->update( array(
+            'pinjam' => DB::raw('pinjam+1')
         ));
 
     return redirect('/dashboard/peminjamans')->with('success', 'Data Peminjaman has been confirmationed!');

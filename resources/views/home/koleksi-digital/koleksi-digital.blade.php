@@ -63,12 +63,6 @@
                         <a type="button" class="btn btn-outline-secondary btn-sm" style="font-weight: bold;"
                             href="/home/koleksi-digital?category={{ $koleksidigital->category->slug }}">{{ $koleksidigital->category->name }}</a>
                         <a type="button" class="btn btn-outline-warning btn-sm" style="font-weight: bold;" href="/home/koleksi-digital/read/{{ $koleksidigital->slug }}">Baca</a>
-                            {{-- @if ($koleksidigital->jumlah == 0)
-                        <a type="button" class="btn btn-outline-danger btn-sm" style="font-weight: bold;">Full</a>
-                        @else
-                        <a type="button" class="btn btn-outline-warning btn-sm" style="font-weight: bold;"
-                            href="/home/koleksi-digital/{{ $koleksidigital->slug }}">Pinjam Buku</a>
-                        @endif --}}
                     </div>
                 </div>
             </div>
@@ -82,6 +76,66 @@
         @endif
 
     </section>
+    <!-- ============================================-->
+<!-- <BUKU FAVORIT> begin ============================-->
+<section class="pt-5 pb-0 mt-5" id="buku-favorit">
+
+    <div class="container">
+        <h1 class="fs-9 fw-bold mb-4 pb-4 text-center"><span style="color: #002147"> Buku </span><span
+                style="color : #FF9900">Favorit</span></h1>
+
+        @if ($favorit->count())
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col mb-5">
+            <a href="/home/sirkulasi/penelusuran-katalog/detail/{{ $favorit[0]->slug }}">
+                <div class="card-katalog" style="cursor: pointer;">
+                    <img src="{{ asset('storage/' . $favorit[0]->image) }}" class="card-img-top" alt="...">
+                    <div class="contentBx-terbaru">
+                        <h5 class="card-title" style="padding-left:5px; padding-right:5px">{{ $favorit[0]->title }}</h5>
+                        <a href="/home/sirkulasi/penelusuran-katalog?author={{ $favorit[0]->author_id }}"
+                            class="text-primary" style="font-size: 15px;">{{ $favorit[0]->author_id }}</a>
+                            <p class="card-text"><small class="text-muted">Terakhir dibaca sebanyak {{ $favorit[0]->views }} kali</small></p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col mb-5">
+            <a href="/home/sirkulasi/penelusuran-katalog/detail/{{ $favorit[1]->slug }}">
+                <div class="card-katalog" style="cursor: pointer;">
+                    <img src="{{ asset('storage/' . $favorit[1]->image) }}" class="card-img-top" alt="...">
+                    <div class="contentBx-terbaru">
+                        <h5 class="card-title" style="padding-left:5px; padding-right:5px">{{ $favorit[1]->title }}</h5>
+                        <a href="/home/sirkulasi/penelusuran-katalog?author={{ $favorit[1]->author_id }}"
+                            class="text-primary" style="font-size: 15px;">{{ $favorit[1]->author_id}}</a>
+                            <p class="card-text"><small class="text-muted">Terakhir dibaca sebanyak {{ $favorit[1]->views }} kali</small></p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col mb-5">
+            <a href="/home/sirkulasi/penelusuran-katalog/detail/{{ $favorit[2]->slug }}">
+                <div class="card-katalog" style="cursor: pointer;">
+                    <img src="{{ asset('storage/' . $favorit[2]->image) }}" class="card-img-top" alt="...">
+                    <div class="contentBx-terbaru">
+                        <h5 class="card-title" style="padding-left:5px; padding-right:5px">{{ $favorit[2]->title }}</h5>
+                        <a href="/home/sirkulasi/penelusuran-katalog?author={{ $favorit[2]->author_id }}"
+                            class="text-primary" style="font-size: 15px;">{{ $favorit[2]->author_id }}</a>
+                            <p class="card-text"><small class="text-muted">Terakhir dibaca sebanyak {{ $favorit[2]->views }} kali</small></p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+  
+    @endif
+
+
+    </div><!-- end of .container-->
+
+</section>
+<!-- <BUKU FAVORIT> close ============================-->
+<!-- ============================================-->
 </div>
 <!--PAGINATION-->
 <nav aria-label="Page navigation example">
@@ -91,6 +145,6 @@
         </li>
     </ul>
 </nav>
-</div>
+
 
 @endsection

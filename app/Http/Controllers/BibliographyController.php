@@ -28,7 +28,8 @@ class BibliographyController extends Controller
         return view('home.layanan.bibliography', [
             "title" => "Layanan" . $title,
             "bibliographies" => Katalog::where('label_id', 2)->latest()->filter(request(['search', 'category', 'author']))->paginate(6)->withQueryString(),
-            'contacts' => ContactUs::where('status', 0)->get()
+            'contacts' => ContactUs::where('status', 0)->get(),
+            'favorit' => Katalog::where('label_id', 2)->orderByDesc('pinjam')->get(),
         ]);
     }
 

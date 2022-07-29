@@ -48,13 +48,13 @@
     <section class="pt-2">
         <div class="row row-cols-1 row-cols-md-3 g-4">
             @foreach ($katalogs as $katalog)
-            <div class="col mb-5" >
+            <div class="col mb-5">
                 <div class="card-katalog" style="cursor: pointer">
                     <img src="{{ asset('storage/' . $katalog->image) }}" class="card-img-top" alt="...">
                     <div class="contentBx">
                         <h5 class="card-title">{{ $katalog->title }}</h5>
-                        <p class="mt-5" style="color: white !important; padding-top:10px;">by <a
-                                class="text-primary" style="font-size: 15px;">{{ $katalog->author_id }}</a></p>
+                        <p class="mt-5" style="color: white !important; padding-top:10px;">by <a class="text-primary"
+                                style="font-size: 15px;">{{ $katalog->author_id }}</a></p>
                         <p style="font-size: 13px; color: white !important">{{ $katalog->tahun_terbit }}</p>
                         <p style="color: white !important">{!! $katalog->excerpt !!}
                             <a href="/home/sirkulasi/penelusuran-katalog/detail/{{ $katalog->slug }}"
@@ -89,7 +89,72 @@
             </ul>
         </nav>
     </section>
-</div>
+
+    <!-- ============================================-->
+<!-- <BUKU FAVORIT> begin ============================-->
+<section class="pt-5 pb-0 mt-5" id="buku-favorit">
+
+    <div class="container">
+        <h1 class="fs-9 fw-bold mb-4 pb-4 text-center"><span style="color: #002147"> Buku </span><span
+                style="color : #FF9900">Favorit</span></h1>
+
+    @if ($favorit->count() )
+    @if($favorit[0]->pinjam != 0)
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col mb-5">
+            <a href="/home/sirkulasi/penelusuran-katalog/detail/{{ $favorit[0]->slug }}">
+                <div class="card-katalog" style="cursor: pointer;">
+                    <img src="{{ asset('storage/' . $favorit[0]->image) }}" class="card-img-top" alt="...">
+                    <div class="contentBx-terbaru">
+                        <h5 class="card-title" style="padding-left:5px; padding-right:5px">{{ $favorit[0]->title }}</h5>
+                        <a href="/home/sirkulasi/penelusuran-katalog?author={{ $favorit[0]->author_id }}"
+                            class="text-primary" style="font-size: 15px;">{{ $favorit[0]->author_id }}</a>
+                            <p class="card-text"><small class="text-muted">Banyak dipinjam sebanyak {{ $favorit[0]->pinjam }} kali</small></p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        @endif
+        @if($favorit[1]->pinjam != 0)
+        <div class="col mb-5">
+            <a href="/home/sirkulasi/penelusuran-katalog/detail/{{ $favorit[1]->slug }}">
+                <div class="card-katalog" style="cursor: pointer;">
+                    <img src="{{ asset('storage/' . $favorit[1]->image) }}" class="card-img-top" alt="...">
+                    <div class="contentBx-terbaru">
+                        <h5 class="card-title" style="padding-left:5px; padding-right:5px">{{ $favorit[1]->title }}</h5>
+                        <a href="/home/sirkulasi/penelusuran-katalog?author={{ $favorit[1]->author_id }}"
+                            class="text-primary" style="font-size: 15px;">{{ $favorit[1]->author_id}}</a>
+                            <p class="card-text"><small class="text-muted">Banyak dipinjam sebanyak {{ $favorit[1]->pinjam }} kali</small></p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        @endif
+        @if($favorit[2]->pinjam != 0)
+        <div class="col mb-5">
+            <a href="/home/sirkulasi/penelusuran-katalog/detail/{{ $favorit[2]->slug }}">
+                <div class="card-katalog" style="cursor: pointer;">
+                    <img src="{{ asset('storage/' . $favorit[2]->image) }}" class="card-img-top" alt="...">
+                    <div class="contentBx-terbaru">
+                        <h5 class="card-title" style="padding-left:5px; padding-right:5px">{{ $favorit[2]->title }}</h5>
+                        <a href="/home/sirkulasi/penelusuran-katalog?author={{ $favorit[2]->author_id }}"
+                            class="text-primary" style="font-size: 15px;">{{ $favorit[2]->author_id }}</a>
+                            <p class="card-text"><small class="text-muted">Banyak dipinjam sebanyak {{ $favorit[2]->pinjam }} kali</small></p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        @endif
+    </div>
+    @endif
+
+
+    </div><!-- end of .container-->
+
+</section>
+<!-- <BUKU FAVORIT> close ============================-->
+<!-- ============================================-->
+
 </div>
 
 @endsection
