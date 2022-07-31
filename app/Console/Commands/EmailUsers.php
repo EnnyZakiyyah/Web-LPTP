@@ -10,6 +10,7 @@ use App\Mail\ReminderEmailDigest;
 use Illuminate\Support\Facades\Mail;
 use App\Notifications\AdminNewUserNotification;
 use App\Notifications\ReminderSMSNotifications;
+use App\Notifications\ReminderWhatsappNotifications;
 use App\Notifications\ReminderEmailNotifications;
 
 class EmailUsers extends Command
@@ -62,8 +63,9 @@ class EmailUsers extends Command
 
     private function sendEmailToUser($userId, $reminders){
         $user = User::find($userId);
-        // $user->notify(new ReminderSMSNotifications($reminders));
+        $user->notify(new ReminderSMSNotifications($reminders));
         $user->notify(new ReminderEmailNotifications($reminders));
+        $user->notify(new ReminderWhatsappNotifications($reminders));
         // Mail::to($user)->send(new ReminderEmailDigest($reminders));
     }
 }

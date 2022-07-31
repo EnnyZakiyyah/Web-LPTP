@@ -9,6 +9,7 @@ use App\Notifications\UserApprovalSMS;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\UserApprovedNotification;
 use App\Notifications\UserRejectedNotification;
+use App\Notifications\WhatsAppApproval;
 
 class DashboardUserController extends Controller
 {
@@ -92,7 +93,8 @@ class DashboardUserController extends Controller
         ]);
         $users = User::where('id', auth()->user()->id);
         $user->notify(new UserApprovedNotification($users));
-        // $user->notify(new UserApprovalSMS($users));
+        $user->notify(new WhatsAppApproval($users));
+        $user->notify(new UserApprovalSMS($users));
         return redirect('/dashboard/users')->with('success', 'User has been Approved!');
     }
 
@@ -120,7 +122,8 @@ class DashboardUserController extends Controller
             'id_petugas_approved' => auth()->user()->id,
             $users = User::where('id', auth()->user()->id),
             $reject->notify(new UserRejectedNotification($users)),
-            // $reject->notify(new UserApprovalSMS($users))
+            $reject->notify(new WhatsAppApproval($users)),
+            $reject->notify(new UserApprovalSMS($users))
         ]);
         return redirect('/dashboard/users')->with('success', 'User has been Approved!');
     }

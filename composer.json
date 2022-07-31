@@ -17,7 +17,8 @@
         "laravel/tinker": "^2.5",
         "laravel/vonage-notification-channel": "^3.0",
         "pusher/pusher-php-server": "^7.0",
-        "spatie/laravel-permission": "*"
+        "spatie/laravel-permission": "*",
+        "twilio/sdk": "^6.40"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
