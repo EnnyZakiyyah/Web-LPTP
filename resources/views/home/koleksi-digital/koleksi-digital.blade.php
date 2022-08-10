@@ -84,47 +84,53 @@
         <h1 class="fs-9 fw-bold mb-4 pb-4 text-center"><span style="color: #002147"> Buku </span><span
                 style="color : #FF9900">Favorit</span></h1>
 
-        @if ($favorit->count())
+    @if ($favorit->count())
+    @if($favorit[0]->views != 0)
     <div class="row row-cols-1 row-cols-md-3 g-4">
         <div class="col mb-5">
             <a href="/home/sirkulasi/penelusuran-katalog/detail/{{ $favorit[0]->slug }}">
                 <div class="card-katalog" style="cursor: pointer;">
+                    <div><a class="text-white text-decoration-none" style="position: absolute; background-color:rgba(100, 95, 95, 0.404); float:bottom">Terakhir dibaca sebanyak {{ $favorit[0]->views }} kali </a></div>
                     <img src="{{ asset('storage/' . $favorit[0]->image) }}" class="card-img-top" alt="...">
                     <div class="contentBx-terbaru">
                         <h5 class="card-title" style="padding-left:5px; padding-right:5px">{{ $favorit[0]->title }}</h5>
                         <a href="/home/sirkulasi/penelusuran-katalog?author={{ $favorit[0]->author_id }}"
                             class="text-primary" style="font-size: 15px;">{{ $favorit[0]->author_id }}</a>
-                            <p class="card-text"><small class="text-muted">Terakhir dibaca sebanyak {{ $favorit[0]->views }} kali</small></p>
                     </div>
                 </div>
             </a>
         </div>
+        @endif
+        @if($favorit[1]->views != 0)
         <div class="col mb-5">
             <a href="/home/sirkulasi/penelusuran-katalog/detail/{{ $favorit[1]->slug }}">
                 <div class="card-katalog" style="cursor: pointer;">
+                    <div><a class="text-white text-decoration-none" style="position: absolute; background-color:rgba(100, 95, 95, 0.404); float:bottom">Terakhir dibaca sebanyak {{ $favorit[1]->views }} kali </a></div>
                     <img src="{{ asset('storage/' . $favorit[1]->image) }}" class="card-img-top" alt="...">
                     <div class="contentBx-terbaru">
                         <h5 class="card-title" style="padding-left:5px; padding-right:5px">{{ $favorit[1]->title }}</h5>
                         <a href="/home/sirkulasi/penelusuran-katalog?author={{ $favorit[1]->author_id }}"
                             class="text-primary" style="font-size: 15px;">{{ $favorit[1]->author_id}}</a>
-                            <p class="card-text"><small class="text-muted">Terakhir dibaca sebanyak {{ $favorit[1]->views }} kali</small></p>
                     </div>
                 </div>
             </a>
         </div>
+        @endif
+        @if($favorit[2]->views != 0)
         <div class="col mb-5">
             <a href="/home/sirkulasi/penelusuran-katalog/detail/{{ $favorit[2]->slug }}">
                 <div class="card-katalog" style="cursor: pointer;">
+                    <div><a class="text-white text-decoration-none" style="position: absolute; background-color:rgba(100, 95, 95, 0.404); float:bottom">Terakhir dibaca sebanyak {{ $favorit[2]->views }} kali </a></div>
                     <img src="{{ asset('storage/' . $favorit[2]->image) }}" class="card-img-top" alt="...">
                     <div class="contentBx-terbaru">
                         <h5 class="card-title" style="padding-left:5px; padding-right:5px">{{ $favorit[2]->title }}</h5>
                         <a href="/home/sirkulasi/penelusuran-katalog?author={{ $favorit[2]->author_id }}"
                             class="text-primary" style="font-size: 15px;">{{ $favorit[2]->author_id }}</a>
-                            <p class="card-text"><small class="text-muted">Terakhir dibaca sebanyak {{ $favorit[2]->views }} kali</small></p>
                     </div>
                 </div>
             </a>
         </div>
+        @endif
     </div>
 
   

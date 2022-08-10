@@ -21,6 +21,7 @@ use App\Http\Controllers\PengembalianController;
 use App\Http\Controllers\PerpanjanganController;
 use App\Http\Controllers\BebasPustakaaController;
 use App\Http\Controllers\DashboardUserController;
+use App\Http\Controllers\DigitalFavoritController;
 use App\Http\Controllers\KoleksiDigitalController;
 use App\Http\Controllers\DashboardAuthorController;
 use App\Http\Controllers\DashboardPinjamController;
@@ -34,6 +35,7 @@ use App\Http\Controllers\DashboardPengembalianController;
 use App\Http\Controllers\DashboardPerpanjanganController;
 use App\Http\Controllers\DashboardKoleksiDigitalController;
 use App\Http\Controllers\DashboardPenelusuranKatalogController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -68,6 +70,7 @@ Route::get('/home/layanan/bibliographies/{katalog:slug}', [KatalogController::cl
 Route::get('/home/koleksi-digital', [KoleksiDigitalController::class, 'index']);
 Route::get('/home/koleksi-digital/detail/{koleksidigital:slug}', [KoleksiDigitalController::class, 'show']);
 Route::get('/home/koleksi-digital/read/{koleksidigital:slug}', [KoleksiDigitalController::class, 'baca']);
+
 //Contact
 Route::get('/contact-us', [ContactController::class, 'showForm']);
 Route::post('/contact-us', [ContactController::class, 'send'])->name('send.email');

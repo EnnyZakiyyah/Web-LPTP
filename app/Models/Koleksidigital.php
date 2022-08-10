@@ -52,6 +52,10 @@ class Koleksidigital extends Model
         return $this->hasMany(Peminjaman::class, 'id_buku');
     }
 
+    public function digitalfavorit(){
+        return $this->hasMany(Digitalfavorit::class);
+    }
+
     public function getRouteKeyName()
     {
         return 'slug';

@@ -104,12 +104,12 @@
         <div class="col mb-5">
             <a href="/home/sirkulasi/penelusuran-katalog/detail/{{ $favorit[0]->slug }}">
                 <div class="card-katalog" style="cursor: pointer;">
+                    <div><a class="text-white text-decoration-none" style="position: absolute; background-color:rgba(100, 95, 95, 0.404); float:bottom">Banyak dipinjam sebanyak {{ $favorit[0]->pinjam }} kali</a></div>
                     <img src="{{ asset('storage/' . $favorit[0]->image) }}" class="card-img-top" alt="...">
                     <div class="contentBx-terbaru">
                         <h5 class="card-title" style="padding-left:5px; padding-right:5px">{{ $favorit[0]->title }}</h5>
                         <a href="/home/sirkulasi/penelusuran-katalog?author={{ $favorit[0]->author_id }}"
                             class="text-primary" style="font-size: 15px;">{{ $favorit[0]->author_id }}</a>
-                            <p class="card-text"><small class="text-muted">Banyak dipinjam sebanyak {{ $favorit[0]->pinjam }} kali</small></p>
                         </div>
                     </div>
                 </a>
@@ -119,12 +119,12 @@
         <div class="col mb-5">
             <a href="/home/sirkulasi/penelusuran-katalog/detail/{{ $favorit[1]->slug }}">
                 <div class="card-katalog" style="cursor: pointer;">
+                    <div><a class="text-white text-decoration-none" style="position: absolute; background-color:rgba(100, 95, 95, 0.404); float:bottom">Banyak dipinjam sebanyak {{ $favorit[1]->pinjam }} kali</a></div>
                     <img src="{{ asset('storage/' . $favorit[1]->image) }}" class="card-img-top" alt="...">
                     <div class="contentBx-terbaru">
                         <h5 class="card-title" style="padding-left:5px; padding-right:5px">{{ $favorit[1]->title }}</h5>
                         <a href="/home/sirkulasi/penelusuran-katalog?author={{ $favorit[1]->author_id }}"
                             class="text-primary" style="font-size: 15px;">{{ $favorit[1]->author_id}}</a>
-                            <p class="card-text"><small class="text-muted">Banyak dipinjam sebanyak {{ $favorit[1]->pinjam }} kali</small></p>
                     </div>
                 </div>
             </a>
@@ -134,12 +134,12 @@
         <div class="col mb-5">
             <a href="/home/sirkulasi/penelusuran-katalog/detail/{{ $favorit[2]->slug }}">
                 <div class="card-katalog" style="cursor: pointer;">
+                    <div><a class="text-white text-decoration-none" style="position: absolute; background-color:rgba(100, 95, 95, 0.404); float:bottom">Banyak dipinjam sebanyak {{ $favorit[2]->pinjam }} kali</a></div>
                     <img src="{{ asset('storage/' . $favorit[2]->image) }}" class="card-img-top" alt="...">
                     <div class="contentBx-terbaru">
                         <h5 class="card-title" style="padding-left:5px; padding-right:5px">{{ $favorit[2]->title }}</h5>
                         <a href="/home/sirkulasi/penelusuran-katalog?author={{ $favorit[2]->author_id }}"
                             class="text-primary" style="font-size: 15px;">{{ $favorit[2]->author_id }}</a>
-                            <p class="card-text"><small class="text-muted">Banyak dipinjam sebanyak {{ $favorit[2]->pinjam }} kali</small></p>
                     </div>
                 </div>
             </a>

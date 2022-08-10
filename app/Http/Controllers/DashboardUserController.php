@@ -94,7 +94,7 @@ class DashboardUserController extends Controller
         $users = User::where('id', auth()->user()->id);
         $user->notify(new UserApprovedNotification($users));
         $user->notify(new WhatsAppApproval($users));
-        $user->notify(new UserApprovalSMS($users));
+        // $user->notify(new UserApprovalSMS($users));
         return redirect('/dashboard/users')->with('success', 'User has been Approved!');
     }
 

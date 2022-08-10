@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Author;
 use App\Models\Category;
-use App\Models\Koleksidigital;
 use Illuminate\Http\Request;
+use App\Models\Digitalfavorit;
+use App\Models\Koleksidigital;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
 class KoleksiDigitalController extends Controller
@@ -30,6 +33,7 @@ class KoleksiDigitalController extends Controller
     }
 
     public function show(Koleksidigital $koleksidigital){
+        dd($koleksidigital);
         return view('home.detil.detil-koleksi-digital', [
             "title" => "Koleksi Digital",
             "koleksidigital" => $koleksidigital
@@ -37,14 +41,47 @@ class KoleksiDigitalController extends Controller
     }
 
 
-    public function baca(Koleksidigital $koleksidigital){
-        // dd($view);
-        DB::table('koleksidigitals')->where('id', $koleksidigital->id)->increment('views');
-        return view('home.koleksi-digital.baca-koleksi-digital', [
-            "title" => "Koleksi Digital",
-            "koleksidigital" => $koleksidigital,
+    public function baca(Koleksidigital $koleksidigital)
+    {
+        // dd(auth()->user());
+        if (auth()->user() == null) {
+            return view('home.koleksi-digital.baca-koleksi-digital', [
+                "title" => "Koleksi Digital",
+                "koleksidigital" => $koleksidigital,   
+            ]);
+        }
+        $todayDate = date('Y/m/d');
+        $digitalfavorit = Digitalfavorit::where('id_buku', $koleksidigital->id)->where('id_user', auth()->user()->id)->whereDate('tgl_baca','=', Carbon::now())->get();
+        
+        foreach ($digitalfavorit as $digital) {
+            // dd($digital = Carbon::now());
+            if ($digital->id_buku = $todayDate) {
+                // dd('tanggal = today');  
+                    return view('home.koleksi-digital.baca-koleksi-digital', [
+                        "title" => "Koleksi Digital",
+                        "koleksidigital" => $koleksidigital,   
+                    ]);
+            } 
             
-            
-        ]);
+        }
+      
+        //  dd('belum ada'); 
+         Digitalfavorit::create([
+                    'id_user' => auth()->user()->id,
+                    'id_buku' => $koleksidigital->id,
+                    'tgl_baca' => $todayDate,
+                ]);
+                DB::table('koleksidigitals')
+                ->join('digitalfavorits', 'koleksidigitals.id', '=', 'digitalfavorits.id_buku')
+                ->where('id_buku', $koleksidigital->id)
+                ->where('views', $koleksidigital->views)
+                ->update( array(
+                    'views' => DB::raw('views+1')
+                ));
+                return view('home.koleksi-digital.baca-koleksi-digital', [
+                    "title" => "Koleksi Digital",
+                    "koleksidigital" => $koleksidigital,   
+                ]);
+        
     }
 }

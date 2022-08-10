@@ -57,6 +57,8 @@
                                 <th>Penulis</th>
                                 <th>ISBN</th>
                                 <th>Tahun Terbit</th>
+                                <th>Dibuat</th>
+                                <th>Diupdate</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -68,6 +70,8 @@
                                 <td>{{ $koleksidigital->author_id }}</td>
                                 <td>{{ $koleksidigital->isbn }}</td>
                                 <td>{{ $koleksidigital->tahun_terbit }}</td>
+                                <td>{{ $koleksidigital->created_at->diffForHumans() }}</td>
+                                <td>{{ $koleksidigital->updated_at->diffForHumans() }}</td>
                                 <td>
                                     <a href="/dashboard/koleksidigitals/{{ $koleksidigital->slug }}"
                                         class="badge bg-info"><i class="feather icon-eye" style="color: white"></i></a>

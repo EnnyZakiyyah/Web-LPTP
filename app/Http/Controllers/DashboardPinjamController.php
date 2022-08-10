@@ -85,15 +85,16 @@ class DashboardPinjamController extends Controller
 
         DB::table('katalogs')
         ->join('peminjamans', 'katalogs.id', '=', 'peminjamans.id_buku')
-        // ->where('id_buku', $peminjaman->id_buku)
+        ->where('id_buku', $peminjaman->id_buku)
         ->where('jumlah', $peminjaman->katalogs->jumlah)
         ->update( array(
             'jumlah' => DB::raw(  'jumlah - 1' )
         ));
 
+        //count favorit
         DB::table('katalogs')
         ->join('peminjamans', 'katalogs.id', '=', 'peminjamans.id_buku')
-        // ->where('id_buku', $peminjaman->id_buku)
+        ->where('id_buku', $peminjaman->id_buku)
         ->where('pinjam', $peminjaman->katalogs->pinjam)
         ->update( array(
             'pinjam' => DB::raw('pinjam+1')

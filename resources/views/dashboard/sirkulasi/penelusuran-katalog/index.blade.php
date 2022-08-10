@@ -57,6 +57,8 @@
                                 <th>Penulis</th>
                                 <th>ISBN</th>
                                 <th>Tahun Terbit</th>
+                                <th>Dibuat</th>
+                                <th>Diupdate</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -68,6 +70,8 @@
                                 <td>{{ $katalog->author_id }}</td>
                                 <td>{{ $katalog->isbn }}</td>
                                 <td>{{ $katalog->tahun_terbit }}</td>
+                                <td>{{ $katalog->created_at->diffForHumans() }}</td>
+                                <td>{{ $katalog->updated_at->diffForHumans() }}</td>
                                 <td>
                                     <a href="/dashboard/sirkulasi/katalogs/{{ $katalog->slug }}"
                                         class="badge bg-info"><i class="feather icon-eye" style="color: white"></i></a>
