@@ -58,6 +58,7 @@
                                     {{ $message }}
                                 </div>
                               @enderror
+                              (.jpg/png max 2 MB)
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary" style="float:right">Tambah Data</button>

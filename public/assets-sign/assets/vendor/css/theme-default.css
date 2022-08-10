@@ -346,6 +346,25 @@ button.list-group-item-primary.active {
   border-color: inherit;
 }
 
+.col-md-6:before{
+  color: red;
+  content: "*";
+  position: absolute;
+  margin-left: -8px;
+}
+
+.col-md-12:before{
+  color: red;
+  content: "*";
+  position: absolute;
+  margin-left: -10px;
+}
+
+.feedback {
+  font-style : italic;
+  font-size : 11px;
+}
+
 .divider.divider-primary .divider-text:before, .divider.divider-primary .divider-text:after {
   border-color: #696cff;
 }

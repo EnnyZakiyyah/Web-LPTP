@@ -124,12 +124,14 @@
                                     {{ $message }}
                                 </div>
                               @enderror
+                              (.jpg/png max 5 MB)
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="filekatalog" class="col-md-2 col-form-label">Upload File</label>
                             <div class="col-md-10">
                                 <input class="form-control @error('filekatalog') is-invalid @enderror" type="file" id="filekatalog" name="filekatalog" onchange="previewfilekatalog()"/>
+                                (.pdf max 2 MB)
                                 <canvas id="pdfViewer"></canvas>
                             @error('filekatalog')
                                 <div class="invalid-feedback">

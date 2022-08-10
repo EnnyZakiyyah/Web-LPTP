@@ -158,6 +158,7 @@
                                     {{ $message }}
                                 </div>
                               @enderror
+                              (.jpg/png max 2 MB)
                             </div>
                         </div>
                           <div class="mb-3 row">

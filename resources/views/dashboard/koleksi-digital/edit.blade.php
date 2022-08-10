@@ -132,6 +132,7 @@
                                     {{ $message }}
                                 </div>
                               @enderror
+                              (.jpg/png max 2 MB)
                             </div>
                         </div>
                         <div class="mb-3 row">
@@ -145,6 +146,7 @@
                             <canvas id="pdfViewer"></canvas>
                             @endif
                             <input class="form-control @error('filekatalog') is-invalid @enderror" type="file" id="filekatalog" name="filekatalog" onchange="previewfilekatalog()"/>
+                            (.pdf max 2 MB)
                             <canvas id="pdfViewer"></canvas>
                             @error('filekatalog')
                                 <div class="invalid-feedback">

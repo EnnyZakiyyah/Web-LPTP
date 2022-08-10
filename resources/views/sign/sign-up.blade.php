@@ -29,7 +29,7 @@
     </div>
     <div class="col-md-6">
         <label class="form-label">Jenis Kelamin</label>
-        <select class="form-select form-select-md" aria-label=".form-select-md example" name="jk" >
+        <select class="form-select form-select-md" aria-label=".form-select-md example" name="jk" required/>
             <option value="Laki-Laki">Laki-laki</option>
             <option value="Perempuan">Perempuan</option>
         </select>
@@ -109,7 +109,10 @@
 
     <div class="col-md-6">
         <label for="Upload Foto" class="form-label">Upload Foto</label>
-        <input class="form-control @error('image_foto') is-invalid @enderror"" type="file" id="image_foto" name="image_foto" value="{{ old('image_foto') }}" onchange="previewImage()"/>
+        <div class="feedback">
+            .jpg/png max 2 MB
+        </div>
+        <input class="form-control @error('image_foto') is-invalid @enderror"" type="file" id="image_foto" name="image_foto" value="{{ old('image_foto') }}" onchange="previewImage()" required/>
       @error('image_foto')
         <div class="invalid-feedback">
             {{ $message }}
@@ -118,7 +121,10 @@
     </div>
     <div class="col-md-6">
         <label for="Upload Bukti" class="form-label">Upload Bukti</label>
-        <input class="form-control @error('image_bukti') is-invalid @enderror"" type="file" id="image_bukti" name="image_bukti" value="{{ old('image_bukti') }}" onchange="previewImage()"/>
+        <div class="feedback">
+            .jpg/png max 2 MB
+        </div>
+        <input class="form-control @error('image_bukti') is-invalid @enderror"" type="file" id="image_bukti" name="image_bukti" value="{{ old('image_bukti') }}" onchange="previewImage()" required/>
       @error('image_bukti')
         <div class="invalid-feedback">
             {{ $message }}
@@ -127,13 +133,13 @@
     </div>
     <div class="col-md-12">
         <label class="form-label">Unit Kerja</label>
-        <select class="form-select form-select-md" aria-label=".form-select-md example" name="unit_kerja" >
+        <select class="form-select form-select-md" aria-label=".form-select-md example" name="unit_kerja" required/>
             <option value="Mahasiswa">Mahasiswa</option>
             <option value="Staf Proyek">Staf Proyek</option>
             <option value="Staf Kantor">Staf Kantor</option>
         </select>
     </div>
-    <div class="col-md-6">
+    {{-- <div class="col-md-6"> --}}
         {{-- <label class="form-label">Role</label> --}}
         <input type="hidden" id="is_admin"
             class="form-control @error('is_admin')is-invalid @enderror" placeholder=""
@@ -143,7 +149,7 @@
             {{ $message }}
         </div>
         @enderror
-    </div>
+    {{-- </div> --}}
 
 
 
