@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light sticky-top" data-navbar-on-scroll="data-navbar-on-scroll">
+<nav class="navbar fixed-top navbar-expand-lg navbar-light">
     <div class="container"><a class="navbar-brand" href="/"><img src="{{asset('assets/img/logo/User-Manual.png')}}"
                 height="47" alt="logo" /><img src="{{asset('assets/img/logo/logo-lptp.png')}}" height="38"
                 alt="logo" /></a>
